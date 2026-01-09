@@ -1,0 +1,160 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Hi there! I'm Sam, helping great people make awesome things since 1992." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <style is:global>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #fff;
+      }
+
+      a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      a:hover {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="main-nav">
+        <div class="nav-container">
+          <a href="/" class="site-title">I am Sam</a>
+          <div class="nav-links">
+            <a href="/copenhagen">Copenhagen</a>
+            <a href="/italy">Italy</a>
+            <a href="/los-angeles">Los Angeles</a>
+            <a href="/france">France</a>
+            <a href="/japan">Japan</a>
+            <a href="/canada">Canada</a>
+            <a href="/elsewhere">Elsewhere</a>
+          </div>
+          <div class="secondary-nav">
+            <a href="/about">About</a>
+            <a href="/blog">Blog</a>
+            <a href="/twitter-archive">Twitter Archive</a>
+            <a href="/apple-music-analyzer">Apple Music Analyzer</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <p class="tagline">Let's Make Something</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/samthegeek" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:sam@samthegeek.net">Email</a>
+          <a href="https://mastodon.social/@SamTheGeek" target="_blank" rel="noopener noreferrer">Mastodon</a>
+        </div>
+        <p class="location">Washington, D.C., United States</p>
+      </div>
+    </footer>
+
+    <style>
+      header {
+        padding: 2rem 1rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .site-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+
+      .secondary-nav {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        min-height: 60vh;
+      }
+
+      footer {
+        border-top: 1px solid #e0e0e0;
+        padding: 2rem 1rem;
+        margin-top: 4rem;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .location {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        .secondary-nav {
+          gap: 1rem;
+        }
+      }
+    </style>
+  </body>
+</html>

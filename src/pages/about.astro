@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About - Sam Gross"
+  description="Product management leader helping great teams and great people to do even greater things."
+>
+  <article class="about-content">
+    <h1>About Sam</h1>
+
+    <section class="intro">
+      <p class="lead">
+        I help great teams and great people to do even greater things.
+      </p>
+    </section>
+
+    <section>
+      <h2>Current Role</h2>
+      <p>
+        Product management leader at <strong>Occupier</strong>, based in Washington, D.C., United States.
+      </p>
+    </section>
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        My experience spans organizations of varying scales, from major corporations to startups and my own ventures.
+        I've had the privilege of working on diverse projects that have shaped my approach to product development and team leadership.
+      </p>
+    </section>
+
+    <section>
+      <h2>Notable Projects</h2>
+      <ul class="projects-list">
+        <li>SAMATE project at NIST</li>
+        <li>OSCAAR project at University of Maryland</li>
+        <li>Apple Store App development</li>
+        <li>Hardware and software project management</li>
+        <li>IT deployments at corporate level</li>
+        <li>Founded and led Technical Product Management at Oscar Insurance</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Interests</h2>
+      <p>
+        When I'm not building products, you can find me cycling around D.C. or exploring the latest in technology.
+        I'm passionate about photography, which you can see throughout this site, and I enjoy sharing my thoughts
+        on technology and product development through my blog.
+      </p>
+    </section>
+
+    <section>
+      <h2>Get in Touch</h2>
+      <p>
+        I'm always interested in connecting with folks working on interesting problems. You can reach me at
+        <a href="mailto:sam@samthegeek.net">sam@samthegeek.net</a> or find me on
+        <a href="https://www.linkedin.com/in/samthegeek" target="_blank" rel="noopener noreferrer">LinkedIn</a> and
+        <a href="https://mastodon.social/@SamTheGeek" target="_blank" rel="noopener noreferrer">Mastodon</a> as @SamTheGeek.
+      </p>
+    </section>
+  </article>
+
+  <style>
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .intro {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: #f8f8f8;
+      border-radius: 8px;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: #444;
+      margin: 0;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    p {
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .projects-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .projects-list li {
+      padding: 0.75rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .projects-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .lead {
+        font-size: 1.1rem;
+      }
+
+      .intro {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</BaseLayout>

@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the repository for samthegeek.net, a personal website built with Astro. The goal is to recreate the existing samthegeek.net website and deploy it via GitHub Actions to Netlify with SSL via Let's Encrypt.
 
+## Important Development Workflow
+
+**ALWAYS start a local development server when working on this project:**
+
+```bash
+# Run in background to keep it active during the session
+source "$HOME/.nvm/nvm.sh" && nvm use --lts && npm run dev
+```
+
+The dev server should run at <http://localhost:4321/> and will hot-reload when files are changed. This allows for immediate visual feedback during development.
+
 ## Technology Stack
 
 - **Framework**: Astro (static site generator)
@@ -52,14 +63,91 @@ npm run preview
 The project uses Astro's file-based routing system:
 
 - `src/pages/` - Page components that map to routes
+  - `index.astro` - Homepage with image gallery carousel
+  - `about.astro` - About page with professional background
+  - `blog/index.astro` - Blog listing page
+  - `blog/[...slug].astro` - Individual blog post template
+  - `copenhagen.astro`, `italy.astro`, etc. - Photo gallery pages for different locations
+  - `twitter-archive.astro` - Twitter archive (placeholder)
+  - `apple-music-analyzer.astro` - Music analyzer tool (placeholder)
 - `src/layouts/` - Layout components for consistent page structure
+  - `BaseLayout.astro` - Main layout with navigation, header, and footer
 - `src/components/` - Reusable UI components
+  - `Gallery.astro` - Photo gallery grid component
+- `src/content/` - Content collections (Astro content layer)
+  - `config.ts` - Content collection schemas
+  - `blog/` - Markdown blog posts
 - `public/` - Static assets served as-is
+
+## Site Structure
+
+### Main Pages
+
+- **Homepage** (`/`): Automatically displays the most recently published photo gallery based on `publishedDate` metadata
+- **About** (`/about`): Professional background and contact information
+- **Blog** (`/blog`): Blog post listing with dates and categories
+- **Blog Posts** (`/blog/[slug]`): Individual blog post pages with markdown rendering
+
+### Photo Galleries
+
+Galleries are managed via content collections with metadata in `src/content/galleries/`:
+
+- Each gallery is a JSON file with: `title`, `location`, `publishedDate`, `description`, `images` array
+- Gallery pages (`/copenhagen`, `/italy`, etc.) fetch data from these JSON files
+- **The homepage automatically displays the newest gallery** based on `publishedDate`
+- To change which gallery appears on the homepage, update the `publishedDate` in the gallery's JSON file
+
+Current galleries:
+
+- `/copenhagen` - Copenhagen photos (2024-01-15)
+- `/italy` - Italy photos (2024-03-20)
+- `/canada` - Canada photos (2024-05-18)
+- `/france` - France photos (2024-08-05)
+- `/japan` - Japan photos (2024-11-12)
+- `/los-angeles` - Los Angeles photos (2025-06-10)
+- `/elsewhere` - Miscellaneous photos (2025-12-01) **← Currently shown on homepage**
+
+### Placeholder Pages
+
+These pages have basic structure but need implementation:
+
+- `/twitter-archive` - Twitter archive functionality
+- `/apple-music-analyzer` - Apple Music analysis tool
+
+## Blog System
+
+The blog uses Astro's content collections for type-safe content management:
+
+- Blog posts are written in Markdown in `src/content/blog/`
+- Each post has frontmatter with title, description, pubDate, and optional category
+- Posts are automatically sorted by date (newest first)
+- Individual post URLs follow the pattern `/blog/[post-slug]/`
 
 ## Deployment
 
-Deployment is automated via GitHub Actions:
+Deployment is automated via GitHub Actions (see [DEPLOYMENT.md](DEPLOYMENT.md) for detailed setup):
 
 - Push to main branch triggers build
 - Build artifacts are deployed to Netlify
 - SSL certificates are managed by Let's Encrypt through Netlify
+
+### Required GitHub Secrets
+
+- `NETLIFY_AUTH_TOKEN` - Netlify personal access token
+- `NETLIFY_SITE_ID` - Netlify site ID
+
+## Next Steps
+
+1. **Replace placeholder images**: Update image sources in gallery pages and homepage
+2. **Download existing site images**: Fetch photos from current samthegeek.net
+3. **Complete placeholder pages**: Implement Twitter Archive and Apple Music Analyzer
+4. **Test deployment**: Push to GitHub and verify Netlify deployment works
+5. **Configure custom domain**: Set up DNS and SSL for samthegeek.net
+
+## Important Files
+
+- `.github/workflows/deploy.yml` - GitHub Actions workflow for deployment
+- `netlify.toml` - Netlify configuration with redirects and headers
+- `DEPLOYMENT.md` - Detailed deployment and SSL setup guide
+- `astro.config.mjs` - Astro configuration
+- `package.json` - Project dependencies and scripts

@@ -1,0 +1,20 @@
+{
+  "title": "Italy",
+  "location": "Italy",
+  "publishedDate": "2024-03-20",
+  "description": "Photos from Italy",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+1", "alt": "Italy photo 1" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+2", "alt": "Italy photo 2" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+3", "alt": "Italy photo 3" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+4", "alt": "Italy photo 4" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+5", "alt": "Italy photo 5" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+6", "alt": "Italy photo 6" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+7", "alt": "Italy photo 7" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+8", "alt": "Italy photo 8" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+9", "alt": "Italy photo 9" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+10", "alt": "Italy photo 10" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+11", "alt": "Italy photo 11" },
+    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+12", "alt": "Italy photo 12" }
+  ]
+}

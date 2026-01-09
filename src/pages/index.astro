@@ -1,16 +1,67 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
 
+// Get all galleries and sort by published date (newest first)
+const allGalleries = await getCollection('galleries');
+const sortedGalleries = allGalleries.sort((a, b) =>
+  b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+);
+
+// Get the newest gallery
+const newestGallery = sortedGalleries[0];
+
+if (!newestGallery) {
+  throw new Error('No galleries found');
+}
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title={`${newestGallery.data.title} - I am Sam`}
+  description={newestGallery.data.description || `Photos from ${newestGallery.data.location}`}
+>
+  <div class="homepage-header">
+    <h1>{newestGallery.data.title}</h1>
+    <p class="location">{newestGallery.data.location}</p>
+    <p class="tagline">Let's Make Something</p>
+  </div>
+
+  <Gallery title="" images={newestGallery.data.images} />
+
+  <style>
+    .homepage-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .homepage-header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .location {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: #999;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .homepage-header h1 {
+        font-size: 2rem;
+      }
+
+      .location {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</BaseLayout>

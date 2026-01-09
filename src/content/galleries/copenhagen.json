@@ -1,0 +1,20 @@
+{
+  "title": "Copenhagen",
+  "location": "Copenhagen, Denmark",
+  "publishedDate": "2024-01-15",
+  "description": "Photos from Copenhagen",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+1", "alt": "Copenhagen photo 1" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+2", "alt": "Copenhagen photo 2" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+3", "alt": "Copenhagen photo 3" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+4", "alt": "Copenhagen photo 4" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+5", "alt": "Copenhagen photo 5" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+6", "alt": "Copenhagen photo 6" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+7", "alt": "Copenhagen photo 7" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+8", "alt": "Copenhagen photo 8" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+9", "alt": "Copenhagen photo 9" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+10", "alt": "Copenhagen photo 10" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+11", "alt": "Copenhagen photo 11" },
+    { "src": "https://via.placeholder.com/800x600/4A90E2/fff?text=Copenhagen+12", "alt": "Copenhagen photo 12" }
+  ]
+}

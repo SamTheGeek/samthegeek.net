@@ -1,0 +1,20 @@
+{
+  "title": "Elsewhere",
+  "location": "Various Locations",
+  "publishedDate": "2025-12-01",
+  "description": "Photos from around the world",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+1", "alt": "Elsewhere photo 1" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+2", "alt": "Elsewhere photo 2" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+3", "alt": "Elsewhere photo 3" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+4", "alt": "Elsewhere photo 4" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+5", "alt": "Elsewhere photo 5" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+6", "alt": "Elsewhere photo 6" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+7", "alt": "Elsewhere photo 7" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+8", "alt": "Elsewhere photo 8" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+9", "alt": "Elsewhere photo 9" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+10", "alt": "Elsewhere photo 10" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+11", "alt": "Elsewhere photo 11" },
+    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+12", "alt": "Elsewhere photo 12" }
+  ]
+}
