@@ -1,43 +1,35 @@
-# Astro Starter Kit: Minimal
+# samthegeek.net
 
-```sh
-npm create astro@latest -- --template minimal
+[![Netlify Status](https://api.netlify.com/api/v1/badges/157edc7e-ad0d-4e06-9095-42dfc690f4fd/deploy-status)](https://app.netlify.com/projects/samthegeeknet/deploys)
+
+Personal website for Sam Gross, built with Astro and deployed to Netlify.
+
+## 🚀 Development
+
+```bash
+# Install Node LTS via NVM
+nvm use --lts
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 📖 Documentation
 
-## 🚀 Project Structure
+- [CLAUDE.md](CLAUDE.md) - Development guide and architecture documentation
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment setup and SSL configuration
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🌐 Deployment
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The site automatically deploys to Netlify via GitHub Actions when changes are pushed to the `main` branch.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Live site:** <https://samthegeek.net>
