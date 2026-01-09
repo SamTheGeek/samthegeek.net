@@ -29,9 +29,10 @@ This document explains how to deploy samthegeek.net to Netlify using GitHub Acti
 Go to your GitHub repository settings:
 
 1. Navigate to Settings > Secrets and variables > Actions
-2. Add the following repository secrets:
-   - `NETLIFY_AUTH_TOKEN`: Your personal access token from step 2
-   - `NETLIFY_SITE_ID`: Your site ID from step 1
+2. Click on **"Secrets"** tab and add:
+   - Name: `NETLIFY_AUTH_TOKEN` → Value: Your personal access token from step 2
+3. Click on **"Variables"** tab and add:
+   - Name: `NETLIFY_SITE_ID` → Value: Your site ID from step 1 (not sensitive, so it's a variable not a secret)
 
 ### 4. Configure Custom Domain (Optional)
 
