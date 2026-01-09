@@ -139,10 +139,15 @@ Deployment is automated via GitHub Actions (see [DEPLOYMENT.md](DEPLOYMENT.md) f
 - Build artifacts are deployed to Netlify
 - SSL certificates are managed by Let's Encrypt through Netlify
 
-### Required GitHub Secrets
+### Required GitHub Configuration
+
+**Secrets** (Settings > Secrets and variables > Actions > Secrets):
 
 - `NETLIFY_AUTH_TOKEN` - Netlify personal access token
-- `NETLIFY_SITE_ID` - Netlify site ID
+
+**Variables** (Settings > Secrets and variables > Actions > Variables):
+
+- `NETLIFY_SITE_ID` - Netlify site ID (not sensitive)
 
 ## Next Steps
 
