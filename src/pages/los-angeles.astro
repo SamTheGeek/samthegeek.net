@@ -1,0 +1,12 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
+
+const gallery = await getEntry('galleries', 'los-angeles');
+if (!gallery) throw new Error('Gallery not found');
+---
+
+<BaseLayout title={`${gallery.data.title} - I am Sam`} description={gallery.data.description || `Photos from ${gallery.data.location}`}>
+  <Gallery title={gallery.data.title} images={gallery.data.images} />
+</BaseLayout>

@@ -1,0 +1,20 @@
+{
+  "title": "Japan",
+  "location": "Japan",
+  "publishedDate": "2024-11-12",
+  "description": "Photos from Japan",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+1", "alt": "Japan photo 1" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+2", "alt": "Japan photo 2" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+3", "alt": "Japan photo 3" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+4", "alt": "Japan photo 4" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+5", "alt": "Japan photo 5" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+6", "alt": "Japan photo 6" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+7", "alt": "Japan photo 7" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+8", "alt": "Japan photo 8" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+9", "alt": "Japan photo 9" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+10", "alt": "Japan photo 10" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+11", "alt": "Japan photo 11" },
+    { "src": "https://via.placeholder.com/800x600/E91E63/fff?text=Japan+12", "alt": "Japan photo 12" }
+  ]
+}

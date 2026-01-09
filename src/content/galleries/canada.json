@@ -1,0 +1,20 @@
+{
+  "title": "Canada",
+  "location": "Canada",
+  "publishedDate": "2024-05-18",
+  "description": "Photos from Canada",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+1", "alt": "Canada photo 1" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+2", "alt": "Canada photo 2" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+3", "alt": "Canada photo 3" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+4", "alt": "Canada photo 4" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+5", "alt": "Canada photo 5" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+6", "alt": "Canada photo 6" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+7", "alt": "Canada photo 7" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+8", "alt": "Canada photo 8" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+9", "alt": "Canada photo 9" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+10", "alt": "Canada photo 10" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+11", "alt": "Canada photo 11" },
+    { "src": "https://via.placeholder.com/800x600/16A085/fff?text=Canada+12", "alt": "Canada photo 12" }
+  ]
+}

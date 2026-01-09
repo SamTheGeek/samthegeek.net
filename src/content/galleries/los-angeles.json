@@ -1,0 +1,20 @@
+{
+  "title": "Los Angeles",
+  "location": "Los Angeles, California",
+  "publishedDate": "2025-06-10",
+  "description": "Photos from Los Angeles",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+1", "alt": "Los Angeles photo 1" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+2", "alt": "Los Angeles photo 2" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+3", "alt": "Los Angeles photo 3" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+4", "alt": "Los Angeles photo 4" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+5", "alt": "Los Angeles photo 5" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+6", "alt": "Los Angeles photo 6" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+7", "alt": "Los Angeles photo 7" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+8", "alt": "Los Angeles photo 8" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+9", "alt": "Los Angeles photo 9" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+10", "alt": "Los Angeles photo 10" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+11", "alt": "Los Angeles photo 11" },
+    { "src": "https://via.placeholder.com/800x600/F39C12/fff?text=LA+12", "alt": "Los Angeles photo 12" }
+  ]
+}

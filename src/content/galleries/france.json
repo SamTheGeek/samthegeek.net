@@ -1,0 +1,20 @@
+{
+  "title": "France",
+  "location": "France",
+  "publishedDate": "2024-08-05",
+  "description": "Photos from France",
+  "images": [
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+1", "alt": "France photo 1" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+2", "alt": "France photo 2" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+3", "alt": "France photo 3" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+4", "alt": "France photo 4" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+5", "alt": "France photo 5" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+6", "alt": "France photo 6" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+7", "alt": "France photo 7" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+8", "alt": "France photo 8" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+9", "alt": "France photo 9" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+10", "alt": "France photo 10" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+11", "alt": "France photo 11" },
+    { "src": "https://via.placeholder.com/800x600/9B59B6/fff?text=France+12", "alt": "France photo 12" }
+  ]
+}
