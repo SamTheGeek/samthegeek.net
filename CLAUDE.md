@@ -17,6 +17,14 @@ source "$HOME/.nvm/nvm.sh" && nvm use --lts && npm run dev
 
 The dev server should run at <http://localhost:4321/> and will hot-reload when files are changed. This allows for immediate visual feedback during development.
 
+**CRITICAL**: The dev server must be restarted at the beginning of each new session:
+
+- If VSCode was closed and reopened
+- If the terminal was quit
+- After any system restart or session interruption
+
+Always check if the dev server is running and restart it if needed before making changes.
+
 ## Technology Stack
 
 - **Framework**: Astro (static site generator)
@@ -63,13 +71,11 @@ npm run preview
 The project uses Astro's file-based routing system:
 
 - `src/pages/` - Page components that map to routes
-  - `index.astro` - Homepage with image gallery carousel
+  - `index.astro` - Homepage that displays the newest gallery
   - `about.astro` - About page with professional background
   - `blog/index.astro` - Blog listing page
   - `blog/[...slug].astro` - Individual blog post template
   - `copenhagen.astro`, `italy.astro`, etc. - Photo gallery pages for different locations
-  - `twitter-archive.astro` - Twitter archive (placeholder)
-  - `apple-music-analyzer.astro` - Music analyzer tool (placeholder)
 - `src/layouts/` - Layout components for consistent page structure
   - `BaseLayout.astro` - Main layout with navigation, header, and footer
 - `src/components/` - Reusable UI components
@@ -99,20 +105,22 @@ Galleries are managed via content collections with metadata in `src/content/gall
 
 Current galleries:
 
-- `/copenhagen` - Copenhagen photos (2024-01-15)
-- `/italy` - Italy photos (2024-03-20)
-- `/canada` - Canada photos (2024-05-18)
-- `/france` - France photos (2024-08-05)
-- `/japan` - Japan photos (2024-11-12)
-- `/los-angeles` - Los Angeles photos (2025-06-10)
-- `/elsewhere` - Miscellaneous photos (2025-12-01) **← Currently shown on homepage**
+- `/copenhagen` - Copenhagen photos (2022-07-01) **← Currently shown on homepage (newest)**
+- `/italy` - Italy photos (2019-09-01)
+- `/los-angeles` - Los Angeles photos (2019-02-01)
+- `/france` - France photos (2018-09-01)
+- `/japan` - Japan photos (2018-04-01)
+- `/canada` - Canada photos (2017-09-01)
+- `/elsewhere` - Miscellaneous photos (2015-01-01)
 
-### Placeholder Pages
+### External Tools (Not in Astro Site)
 
-These pages have basic structure but need implementation:
+These tools are hosted on separate subdomains and managed independently:
 
-- `/twitter-archive` - Twitter archive functionality
-- `/apple-music-analyzer` - Apple Music analysis tool
+- Twitter Archive - <https://twarchive.samthegeek.net>
+- Apple Music Analyzer - <https://music.samthegeek.net>
+
+Navigation links in the site header point to these external URLs.
 
 ## Blog System
 
