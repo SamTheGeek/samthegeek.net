@@ -2,9 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Source of Truth
+
+- Use `STATUS.md` as the only source of current status, active tasks, and suggested work.
+- Use `CLAUDE.md` for repository instructions, conventions, and operational notes for assistants.
+
 ## Project Overview
 
 This is the repository for samthegeek.net, a personal website built with Astro. The goal is to recreate the existing samthegeek.net website and deploy it via GitHub Actions to Netlify with SSL via Let's Encrypt.
+The homepage route `/` redirects to the newest gallery based on `publishedDate` (generated at build time).
 
 ## Important Development Workflow
 
@@ -30,6 +36,8 @@ open http://localhost:4321/
 - After any system restart or session interruption
 
 Always check if the dev server is running and restart it if needed before making changes.
+
+Note: The dev server can fail to bind under restricted sandbox permissions; it starts successfully with network access enabled.
 
 ## Technology Stack
 
@@ -71,6 +79,10 @@ npm run build
 # Preview production build
 npm run preview
 ```
+
+## Build Output Safety
+
+Builds include a verification step that fails if documentation or scripts appear in `dist/`.
 
 ## Architecture
 
@@ -155,14 +167,6 @@ Deployment is automated via GitHub Actions (see [DEPLOYMENT.md](DEPLOYMENT.md) f
 
 - `NETLIFY_SITE_ID` - Netlify site ID (not sensitive)
 
-## Next Steps
-
-1. **Replace placeholder images**: Update image sources in gallery pages and homepage
-2. **Download existing site images**: Fetch photos from current samthegeek.net
-3. **Complete placeholder pages**: Implement Twitter Archive and Apple Music Analyzer
-4. **Test deployment**: Push to GitHub and verify Netlify deployment works
-5. **Configure custom domain**: Set up DNS and SSL for samthegeek.net
-
 ## Important Files
 
 - `.github/workflows/deploy.yml` - GitHub Actions workflow for deployment
@@ -170,16 +174,18 @@ Deployment is automated via GitHub Actions (see [DEPLOYMENT.md](DEPLOYMENT.md) f
 - `DEPLOYMENT.md` - Detailed deployment and SSL setup guide
 - `astro.config.mjs` - Astro configuration
 - `package.json` - Project dependencies and scripts
+- `src/content/galleries/*.json` - Gallery metadata
+- `scripts/generate-latest-redirect.mjs` - Build-time redirect for newest gallery
+- `scripts/verify-build-artifacts.mjs` - Ensure docs/scripts never ship in `dist`
 
-## Status Files
+## Deployment Requirements
 
-Reference this consolidated status file for current status and handoffs:
+- GitHub Secrets: `NETLIFY_AUTH_TOKEN`
+- GitHub Variables: `NETLIFY_SITE_ID`
+- Netlify build: `npm run build`, publish directory `dist`
 
-- `STATUS.md`
+## Assistant Notes
 
-Legacy status files (to be removed once consolidation is finalized):
-
-- `SESSION_NOTES.md`
-- `HANDOFF_REPORT.md`
-- `PROJECT_STATUS.md`
-- `NEXT_STEPS.md`
+- Image downloads use `ALL_GALLERY_URLS.txt` plus `scripts/download_gallery_images.py`.
+- Renaming/import scripts live in `scripts/rename_existing_gallery_images.py` and `scripts/rename_new_gallery_images.py` (require `exifread` and optional `GOOGLE_MAPS_API_KEY`).
+- Gallery layout is a masonry column layout in `src/components/Gallery.astro`.
