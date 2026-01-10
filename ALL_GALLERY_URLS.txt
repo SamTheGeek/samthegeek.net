@@ -1,6 +1,43 @@
 # Gallery Image URLs for samthegeek.net
 # Format: GALLERY_NAME|IMAGE_URL
-# Total: 301 images across 6 galleries
+# Total: 338 images across 7 galleries
+
+# COPENHAGEN (35 images)
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007519070-06W7ETLYK64GC33SYHS9/DSCF5526.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007526148-8AHTW18E1B4XLSVSQQ64/DSCF5545.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007531644-E2ECLICFPGECMPMS39QU/DSCF5608.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007504527-FLQPG69U6565BS5O4SZY/DSCF5424.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007508653-BNVLXHG23FDOSGMJVC9U/DSCF5450.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007512459-RICRFVGQ2OYJ1JYCXMUI/DSCF5515.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007601010-9CKZ0UGT1EE3V85TO74M/DSCF6168.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007526004-HENKY0K0J6D66K2BBHEI/DSCF5552.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007531638-2928R9O97Q47YJAIF3BR/DSCF5562.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007542739-P4PM3J1K59FYBY5G4WAI/DSCF5629.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007619419-0JGS7NJOTBGAT0EX9Z10/DSCF6283.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007539469-1PV6222YSHOLR3MCKAGN/DSCF5652.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007546956-O3AOLZ0XU02LXHS04GIL/DSCF5678.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007518191-DK79XWMD1KKXQOBJ1ZKB/DSCF5516.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007544756-T6OBMUR2ZU9DOYFOHOO7/DSCF5760.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007556375-PNZQ6Q775NVK2RPS4FP9/DSCF5771.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007558862-YTYUSLUGE920NTP4D0J8/DSCF5846.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007565680-NSANM9QR4WDZBKWTMRIF/DSCF5861.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007565812-TQOZC45BY0DUMC1WV319/DSCF5907.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007579902-ZSV3BIDX30O4UFY0H2QV/DSCF5954.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007570917-LNG3D5162256SPF4LU6I/DSCF5996.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007580726-LZJBHQZ228746GX49USP/DSCF6025.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007581477-NVFYR67HX3T46U1Q7L7G/DSCF6042.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007586184-9F7CNY42KW8UW0XLNM29/DSCF6134.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007594262-9WDJEFMOYPEYAH4OWAJ3/DSCF6148.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007594256-TY7CI6QSKNTBK4RNWLZC/DSCF6164.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007607187-J012WO9SRC725S2XEENH/DSCF6211.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007607144-V304Y5BMCWYQ9MA5PPZ4/DSCF6218.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007616565-7EUZ8D8SNKPJNRZITZFJ/DSCF6271.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007616568-JL5UAQ6C1EEAGNG1GZW5/DSCF6275.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007626138-PCCFVELKV1NJVFGG6OCS/IMG_2522.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007628860-8X5N1CHSDM0P2G43YG0T/IMG_2577.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007631257-NYOX2Z15ARO0AUJA3O9Q/IMG_2607.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007633395-NUCJX30RBR4KYXAN14YS/IMG_2613.jpeg
+copenhagen|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1656007626541-H5MJVD5E9BXF7QH81SL5/DSCF6291.jpeg
 
 # ITALY (41 images)
 italy|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1605408451326-82NALITL6IG7JV6F72UL/DSCF1644.jpeg
@@ -135,8 +172,8 @@ los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8
 los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883855540-AN018VYQX0BNBIXRWROP/6E5E2E3B-7AAF-4D00-995B-33BBCECEB7D9-1153-00000282A9619C26_photo.jpg
 los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883872937-YN5K7WH43IVK02M0EW1N/6F9558D8-48A6-465C-8EE3-45E7960CDE17-1152-000001E0C2829D89_photo.jpg
 los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883872616-84L5V12G9B350DYQJ4Q4/7B37DB7E-98C7-448E-A014-FC807008C73A-1116-000001DDD3D91C00_photo.jpg
-los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883884445-FPBZOEC7VS6QG0LEX7F/7C8CD969-54F0-4A30-ABF6-2B3F6C9D04CA-11987-00000FD92D6CB796_photo.jpg
-los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883886203-UBSZAPNLNWKWUK4B6VSV/8AB8AED4-16B7-4AE3-8B0E-55B1F13CAFF4-11987-00000FD93306FB83_photo.jpg
+los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883884445-FPBZOEC7VS6QKG0LEX7F/7C8CD969-54F0-4A30-ABF6-2B3F6C9D04CA-11987-00000FD92D6CB796_photo.jpg
+los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883886203-UBSZAPNLNKWKUK4B6VSV/8AB8AED4-16B7-4AE3-8B0E-55B1F13CAFF4-11987-00000FD93306FB83_photo.jpg
 los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883898220-DCUBAZM5RM3OM0PCNI5A/8D2416F1-E8F7-4ED1-BA58-CC156A5445B2-1152-000001E04A6546AF_photo.jpg
 los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883901758-5QY5ZVQ60PD6OP83MWO1/8D92556D-A32B-4D56-8BC0-B87DC76836D5-1152-000001E09C508684_photo.jpg
 los-angeles|https://images.squarespace-cdn.com/content/v1/510ddd65e4b0837c157bd8f3/1552883911802-BSENWAWVNMHKKVBH1TLE/9AB4CDD4-59C6-483E-918C-B82EC01E82AC-1152-000001E03A948ADD_photo.jpg
