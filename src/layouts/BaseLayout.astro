@@ -2,19 +2,21 @@
 interface Props {
   title: string;
   description?: string;
+  activePath?: string;
 }
 
-const { title, description = "Hi there! I'm Sam, helping great people make awesome things since 1992." } = Astro.props;
-const currentPath = Astro.url.pathname;
+const { title, description = "Hi there! I'm Sam, helping great people make awesome things since 1992.", activePath } = Astro.props;
+const currentPath = activePath ?? Astro.url.pathname;
+
+const normalizePath = (value: string) => value.replace(/\/+$/, '') || '/';
 
 const isActive = (href: string) => {
-  if (href === '/') {
-    return currentPath === '/';
+  const normalizedCurrent = normalizePath(currentPath);
+  const normalizedHref = normalizePath(href);
+  if (normalizedHref === '/blog') {
+    return normalizedCurrent === '/blog' || normalizedCurrent.startsWith('/blog/');
   }
-  if (href === '/blog') {
-    return currentPath.startsWith('/blog');
-  }
-  return currentPath === href;
+  return normalizedCurrent === normalizedHref;
 };
 ---
 
@@ -76,34 +78,35 @@ const isActive = (href: string) => {
             <a href="https://music.samthegeek.net" target="_blank" rel="noopener noreferrer">Apple Music Analyzer</a>
           </div>
         </nav>
-        <footer class="sidebar-footer">
-          <div class="social-links">
-            <a href="https://www.linkedin.com/in/samthegeek" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:sam@samthegeek.net">Email</a>
-          </div>
-          <p class="location">Brooklyn, N.Y., United States</p>
-        </footer>
       </aside>
 
       <main class="content">
         <slot />
       </main>
+
+      <footer class="sidebar-footer">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/samthegeek" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:sam@samthegeek.net">Email</a>
+        </div>
+        <p class="location">Brooklyn, N.Y., United States</p>
+      </footer>
     </div>
 
     <style>
       .layout {
+        --outer-gutter: 50px;
         min-height: 100vh;
         min-width: 900px;
-        max-width: 1233px;
-        margin: 0 auto;
-        padding: 50px;
+        width: 100%;
+        padding: var(--outer-gutter);
         position: relative;
       }
 
       .sidebar {
-        position: absolute;
-        top: calc(50px + 2rem);
-        left: 50px;
+        position: fixed;
+        top: var(--outer-gutter);
+        left: var(--outer-gutter);
         width: 180px;
         display: flex;
         flex-direction: column;
@@ -113,7 +116,7 @@ const isActive = (href: string) => {
       }
 
       .site-title {
-        font-size: 27px;
+        font-size: 20px;
         font-weight: 700;
         color: #000;
         line-height: 1.2em;
@@ -121,8 +124,8 @@ const isActive = (href: string) => {
       }
 
       .site-tagline {
-        margin-top: 0.5rem;
-        font-size: 13px;
+        margin-top: 0.25rem;
+        font-size: 11px;
         font-weight: 400;
         color: #222;
       }
@@ -139,15 +142,9 @@ const isActive = (href: string) => {
       }
 
       .nav-links .active-link,
-      .secondary-nav .active-link {
-        color: #a3a3a3;
-      }
-
+      .secondary-nav .active-link,
       .nav-links a:hover,
-      .secondary-nav a:hover {
-        color: #a3a3a3;
-      }
-
+      .secondary-nav a:hover,
       .nav-links .active-link:hover,
       .secondary-nav .active-link:hover {
         color: #a3a3a3;
@@ -174,6 +171,8 @@ const isActive = (href: string) => {
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: none;
+        width: 100%;
+        position: relative;
       }
 
       .nav-row::-webkit-scrollbar {
@@ -187,6 +186,10 @@ const isActive = (href: string) => {
       }
 
       .sidebar-footer {
+        position: fixed;
+        left: var(--outer-gutter);
+        bottom: var(--outer-gutter);
+        width: 180px;
         margin-top: auto;
       }
 
@@ -214,12 +217,15 @@ const isActive = (href: string) => {
         .layout {
           min-width: auto;
           max-width: none;
-          padding: 30px;
+          padding: var(--outer-gutter);
+          width: 100%;
         }
 
         .sidebar {
-          position: static;
-          width: auto;
+          position: static !important;
+          top: auto;
+          left: auto;
+          width: 100%;
           gap: 1.25rem;
           margin-bottom: 2rem;
         }
@@ -231,6 +237,7 @@ const isActive = (href: string) => {
         .nav-links,
         .secondary-nav {
           flex-direction: row;
+          flex-wrap: nowrap;
           gap: 1rem;
           margin-top: 0;
         }
@@ -240,7 +247,20 @@ const isActive = (href: string) => {
         }
 
         .sidebar-footer {
+          position: static;
+          width: 100%;
           margin-top: 1.5rem;
+        }
+
+        .nav-row::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 24px;
+          height: 100%;
+          pointer-events: none;
+          background: linear-gradient(270deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
         }
       }
 

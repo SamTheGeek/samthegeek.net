@@ -1,0 +1,27 @@
+[
+  {
+    "from": "/blog/2025/12/apple-has-a-valentines-day-present-for-you",
+    "to": "/blog/applehasavalentinesdaypresentforyou",
+    "status": 301
+  },
+  {
+    "from": "/blog/2023/1/googles-red-alert",
+    "to": "/blog/googlesredalert",
+    "status": 301
+  },
+  {
+    "from": "/blog/2022/12/what-even-is-a-car",
+    "to": "/blog/whathappensafterthecrossoverswin",
+    "status": 301
+  },
+  {
+    "from": "/blog/2022/6/downloading-icloud-photo-library-to-your-synology-for-backup",
+    "to": "/blog/downloadingicloudphotolibrarytoyoursynologyforbackup",
+    "status": 301
+  },
+  {
+    "from": "/blog/2017/12/car-based-mac",
+    "to": "/blog/thecar-basedtruck",
+    "status": 301
+  }
+]
