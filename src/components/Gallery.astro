@@ -10,8 +10,6 @@ const { title, images } = Astro.props;
 ---
 
 <div class="gallery-page">
-  <h1>{title}</h1>
-
   <div class="gallery-grid">
     {images.map((image) => (
       <div class="gallery-item">
@@ -24,26 +22,23 @@ const { title, images } = Astro.props;
 <Lightbox />
 
 <style>
-  .gallery-page h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #222;
-  }
-
   .gallery-grid {
     --tile-gap: 0.25rem;
     column-gap: var(--tile-gap);
-    columns: 3 300px;
+    column-count: 3;
     margin-top: 2rem;
+    column-fill: auto;
+    line-height: 0;
   }
 
   .gallery-item {
+    display: inline-block;
+    width: 100%;
     break-inside: avoid;
     margin-bottom: var(--tile-gap);
     overflow: hidden;
     background: #f5f5f5;
+    line-height: normal;
     transition: opacity 0.2s;
   }
 
@@ -58,13 +53,15 @@ const { title, images } = Astro.props;
     cursor: pointer;
   }
 
-  @media (max-width: 768px) {
-    .gallery-page h1 {
-      font-size: 2rem;
-    }
-
+  @media (max-width: 1280px) {
     .gallery-grid {
-      columns: 1 250px;
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      column-count: 1;
       column-gap: var(--tile-gap);
     }
   }
