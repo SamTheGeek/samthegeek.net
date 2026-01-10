@@ -1,24 +1,13 @@
 ---
 title: "What happens after the crossovers win?"
-description: "Midjourney generated this photo of a generic crossover for me  
-           
-        
-      
-         
-      
-
-     
-  
-
-
-  
-
-
-    
-
- 
-   A few years ago (with COVID-related time-dilation, 5 years is now ‘a few’) I wrote…"
+description: "Midjourney generated this photo of a generic crossover for me A few years ago (with COVID-related time-dilation, 5 years is now ‘a few’) I wrote a blog post about the then-imminent iMac Pro comparing it to the first…"
 pubDate: 2022-12-27
+urlId: "2022/12/what-even-is-a-car"
+updatedDate: 2022-12-27
+categories: ['Apple']
+tags: ['Mac', 'Car']
+likeCount: 4
+commentCount: 0
 ---
 
 <div class="sqs-layout sqs-grid-12 columns-12" data-layout-label="Post Body" data-type="item" data-updated-on="1671739009805" id="item-63a4b662e6cbac0a7ce6385f"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block image-block sqs-block-image" data-block-type="5" id="block-yui_3_17_2_1_1671744200522_6671"><div class="sqs-block-content">

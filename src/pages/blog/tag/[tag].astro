@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogList from '../../../components/BlogList.astro';
+import BlogLikeScript from '../../../components/BlogLikeScript.astro';
+import '../../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = new Set<string>();
+  posts.forEach((post) => {
+    const postTags = post.data.tags ?? [];
+    postTags.forEach((tag) => tags.add(tag));
+  });
+  return Array.from(tags).map((tag) => ({
+    params: { tag: encodeURIComponent(tag) }
+  }));
+}
+
+const tagParam = Astro.params.tag ?? '';
+const tag = decodeURIComponent(tagParam);
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const filteredPosts = sortedPosts.filter((post) => (post.data.tags ?? []).includes(tag));
+---
+
+<BaseLayout
+  title={`Tag: ${tag} - I am Sam`}
+  description={`Posts tagged ${tag}.`}
+  activePath="/blog"
+>
+  <h1 class="archive-title">Tag: {tag}</h1>
+  <BlogList posts={filteredPosts} page={1} totalPages={1} />
+  <BlogLikeScript />
+</BaseLayout>

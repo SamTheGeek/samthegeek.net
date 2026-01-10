@@ -1,0 +1,96 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogPostFooter from './BlogPostFooter.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  page: number;
+  totalPages: number;
+}
+
+const { posts, page, totalPages } = Astro.props;
+
+const formatDate = (date: Date): string =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+
+const buildCategoryLinks = (post: CollectionEntry<'blog'>) => {
+  const categories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
+  return categories;
+};
+
+const hasPrev = page > 1;
+const hasNext = page < totalPages;
+const prevHref = page === 2 ? '/blog' : `/blog/page/${page - 1}`;
+const nextHref = `/blog/page/${page + 1}`;
+---
+
+<div class="blog-page">
+  <div class="article-list hfeed">
+    {posts.map((post, index) => {
+      const postHref = `/blog/${post.slug}`;
+      const categories = buildCategoryLinks(post);
+      return (
+        <>
+          <article class="hentry post-type-text">
+            <header>
+              <h1 class="entry-title">
+                <a href={postHref}>{post.data.title}</a>
+              </h1>
+              <div class="entry-info">
+                <span class="published">
+                  <a href={postHref} title="Permalink" class="permalink">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {formatDate(post.data.pubDate)}
+                    </time>
+                  </a>
+                </span>
+                {categories.length > 0 && (
+                  <>
+                    {' '}
+                    in{' '}
+                    <span class="category">
+                      {categories.map((category, categoryIndex) => (
+                        <>
+                          <a href={`/blog/category/${encodeURIComponent(category)}`} rel="tag">
+                            {category}
+                          </a>
+                          {categoryIndex < categories.length - 1 ? ',' : ''}
+                          {categoryIndex < categories.length - 1 ? ' ' : ''}
+                        </>
+                      ))}
+                    </span>
+                  </>
+                )}
+              </div>
+            </header>
+
+            {post.data.excerptHtml ? (
+              <div class="body entry-content">
+                <div class="excerpt" set:html={post.data.excerptHtml} />
+                <a class="read-more" href={postHref}>
+                  Read More
+                </a>
+              </div>
+            ) : (
+              <div class="body entry-content" set:html={post.body} />
+            )}
+
+            <BlogPostFooter post={post} postUrl={postHref} />
+          </article>
+          {index < posts.length - 1 && <div class="post-divider"></div>}
+        </>
+      );
+    })}
+  </div>
+
+  {totalPages > 1 && (
+    <nav class="pagination">
+      {hasPrev ? <a href={prevHref}>Prev</a> : 'Prev'} /{' '}
+      {hasNext ? <a href={nextHref}>Next</a> : 'Next'}
+    </nav>
+  )}
+</div>

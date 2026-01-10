@@ -1,77 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogList from '../../components/BlogList.astro';
+import BlogLikeScript from '../../components/BlogLikeScript.astro';
+import '../../styles/blog.css';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }).format(date);
-}
+const postsPerPage = 5;
+const page = 1;
+const totalPages = Math.max(1, Math.ceil(sortedPosts.length / postsPerPage));
+const pagePosts = sortedPosts.slice(0, postsPerPage);
 ---
 
 <BaseLayout
   title="Blog - I am Sam"
   description="Thoughts on technology, product development, and making things."
+  activePath="/blog"
 >
-  <div class="posts-list">
-    {sortedPosts.map((post) => (
-      <article class="post-item">
-        <h2>
-          <a href={`/blog/${post.slug}/`} class="post-link">{post.data.title}</a>
-        </h2>
-        <time class="post-date">{formatDate(post.data.pubDate)}</time>
-        <div class="post-excerpt">{post.data.description}</div>
-        <a href={`/blog/${post.slug}/`} class="show-more">Show more</a>
-      </article>
-    ))}
-  </div>
-
-  <style>
-    .posts-list {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      max-height: calc(100vh - 140px);
-      overflow-y: auto;
-      padding-right: 1rem;
-    }
-
-    .post-item h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #222;
-      margin: 0 0 0.25rem 0;
-    }
-
-    .post-link {
-      color: #1f1f1f;
-    }
-
-    .post-date {
-      display: block;
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-
-    .post-excerpt {
-      color: #555;
-      line-height: 1.6;
-      max-height: 6.5rem;
-      overflow: hidden;
-    }
-
-    .show-more {
-      display: inline-block;
-      margin-top: 0.5rem;
-      color: #0085bd;
-    }
-  </style>
+  <BlogList posts={pagePosts} page={page} totalPages={totalPages} />
+  <BlogLikeScript />
 </BaseLayout>

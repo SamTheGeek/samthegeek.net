@@ -1,0 +1,30 @@
+<script is:inline>
+  const likeButtons = document.querySelectorAll('.like-button');
+  likeButtons.forEach((button) => {
+    const postId = button.dataset.postId;
+    if (!postId) {
+      return;
+    }
+    const storageKey = `blog-like-${postId}`;
+    const stored = window.localStorage.getItem(storageKey);
+    const liked = stored === 'true';
+    const count = Number(button.dataset.likeCount || '0');
+    const countEl = button.querySelector('.like-count');
+
+    const update = (nextLiked) => {
+      button.setAttribute('aria-pressed', String(nextLiked));
+      const delta = nextLiked ? 1 : 0;
+      if (countEl) {
+        countEl.textContent = String(count + delta);
+      }
+      window.localStorage.setItem(storageKey, String(nextLiked));
+    };
+
+    update(liked);
+
+    button.addEventListener('click', () => {
+      const nextLiked = button.getAttribute('aria-pressed') !== 'true';
+      update(nextLiked);
+    });
+  });
+</script>

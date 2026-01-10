@@ -1,7 +1,13 @@
 ---
 title: "The Car-Based Truck"
-description: "A few weeks ago,&nbsp;  Steve Troughton-Smith   and   Guilherme Rambo &nbsp; found a software update that contained the code for Apple’s upcoming iMac Pro. Confirming some earlier rumors, it appears that the iMac will…"
+description: "A few weeks ago,&nbsp; Steve Troughton-Smith and Guilherme Rambo &nbsp; found a software update that contained the code for Apple’s upcoming iMac Pro. Confirming some earlier rumors, it appears that the iMac will have…"
 pubDate: 2017-12-12
+urlId: "2017/12/car-based-mac"
+updatedDate: 2017-12-12
+categories: ['Apple', 'macOS']
+tags: ['Apple', 'Mac', 'Security']
+likeCount: 2
+commentCount: 0
 ---
 
 <div class="sqs-layout sqs-grid-12 columns-12" data-layout-label="Post Body" data-type="item" id="item-5a2f69300852293389a25bf9"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" data-sqsp-block="text" id="block-1b92c174fbd3ec79b085"><div class="sqs-block-content">

@@ -1,6 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostFooter from '../../components/BlogPostFooter.astro';
+import BlogLikeScript from '../../components/BlogLikeScript.astro';
+import '../../styles/blog.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -12,6 +15,15 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const { Content } = await post.render();
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const currentIndex = sortedPosts.findIndex((entry) => entry.id === post.id);
+const prevPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
+const postHref = `/blog/${post.slug}`;
+const categories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
+const commentCount = post.data.commentCount ?? 0;
+const commentAnchorId = post.slug.replaceAll('/', '-');
 
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('en-US', {
@@ -25,169 +37,59 @@ function formatDate(date: Date): string {
 <BaseLayout
   title={`${post.data.title} - I am Sam`}
   description={post.data.description}
+  activePath="/blog"
 >
-  <article class="blog-post">
+  <article class="blog-page blog-post hentry post-type-text">
     <header class="post-header">
-      <h1>{post.data.title}</h1>
-      <div class="post-meta">
-        <time datetime={post.data.pubDate.toISOString()}>
-          {formatDate(post.data.pubDate)}
-        </time>
-        {post.data.category && (
-          <span class="category">{post.data.category}</span>
+      <h1 class="entry-title">
+        <a href={postHref}>{post.data.title}</a>
+      </h1>
+      <div class="entry-info">
+        <span class="published">
+          <a href={postHref} title="Permalink" class="permalink">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {formatDate(post.data.pubDate)}
+            </time>
+          </a>
+        </span>
+        {categories.length > 0 && (
+          <>
+            {' '}
+            in{' '}
+            <span class="category">
+              {categories.map((category, categoryIndex) => (
+                <>
+                  <a href={`/blog/category/${encodeURIComponent(category)}`} rel="tag">
+                    {category}
+                  </a>
+                  {categoryIndex < categories.length - 1 ? ',' : ''}
+                  {categoryIndex < categories.length - 1 ? ' ' : ''}
+                </>
+              ))}
+            </span>
+          </>
         )}
       </div>
     </header>
 
-    <div class="post-content">
+    <div class="post-content entry-content">
       <Content />
     </div>
 
-    <footer class="post-footer">
-      <a href="/blog" class="back-link">&larr; Back to Blog</a>
-    </footer>
+    <BlogPostFooter post={post} postUrl={postHref} />
+
+    <nav class="pagination">
+      {prevPost ? <a href={`/blog/${prevPost.slug}`}>Prev</a> : 'Prev'} /{' '}
+      {nextPost ? <a href={`/blog/${nextPost.slug}`}>Next</a> : 'Next'}
+    </nav>
+
+    <section class="comments-wrapper" id={`comments-${commentAnchorId}`}>
+      <h2>Comments</h2>
+      <p>
+        Comments are not available on the rebuild yet. {commentCount} on the original
+        post.
+      </p>
+    </section>
   </article>
-
-  <style>
-    .blog-post {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .post-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .blog-post h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      color: #222;
-    }
-
-    .post-meta {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      color: #666;
-      font-size: 0.95rem;
-    }
-
-    .category {
-      background: #333;
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-    }
-
-    .post-content {
-      line-height: 1.8;
-      color: #444;
-    }
-
-    .post-content :global(h2) {
-      font-size: 1.75rem;
-      font-weight: 600;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-
-    .post-content :global(h3) {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
-      color: #333;
-    }
-
-    .post-content :global(p) {
-      margin-bottom: 1.5rem;
-    }
-
-    .post-content :global(a) {
-      color: #0066cc;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-    }
-
-    .post-content :global(a:hover) {
-      opacity: 0.8;
-    }
-
-    .post-content :global(ul),
-    .post-content :global(ol) {
-      margin-bottom: 1.5rem;
-      padding-left: 2rem;
-    }
-
-    .post-content :global(li) {
-      margin-bottom: 0.5rem;
-    }
-
-    .post-content :global(blockquote) {
-      border-left: 4px solid #333;
-      padding-left: 1.5rem;
-      margin: 2rem 0;
-      font-style: italic;
-      color: #555;
-    }
-
-    .post-content :global(code) {
-      background: #f5f5f5;
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      font-size: 0.9em;
-      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    }
-
-    .post-content :global(pre) {
-      background: #f5f5f5;
-      padding: 1.5rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 2rem 0;
-    }
-
-    .post-content :global(pre code) {
-      background: none;
-      padding: 0;
-    }
-
-    .post-footer {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e0e0e0;
-    }
-
-    .back-link {
-      color: #333;
-      text-decoration: none;
-      font-weight: 500;
-      transition: opacity 0.2s;
-    }
-
-    .back-link:hover {
-      opacity: 0.7;
-    }
-
-    @media (max-width: 768px) {
-      .blog-post h1 {
-        font-size: 2rem;
-      }
-
-      .post-content :global(h2) {
-        font-size: 1.5rem;
-      }
-
-      .post-content :global(h3) {
-        font-size: 1.25rem;
-      }
-    }
-  </style>
+  <BlogLikeScript />
 </BaseLayout>

@@ -45,6 +45,7 @@ Note: These keys are exposed to the client by design, so rely on referrer restri
 Scripts live in the `scripts/` directory. See `DOWNLOAD_IMAGES_README.md` for image-related workflows.
 
 - `scripts/download_gallery_images.py` - Download gallery images from `ALL_GALLERY_URLS.txt` into `public/images/<gallery>/`.
+- `scripts/import_live_content.py` - Import live blog posts + About content, and regenerate blog redirects.
 - `scripts/rename_existing_gallery_images.py` - Rename all existing gallery images using EXIF data + optional Google Maps geocoding.
 - `scripts/rename_new_gallery_images.py` - Import/rename a new batch of images into an existing or new gallery.
 - `scripts/generate-latest-redirect.mjs` - Generate `public/_redirects` so `/` routes to the newest gallery.

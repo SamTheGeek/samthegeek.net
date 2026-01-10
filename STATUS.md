@@ -15,6 +15,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox map uses Google Static Maps with dynamic sizing + scale=2 for crisp display and click-through; EXIF location uses Google or Nominatim fallback.
 - Lightbox now supports filename-based deep links via the `photo` query parameter.
 - Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
+- Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
 
 ## Gallery Status
 
@@ -37,10 +38,12 @@ This file is the single source of truth for current status, progress, and next t
 - Refined base sidebar design to match the live site layout.
 - Implemented responsive sidebar/header/footer reflow with scrollable nav rows.
 - Imported live blog posts and About content (with redirects for old blog URLs).
+- Rebuilt blog listing and post pages to match Squarespace structure (excerpts, pagination, category/tag archives, likes/share UI).
 - Homepage now redirects to the newest gallery (server-side 302).
 - Updated lightbox design and EXIF/map integration.
 - Infobox/lightbox design approved.
 - Added `photo` query parameter handling for lightbox deep links.
+- Implemented blog RSS feed with legacy ordering/guids and `/blog?format=rss` redirect.
 
 ## Pending Tasks (Priority Order)
 
