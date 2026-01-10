@@ -7,13 +7,14 @@ When details conflict, information from the most recently modified source file i
 
 - Astro v5 site rebuild for samthegeek.net with dynamic photo galleries.
 - Homepage behavior: build generates a redirect from `/` to the newest gallery by `publishedDate`.
-- Deployment pipeline ready for Netlify (GitHub Actions + Netlify config).
+- Netlify deployment completed; remaining work is redirecting the live site to Netlify and final SSL setup after design refinements.
 
 ## Current State
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
 - Dev server: fails to bind locally with `listen EPERM ... :4321` (environment-specific).
 - Galleries: Copenhagen complete with 35 images; remaining galleries pending downloads.
+- Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 
 ## Gallery Status
 
@@ -34,10 +35,15 @@ When details conflict, information from the most recently modified source file i
 ## Pending Tasks (Priority Order)
 
 1. Download remaining gallery images and update JSON files.
-2. Verify all galleries + lightbox behavior (desktop + mobile).
-3. Configure Netlify deployment + custom domain + SSL.
-4. Match design details to existing samthegeek.net.
-5. Migrate real blog content and About page content.
+2. Add an infobox to the lightbox view.
+3. Implement an automatic attractive tile layout for photos.
+4. Create a photo renaming script.
+5. Remove years from URL slugs.
+6. Verify all galleries + lightbox behavior (desktop + mobile).
+7. Refine design to match existing samthegeek.net.
+8. Redirect the live site to the Netlify site and finalize SSL.
+9. Add tests that run on any GitHub branch, not just main.
+10. Migrate real blog content and About page content.
 
 ## Key Files
 
