@@ -1,7 +1,11 @@
 ---
 title: "Downloading iCloud Photo Library to your Synology for Backup"
-description: "Thanks to   Tom Insam   for the inspiration  What are we attempting?  This takes all the photos out of your iCloud Photo Library and syncs them to your Synology. You end up with exactly the same photos on your synology…"
+description: "Thanks to Tom Insam for the inspiration What are we attempting? This takes all the photos out of your iCloud Photo Library and syncs them to your Synology. You end up with exactly the same photos on your synology volume…"
 pubDate: 2022-06-22
+urlId: "2022/6/downloading-icloud-photo-library-to-your-synology-for-backup"
+updatedDate: 2023-08-12
+likeCount: 13
+commentCount: 0
 ---
 
 <div class="sqs-layout sqs-grid-12 columns-12" data-layout-label="Post Body" data-type="item" data-updated-on="1655864965231" id="item-62b2794afad9897d20203c09"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" data-sqsp-block="text" id="block-9cdac56de63e8d68d3bb"><div class="sqs-block-content">

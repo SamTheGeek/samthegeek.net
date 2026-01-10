@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogList from '../../../components/BlogList.astro';
+import BlogLikeScript from '../../../components/BlogLikeScript.astro';
+import '../../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const categories = new Set<string>();
+  posts.forEach((post) => {
+    const postCategories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
+    postCategories.forEach((category) => categories.add(category));
+  });
+  return Array.from(categories).map((category) => ({
+    params: { category: encodeURIComponent(category) }
+  }));
+}
+
+const categoryParam = Astro.params.category ?? '';
+const category = decodeURIComponent(categoryParam);
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const filteredPosts = sortedPosts.filter((post) => {
+  const postCategories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
+  return postCategories.includes(category);
+});
+---
+
+<BaseLayout
+  title={`Category: ${category} - I am Sam`}
+  description={`Posts filed under ${category}.`}
+  activePath="/blog"
+>
+  <h1 class="archive-title">Category: {category}</h1>
+  <BlogList posts={filteredPosts} page={1} totalPages={1} />
+  <BlogLikeScript />
+</BaseLayout>

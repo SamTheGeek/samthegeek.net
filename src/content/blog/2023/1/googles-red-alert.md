@@ -2,6 +2,11 @@
 title: "Google's 🚨 RED ALERT 🚨"
 description: "If you pay attention to the&nbsp;news&nbsp;you know that Google is panicking over the recent research-level release of ChatGPT, one of Open AI’s Large Language Models. But the roots of this crisis go back years to a…"
 pubDate: 2023-01-10
+urlId: "2023/1/googles-red-alert"
+updatedDate: 2023-01-12
+likeCount: 1
+commentCount: 0
+excerptHtml: "<p class=\"\">Google is in a panic about ChatGPT as a threat to its business. But were they <em>ever</em> really good enough to compete?</p>"
 ---
 
 <div class="sqs-layout sqs-grid-12 columns-12" data-layout-label="Post Body" data-type="item" data-updated-on="1673368979233" id="item-63bd9420c22a440e068b05f9"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" data-sqsp-block="text" id="block-1798a8b59c4f1e925153"><div class="sqs-block-content">
