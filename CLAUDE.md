@@ -17,6 +17,12 @@ source "$HOME/.nvm/nvm.sh" && nvm use --lts && npm run dev
 
 The dev server should run at <http://localhost:4321/> and will hot-reload when files are changed. This allows for immediate visual feedback during development.
 
+**ALWAYS open the dev server in a browser at session start:**
+
+```bash
+open http://localhost:4321/
+```
+
 **CRITICAL**: The dev server must be restarted at the beginning of each new session:
 
 - If VSCode was closed and reopened
