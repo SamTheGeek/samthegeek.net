@@ -2,33 +2,28 @@
 
 This directory contains scripts to download gallery images from the live samthegeek.net website.
 
+## Source URL List
+
+All gallery image URLs are stored in `ALL_GALLERY_URLS.txt` at the repository root. The download script reads this file so it can reliably fetch the known images without scraping live pages.
+
 ## Available Scripts
 
-### 1. download_all_galleries.sh (Bash)
-Simple bash script that downloads images using curl.
+### scripts/download_gallery_images.py (Python - URL List)
+Downloads images based on `ALL_GALLERY_URLS.txt` and writes them into the `public/images/<gallery>/` structure.
+
+Legacy scraping/check scripts have been removed to keep the workflow focused on the curated URL list.
 
 ```bash
-chmod +x download_all_galleries.sh
-./download_all_galleries.sh
+python3 scripts/download_gallery_images.py
 ```
 
-### 2. download_all_galleries.py (Python - Images Only)
-Python script that downloads images without updating JSON files.
+Optional arguments:
 
 ```bash
-python3 download_all_galleries.py
+python3 scripts/download_gallery_images.py --urls-file ALL_GALLERY_URLS.txt --images-dir public/images
 ```
 
-### 3. download_and_update_galleries.py (Python - Complete Solution)
-**RECOMMENDED**: Comprehensive Python script that:
-- Downloads all gallery images from the live site
-- Updates JSON files in `src/content/galleries/` with correct image paths
-- Reports progress every 20 images
-- Handles errors gracefully
-
-```bash
-python3 download_and_update_galleries.py
-```
+This is the canonical download tool for gallery images. It uses the curated URL list rather than scraping HTML pages.
 
 ## What These Scripts Do
 
@@ -45,11 +40,10 @@ Each script downloads images from the following galleries:
 
 ## Features
 
-- Progress reporting every 20 images
+- Progress reporting for each gallery
 - Skips already downloaded images
 - Handles errors gracefully
 - Final summary with image counts per gallery
-- The complete solution (`download_and_update_galleries.py`) also updates JSON files automatically
 
 ## Output
 
@@ -59,45 +53,17 @@ The scripts will:
 3. Report progress during download
 4. Provide a final summary with image counts
 
-Example output:
-```
-==========================================
-Processing: Italy
-URL: https://samthegeek.net/italy
-Target: /Users/sam/Developer/samthegeek.net/public/images/italy
-==========================================
-Fetching page and extracting image URLs...
-Found 45 images
-[1/45] Downloading: IMG_1234.jpg
-[2/45] Downloading: IMG_1235.jpg
-...
-===== Progress: 20/45 images processed =====
-...
-✓ Completed Italy: 45 images in directory
-
-FINAL SUMMARY
-==========================================
-Italy: 45 images
-Los Angeles: 32 images
-France: 38 images
-Japan: 52 images
-Canada: 28 images
-Elsewhere: 41 images
-==========================================
-```
-
 ## Troubleshooting
 
 If a gallery fails to download:
 1. Check your internet connection
 2. Verify the live site URLs are still valid
 3. Check that you have write permissions to the `public/images/` directory
-4. Some galleries may use JavaScript to load images - in that case, manual download may be required
+4. Some galleries may use JavaScript to load images - the URL list script avoids scraping issues
 
 ## After Running
 
-After successfully running the complete solution script:
+After successfully running the download script:
 1. Check that images are in `public/images/[gallery-name]/`
-2. Verify JSON files in `src/content/galleries/` have been updated
-3. Start the dev server (`npm run dev`) to see the real images
-4. Commit the new images and updated JSON files to git
+2. Start the dev server (`npm run dev`) to see the real images
+3. Commit the new images to git (and update gallery JSON if needed)
