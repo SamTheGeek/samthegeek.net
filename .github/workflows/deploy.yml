@@ -4,9 +4,19 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'scripts/**'
+      - '**/*.md'
+      - 'ALL_GALLERY_URLS.txt'
+      - '!src/content/blog/**'
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - 'scripts/**'
+      - '**/*.md'
+      - 'ALL_GALLERY_URLS.txt'
+      - '!src/content/blog/**'
 
 jobs:
   build-and-deploy:
