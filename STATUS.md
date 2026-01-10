@@ -29,18 +29,18 @@ This file is the single source of truth for current status, progress, and next t
 - Documented all scripts in `README.md` and `DOWNLOAD_IMAGES_README.md`.
 - Removed year-based gallery slugs (redirects from legacy URLs to place-only slugs).
 - Refined base sidebar design to match the live site layout.
+- Implemented responsive sidebar/header/footer reflow with scrollable nav rows.
+- Imported live blog posts and About content (with redirects for old blog URLs).
+- Homepage now redirects to the newest gallery (server-side 302).
 
 ## Pending Tasks (Priority Order)
 
-1. Make the site responsive to different screen widths.
-2. Update the design of the infobox and lightbox until approved.
-3. Make the site responsive: show a header when narrower than three images + sidebar, and switch to the sidebar on wider screens with graceful reflow.
-4. Expand infobox content.
-5. Final design check against the original site for near-identical matching.
-6. Migrate real blog content and About page content.
-7. Redirect the live site to the Netlify site and finalize SSL.
-8. Verify all galleries + lightbox behavior (desktop + mobile).
-9. Add tests that run on any GitHub branch, not just main.
-10. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
-11. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
-12. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
+1. Update the design of the infobox and lightbox until approved.
+2. Expand infobox content.
+3. Final design check against the original site for near-identical matching.
+4. Redirect the live site to the Netlify site and finalize SSL.
+5. Verify all galleries + lightbox behavior (desktop + mobile).
+6. Add tests that run on any GitHub branch, not just main.
+7. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
+8. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
+9. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
