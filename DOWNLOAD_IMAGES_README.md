@@ -25,6 +25,53 @@ python3 scripts/download_gallery_images.py --urls-file ALL_GALLERY_URLS.txt --im
 
 This is the canonical download tool for gallery images. It uses the curated URL list rather than scraping HTML pages.
 
+### scripts/rename_existing_gallery_images.py (Python - Rename Existing Galleries)
+Renames all existing images under `public/images/*` using EXIF data and optional Google Maps reverse geocoding.
+
+Pattern: `<gallery>_<city>_<DDMMYYYY>_<sequence>.<ext>`
+- `gallery` matches the folder name
+- `city` from EXIF GPS (Google Maps Geocoding API), omitted if unavailable
+- `DDMMYYYY` from EXIF DateTimeOriginal, omitted if unavailable
+- `sequence` only added when multiple files share the same base name
+
+Requirements:
+```bash
+pip install exifread
+export GOOGLE_MAPS_API_KEY="your_key_here" # optional for city lookup
+```
+
+Usage:
+```bash
+python3 scripts/rename_existing_gallery_images.py
+```
+
+Optional flags:
+```bash
+python3 scripts/rename_existing_gallery_images.py --dry-run
+python3 scripts/rename_existing_gallery_images.py --no-update-json
+```
+
+### scripts/rename_new_gallery_images.py (Python - Import/Rename New Gallery)
+Imports a new batch of photos and renames them with the same EXIF-based rules.
+
+Flow:
+1. Prompt for the source folder
+2. Choose existing gallery or create a new one
+3. Move files into `public/images/<gallery>/`
+4. Rename using EXIF metadata
+5. Create/update the gallery JSON file in `src/content/galleries/`
+
+Requirements:
+```bash
+pip install exifread
+export GOOGLE_MAPS_API_KEY="your_key_here" # optional for city lookup
+```
+
+Usage:
+```bash
+python3 scripts/rename_new_gallery_images.py
+```
+
 ## What These Scripts Do
 
 Each script downloads images from the following galleries:
