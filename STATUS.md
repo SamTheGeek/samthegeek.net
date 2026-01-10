@@ -34,16 +34,19 @@ When details conflict, information from the most recently modified source file i
 
 ## Pending Tasks (Priority Order)
 
-1. Download remaining gallery images and update JSON files.
-2. Add an infobox to the lightbox view.
-3. Implement an automatic attractive tile layout for photos.
-4. Create a photo renaming script.
-5. Remove years from URL slugs.
-6. Verify all galleries + lightbox behavior (desktop + mobile).
-7. Refine design to match existing samthegeek.net.
-8. Redirect the live site to the Netlify site and finalize SSL.
-9. Add tests that run on any GitHub branch, not just main.
-10. Migrate real blog content and About page content.
+1. Fix the local dev environment.
+2. Update the design of the infobox until approved.
+3. Download remaining gallery images and update JSON files. (handled separately)
+4. Add an infobox to the lightbox view.
+5. Implement an automatic attractive tile layout for photos.
+6. Create a photo renaming script.
+7. Remove years from URL slugs.
+8. Verify all galleries + lightbox behavior (desktop + mobile).
+9. Refine design to match existing samthegeek.net.
+10. Redirect the live site to the Netlify site and finalize SSL.
+11. Add tests that run on any GitHub branch, not just main.
+12. Migrate real blog content and About page content.
+13. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
 
 ## Key Files
 
