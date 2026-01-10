@@ -164,3 +164,16 @@ Deployment is automated via GitHub Actions (see [DEPLOYMENT.md](DEPLOYMENT.md) f
 - `DEPLOYMENT.md` - Detailed deployment and SSL setup guide
 - `astro.config.mjs` - Astro configuration
 - `package.json` - Project dependencies and scripts
+
+## Status Files
+
+Reference this consolidated status file for current status and handoffs:
+
+- `STATUS.md`
+
+Legacy status files (to be removed once consolidation is finalized):
+
+- `SESSION_NOTES.md`
+- `HANDOFF_REPORT.md`
+- `PROJECT_STATUS.md`
+- `NEXT_STEPS.md`
