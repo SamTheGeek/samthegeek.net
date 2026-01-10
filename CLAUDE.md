@@ -6,6 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Use `STATUS.md` as the only source of current status, active tasks, and suggested work.
 - Use `CLAUDE.md` for repository instructions, conventions, and operational notes for assistants.
+- Treat "next task" as the next item in memory; if none is in memory, use the next item in `STATUS.md`'s priority list.
 
 ## Project Overview
 

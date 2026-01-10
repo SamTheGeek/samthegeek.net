@@ -27,15 +27,16 @@ This file is the single source of truth for current status, progress, and next t
 - Updated gallery layout to a masonry-style column layout with consistent spacing.
 - Added renaming/import scripts and build artifact verification script (committed on `main`).
 - Documented all scripts in `README.md` and `DOWNLOAD_IMAGES_README.md`.
+- Removed year-based gallery slugs (redirects from legacy URLs to place-only slugs).
 
 ## Pending Tasks (Priority Order)
 
-1. Remove years from URL slugs.
-2. Verify all galleries + lightbox behavior (desktop + mobile).
-3. Refine design to match existing samthegeek.net.
-4. Update the design of the infobox until approved.
-5. Expand infobox content.
-6. Migrate real blog content and About page content.
-7. Redirect the live site to the Netlify site and finalize SSL.
+1. Refine design to match existing samthegeek.net.
+2. Update the design of the infobox until approved.
+3. Make the site responsive: show a header when narrower than three images + sidebar, and switch to the sidebar on wider screens with graceful reflow.
+4. Expand infobox content.
+5. Migrate real blog content and About page content.
+6. Redirect the live site to the Netlify site and finalize SSL.
+7. Verify all galleries + lightbox behavior (desktop + mobile).
 8. Add tests that run on any GitHub branch, not just main.
 9. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
