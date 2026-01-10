@@ -12,7 +12,7 @@ When details conflict, information from the most recently modified source file i
 ## Current State
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
-- Dev server: fails to bind locally with `listen EPERM ... :4321` (environment-specific).
+- Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - Galleries: Copenhagen complete with 35 images; remaining galleries pending downloads.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 
@@ -32,21 +32,24 @@ When details conflict, information from the most recently modified source file i
 - GitHub Variables: `NETLIFY_SITE_ID`
 - Netlify build: `npm run build`, publish directory `dist`
 
+## Completed Tasks
+
+- Fixed local dev environment (dev server starts with network access).
+
 ## Pending Tasks (Priority Order)
 
-1. Fix the local dev environment.
-2. Update the design of the infobox until approved.
-3. Download remaining gallery images and update JSON files. (handled separately)
-4. Add an infobox to the lightbox view.
-5. Implement an automatic attractive tile layout for photos.
-6. Create a photo renaming script.
-7. Remove years from URL slugs.
-8. Verify all galleries + lightbox behavior (desktop + mobile).
-9. Refine design to match existing samthegeek.net.
+1. Download remaining gallery images and update JSON files. (handled separately)
+2. Implement an automatic attractive tile layout for photos.
+3. Create a photo renaming script.
+4. Remove years from URL slugs.
+5. Verify all galleries + lightbox behavior (desktop + mobile).
+6. Refine design to match existing samthegeek.net.
+7. Update the design of the infobox until approved.
+8. Expand infobox content.
+9. Migrate real blog content and About page content.
 10. Redirect the live site to the Netlify site and finalize SSL.
 11. Add tests that run on any GitHub branch, not just main.
-12. Migrate real blog content and About page content.
-13. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
+12. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
 
 ## Key Files
 
