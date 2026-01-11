@@ -55,16 +55,15 @@ This file is the single source of truth for current status, progress, and next t
 ## Pending Tasks (Priority Order)
 
 1. Final design check against the original site for near-identical matching.
-2. Implement the blog RSS feed.
-3. Redirect the live site to the Netlify site and finalize SSL.
-4. Verify all galleries + lightbox behavior (desktop + mobile).
-5. Add tests that run on any GitHub branch, not just main.
-6. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
-7. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
-8. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
-9. Use an AI service to automatically add alt text for every photo
-10. Add a "Bicycling" information page adjacent to the "About" page
-11. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
-12. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
-13. Replace gallery photos with versions that contain EXIF data.
-14. Smoothly animate on the width breakpoint for responsive design.
+2. Redirect the live site to the Netlify site and finalize SSL.
+3. Verify all galleries + lightbox behavior (desktop + mobile).
+4. Add tests that run on any GitHub branch, not just main.
+5. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
+6. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
+7. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
+8. Use an AI service to automatically add alt text for every photo
+9. Add a "Bicycling" information page adjacent to the "About" page
+10. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
+11. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
+12. Replace gallery photos with versions that contain EXIF data.
+13. Smoothly animate on the width breakpoint for responsive design.
