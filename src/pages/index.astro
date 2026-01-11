@@ -15,10 +15,11 @@ if (!newestGallery) {
   throw new Error('No galleries found');
 }
 
-return Astro.redirect(`/${newestGallery.id}`, 302);
+const location = `/${newestGallery.id}`;
+return new Response(null, {
+  status: 302,
+  headers: {
+    Location: location,
+  },
+});
 ---
-
-<BaseLayout
-  title="I am Sam"
-  description="Redirecting to the latest gallery."
-/>
