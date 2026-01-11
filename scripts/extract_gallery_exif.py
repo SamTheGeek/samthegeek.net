@@ -2,7 +2,7 @@
 """Extract EXIF metadata into gallery JSON files.
 
 Requires: pip install exifread
-Environment: GOOGLE_MAPS_API_KEY (optional for reverse geocoding)
+Environment: PUBLIC_GOOGLE_MAPS_EMBED_API_KEY (preferred) or GOOGLE_MAPS_API_KEY
 """
 
 from __future__ import annotations
@@ -11,6 +11,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from datetime import datetime
@@ -20,11 +21,53 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import time
 
-try:
-    import exifread  # type: ignore
-except ImportError:  # pragma: no cover
-    print("Missing dependency: exifread. Install with `pip install exifread`.")
-    sys.exit(1)
+def load_dotenv() -> None:
+    root = Path(__file__).resolve().parents[1]
+    env_path = root / ".env"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        os.environ.setdefault(key, value)
+
+
+def ensure_exifread() -> "module":
+    try:
+        import exifread  # type: ignore
+
+        return exifread
+    except ImportError:
+        pass
+
+    if sys.prefix != sys.base_prefix:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "exifread"])
+        import exifread  # type: ignore
+
+        return exifread
+
+    if os.environ.get("STG_BOOTSTRAPPED") == "1":
+        print("Missing dependency: exifread. Install with `python -m pip install exifread`.")
+        sys.exit(1)
+
+    root = Path(__file__).resolve().parents[1]
+    venv_dir = root / ".venv"
+    python_bin = venv_dir / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    if not venv_dir.exists():
+        subprocess.check_call([sys.executable, "-m", "venv", str(venv_dir)])
+    subprocess.check_call([str(python_bin), "-m", "pip", "install", "exifread"])
+    env = os.environ.copy()
+    env["STG_BOOTSTRAPPED"] = "1"
+    os.execvpe(str(python_bin), [str(python_bin), __file__] + sys.argv[1:], env)
+    raise SystemExit(0)
+
+
+load_dotenv()
+exifread = ensure_exifread()
 
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"}
@@ -284,6 +327,9 @@ def parse_src_to_path(src: str, images_dir: Path) -> Optional[Path]:
         return None
     return images_dir / match.group("gallery") / match.group("file")
 
+def get_maps_api_key() -> Optional[str]:
+    return os.environ.get("PUBLIC_GOOGLE_MAPS_EMBED_API_KEY") or os.environ.get("GOOGLE_MAPS_API_KEY")
+
 
 def extract_gallery_exif(gallery_name: str, images_dir: Path, galleries_dir: Path) -> bool:
     json_path = galleries_dir / f"{gallery_name}.json"
@@ -296,7 +342,7 @@ def extract_gallery_exif(gallery_name: str, images_dir: Path, galleries_dir: Pat
         print(f"No images found in JSON: {json_path}")
         return False
 
-    api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+    api_key = get_maps_api_key()
     cache: Dict[Tuple[float, float], Optional[str]] = {}
     updated = False
     processed_any = False
