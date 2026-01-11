@@ -6,6 +6,13 @@
   NODE_VERSION = "24"
 
 [[redirects]]
+  from = "/blog"
+  to = "/blog/rss.xml"
+  status = 301
+  force = true
+  query = { format = "rss" }
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

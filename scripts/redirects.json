@@ -1,27 +1,52 @@
 [
   {
-    "from": "/blog/2025/12/apple-has-a-valentines-day-present-for-you",
-    "to": "/blog/applehasavalentinesdaypresentforyou",
+    "from": "/blog/apple-has-a-valentines-day-present-for-you",
+    "to": "/blog/2025/12/apple-has-a-valentines-day-present-for-you",
     "status": 301
   },
   {
-    "from": "/blog/2023/1/googles-red-alert",
-    "to": "/blog/googlesredalert",
+    "from": "/blog/applehasavalentinesdaypresentforyou",
+    "to": "/blog/2025/12/apple-has-a-valentines-day-present-for-you",
     "status": 301
   },
   {
-    "from": "/blog/2022/12/what-even-is-a-car",
-    "to": "/blog/whathappensafterthecrossoverswin",
+    "from": "/blog/googles-red-alert",
+    "to": "/blog/2023/1/googles-red-alert",
     "status": 301
   },
   {
-    "from": "/blog/2022/6/downloading-icloud-photo-library-to-your-synology-for-backup",
-    "to": "/blog/downloadingicloudphotolibrarytoyoursynologyforbackup",
+    "from": "/blog/googlesredalert",
+    "to": "/blog/2023/1/googles-red-alert",
     "status": 301
   },
   {
-    "from": "/blog/2017/12/car-based-mac",
-    "to": "/blog/thecar-basedtruck",
+    "from": "/blog/what-happens-after-the-crossovers-win",
+    "to": "/blog/2022/12/what-even-is-a-car",
+    "status": 301
+  },
+  {
+    "from": "/blog/whathappensafterthecrossoverswin",
+    "to": "/blog/2022/12/what-even-is-a-car",
+    "status": 301
+  },
+  {
+    "from": "/blog/downloading-icloud-photo-library-to-your-synology-for-backup",
+    "to": "/blog/2022/6/downloading-icloud-photo-library-to-your-synology-for-backup",
+    "status": 301
+  },
+  {
+    "from": "/blog/downloadingicloudphotolibrarytoyoursynologyforbackup",
+    "to": "/blog/2022/6/downloading-icloud-photo-library-to-your-synology-for-backup",
+    "status": 301
+  },
+  {
+    "from": "/blog/the-car-based-truck",
+    "to": "/blog/2017/12/car-based-mac",
+    "status": 301
+  },
+  {
+    "from": "/blog/thecarbasedtruck",
+    "to": "/blog/2017/12/car-based-mac",
     "status": 301
   }
 ]
