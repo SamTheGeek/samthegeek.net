@@ -121,6 +121,14 @@ netlify deploy --prod
 - Check that the deployment succeeded in Netlify dashboard
 - Verify the correct branch is being deployed
 
+### Visible Redirect Interstitial on `/`
+
+If users see a visible redirect message on the homepage:
+
+1. Ensure `public/_redirects` contains a forced rule like `/ /<latest> 302!`.
+2. If it still appears, remove `src/pages/index.astro` and rely on Netlify redirects only.
+3. As a fallback, render the newest gallery at `/` and use `history.replaceState` to update the URL.
+
 ## Environment Variables
 
 If you need to add environment variables:
