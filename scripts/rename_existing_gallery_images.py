@@ -8,7 +8,7 @@ Pattern: <gallery>_<city>_<DDMMYYYY>_<sequence>.<ext>
 - sequence added only when multiple files share the same base name
 
 Requires: pip install exifread
-Environment: GOOGLE_MAPS_API_KEY (optional for city lookup)
+Environment: PUBLIC_GOOGLE_MAPS_EMBED_API_KEY (preferred) or GOOGLE_MAPS_API_KEY
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 import uuid
 from dataclasses import dataclass
@@ -26,11 +27,53 @@ from typing import Dict, Iterable, List, Optional, Tuple
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-try:
-    import exifread  # type: ignore
-except ImportError:  # pragma: no cover
-    print("Missing dependency: exifread. Install with `pip install exifread`.")
-    sys.exit(1)
+def load_dotenv() -> None:
+    root = Path(__file__).resolve().parents[1]
+    env_path = root / ".env"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        os.environ.setdefault(key, value)
+
+
+def ensure_exifread() -> "module":
+    try:
+        import exifread  # type: ignore
+
+        return exifread
+    except ImportError:
+        pass
+
+    if sys.prefix != sys.base_prefix:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "exifread"])
+        import exifread  # type: ignore
+
+        return exifread
+
+    if os.environ.get("STG_BOOTSTRAPPED") == "1":
+        print("Missing dependency: exifread. Install with `python -m pip install exifread`.")
+        sys.exit(1)
+
+    root = Path(__file__).resolve().parents[1]
+    venv_dir = root / ".venv"
+    python_bin = venv_dir / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    if not venv_dir.exists():
+        subprocess.check_call([sys.executable, "-m", "venv", str(venv_dir)])
+    subprocess.check_call([str(python_bin), "-m", "pip", "install", "exifread"])
+    env = os.environ.copy()
+    env["STG_BOOTSTRAPPED"] = "1"
+    os.execvpe(str(python_bin), [str(python_bin), __file__] + sys.argv[1:], env)
+    raise SystemExit(0)
+
+
+load_dotenv()
+exifread = ensure_exifread()
 
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"}
@@ -225,6 +268,9 @@ def update_gallery_json(gallery_name: str, gallery_dir: Path, galleries_dir: Pat
     json_path.write_text(json.dumps(data, indent=2))
     print(f"Updated JSON: {json_path}")
 
+def get_maps_api_key() -> Optional[str]:
+    return os.environ.get("PUBLIC_GOOGLE_MAPS_EMBED_API_KEY") or os.environ.get("GOOGLE_MAPS_API_KEY")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Rename existing gallery images.")
@@ -239,7 +285,7 @@ def main() -> int:
         print(f"Images directory not found: {images_dir}")
         return 1
 
-    api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+    api_key = get_maps_api_key()
     placeholder_city: Optional[str] = None
     placeholder_prompted = False
 

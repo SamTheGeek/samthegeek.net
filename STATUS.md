@@ -6,6 +6,10 @@ This file is the single source of truth for current status, progress, and next t
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
+- Copenhagen gallery EXIF metadata refreshed via `scripts/extract_gallery_exif.py`.
+- README updated with photo import steps, docs list, and tool stack summary.
+- Gallery scripts now load `.env` for `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY` (fallback to `GOOGLE_MAPS_API_KEY`) and auto-bootstrap `exifread`.
+- `.env.example` updated with the script-only Google Maps key.
 - Galleries: all images downloaded for Copenhagen, Italy, Los Angeles, France, Japan, Canada, Elsewhere.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 - Deployment: Netlify live redirect and SSL setup steps documented for execution.
