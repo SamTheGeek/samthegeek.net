@@ -40,6 +40,13 @@ Always check if the dev server is running and restart it if needed before making
 
 Note: The dev server can fail to bind under restricted sandbox permissions; it starts successfully with network access enabled.
 
+## Branching, Commits, and PRs
+
+- Always create and work on a feature branch (never commit directly to `main`).
+- Commit all changes with a clear message once work is complete.
+- Push the branch to the remote.
+- After verifying the work (including required checks), create a draft PR.
+
 ## Technology Stack
 
 - **Framework**: Astro (static site generator)
