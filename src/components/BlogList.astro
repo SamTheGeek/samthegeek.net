@@ -85,6 +85,7 @@ const nextHref = `/blog/page/${page + 1}`;
     {posts.map((post, index) => {
       const postHref = `/blog/${post.slug}`;
       const categories = buildCategoryLinks(post);
+      const renderedHtml = post.rendered?.html ?? '';
       return (
         <>
           <article class="hentry post-type-text">
@@ -119,14 +120,18 @@ const nextHref = `/blog/page/${page + 1}`;
             </header>
 
             {(() => {
-              const bodyHtml = post.body ?? '';
+              const bodyHtml = renderedHtml
+                || post.data.rssContent
+                || post.data.rssDescription
+                || post.body
+                || '';
               const bodyLength = stripHtml(bodyHtml).length;
               const shouldExcerpt = bodyLength > 380;
               const leadImage = extractLeadImage(bodyHtml);
               if (!shouldExcerpt) {
                 return <div class="body entry-content" set:html={bodyHtml} />;
               }
-              const excerptSource = post.data.excerptHtml ?? bodyHtml;
+              const excerptSource = post.data.excerptHtml ?? post.data.rssDescription ?? bodyHtml;
               return (
                 <div class="body entry-content">
                   {leadImage && (

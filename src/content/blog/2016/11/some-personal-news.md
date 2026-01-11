@@ -8,4 +8,6 @@ rssTitle: "Some Personal News"
 rssDescription: "<p>I'm thrilled to share that I've accepted a position with Oscar Health here in New York, working on their internal product team. Here's to helping build the future of health insurance (sorry, Mom &amp; Dad!) </p><p> </p><p><a href=\"https://www.hioscar.com\">Hi Oscar!</a></p>"
 ---
 
-<p>I'm thrilled to share that I've accepted a position with Oscar Health here in New York, working on their internal product team. Here's to helping build the future of health insurance (sorry, Mom &amp; Dad!) </p><p> </p><p><a href="https://www.hioscar.com">Hi Oscar!</a></p>
+I'm thrilled to share that I've accepted a position with Oscar Health here in New York, working on their internal product team. Here's to helping build the future of health insurance (sorry, Mom & Dad!)
+
+[Hi Oscar!](https://www.hioscar.com)
