@@ -21,6 +21,18 @@ const galleries = defineCollection({
     images: z.array(z.object({
       src: z.string(),
       alt: z.string(),
+      exif: z.object({
+        date: z.string().optional(),
+        camera: z.string().optional(),
+        lens: z.string().optional(),
+        focalLength: z.string().optional(),
+        aperture: z.string().optional(),
+        shutterSpeed: z.string().optional(),
+        iso: z.string().optional(),
+        latitude: z.number().optional(),
+        longitude: z.number().optional(),
+        location: z.string().optional(),
+      }).optional(),
     })),
   }),
 });

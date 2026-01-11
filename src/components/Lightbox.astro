@@ -5,78 +5,135 @@
 <div id="lightbox" class="lightbox">
   <div class="lightbox-controls" role="group" aria-label="Lightbox controls">
     <div class="lightbox-controls-row">
-      <button class="lightbox-info-toggle" type="button" aria-label="Show photo info" aria-pressed="false">i</button>
+      <button class="lightbox-info-toggle" type="button" aria-label="Show photo info" aria-pressed="false">
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M10 4.1a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Zm-1.3 4.6h2.6v7h-2.6v-7Z" />
+        </svg>
+      </button>
       <span class="lightbox-divider" aria-hidden="true">|</span>
-      <button class="lightbox-close" type="button" aria-label="Close lightbox">x</button>
+      <button class="lightbox-close" type="button" aria-label="Close lightbox">
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M5.2 5.2 14.8 14.8M14.8 5.2 5.2 14.8" />
+        </svg>
+      </button>
     </div>
-    <div class="lightbox-info" aria-live="polite">
-      <div class="lightbox-title" id="lightbox-title"></div>
-      <div class="lightbox-meta" id="lightbox-meta"></div>
+    <div class="lightbox-info" id="lightbox-info" aria-live="polite">
+      <div class="lightbox-info-card">
+        <div class="lightbox-info-header" id="lightbox-info-header">
+          <div class="lightbox-info-date-label">Date</div>
+          <div class="lightbox-info-date" id="lightbox-date"></div>
+          <div class="lightbox-info-location" id="lightbox-location"></div>
+        </div>
+        <div class="lightbox-info-section" data-field="camera">
+          <div class="lightbox-info-label">Camera</div>
+          <div class="lightbox-info-value" id="lightbox-camera"></div>
+        </div>
+        <div class="lightbox-info-section" data-field="lens">
+          <div class="lightbox-info-label">Lens</div>
+          <div class="lightbox-info-value" id="lightbox-lens"></div>
+        </div>
+        <div class="lightbox-info-section" data-field="settings">
+          <div class="lightbox-info-label">Settings</div>
+          <div class="lightbox-info-value" id="lightbox-settings"></div>
+        </div>
+        <div class="lightbox-info-section lightbox-map-section is-empty" id="lightbox-map-section" data-field="map">
+          <div class="lightbox-info-label" id="lightbox-map-label">Location</div>
+          <div class="lightbox-map" id="lightbox-map">
+            <div class="lightbox-map-frame" id="lightbox-map-frame"></div>
+            <a class="lightbox-map-link" id="lightbox-map-link" target="_blank" rel="noopener noreferrer" aria-label="Open location in Google Maps"></a>
+          </div>
+        </div>
+        <div class="lightbox-info-empty" id="lightbox-empty">No photo details available.</div>
+      </div>
     </div>
   </div>
   <div class="lightbox-content">
     <img id="lightbox-image" src="" alt="" />
   </div>
-  <div class="lightbox-info" aria-live="polite">
-    <div class="lightbox-title" id="lightbox-title"></div>
-    <div class="lightbox-meta" id="lightbox-meta"></div>
-  </div>
 </div>
 
 <style>
   .lightbox {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 9999;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
+    background: radial-gradient(circle at 50% 45%, rgba(35, 35, 35, 0.45) 0%, rgba(0, 0, 0, 0.86) 72%, rgba(0, 0, 0, 0.92) 100%);
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
   }
 
   .lightbox.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
+    position: absolute;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    padding: 2rem;
   }
 
   .lightbox-content img {
-    max-width: 100%;
-    max-height: 90vh;
+    max-width: min(100%, 1400px);
+    max-height: min(90vh, 860px);
     object-fit: contain;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
     margin: 0 auto;
+    opacity: 0;
+    transform: translateZ(0) scale(0.985);
+    transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+  }
+
+  .lightbox.active .lightbox-content img {
+    opacity: 1;
+    transform: translateZ(0) scale(1);
   }
 
   .lightbox-controls {
     position: absolute;
-    top: 18px;
-    right: 24px;
+    top: 20px;
+    right: 22px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.35rem;
+    gap: 0.45rem;
     padding-top: var(--pill-height);
     width: var(--pill-width);
     isolation: isolate;
     box-sizing: border-box;
     z-index: 10000;
-    --pill-width: 4.6rem;
-    --pill-height: 2.1rem;
+    --pill-width: 5rem;
+    --pill-height: 2.2rem;
     --pill-radius: calc(var(--pill-height) / 2);
+    --info-max-width: min(70vw, 360px);
     transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s ease;
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+    will-change: transform, opacity;
+  }
+
+  .lightbox.active .lightbox-controls {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
   .lightbox-controls::before {
@@ -87,12 +144,14 @@
     width: var(--pill-width);
     height: var(--pill-height);
     border-radius: var(--pill-radius);
-    background: rgba(18, 18, 18, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(6px);
+    background: rgba(18, 18, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
     z-index: -1;
     transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      background 0.35s ease;
   }
 
   .lightbox-controls-row {
@@ -105,37 +164,164 @@
     min-height: var(--pill-height);
     width: var(--pill-width);
     justify-content: center;
+    z-index: 3;
   }
 
   .lightbox-info {
     display: block;
     width: 100%;
-    max-width: min(70vw, 360px);
+    max-width: var(--info-max-width);
     min-width: 220px;
     color: #f5f5f5;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     pointer-events: none;
-    transform: translateX(18px) translateY(-6px);
-    transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate3d(10px, -4px, 0);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+    z-index: 1;
   }
 
   .lightbox-info.active {
     opacity: 1;
-    max-height: 200px;
+    max-height: 80vh;
     pointer-events: auto;
-    transform: translateX(0) translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 
-  .lightbox-title,
-  .lightbox-meta {
-    font-size: 0.95rem;
+  .lightbox-controls.expanded .lightbox-info {
+    overflow-y: auto;
+    padding-right: 0.2rem;
+  }
+
+  .lightbox-controls.expanded .lightbox-info::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .lightbox-controls.expanded .lightbox-info::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+  }
+
+  .lightbox-info-card {
+    width: 100%;
+    padding: 0.6rem;
+  }
+
+  .lightbox-info-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .lightbox-info-date-label {
+    font-size: 0.66rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .lightbox-info-date {
+    font-size: 0.86rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.01em;
+  }
+
+  .lightbox-info-location {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .lightbox-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.45rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .lightbox-info-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .lightbox-info-value {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.84);
+    letter-spacing: 0.015em;
+  }
+
+  .lightbox-info-section[data-field="settings"] .lightbox-info-value {
+    font-family: "Menlo", "Consolas", "Liberation Mono", monospace;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .lightbox-map {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+  }
+
+  .lightbox-map-frame,
+  .lightbox-map-frame img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .lightbox-map-frame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .lightbox-map-frame img {
+    display: block;
+    object-fit: cover;
+  }
+
+  .lightbox-map-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .lightbox-info-empty {
+    display: none;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    padding-top: 0.45rem;
+  }
+
+  .lightbox-info-empty.active {
+    display: block;
+  }
+
+  .lightbox-info-section.is-empty {
+    display: none;
+  }
+
+  .lightbox-map-section {
+    padding-bottom: 0.6rem;
   }
 
   .lightbox-controls button {
@@ -145,21 +331,32 @@
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.8rem;
+    height: 1.8rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   .lightbox-controls button:hover {
     opacity: 0.7;
+    transform: translateY(-1px);
+  }
+
+  .lightbox-controls button svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
   }
 
   .lightbox-info-toggle.active {
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 999px;
   }
 
@@ -168,8 +365,8 @@
   }
 
   .lightbox-controls.expanded {
-    padding: calc(var(--pill-height) + 0.5rem) 0.7rem 0.65rem;
-    width: min(70vw, 360px);
+    padding: 0.6rem;
+    width: var(--info-max-width);
   }
 
   .lightbox-controls.expanded::before {
@@ -198,8 +395,7 @@
     }
 
     .lightbox-content {
-      max-width: 95%;
-      max-height: 95%;
+      padding: 1rem;
     }
   }
 </style>
@@ -209,12 +405,26 @@
   function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxMeta = document.getElementById('lightbox-meta');
+    const lightboxDate = document.getElementById('lightbox-date');
+    const lightboxHeader = document.getElementById('lightbox-info-header');
+    const lightboxLocation = document.getElementById('lightbox-location');
+    const lightboxCamera = document.getElementById('lightbox-camera');
+    const lightboxLens = document.getElementById('lightbox-lens');
+    const lightboxSettings = document.getElementById('lightbox-settings');
+    const lightboxMap = document.getElementById('lightbox-map');
+    const lightboxMapFrame = document.getElementById('lightbox-map-frame');
+    const lightboxMapSection = document.getElementById('lightbox-map-section');
+    const lightboxMapLabel = document.getElementById('lightbox-map-label');
+    const lightboxMapLink = document.getElementById('lightbox-map-link') as HTMLAnchorElement | null;
+    const lightboxEmpty = document.getElementById('lightbox-empty');
     const closeBtn = document.querySelector('.lightbox-close');
     const infoToggle = document.querySelector('.lightbox-info-toggle') as HTMLButtonElement | null;
-    const infoBox = document.querySelector('.lightbox-info');
+    const infoBox = document.getElementById('lightbox-info');
     const controls = document.querySelector('.lightbox-controls');
+    const lightboxContent = document.querySelector('.lightbox-content');
+    let imageResizeObserver: ResizeObserver | null = null;
+    const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
+    const staticMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_STATIC_API_KEY || mapsKey;
 
     // Get all gallery images
     const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
@@ -242,6 +452,7 @@
       infoToggle.classList.toggle('active', isOpen);
       infoToggle.setAttribute('aria-pressed', String(isOpen));
       infoToggle.setAttribute('aria-label', isOpen ? 'Hide photo info' : 'Show photo info');
+      if (isOpen) scheduleInfoWidthUpdates();
     });
 
     // Keyboard navigation - ESC only
@@ -250,19 +461,14 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
+    window.addEventListener('resize', updateInfoWidth);
+
     function openLightbox(img: HTMLImageElement) {
       if (!lightbox || !lightboxImage) return;
 
       lightboxImage.src = img.src;
       lightboxImage.alt = img.alt;
-      if (lightboxTitle) {
-        lightboxTitle.textContent = img.alt || 'Photo';
-      }
-      if (lightboxMeta) {
-        const path = new URL(img.src).pathname;
-        const filename = decodeURIComponent(path.split('/').pop() || '');
-        lightboxMeta.textContent = filename;
-      }
+      hydrateInfo(img);
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
       infoBox?.classList.remove('active');
@@ -272,6 +478,12 @@
         infoToggle.setAttribute('aria-pressed', 'false');
         infoToggle.setAttribute('aria-label', 'Show photo info');
       }
+      scheduleInfoWidthUpdates();
+      if ('ResizeObserver' in window) {
+        imageResizeObserver?.disconnect();
+        imageResizeObserver = new ResizeObserver(() => updateInfoWidth());
+        imageResizeObserver.observe(lightboxImage);
+      }
     }
 
     function closeLightbox() {
@@ -279,8 +491,7 @@
 
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
-      if (lightboxTitle) lightboxTitle.textContent = '';
-      if (lightboxMeta) lightboxMeta.textContent = '';
+      clearInfo();
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
       if (infoToggle) {
@@ -288,6 +499,161 @@
         infoToggle.setAttribute('aria-pressed', 'false');
         infoToggle.setAttribute('aria-label', 'Show photo info');
       }
+      imageResizeObserver?.disconnect();
+    }
+
+    function updateInfoWidth() {
+      if (!controls || !lightbox || !lightboxImage) return;
+      if (!lightbox.classList.contains('active')) return;
+      const rect = lightboxImage.getBoundingClientRect();
+      const naturalWidth = lightboxImage.naturalWidth;
+      const naturalHeight = lightboxImage.naturalHeight;
+      let displayWidth = rect.width;
+      if (naturalWidth && naturalHeight && lightboxContent) {
+        const contentRect = lightboxContent.getBoundingClientRect();
+        const scale = Math.min(
+          contentRect.width / naturalWidth,
+          contentRect.height / naturalHeight,
+          1
+        );
+        displayWidth = naturalWidth * scale;
+      }
+      if (!displayWidth) return;
+      const maxWidth = Math.min(displayWidth, window.innerWidth * 0.7, 360);
+      const minWidth = 180;
+      const clamped = Math.max(minWidth, Math.floor(maxWidth));
+      const finalWidth = Math.min(clamped, displayWidth);
+      controls.style.setProperty('--info-max-width', `${Math.floor(finalWidth)}px`);
+    }
+
+    function scheduleInfoWidthUpdates() {
+      updateInfoWidth();
+      requestAnimationFrame(updateInfoWidth);
+      setTimeout(updateInfoWidth, 120);
+      setTimeout(updateInfoWidth, 300);
+      if (lightboxImage?.decode) {
+        lightboxImage.decode().then(updateInfoWidth).catch(() => undefined);
+      }
+      if (lightboxContent) {
+        requestAnimationFrame(() => requestAnimationFrame(updateInfoWidth));
+      }
+    }
+
+    function normalizeDate(value?: string | null) {
+      if (!value) return '';
+      const normalized = value.replace(/^(\d{4}):(\d{2}):(\d{2})/, '$1-$2-$3');
+      const parsed = new Date(normalized);
+      if (!Number.isNaN(parsed.getTime())) {
+        return parsed.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+      }
+      return value;
+    }
+
+    function setSectionValue(sectionId: string, value?: string | null) {
+      const section = document.querySelector(`[data-field="${sectionId}"]`);
+      const valueEl = section?.querySelector('.lightbox-info-value');
+      if (!section || !valueEl) return false;
+      if (value && value.trim()) {
+        valueEl.textContent = value;
+        section.classList.remove('is-empty');
+        return true;
+      }
+      valueEl.textContent = '';
+      section.classList.add('is-empty');
+      return false;
+    }
+
+    function hydrateInfo(img: HTMLImageElement) {
+      const date = normalizeDate(img.dataset.exifDate);
+      const location = img.dataset.exifLocation || '';
+      const camera = img.dataset.exifCamera || '';
+      const lens = img.dataset.exifLens || '';
+      const focalLength = img.dataset.exifFocalLength || '';
+      const aperture = img.dataset.exifAperture || '';
+      const shutterSpeed = img.dataset.exifShutterSpeed || '';
+      const iso = img.dataset.exifIso || '';
+      const latitude = img.dataset.exifLatitude;
+      const longitude = img.dataset.exifLongitude;
+
+      if (lightboxDate) lightboxDate.textContent = date;
+      if (lightboxLocation) lightboxLocation.textContent = location;
+      if (lightboxHeader) {
+        lightboxHeader.style.display = date || location ? 'flex' : 'none';
+      }
+      if (lightboxMapLabel) {
+        lightboxMapLabel.textContent = location ? `Location – ${location}` : 'Location';
+      }
+
+      const settingsParts = [focalLength, aperture, shutterSpeed, iso].filter(Boolean);
+      const settings = settingsParts.join('  ');
+
+      const hasCamera = setSectionValue('camera', camera);
+      const hasLens = setSectionValue('lens', lens);
+      const hasSettings = setSectionValue('settings', settings);
+
+      const hasMap = hydrateMap(latitude, longitude);
+
+      const hasAny =
+        Boolean(date || location) || hasCamera || hasLens || hasSettings || hasMap;
+      if (lightboxEmpty) {
+        lightboxEmpty.classList.toggle('active', !hasAny);
+      }
+    }
+
+    function hydrateMap(latitude?: string, longitude?: string) {
+      if (!lightboxMapSection || !lightboxMap || !lightboxMapFrame) return false;
+      if (!staticMapsKey || !latitude || !longitude) {
+        lightboxMapSection.classList.add('is-empty');
+        lightboxMapFrame.innerHTML = '';
+        if (lightboxMapLink) lightboxMapLink.removeAttribute('href');
+        return false;
+      }
+      const lat = Number.parseFloat(latitude);
+      const lng = Number.parseFloat(longitude);
+      if (Number.isNaN(lat) || Number.isNaN(lng)) {
+        lightboxMapSection.classList.add('is-empty');
+        lightboxMapFrame.innerHTML = '';
+        if (lightboxMapLink) lightboxMapLink.removeAttribute('href');
+        return false;
+      }
+
+      const staticMapUrl = new URL('https://maps.googleapis.com/maps/api/staticmap');
+      staticMapUrl.searchParams.set('center', `${lat},${lng}`);
+      staticMapUrl.searchParams.set('zoom', '14');
+      const mapRect = lightboxMap.getBoundingClientRect();
+      const mapWidth = Math.max(320, Math.min(640, Math.round(mapRect.width)));
+      const mapHeight = Math.max(240, Math.min(640, Math.round(mapRect.height)));
+      staticMapUrl.searchParams.set('size', `${mapWidth}x${mapHeight}`);
+      staticMapUrl.searchParams.set('scale', '2');
+      staticMapUrl.searchParams.set('maptype', 'roadmap');
+      staticMapUrl.searchParams.set('markers', `color:red|${lat},${lng}`);
+      staticMapUrl.searchParams.set('key', staticMapsKey);
+      lightboxMapFrame.innerHTML = `<img alt="Photo location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${staticMapUrl.toString()}" srcset="${staticMapUrl.toString()} 2x" />`;
+      if (lightboxMapLink) {
+        const linkUrl = new URL('https://www.google.com/maps/search/');
+        linkUrl.searchParams.set('api', '1');
+        linkUrl.searchParams.set('query', `${lat},${lng}`);
+        lightboxMapLink.href = linkUrl.toString();
+      }
+      lightboxMapSection.classList.remove('is-empty');
+      return true;
+    }
+
+    function clearInfo() {
+      if (lightboxDate) lightboxDate.textContent = '';
+      if (lightboxLocation) lightboxLocation.textContent = '';
+      if (lightboxHeader) lightboxHeader.style.display = '';
+      setSectionValue('camera', '');
+      setSectionValue('lens', '');
+      setSectionValue('settings', '');
+      if (lightboxMapSection) lightboxMapSection.classList.add('is-empty');
+      if (lightboxMapFrame) lightboxMapFrame.innerHTML = '';
+      if (lightboxMapLink) lightboxMapLink.removeAttribute('href');
+      if (lightboxEmpty) lightboxEmpty.classList.remove('active');
     }
   }
 

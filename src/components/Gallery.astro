@@ -3,7 +3,22 @@ import Lightbox from './Lightbox.astro';
 
 interface Props {
   title: string;
-  images: Array<{ src: string; alt: string; id: number }>;
+  images: Array<{
+    src: string;
+    alt: string;
+    exif?: {
+      date?: string;
+      camera?: string;
+      lens?: string;
+      focalLength?: string;
+      aperture?: string;
+      shutterSpeed?: string;
+      iso?: string;
+      latitude?: number;
+      longitude?: number;
+      location?: string;
+    };
+  }>;
 }
 
 const { title, images } = Astro.props;
@@ -13,7 +28,21 @@ const { title, images } = Astro.props;
   <div class="gallery-grid">
     {images.map((image) => (
       <div class="gallery-item">
-        <img src={image.src} alt={image.alt} loading="lazy" />
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          data-exif-date={image.exif?.date}
+          data-exif-camera={image.exif?.camera}
+          data-exif-lens={image.exif?.lens}
+          data-exif-focal-length={image.exif?.focalLength}
+          data-exif-aperture={image.exif?.aperture}
+          data-exif-shutter-speed={image.exif?.shutterSpeed}
+          data-exif-iso={image.exif?.iso}
+          data-exif-latitude={image.exif?.latitude}
+          data-exif-longitude={image.exif?.longitude}
+          data-exif-location={image.exif?.location}
+        />
       </div>
     ))}
   </div>
