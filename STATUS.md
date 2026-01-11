@@ -8,6 +8,9 @@ This file is the single source of truth for current status, progress, and next t
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - Galleries: all images downloaded for Copenhagen, Italy, Los Angeles, France, Japan, Canada, Elsewhere.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
+- Deployment: Netlify live redirect and SSL setup steps documented for execution.
+- Favicon now uses the about profile photo embedded as SVG.
+- SVG favicon preferred in the head, PNG favicon masked to a circular crop.
 - About page now pulls copy from markdown with a refreshed layout and round photo mask.
 - Downloaded images are present in `public/images/`.
 - Lightbox design refreshed (overlay, stage styling, info panel) and awaiting approval.
@@ -62,6 +65,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox flicker fix: sized low-res preview to final display and deferred full-res load until preview paint.
 - Gallery masonry fix: balanced column fill and explicit column width to restore multi-column layout in Blink.
 - Lightbox zoom animation: thumbnail-to-lightbox zoom now animates on open.
+- Gallery JSONs updated to reference local images for all galleries.
 - About page rebuilt with markdown content, compact layout, and updated photo styling.
 
 ## Pending Tasks (Priority Order)
