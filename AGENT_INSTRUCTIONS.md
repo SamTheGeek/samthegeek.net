@@ -36,6 +36,8 @@ open http://localhost:4321/
 
 Always check if the dev server is running and restart it if needed before making changes.
 
+**ALWAYS run a build to verify success before marking a long task as complete.**
+
 Note: The dev server can fail to bind under restricted sandbox permissions; it starts successfully with network access enabled.
 
 ## Technology Stack
