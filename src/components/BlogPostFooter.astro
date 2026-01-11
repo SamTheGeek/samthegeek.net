@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  postUrl: string;
+  showTags?: boolean;
+}
+
+const { post, postUrl, showTags = true } = Astro.props;
+const tags = post.data.tags ?? [];
+const baseUrl = Astro.site?.toString() ?? 'https://samthegeek.net';
+const fullUrl = new URL(postUrl, baseUrl).toString();
+const shareText = encodeURIComponent(post.data.title);
+const shareUrl = encodeURIComponent(fullUrl);
+---
+
+<footer class="post-footer">
+  {showTags && tags.length > 0 && (
+    <div class="entry-info">
+      <span class="tags">
+        Tags:
+        {tags.map((tag, index) => (
+          <>
+            {' '}
+            <a href={`/blog/tag/${encodeURIComponent(tag)}`} rel="tag">
+              {tag}
+            </a>
+            {index < tags.length - 1 ? ',' : ''}
+          </>
+        ))}
+      </span>
+    </div>
+  )}
+  <div class="engagement">
+    <div class="share-links">
+      <a href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`} target="_blank" rel="noopener noreferrer">
+        Tweet
+      </a>
+      <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+        Share
+      </a>
+      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>

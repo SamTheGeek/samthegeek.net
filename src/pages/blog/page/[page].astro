@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogList from '../../../components/BlogList.astro';
+import '../../../styles/blog.css';
+
+export const POSTS_PER_PAGE = 10;
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+  return pages
+    .filter((page) => page > 1)
+    .map((page) => ({ params: { page: String(page) } }));
+}
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const page = Number(Astro.params.page ?? '1');
+const totalPages = Math.max(1, Math.ceil(sortedPosts.length / POSTS_PER_PAGE));
+const startIndex = (page - 1) * POSTS_PER_PAGE;
+const pagePosts = sortedPosts.slice(startIndex, startIndex + POSTS_PER_PAGE);
+---
+
+<BaseLayout
+  title={`Blog (Page ${page}) - I am Sam`}
+  description="Thoughts on technology, product development, and making things."
+  activePath="/blog"
+>
+  <BlogList posts={pagePosts} page={page} totalPages={totalPages} />
+</BaseLayout>
