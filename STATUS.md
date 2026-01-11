@@ -75,4 +75,3 @@ This file is the single source of truth for current status, progress, and next t
 19. Write a new blog post updating the synology icpl downloader
 20. Write a blog post about writing this site
 21. Redesign the blog again to make it good.
-
