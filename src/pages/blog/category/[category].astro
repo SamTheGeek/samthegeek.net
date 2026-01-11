@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BlogList from '../../../components/BlogList.astro';
-import BlogLikeScript from '../../../components/BlogLikeScript.astro';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -34,5 +33,4 @@ const filteredPosts = sortedPosts.filter((post) => {
 >
   <h1 class="archive-title">Category: {category}</h1>
   <BlogList posts={filteredPosts} page={1} totalPages={1} />
-  <BlogLikeScript />
 </BaseLayout>

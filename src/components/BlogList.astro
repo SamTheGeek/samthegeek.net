@@ -17,6 +17,58 @@ const formatDate = (date: Date): string =>
     day: 'numeric'
   }).format(date);
 
+const stripHtml = (html: string): string =>
+  html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+
+const stripCaptions = (html: string): string =>
+  html
+    .replace(/<figcaption[\s\S]*?<\/figcaption>/gi, ' ')
+    .replace(/<p[^>]*class=["'][^"']*image-caption[^"']*["'][\s\S]*?<\/p>/gi, ' ')
+    .replace(/<div[^>]*class=["'][^"']*image-caption[^"']*["'][\s\S]*?<\/div>/gi, ' ');
+
+const stripFigures = (html: string): string =>
+  html
+    .replace(/<figure[\s\S]*?<\/figure>/gi, ' ')
+    .replace(/<img[^>]*>/gi, ' ')
+    .replace(/<div[^>]*class=["'][^"']*sqs-block-image[^"']*["'][\s\S]*?<\/div>/gi, ' ');
+
+const extractFirstEmbed = (html: string): string | null => {
+  const iframeMatch = html.match(/<iframe[\s\S]*?<\/iframe>/i);
+  if (iframeMatch) return iframeMatch[0];
+  const embedMatch = html.match(/<div[^>]*class=["'][^"']*embed-block-wrapper[^"']*["'][\s\S]*?<\/div>/i);
+  return embedMatch ? embedMatch[0] : null;
+};
+
+const buildExcerptHtml = (html: string, maxChars: number): string => {
+  const embed = extractFirstEmbed(html);
+  const cleaned = stripFigures(stripCaptions(html));
+  const blocks = cleaned.match(/<(p|ul|ol|blockquote|h2|h3)[^>]*>[\s\S]*?<\/\1>/gi) ?? [];
+  const picked: string[] = [];
+  let count = 0;
+  for (const block of blocks) {
+    const text = stripHtml(block);
+    if (!text) continue;
+    picked.push(block);
+    count += text.length;
+    if (count >= maxChars) break;
+  }
+  if (picked.length) {
+    return `${embed ? `<div class="feed-embed">${embed}</div>` : ''}${picked.join('')}`;
+  }
+  const fallback = stripHtml(cleaned);
+  return `${embed ? `<div class="feed-embed">${embed}</div>` : ''}<p>${fallback.slice(0, maxChars).trim()}${fallback.length > maxChars ? '…' : ''}</p>`;
+};
+
+const extractLeadImage = (html: string) => {
+  const match = html.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+  if (!match) return null;
+  const altMatch = match[0].match(/alt=["']([^"']*)["']/i);
+  return {
+    src: match[1],
+    alt: altMatch?.[1] ?? '',
+  };
+};
+
 const buildCategoryLinks = (post: CollectionEntry<'blog'>) => {
   const categories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
   return categories;
@@ -41,12 +93,10 @@ const nextHref = `/blog/page/${page + 1}`;
                 <a href={postHref}>{post.data.title}</a>
               </h1>
               <div class="entry-info">
-                <span class="published">
-                  <a href={postHref} title="Permalink" class="permalink">
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {formatDate(post.data.pubDate)}
-                    </time>
-                  </a>
+                <span class="published entry-date">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {formatDate(post.data.pubDate)}
+                  </time>
                 </span>
                 {categories.length > 0 && (
                   <>
@@ -68,18 +118,35 @@ const nextHref = `/blog/page/${page + 1}`;
               </div>
             </header>
 
-            {post.data.excerptHtml ? (
-              <div class="body entry-content">
-                <div class="excerpt" set:html={post.data.excerptHtml} />
-                <a class="read-more" href={postHref}>
-                  Read More
-                </a>
-              </div>
-            ) : (
-              <div class="body entry-content" set:html={post.body} />
-            )}
+            {(() => {
+              const bodyHtml = post.body ?? '';
+              const bodyLength = stripHtml(bodyHtml).length;
+              const shouldExcerpt = bodyLength > 380;
+              const leadImage = extractLeadImage(bodyHtml);
+              if (!shouldExcerpt) {
+                return <div class="body entry-content" set:html={bodyHtml} />;
+              }
+              const excerptSource = post.data.excerptHtml ?? bodyHtml;
+              return (
+                <div class="body entry-content">
+                  {leadImage && (
+                    <figure class="feed-lead">
+                      <img
+                        src={leadImage.src}
+                        alt={leadImage.alt || post.data.title}
+                        loading="lazy"
+                      />
+                    </figure>
+                  )}
+                  <div class="feed-excerpt" set:html={buildExcerptHtml(excerptSource, 520)} />
+                  <a class="read-more" href={postHref}>
+                    Read More
+                  </a>
+                </div>
+              );
+            })()}
 
-            <BlogPostFooter post={post} postUrl={postHref} />
+            <BlogPostFooter post={post} postUrl={postHref} showTags={false} />
           </article>
           {index < posts.length - 1 && <div class="post-divider"></div>}
         </>
