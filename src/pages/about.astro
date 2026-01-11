@@ -1,18 +1,163 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import aboutHtml from '../content/about.html?raw';
+import AboutContent from '../content/about.md';
 ---
 
 <BaseLayout
   title="About - Sam Gross"
   description="Product management leader helping great teams and great people to do even greater things."
 >
-  <article class="about-content" set:html={aboutHtml} />
+  <div class="about-page">
+    <section class="about-shell">
+      <figure class="profile-card">
+        <div class="profile-photo">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="/images/about/profile-360.webp 360w, /images/about/profile-720.webp 720w"
+              sizes="(max-width: 768px) 70vw, 360px"
+            />
+            <source
+              type="image/jpeg"
+              srcset="/images/about/profile-360.jpg 360w, /images/about/profile-720.jpg 720w"
+              sizes="(max-width: 768px) 70vw, 360px"
+            />
+            <img
+              src="/images/about/profile-360.jpg"
+              alt="Portrait of Sam Gross"
+              loading="lazy"
+              width="360"
+              height="360"
+            />
+          </picture>
+        </div>
+      </figure>
+
+      <article class="about-body">
+        <AboutContent />
+      </article>
+    </section>
+
+    <footer class="about-footer">
+      <span class="photo-credit">
+        Thanks to
+        <a href="https://jellystyle.com/about" target="_blank" rel="noreferrer noopener">Jelly</a>
+        for the profile photo.
+      </span>
+    </footer>
+  </div>
 
   <style>
-    .about-content {
-      max-width: 800px;
+    :global(body .layout) {
+      min-height: calc(100vh - (var(--outer-gutter) * 2)) !important;
+      height: auto;
+    }
+
+    :global(body .content) {
+      min-height: auto !important;
+    }
+
+    .about-page {
+      min-height: calc(100vh - (var(--outer-gutter) * 2));
+      display: flex;
+      flex-direction: column;
+    }
+
+    .about-shell {
+      max-width: 720px;
       margin: 0 auto;
+      padding: 1.5rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      text-align: center;
+      width: min(360px, 80vw);
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #f2f2f2;
+    }
+
+    .profile-photo picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 48% 74%;
+      display: block;
+    }
+
+    .about-body {
+      color: #5a5a5a;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .about-footer {
+      max-width: 980px;
+      margin: auto 0 0;
+      padding: 0 1rem 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .photo-credit {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #b6b6b6;
+    }
+
+    .photo-credit a {
+      color: inherit;
+    }
+
+    .about-body :global(p + p) {
+      margin-top: 1rem;
+    }
+
+    .about-body :global(a) {
+      color: #0073a6;
+    }
+
+    @media (max-width: 900px) {
+      .about-shell {
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 1280px) {
+      :global(body .layout) {
+        min-height: auto !important;
+      }
+
+      .about-page {
+        min-height: auto;
+      }
+
+      .about-footer {
+        margin-top: 1.5rem;
+        padding-bottom: 0.75rem;
+      }
     }
   </style>
 </BaseLayout>

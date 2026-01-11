@@ -24,7 +24,7 @@ const isActive = (href: string) => {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -88,6 +88,7 @@ const isActive = (href: string) => {
         <div class="social-links">
           <a href="https://www.linkedin.com/in/samthegeek" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="mailto:sam@samthegeek.net">Email</a>
+          <a href="https://bsky.app/profile/samthegeek.net" target="_blank" rel="noopener noreferrer">Bluesky</a>
         </div>
         <p class="location">Brooklyn, N.Y., United States</p>
       </footer>
@@ -196,7 +197,7 @@ const isActive = (href: string) => {
       .social-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.6rem 1rem;
+        gap: 0.6rem 0.8rem;
         margin-bottom: 0.75rem;
       }
 
