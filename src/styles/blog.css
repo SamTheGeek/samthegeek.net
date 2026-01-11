@@ -274,13 +274,18 @@
 }
 
 .entry-content .image-caption {
-  font-size: 12px;
-  color: #777;
+  font-size: 0.85rem;
+  color: #8a8a8a;
   margin-top: 0.2rem;
 }
 
 .entry-content .image-caption-wrapper {
   margin-top: 0.2rem;
+}
+
+.entry-content .image-caption-wrapper p {
+  font-size: 0.85rem;
+  color: #8a8a8a;
 }
 
 .entry-content .sqs-block-image-figure {

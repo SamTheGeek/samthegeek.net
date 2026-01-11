@@ -8,46 +8,6 @@ rssTitle: "Net Neutrality"
 rssDescription: "<figure class=\" sqs-block-image-figure intrinsic \" > <img data-stretch=\"false\" data-image=\"/images/blog/2014/on-net-neutrality/loading.gif\" data-image-dimensions=\"300x300\" data-image-focal-point=\"0.5,0.5\" alt=\"\" data-load=\"false\" elementtiming=\"system-image-block\" src=\"/images/blog/2014/on-net-neutrality/loading.gif\" width=\"300\" height=\"300\" sizes=\"(max-width: 640px) 100vw, (max-width: 767px) 100vw, 100vw\" onload=\"this.classList.add(&quot;loaded&quot;)\" loading=\"lazy\" decoding=\"async\" data-loader=\"sqs\"> </figure> <p>Loading...</p>"
 ---
 
-<figure class="
-              sqs-block-image-figure
-              intrinsic
-            "
-        >
-          
-        
-        
+![](/images/blog/2014/on-net-neutrality/loading.gif)
 
-        
-          
-            
-          
-            
-                
-                
-                
-                
-                
-                
-                
-                <img data-stretch="false" data-image="/images/blog/2014/on-net-neutrality/loading.gif" data-image-dimensions="300x300" data-image-focal-point="0.5,0.5" alt="" data-load="false" elementtiming="system-image-block" src="/images/blog/2014/on-net-neutrality/loading.gif" width="300" height="300" sizes="(max-width: 640px) 100vw, (max-width: 767px) 100vw, 100vw" onload="this.classList.add(&quot;loaded&quot;)" loading="lazy" decoding="async" data-loader="sqs">
-
-            
-          
-        
-          
-        
-
-        
-      
-        </figure>
-      
-
-    
-  
-
-
-
-
-
-
-  <p>Loading...</p>
+Loading...

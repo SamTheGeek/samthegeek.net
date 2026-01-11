@@ -23,6 +23,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox now supports filename-based deep links via the `photo` query parameter.
 - Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
 - Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
+- Blog cleanup: removed leftover Squarespace embed markup in `googles-red-alert` and build completes cleanly.
 
 ## Gallery Status
 

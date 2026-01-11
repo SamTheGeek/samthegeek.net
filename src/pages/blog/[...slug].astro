@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
+const { Content } = await post.render();
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const currentIndex = sortedPosts.findIndex((entry) => entry.id === post.id);
@@ -66,7 +67,9 @@ function formatDate(date: Date): string {
       </div>
     </header>
 
-    <div class="post-content entry-content" set:html={post.body} />
+    <div class="post-content entry-content">
+      <Content />
+    </div>
 
     <BlogPostFooter post={post} postUrl={postHref} />
 
