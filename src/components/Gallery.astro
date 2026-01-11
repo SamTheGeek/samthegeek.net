@@ -56,14 +56,17 @@ const { title, images } = Astro.props;
     column-gap: var(--tile-gap);
     column-count: 3;
     column-width: 280px;
-    column-fill: auto;
+    column-fill: balance;
+    -webkit-column-fill: balance;
     margin-top: 0;
-    line-height: 0;
+    font-size: 0;
   }
 
   .gallery-item {
-    display: block;
+    display: inline-block;
     width: 100%;
+    vertical-align: top;
+    -webkit-column-break-inside: avoid;
     break-inside: avoid;
     margin-bottom: var(--tile-gap);
     overflow: hidden;
