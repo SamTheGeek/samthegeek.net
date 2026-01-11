@@ -78,18 +78,7 @@
     },
     {
       "src": "/images/copenhagen/DSCF5996.jpeg",
-      "alt": "Copenhagen photo",
-      "exif": {
-        "date": "2022:06:12 16:23:54",
-        "camera": "FUJIFILM X-T2",
-        "lens": "XF56mmF1.2 R",
-        "focalLength": "56mm",
-        "aperture": "f/1.4",
-        "shutterSpeed": "1/125s",
-        "iso": "ISO 8000",
-        "latitude": 55.66948333333333,
-        "longitude": 12.5241
-      }
+      "alt": "Copenhagen photo"
     },
     {
       "src": "/images/copenhagen/DSCF6025.jpeg",

@@ -4,17 +4,41 @@
   "publishedDate": "2015-01-01",
   "description": "Photos from around the world",
   "images": [
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+1", "alt": "Elsewhere photo 1" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+2", "alt": "Elsewhere photo 2" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+3", "alt": "Elsewhere photo 3" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+4", "alt": "Elsewhere photo 4" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+5", "alt": "Elsewhere photo 5" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+6", "alt": "Elsewhere photo 6" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+7", "alt": "Elsewhere photo 7" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+8", "alt": "Elsewhere photo 8" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+9", "alt": "Elsewhere photo 9" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+10", "alt": "Elsewhere photo 10" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+11", "alt": "Elsewhere photo 11" },
-    { "src": "https://via.placeholder.com/800x600/34495E/fff?text=Elsewhere+12", "alt": "Elsewhere photo 12" }
+    {
+      "src": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF0716.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF0717.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF3417.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF4066.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF4495.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF4831.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/DSCF4892.jpeg",
+      "alt": "Elsewhere photo"
+    },
+    {
+      "src": "/images/elsewhere/IMG_5530-1.jpeg",
+      "alt": "Elsewhere photo"
+    }
   ]
 }

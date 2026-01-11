@@ -4,17 +4,169 @@
   "publishedDate": "2019-09-01",
   "description": "Photos from Italy",
   "images": [
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+1", "alt": "Italy photo 1" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+2", "alt": "Italy photo 2" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+3", "alt": "Italy photo 3" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+4", "alt": "Italy photo 4" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+5", "alt": "Italy photo 5" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+6", "alt": "Italy photo 6" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+7", "alt": "Italy photo 7" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+8", "alt": "Italy photo 8" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+9", "alt": "Italy photo 9" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+10", "alt": "Italy photo 10" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+11", "alt": "Italy photo 11" },
-    { "src": "https://via.placeholder.com/800x600/E74C3C/fff?text=Italy+12", "alt": "Italy photo 12" }
+    {
+      "src": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF0778.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF0844.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF0867.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF0879.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF0888.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF0951.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1002.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1055.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1061.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1080.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1085.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1360.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1484.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1510.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1600.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1644.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF1736.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2483.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2490.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2524.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2541.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2547.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2555.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2610.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2614.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2627.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2630.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2635.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2642.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2644.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2652.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2673.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2674.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2691.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2765.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2862.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2881.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF2929.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/DSCF6211.jpeg",
+      "alt": "Italy photo"
+    },
+    {
+      "src": "/images/italy/IMG_2633.jpeg",
+      "alt": "Italy photo"
+    }
   ]
 }
