@@ -2,12 +2,11 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogList from '../../components/BlogList.astro';
-import BlogLikeScript from '../../components/BlogLikeScript.astro';
 import '../../styles/blog.css';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const postsPerPage = 5;
+const postsPerPage = 10;
 const page = 1;
 const totalPages = Math.max(1, Math.ceil(sortedPosts.length / postsPerPage));
 const pagePosts = sortedPosts.slice(0, postsPerPage);
@@ -19,5 +18,4 @@ const pagePosts = sortedPosts.slice(0, postsPerPage);
   activePath="/blog"
 >
   <BlogList posts={pagePosts} page={page} totalPages={totalPages} />
-  <BlogLikeScript />
 </BaseLayout>
