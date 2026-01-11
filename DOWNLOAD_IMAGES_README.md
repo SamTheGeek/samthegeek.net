@@ -37,7 +37,7 @@ Pattern: `<gallery>_<city>_<DDMMYYYY>_<sequence>.<ext>`
 Requirements:
 ```bash
 pip install exifread
-export GOOGLE_MAPS_API_KEY="your_key_here" # optional for city lookup
+export PUBLIC_GOOGLE_MAPS_EMBED_API_KEY="your_key_here" # optional for city lookup
 ```
 
 Usage:
@@ -65,7 +65,7 @@ Flow:
 Requirements:
 ```bash
 pip install exifread
-export GOOGLE_MAPS_API_KEY="your_key_here" # optional for city lookup
+export PUBLIC_GOOGLE_MAPS_EMBED_API_KEY="your_key_here" # optional for city lookup
 ```
 
 Usage:
@@ -79,7 +79,7 @@ Extracts EXIF metadata into a gallery JSON file for use in the lightbox info pan
 Requirements:
 ```bash
 pip install exifread
-export GOOGLE_MAPS_API_KEY="your_key_here" # optional for location lookup
+export PUBLIC_GOOGLE_MAPS_EMBED_API_KEY="your_key_here" # optional for location lookup
 ```
 
 Usage:

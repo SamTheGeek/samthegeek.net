@@ -6,143 +6,553 @@
   "images": [
     {
       "src": "/images/copenhagen/DSCF5424.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:08 10:43:00",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/850s",
+        "iso": "ISO 200",
+        "latitude": 55.653825,
+        "longitude": 12.555869444444445,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5450.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 13:06:38",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/950s",
+        "iso": "ISO 200",
+        "latitude": 55.70786944444445,
+        "longitude": 12.597922222222223,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5515.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 14:11:30",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/680s",
+        "iso": "ISO 200",
+        "latitude": 55.69007222222222,
+        "longitude": 12.595255555555557,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5516.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 14:12:11",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/1250s",
+        "iso": "ISO 200",
+        "latitude": 55.69034166666666,
+        "longitude": 12.595080555555557,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5526.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 14:14:09",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.8",
+        "shutterSpeed": "1/950s",
+        "iso": "ISO 200",
+        "latitude": 55.691180555555555,
+        "longitude": 12.594786111111112,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5545.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 17:16:54",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 55.76356944444444,
+        "longitude": 12.599091666666668
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5552.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 20:37:25",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/2900s",
+        "iso": "ISO 200",
+        "latitude": 55.672488888888886,
+        "longitude": 12.566575,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5562.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:09 22:30:46",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/60s",
+        "iso": "ISO 320",
+        "latitude": 55.67413333333333,
+        "longitude": 12.573625,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5608.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:10 11:37:10",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/1900s",
+        "iso": "ISO 200",
+        "latitude": 55.693802777777776,
+        "longitude": 12.613816666666667,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5629.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:10 11:59:29",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/25s",
+        "iso": "ISO 800",
+        "latitude": 55.69374166666666,
+        "longitude": 12.613655555555555,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5652.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:10 12:10:29",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/3000s",
+        "iso": "ISO 200",
+        "latitude": 55.69371111111111,
+        "longitude": 12.613577777777778,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5678.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:11 13:56:42",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "10/23s",
+        "iso": "ISO 800",
+        "latitude": 55.96851111111111,
+        "longitude": 12.54353888888889
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5760.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:11 16:55:27",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 56.03961666666667,
+        "longitude": 12.618352777777778
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5771.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:11 20:15:45",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/3800s",
+        "iso": "ISO 200",
+        "latitude": 56.034461111111106,
+        "longitude": 12.632425000000001
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5846.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 11:52:21",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2",
+        "shutterSpeed": "1/1900s",
+        "iso": "ISO 200",
+        "latitude": 55.678824999999996,
+        "longitude": 12.603294444444444,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5861.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 11:54:57",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/10",
+        "shutterSpeed": "1/220s",
+        "iso": "ISO 200",
+        "latitude": 55.67868055555555,
+        "longitude": 12.607474999999999,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5907.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 12:29:13",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/1900s",
+        "iso": "ISO 200",
+        "latitude": 55.67155833333333,
+        "longitude": 12.589241666666668,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5954.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 16:19:30",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 25600",
+        "latitude": 55.66948333333333,
+        "longitude": 12.52411388888889
+      }
     },
     {
       "src": "/images/copenhagen/DSCF5996.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 16:23:54",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 8000",
+        "latitude": 55.66948333333333,
+        "longitude": 12.5241
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6025.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 16:30:05",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 25600",
+        "latitude": 55.66948055555555,
+        "longitude": 12.524080555555557
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6042.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 16:33:31",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 3200",
+        "latitude": 55.66947777777778,
+        "longitude": 12.524069444444445
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6134.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 11:46:19",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.2",
+        "shutterSpeed": "1/400s",
+        "iso": "ISO 200",
+        "latitude": 55.68533333333333,
+        "longitude": 12.591177777777778,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6148.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 12:12:08",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/3200s",
+        "iso": "ISO 200",
+        "latitude": 55.68384722222222,
+        "longitude": 12.593566666666668,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6164.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 12:22:02",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/480s",
+        "iso": "ISO 200",
+        "latitude": 55.68116388888889,
+        "longitude": 12.588897222222222,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6168.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 12:22:32",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/450s",
+        "iso": "ISO 200",
+        "latitude": 55.68114722222222,
+        "longitude": 12.588866666666668,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6211.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 14:12:44",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.5",
+        "shutterSpeed": "1/52s",
+        "iso": "ISO 800",
+        "latitude": 55.67916111111111,
+        "longitude": 12.582061111111111,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6218.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 14:13:50",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.5",
+        "shutterSpeed": "1/60s",
+        "iso": "ISO 320",
+        "latitude": 55.677575,
+        "longitude": 12.58028611111111,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6271.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 16:40:34",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 55.69825833333333,
+        "longitude": 12.541491666666667,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6275.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 16:57:45",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/2500s",
+        "iso": "ISO 200",
+        "latitude": 55.69263055555555,
+        "longitude": 12.544213888888889,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6283.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 17:18:02",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/1300s",
+        "iso": "ISO 200",
+        "latitude": 55.69248888888889,
+        "longitude": 12.544141666666667,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/DSCF6291.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:14 17:18:56",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.2",
+        "shutterSpeed": "1/1700s",
+        "iso": "ISO 200",
+        "latitude": 55.692524999999996,
+        "longitude": 12.544183333333333,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/IMG_2522.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:11 12:59:53",
+        "camera": "Spectre",
+        "lens": "iPhone 13 Pro back camera 5.7mm f/1.5",
+        "focalLength": "5.7mm",
+        "aperture": "f/1.5",
+        "shutterSpeed": "9.0s",
+        "iso": "ISO 32",
+        "latitude": 55.969969444444445,
+        "longitude": 12.543097222222222
+      }
     },
     {
       "src": "/images/copenhagen/IMG_2577.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:12 16:37:09",
+        "camera": "Apple iPhone 13 Pro",
+        "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+        "focalLength": "5.7mm",
+        "aperture": "f/1.5",
+        "shutterSpeed": "1/17s",
+        "iso": "ISO 3200",
+        "latitude": 55.66947777777778,
+        "longitude": 12.524055555555556
+      }
     },
     {
       "src": "/images/copenhagen/IMG_2607.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:13 19:25:55",
+        "camera": "Apple iPhone 13 Pro",
+        "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+        "focalLength": "5.7mm",
+        "aperture": "f/1.5",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 64",
+        "latitude": 55.668924999999994,
+        "longitude": 12.558469444444444,
+        "location": "K\u00f8benhavn"
+      }
     },
     {
       "src": "/images/copenhagen/IMG_2613.jpeg",
-      "alt": "Copenhagen photo"
+      "alt": "Copenhagen photo",
+      "exif": {
+        "date": "2022:06:13 19:27:59",
+        "camera": "Apple iPhone 13 Pro",
+        "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+        "focalLength": "5.7mm",
+        "aperture": "f/1.5",
+        "shutterSpeed": "1/313s",
+        "iso": "ISO 50",
+        "latitude": 55.66894444444444,
+        "longitude": 12.558552777777779,
+        "location": "K\u00f8benhavn"
+      }
     }
   ]
 }
