@@ -2,13 +2,11 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Get all galleries and sort by published date (newest first)
 const allGalleries = await getCollection('galleries');
 const sortedGalleries = allGalleries.sort((a, b) =>
   b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
 );
 
-// Get the newest gallery
 const newestGallery = sortedGalleries[0];
 
 if (!newestGallery) {
@@ -16,10 +14,43 @@ if (!newestGallery) {
 }
 
 const location = `/${newestGallery.id}`;
-return new Response(null, {
-  status: 302,
-  headers: {
-    Location: location,
-  },
-});
+const siteDescription = "Hi there! I'm Sam, helping great people make awesome things since 1992.";
 ---
+
+<BaseLayout title="I am Sam" description={siteDescription} image="/images/about/profile-720.jpg" activePath="/">
+  <Fragment slot="head">
+    <meta http-equiv="refresh" content={`0; url=${location}`} />
+    <link rel="prefetch" href={location} />
+  </Fragment>
+
+  <div class="redirect-shell">
+    <p>Redirecting to the latest gallery...</p>
+    <p><a href={location}>Continue</a></p>
+  </div>
+
+  <noscript>
+    <div class="redirect-shell">
+      <p>JavaScript is disabled. Use the link above to visit the latest gallery.</p>
+    </div>
+  </noscript>
+
+  <script is:inline>
+    const redirectUrl = {JSON.stringify(location)};
+    if (window.location.pathname === '/') {
+      window.location.replace(redirectUrl);
+    }
+  </script>
+
+  <style>
+    .redirect-shell {
+      max-width: 420px;
+      padding: 1.5rem;
+      font-size: 14px;
+      color: #5a5a5a;
+    }
+
+    .redirect-shell a {
+      color: #0073a6;
+    }
+  </style>
+</BaseLayout>

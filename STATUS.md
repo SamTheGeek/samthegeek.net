@@ -33,6 +33,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox zoom animation: photos now zoom from the masonry position into the lightbox (keep for tests).
 - Gallery masonry regression: switched to balanced column fill and added WebKit column break avoidance.
 - Gallery masonry Safari tweak: use inline-block tiles with top alignment and zeroed container font size.
+- Social sharing meta tags updated; root now uses site-level metadata with HTML redirect, and gallery meta descriptions are pulled from markdown files.
 
 ## Gallery Status
 
@@ -67,24 +68,27 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox zoom animation: thumbnail-to-lightbox zoom now animates on open.
 - Gallery JSONs updated to reference local images for all galleries.
 - About page rebuilt with markdown content, compact layout, and updated photo styling.
+- Social sharing meta tags updated (OG/Twitter + canonical).
+- Gallery meta descriptions moved to per-gallery markdown files (used only for meta description).
+- Root share now uses site-level description instead of gallery-level metadata.
 
 ## Pending Tasks (Priority Order)
 
-1. Redirect the live site to the Netlify site and finalize SSL.
-2. Verify all galleries + lightbox behavior (desktop + mobile).
-3. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use
-4. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
-5. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
-6. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
-7. Use an AI service to automatically add alt text for every photo
-8. Add a "Bicycling" information page adjacent to the "About" page
-9. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
-10. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
-11. Replace gallery photos with versions that contain EXIF data.
-12. Smoothly animate on the width breakpoint for responsive design.
-13. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
-14. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.
-15. Write a new blog post updating the synology icpl downloader
-16. Write a blog post about writing this site
-17. Redesign the blog again to make it good.
-18. Fix the lightbox map embed to make it use mapbox styled to look like the website
+1. Verify all galleries + lightbox behavior (desktop + mobile).
+2. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use
+3. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
+4. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
+5. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
+6. Use an AI service to automatically add alt text for every photo
+7. Add a "Bicycling" information page adjacent to the "About" page
+8. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
+9. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
+10. Replace gallery photos with versions that contain EXIF data.
+11. Smoothly animate on the width breakpoint for responsive design.
+12. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
+13. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.
+14. Write a new blog post updating the synology icpl downloader
+15. Write a blog post about writing this site
+16. Redesign the blog again to make it good.
+17. Fix the lightbox map embed to make it use mapbox styled to look like the website
+18. Accessibility and performance audit
