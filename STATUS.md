@@ -60,7 +60,7 @@ This file is the single source of truth for current status, progress, and next t
 4. Lightbox: animate photo zooming from masonry position to full screen (and back).
 5. Redirect the live site to the Netlify site and finalize SSL.
 6. Verify all galleries + lightbox behavior (desktop + mobile).
-7. Add tests that run on any GitHub branch, not just main.
+7. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness.
 8. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
 9. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
 10. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
