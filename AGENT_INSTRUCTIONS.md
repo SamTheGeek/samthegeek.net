@@ -118,5 +118,5 @@ The project uses Astro's file-based routing system:
 ## Assistant Notes
 
 - Image downloads use `ALL_GALLERY_URLS.txt` plus `scripts/download_gallery_images.py`.
-- Renaming/import scripts live in `scripts/rename_existing_gallery_images.py`, `scripts/rename_new_gallery_images.py`, and `scripts/import_live_content.py` (require `exifread` and optional `GOOGLE_MAPS_API_KEY`).
+- Renaming/import scripts live in `scripts/rename_existing_gallery_images.py`, `scripts/rename_new_gallery_images.py`, and `scripts/import_live_content.py` (require `exifread` and optional `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`).
 - Gallery layout uses a masonry column layout in `src/components/Gallery.astro`.
