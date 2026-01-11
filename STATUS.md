@@ -24,7 +24,7 @@ This file is the single source of truth for current status, progress, and next t
 - Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
 - Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
 - Blog cleanup: removed leftover Squarespace embed markup in `googles-red-alert` and build completes cleanly.
-- Lightbox flicker investigation: gallery and lightbox currently use the same image `src` (no separate preview); likely progressive JPEG decode/size snap, consider placeholder sizing or pre-decode.
+- Lightbox flicker fix: add low-res preview placeholder and fade in full-res after decode.
 
 ## Gallery Status
 
@@ -54,11 +54,11 @@ This file is the single source of truth for current status, progress, and next t
 - Added `photo` query parameter handling for lightbox deep links.
 - Implemented blog RSS feed with legacy ordering/guids and `/blog?format=rss` redirect.
 - Final design check against the original site for near-identical matching (approved).
+- Lightbox flicker fix: added low-res preview placeholder and fade in full-res after decode.
 
 ## Pending Tasks (Priority Order)
 
-1. Lightbox: fix image flicker by showing a low-res preview at final size before loading full-res assets.
-2. Gallery: fix masonry layout issues in Blink/Chromium-based browsers.
+1. Gallery: fix masonry layout issues in Blink/Chromium-based browsers.
 3. Lightbox: animate photo zooming from masonry position to full screen (and back).
 4. Redirect the live site to the Netlify site and finalize SSL.
 5. Verify all galleries + lightbox behavior (desktop + mobile).

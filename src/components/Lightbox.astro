@@ -49,7 +49,8 @@
     </div>
   </div>
   <div class="lightbox-content">
-    <img id="lightbox-image" src="" alt="" />
+    <img id="lightbox-preview" class="lightbox-image lightbox-preview" src="" alt="" aria-hidden="true" />
+    <img id="lightbox-image" class="lightbox-image" src="" alt="" />
   </div>
 </div>
 
@@ -89,7 +90,7 @@
     pointer-events: none;
   }
 
-  .lightbox-content img {
+  .lightbox-image {
     max-width: min(100%, 1400px);
     max-height: min(90vh, 860px);
     object-fit: contain;
@@ -103,7 +104,21 @@
     pointer-events: auto;
   }
 
-  .lightbox.active .lightbox-content img {
+  .lightbox-preview {
+    filter: blur(16px);
+    transform: translateZ(0) scale(1.01);
+    pointer-events: none;
+  }
+
+  .lightbox.active .lightbox-preview {
+    opacity: 1;
+  }
+
+  .lightbox.is-loaded .lightbox-preview {
+    opacity: 0;
+  }
+
+  .lightbox.is-loaded .lightbox-image {
     opacity: 1;
     transform: translateZ(0) scale(1);
   }
@@ -429,6 +444,7 @@
   function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+    const lightboxPreview = document.getElementById('lightbox-preview') as HTMLImageElement;
     const lightboxDate = document.getElementById('lightbox-date');
     const lightboxHeader = document.getElementById('lightbox-info-header');
     const lightboxLocation = document.getElementById('lightbox-location');
@@ -502,10 +518,12 @@
     openFromUrlParam();
 
     function openLightbox(img: HTMLImageElement) {
-      if (!lightbox || !lightboxImage) return;
+      if (!lightbox || !lightboxImage || !lightboxPreview) return;
 
+      lightbox.classList.remove('is-loaded');
       lightboxImage.src = img.src;
       lightboxImage.alt = img.alt;
+      hydratePreview(img);
       hydrateInfo(img);
       setPhotoParam(img);
       lightbox.classList.add('active');
@@ -523,15 +541,18 @@
         imageResizeObserver = new ResizeObserver(() => updateInfoWidth());
         imageResizeObserver.observe(lightboxImage);
       }
+      settleFullImage();
     }
 
     function closeLightbox() {
       if (!lightbox) return;
 
       lightbox.classList.remove('active');
+      lightbox.classList.remove('is-loaded');
       document.body.style.overflow = '';
       clearPhotoParam();
       clearInfo();
+      clearPreview();
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
       if (infoToggle) {
@@ -615,6 +636,61 @@
       }
       if (lightboxContent) {
         requestAnimationFrame(() => requestAnimationFrame(updateInfoWidth));
+      }
+    }
+
+    function hydratePreview(img: HTMLImageElement) {
+      if (!lightboxPreview || !lightboxImage) return;
+      const previewData = createPreviewDataUrl(img);
+      if (previewData) {
+        lightboxPreview.src = previewData;
+      } else {
+        lightboxPreview.removeAttribute('src');
+      }
+      applyAspectRatio(img);
+    }
+
+    function applyAspectRatio(img: HTMLImageElement) {
+      if (!lightboxImage || !lightboxPreview) return;
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      const ratio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      lightboxImage.style.aspectRatio = ratio;
+      lightboxPreview.style.aspectRatio = ratio;
+    }
+
+    function clearPreview() {
+      if (!lightboxPreview || !lightboxImage) return;
+      lightboxPreview.removeAttribute('src');
+      lightboxPreview.style.aspectRatio = '';
+      lightboxImage.style.aspectRatio = '';
+    }
+
+    function createPreviewDataUrl(img: HTMLImageElement) {
+      if (!img.naturalWidth || !img.naturalHeight) return '';
+      const maxPreviewSize = 60;
+      const scale = Math.min(
+        1,
+        maxPreviewSize / img.naturalWidth,
+        maxPreviewSize / img.naturalHeight
+      );
+      const width = Math.max(1, Math.round(img.naturalWidth * scale));
+      const height = Math.max(1, Math.round(img.naturalHeight * scale));
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return '';
+      ctx.drawImage(img, 0, 0, width, height);
+      return canvas.toDataURL('image/jpeg', 0.6);
+    }
+
+    function settleFullImage() {
+      if (!lightbox || !lightboxImage) return;
+      const markLoaded = () => lightbox.classList.add('is-loaded');
+      if (lightboxImage.decode) {
+        lightboxImage.decode().then(markLoaded).catch(() => markLoaded());
+      } else {
+        lightboxImage.addEventListener('load', markLoaded, { once: true });
       }
     }
 
