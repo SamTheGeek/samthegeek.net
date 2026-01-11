@@ -26,6 +26,7 @@ This file is the single source of truth for current status, progress, and next t
 - Blog cleanup: removed leftover Squarespace embed markup in `googles-red-alert` and build completes cleanly.
 - Lightbox flicker fix: size low-res preview to final display and defer full-res load until preview paint (keep for tests).
 - Gallery masonry fix: Blink now shows multiple columns via balanced column fill + explicit column width (keep for tests).
+- Lightbox zoom animation: photos now zoom from the masonry position into the lightbox (keep for tests).
 
 ## Gallery Status
 
@@ -57,10 +58,11 @@ This file is the single source of truth for current status, progress, and next t
 - Final design check against the original site for near-identical matching (approved).
 - Lightbox flicker fix: sized low-res preview to final display and deferred full-res load until preview paint.
 - Gallery masonry fix: balanced column fill and explicit column width to restore multi-column layout in Blink.
+- Lightbox zoom animation: thumbnail-to-lightbox zoom now animates on open.
 
 ## Pending Tasks (Priority Order)
 
-1. Lightbox: animate photo zooming from masonry position to full screen (and back).
+1. Redo the about page (last task before go-live).
 2. Redirect the live site to the Netlify site and finalize SSL.
 3. Verify all galleries + lightbox behavior (desktop + mobile).
 4. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use

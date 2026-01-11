@@ -49,7 +49,6 @@
     </div>
   </div>
   <div class="lightbox-content">
-    <img id="lightbox-preview" class="lightbox-image lightbox-preview" src="" alt="" aria-hidden="true" />
     <img id="lightbox-image" class="lightbox-image" src="" alt="" />
   </div>
 </div>
@@ -63,19 +62,43 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 45%, rgba(35, 35, 35, 0.45) 0%, rgba(0, 0, 0, 0.86) 72%, rgba(0, 0, 0, 0.92) 100%);
     justify-content: center;
     align-items: center;
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    --zoom-duration: 900ms;
+    --fade-duration: 765ms;
+    --fade-delay-open: calc(var(--zoom-duration) - var(--fade-duration));
   }
 
   .lightbox.active {
-    opacity: 1;
     visibility: visible;
     pointer-events: auto;
+  }
+
+  .lightbox.is-closing {
+    visibility: visible;
+    pointer-events: none;
+  }
+
+  .lightbox::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(35, 35, 35, 0.45) 0%, rgba(0, 0, 0, 0.86) 72%, rgba(0, 0, 0, 0.92) 100%);
+    opacity: 0;
+    transition: opacity var(--fade-duration) ease;
+  }
+
+  .lightbox.active::before {
+    opacity: 1;
+    transition-delay: var(--fade-delay-open);
+  }
+
+  .lightbox.is-closing::before {
+    opacity: 0;
+    transition-delay: 0s;
   }
 
   .lightbox-content {
@@ -89,42 +112,43 @@
     padding: 2rem;
     pointer-events: none;
     overflow: hidden;
+    z-index: 1;
   }
 
   .lightbox-image {
     position: absolute;
+    inset: 0;
     max-width: min(100%, 1400px);
     max-height: min(90vh, 860px);
     object-fit: contain;
-    border-radius: 6px;
+    border-radius: 0;
     box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateZ(0) scale(0.985);
-    transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    margin: auto;
+    opacity: 1;
+    transform: translateZ(0);
+    transition: transform var(--zoom-duration) cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform, opacity;
     pointer-events: auto;
   }
 
-  .lightbox-preview {
-    filter: blur(16px);
-    transform: translateZ(0) scale(1.01);
-    pointer-events: none;
+  .lightbox-image.is-loading {
+    animation: lightbox-pulse 0.9s ease-in-out infinite;
   }
 
-  .lightbox.active .lightbox-preview {
-    opacity: 1;
-  }
-
-  .lightbox.is-loaded .lightbox-preview {
-    opacity: 0;
-    transition-delay: 0.02s;
+  @keyframes lightbox-pulse {
+    0% {
+      filter: brightness(0.96);
+    }
+    50% {
+      filter: brightness(0.86);
+    }
+    100% {
+      filter: brightness(0.96);
+    }
   }
 
   .lightbox.is-loaded .lightbox-image {
-    opacity: 1;
     transform: translateZ(0) scale(1);
-    transition-delay: 0.02s;
   }
 
   .lightbox-controls {
@@ -137,17 +161,26 @@
     gap: 0.45rem;
     padding-top: var(--pill-height);
     width: var(--pill-width);
+    max-height: var(--pill-height);
     isolation: isolate;
     box-sizing: border-box;
     z-index: 10000;
+    overflow: hidden;
+    border-radius: var(--pill-radius);
+    background: rgba(18, 18, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
     --pill-width: 5rem;
     --pill-height: 2.2rem;
     --pill-radius: calc(var(--pill-height) / 2);
     --info-max-width: min(70vw, 360px);
-    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.25s ease;
+    transition: width var(--zoom-duration) cubic-bezier(0.22, 1, 0.36, 1),
+      padding var(--zoom-duration) cubic-bezier(0.22, 1, 0.36, 1),
+      max-height var(--zoom-duration) cubic-bezier(0.22, 1, 0.36, 1),
+      transform var(--zoom-duration) cubic-bezier(0.22, 1, 0.36, 1),
+      opacity var(--fade-duration) ease,
+      background var(--zoom-duration) ease;
     opacity: 0;
     transform: translate3d(0, -6px, 0);
     will-change: transform, opacity;
@@ -156,24 +189,12 @@
   .lightbox.active .lightbox-controls {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+    transition-delay: var(--fade-delay-open);
   }
 
-  .lightbox-controls::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: var(--pill-width);
-    height: var(--pill-height);
-    border-radius: var(--pill-radius);
-    background: rgba(18, 18, 18, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(10px);
-    z-index: -1;
-    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      background 0.35s ease;
+  .lightbox.is-closing .lightbox-controls {
+    opacity: 0;
+    transition-delay: 0s;
   }
 
   .lightbox-controls-row {
@@ -202,32 +223,31 @@
   }
 
   .lightbox-info {
-    display: block;
+    position: static;
     width: 100%;
-    max-width: var(--info-max-width);
     min-width: 220px;
     color: #f5f5f5;
-    opacity: 0;
-    max-height: 0;
     overflow: hidden;
     pointer-events: none;
-    transform: translate3d(10px, -4px, 0);
-    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform, opacity;
+    transform: none;
+    max-height: 0;
+    transition: max-height var(--zoom-duration) cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: max-height;
     z-index: 1;
   }
 
   .lightbox-info.active {
-    opacity: 1;
-    max-height: 80vh;
     pointer-events: auto;
-    transform: translate3d(0, 0, 0);
+    max-height: 80vh;
   }
 
   .lightbox-controls.expanded .lightbox-info {
-    overflow-y: auto;
     padding-right: 0.2rem;
+  }
+
+  .lightbox-controls.expanded.scroll-ready .lightbox-info {
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .lightbox-controls.expanded .lightbox-info::-webkit-scrollbar {
@@ -414,6 +434,7 @@
   .lightbox-controls.expanded {
     padding: 0.6rem;
     width: var(--info-max-width);
+    max-height: 80vh;
   }
 
   .lightbox-controls.expanded::before {
@@ -429,7 +450,8 @@
     }
 
     .lightbox-controls.expanded {
-      width: calc(100vw - 32px);
+      width: min(var(--info-max-width), calc(100vw - 32px));
+      max-width: var(--info-max-width);
     }
 
     .lightbox-info {
@@ -448,7 +470,6 @@
   function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
-    const lightboxPreview = document.getElementById('lightbox-preview') as HTMLImageElement;
     const lightboxDate = document.getElementById('lightbox-date');
     const lightboxHeader = document.getElementById('lightbox-info-header');
     const lightboxLocation = document.getElementById('lightbox-location');
@@ -466,9 +487,22 @@
     const infoBox = document.getElementById('lightbox-info');
     const controls = document.querySelector('.lightbox-controls');
     const lightboxContent = document.querySelector('.lightbox-content');
+    const zoomDurationMs = 900;
+    const openDelayMs = 60;
     let imageResizeObserver: ResizeObserver | null = null;
     let loadToken = 0;
     let activeImage: HTMLImageElement | null = null;
+    let lastHiddenImage: HTMLImageElement | null = null;
+    let isClosing = false;
+    let closeTimeout: number | null = null;
+    let isAnimatingOpen = false;
+    let openAnimationTimeout: number | null = null;
+    let pendingPreviewResize = false;
+    let openStartTimeout: number | null = null;
+    let bodyPaddingRight = '';
+    let warmedLayout = false;
+    let sizingDimensions: { width: number; height: number } | null = null;
+    let infoScrollTimeout: number | null = null;
     const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
     const staticMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_STATIC_API_KEY || mapsKey;
 
@@ -494,8 +528,22 @@
     // Info toggle
     infoToggle?.addEventListener('click', () => {
       if (!infoBox) return;
-      const isOpen = infoBox?.classList.toggle('active') ?? false;
+      if (!infoBox.classList.contains('active')) {
+        updateInfoWidth();
+      }
+      const isOpen = infoBox.classList.toggle('active');
       controls?.classList.toggle('expanded', isOpen);
+      controls?.classList.remove('scroll-ready');
+      if (infoScrollTimeout) {
+        window.clearTimeout(infoScrollTimeout);
+        infoScrollTimeout = null;
+      }
+      if (isOpen && controls) {
+        infoScrollTimeout = window.setTimeout(() => {
+          controls.classList.add('scroll-ready');
+          infoScrollTimeout = null;
+        }, zoomDurationMs);
+      }
       infoToggle.classList.toggle('active', isOpen);
       infoToggle.setAttribute('aria-pressed', String(isOpen));
       infoToggle.setAttribute('aria-label', isOpen ? 'Hide photo info' : 'Show photo info');
@@ -513,6 +561,8 @@
       updatePreviewSizing();
     });
 
+    window.addEventListener('load', warmLayout);
+
     window.addEventListener('popstate', () => {
       const target = findImageFromUrl();
       if (target) {
@@ -526,48 +576,151 @@
 
     openFromUrlParam();
 
-    function openLightbox(img: HTMLImageElement) {
-      if (!lightbox || !lightboxImage || !lightboxPreview) return;
+    warmLayout();
 
+    function warmLayout() {
+      if (warmedLayout || !lightbox || !lightboxImage) return;
+      const previewVisibility = lightbox.style.visibility;
+      const previewPointer = lightbox.style.pointerEvents;
+      lightbox.classList.add('active');
+      lightbox.style.visibility = 'hidden';
+      lightbox.style.pointerEvents = 'none';
+      updatePreviewSizing();
+      lightbox.getBoundingClientRect();
+      lightboxContent?.getBoundingClientRect();
+      lightboxImage.getBoundingClientRect();
+      lightbox.classList.remove('active');
+      lightbox.style.visibility = previewVisibility;
+      lightbox.style.pointerEvents = previewPointer;
+      warmedLayout = true;
+    }
+
+    function openLightbox(img: HTMLImageElement) {
+      if (!lightbox || !lightboxImage) return;
+
+      if (closeTimeout) {
+        window.clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+      if (openAnimationTimeout) {
+        window.clearTimeout(openAnimationTimeout);
+        openAnimationTimeout = null;
+      }
+      if (openStartTimeout) {
+        window.clearTimeout(openStartTimeout);
+        openStartTimeout = null;
+      }
+      isClosing = false;
+      lightbox.classList.remove('is-closing');
       loadToken += 1;
+      if (activeImage && activeImage !== img) {
+        showSourceImage(activeImage);
+      }
       activeImage = img;
+      lastHiddenImage = img;
       lightbox.classList.remove('is-loaded');
+      lightboxImage.classList.add('is-loading');
       lightboxImage.removeAttribute('src');
       lightboxImage.alt = img.alt;
-      hydratePreview(img);
+      sizingDimensions = null;
       hydrateInfo(img);
       setPhotoParam(img);
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
+      controls?.classList.remove('scroll-ready');
+      if (infoScrollTimeout) {
+        window.clearTimeout(infoScrollTimeout);
+        infoScrollTimeout = null;
+      }
       if (infoToggle) {
         infoToggle.classList.remove('active');
         infoToggle.setAttribute('aria-pressed', 'false');
         infoToggle.setAttribute('aria-label', 'Show photo info');
       }
+      isAnimatingOpen = false;
+      pendingPreviewResize = false;
       scheduleInfoWidthUpdates();
       if ('ResizeObserver' in window) {
         imageResizeObserver?.disconnect();
         imageResizeObserver = new ResizeObserver(() => updateInfoWidth());
         imageResizeObserver.observe(lightboxImage);
       }
-      queueFullImageLoad(img, loadToken);
+      waitForImageReady(img, loadToken)
+        .then((token) => {
+          if (token !== loadToken) return;
+          updatePreviewSizing();
+          return loadFullImage(img, token);
+        })
+        .then((token) => {
+          if (!token || token !== loadToken) return;
+          lightboxImage.classList.remove('is-loading');
+          if (lightboxImage.naturalWidth && lightboxImage.naturalHeight) {
+            sizingDimensions = {
+              width: lightboxImage.naturalWidth,
+              height: lightboxImage.naturalHeight,
+            };
+            applyAspectRatioFromDimensions(sizingDimensions);
+            updatePreviewSizing(sizingDimensions);
+          }
+          beginOpenAnimation(img, token);
+        })
+        .catch(() => undefined);
     }
 
     function closeLightbox() {
       if (!lightbox) return;
 
+      if (isClosing) return;
+      if (openAnimationTimeout) {
+        window.clearTimeout(openAnimationTimeout);
+        openAnimationTimeout = null;
+      }
+      if (openStartTimeout) {
+        window.clearTimeout(openStartTimeout);
+        openStartTimeout = null;
+      }
+      const target = activeImage;
+      if (target && lightbox.classList.contains('active')) {
+        isClosing = true;
+        lightbox.classList.add('is-closing');
+        animateToThumbnail(target);
+        closeTimeout = window.setTimeout(() => {
+          closeTimeout = null;
+          finalizeClose();
+        }, zoomDurationMs);
+        return;
+      }
+      finalizeClose();
+    }
+
+    function finalizeClose() {
+      if (!lightbox) return;
       loadToken += 1;
       lightbox.classList.remove('active');
       lightbox.classList.remove('is-loaded');
-      document.body.style.overflow = '';
+      lightbox.classList.remove('is-closing');
+      lightbox.classList.remove('is-animating-open');
+      isClosing = false;
+      isAnimatingOpen = false;
+      unlockScroll();
       clearPhotoParam();
       clearInfo();
       clearPreview();
       activeImage = null;
+      sizingDimensions = null;
+      lightboxImage?.classList.remove('is-loading');
+      resetZoomTransform();
+      if (lastHiddenImage) {
+        showSourceImage(lastHiddenImage);
+        lastHiddenImage = null;
+      }
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
+      controls?.classList.remove('scroll-ready');
+      if (infoScrollTimeout) {
+        window.clearTimeout(infoScrollTimeout);
+        infoScrollTimeout = null;
+      }
       if (infoToggle) {
         infoToggle.classList.remove('active');
         infoToggle.setAttribute('aria-pressed', 'false');
@@ -652,57 +805,209 @@
       }
     }
 
-    function hydratePreview(img: HTMLImageElement) {
-      if (!lightboxPreview || !lightboxImage) return;
-      const previewData = createPreviewDataUrl(img);
-      if (previewData) {
-        lightboxPreview.src = previewData;
-      } else if (img.currentSrc) {
-        lightboxPreview.src = img.currentSrc;
-      } else {
-        lightboxPreview.removeAttribute('src');
-      }
-      applyAspectRatio(img);
-      updatePreviewSizing();
-      if (!previewData && !img.complete) {
-        img.addEventListener(
-          'load',
-          () => {
-            if (img !== activeImage) return;
-            hydratePreview(img);
-          },
-          { once: true }
-        );
-      }
-    }
-
     function applyAspectRatio(img: HTMLImageElement) {
-      if (!lightboxImage || !lightboxPreview) return;
+      if (!lightboxImage) return;
       const dimensions = getImageDimensions(img);
       if (!dimensions) return;
-      const ratio = `${dimensions.width} / ${dimensions.height}`;
-      lightboxImage.style.aspectRatio = ratio;
-      lightboxPreview.style.aspectRatio = ratio;
+      applyAspectRatioFromDimensions(dimensions);
     }
 
-    function updatePreviewSizing() {
-      if (!activeImage || !lightboxImage || !lightboxPreview || !lightboxContent) return;
-      const dimensions = getImageDimensions(activeImage);
+    function applyAspectRatioFromDimensions(dimensions: { width: number; height: number }) {
+      if (!lightboxImage) return;
+      const ratio = `${dimensions.width} / ${dimensions.height}`;
+      lightboxImage.style.aspectRatio = ratio;
+    }
+
+    function updatePreviewSizing(dimensionsOverride?: { width: number; height: number }) {
+      if (isClosing || isAnimatingOpen) {
+        pendingPreviewResize = true;
+        return;
+      }
+      if (!activeImage || !lightboxImage || !lightboxContent) return;
+      const dimensions =
+        dimensionsOverride || sizingDimensions || getImageDimensions(activeImage);
       if (!dimensions) return;
+      const targetRect = getTargetRect(dimensions);
+      if (!targetRect) return;
+      lightboxImage.style.width = `${Math.floor(targetRect.width)}px`;
+      lightboxImage.style.height = `${Math.floor(targetRect.height)}px`;
+    }
+
+    function resetZoomTransform() {
+      if (!lightboxImage) return;
+      lightboxImage.style.transform = '';
+      lightboxImage.style.transformOrigin = '';
+    }
+
+    function applyStartTransform(sourceRect: DOMRect, targetRect: DOMRect) {
+      if (!lightboxImage) return false;
+      const transform = calculateTransform(sourceRect, targetRect);
+      if (!transform) return false;
+      const previousTransition = lightboxImage.style.transition;
+      lightboxImage.style.transformOrigin = 'top left';
+      lightboxImage.style.transition = 'none';
+      lightboxImage.style.transform = transform;
+      lightboxImage.getBoundingClientRect();
+      lightboxImage.style.transition = previousTransition;
+      return true;
+    }
+
+    function playZoomToLightbox(token: number) {
+      if (!lightboxImage) return;
+      if (!lightbox?.classList.contains('active')) return;
+      if (token !== loadToken) return;
+      if (openStartTimeout) {
+        window.clearTimeout(openStartTimeout);
+      }
+      openStartTimeout = window.setTimeout(() => {
+        if (token !== loadToken) return;
+        lightbox?.classList.add('is-loaded');
+        startOpenAnimationTimer();
+        requestAnimationFrame(() => {
+          if (token !== loadToken) return;
+          lightboxImage.style.transform = 'translateZ(0) scale(1)';
+        });
+      }, openDelayMs);
+    }
+
+    function startOpenAnimationTimer() {
+      if (openAnimationTimeout) return;
+      openAnimationTimeout = window.setTimeout(() => {
+        isAnimatingOpen = false;
+        lightbox?.classList.remove('is-animating-open');
+        openAnimationTimeout = null;
+        if (pendingPreviewResize) {
+          pendingPreviewResize = false;
+          updatePreviewSizing();
+          updateInfoWidth();
+        }
+      }, zoomDurationMs);
+    }
+
+    function animateToThumbnail(img: HTMLImageElement) {
+      if (!lightboxImage) return;
+      const targetRect = img.getBoundingClientRect();
+      const sourceDimensions =
+        sizingDimensions || getImageDimensions(img) || getImageDimensions(activeImage);
+      const sourceRect = sourceDimensions ? getTargetRect(sourceDimensions) : null;
+      if (!sourceRect) return;
+      const transform = calculateTransform(targetRect, sourceRect);
+      if (!transform) return;
+      lightboxImage.style.transformOrigin = 'top left';
+      lightboxImage.style.transform = transform;
+    }
+
+    function beginOpenAnimation(img: HTMLImageElement, token: number) {
+      if (!lightbox || !lightboxImage) return;
+      if (token !== loadToken) return;
+      if (!lightbox.classList.contains('active')) {
+        lightbox.classList.add('active');
+        lockScroll();
+      }
+      lightbox.getBoundingClientRect();
+      lightboxContent?.getBoundingClientRect();
+      const sourceRect = img.getBoundingClientRect();
+      const targetDimensions =
+        sizingDimensions || getImageDimensions(img) || getImageDimensions(activeImage);
+      const targetRect = targetDimensions ? getTargetRect(targetDimensions) : null;
+      hideSourceImage(activeImage);
+      updatePreviewSizing();
+      resetZoomTransform();
+      const hasStartTransform =
+        Boolean(targetRect) && applyStartTransform(sourceRect, targetRect);
+      isAnimatingOpen = Boolean(hasStartTransform);
+      lightbox.classList.toggle('is-animating-open', Boolean(hasStartTransform));
+      lightbox.classList.remove('is-loaded');
+      if (hasStartTransform) {
+        playZoomToLightbox(token);
+      } else {
+        isAnimatingOpen = false;
+        lightbox.classList.remove('is-animating-open');
+      }
+    }
+
+    function calculateTransform(sourceRect: DOMRect, targetRect: DOMRect) {
+      if (
+        !sourceRect.width ||
+        !sourceRect.height ||
+        !targetRect.width ||
+        !targetRect.height
+      ) {
+        return '';
+      }
+      const scaleX = sourceRect.width / targetRect.width;
+      const scaleY = sourceRect.height / targetRect.height;
+      const translateX = sourceRect.left - targetRect.left;
+      const translateY = sourceRect.top - targetRect.top;
+      return `translate3d(${translateX}px, ${translateY}px, 0) scale(${scaleX}, ${scaleY})`;
+    }
+
+    function getTargetRect(dimensions: { width: number; height: number }) {
+      if (!lightboxContent) return null;
       const contentRect = lightboxContent.getBoundingClientRect();
-      const maxWidth = Math.min(contentRect.width, 1400);
-      const maxHeight = Math.min(window.innerHeight * 0.9, 860);
+      const styles = window.getComputedStyle(lightboxContent);
+      const paddingX =
+        Number.parseFloat(styles.paddingLeft) + Number.parseFloat(styles.paddingRight);
+      const paddingY =
+        Number.parseFloat(styles.paddingTop) + Number.parseFloat(styles.paddingBottom);
+      const fallbackWidth = window.innerWidth;
+      const fallbackHeight = window.innerHeight;
+      const contentWidth = Math.max(
+        0,
+        (contentRect.width || fallbackWidth) - paddingX
+      );
+      const contentHeight = Math.max(
+        0,
+        (contentRect.height || fallbackHeight) - paddingY
+      );
+      const maxWidth = Math.min(contentWidth, 1400);
+      const maxHeight = Math.min(contentHeight, window.innerHeight * 0.9, 860);
       const scale = Math.min(
         1,
         maxWidth / dimensions.width,
         maxHeight / dimensions.height
       );
-      const width = Math.max(1, Math.floor(dimensions.width * scale));
-      const height = Math.max(1, Math.floor(dimensions.height * scale));
-      lightboxImage.style.width = `${width}px`;
-      lightboxImage.style.height = `${height}px`;
-      lightboxPreview.style.width = `${width}px`;
-      lightboxPreview.style.height = `${height}px`;
+      const width = Math.max(1, dimensions.width * scale);
+      const height = Math.max(1, dimensions.height * scale);
+      const left = contentRect.left + paddingX / 2 + (contentWidth - width) / 2;
+      const top = contentRect.top + paddingY / 2 + (contentHeight - height) / 2;
+      return {
+        left,
+        top,
+        width,
+        height,
+      } as DOMRect;
+    }
+
+    function hideSourceImage(img: HTMLImageElement | null) {
+      if (!img) return;
+      if (img.dataset.lightboxHidden === 'true') return;
+      img.dataset.lightboxHidden = 'true';
+      img.dataset.lightboxVisibility = img.style.visibility || '';
+      img.style.visibility = 'hidden';
+    }
+
+    function showSourceImage(img: HTMLImageElement | null) {
+      if (!img) return;
+      if (img.dataset.lightboxHidden !== 'true') return;
+      img.style.visibility = img.dataset.lightboxVisibility || '';
+      delete img.dataset.lightboxHidden;
+      delete img.dataset.lightboxVisibility;
+    }
+
+    function lockScroll() {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      bodyPaddingRight = document.body.style.paddingRight || '';
+      document.body.style.overflow = 'hidden';
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+    }
+
+    function unlockScroll() {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = bodyPaddingRight;
+      bodyPaddingRight = '';
     }
 
     function getImageDimensions(img: HTMLImageElement) {
@@ -717,58 +1022,39 @@
     }
 
     function clearPreview() {
-      if (!lightboxPreview || !lightboxImage) return;
-      lightboxPreview.removeAttribute('src');
-      lightboxPreview.style.aspectRatio = '';
-      lightboxPreview.style.width = '';
-      lightboxPreview.style.height = '';
+      if (!lightboxImage) return;
       lightboxImage.style.aspectRatio = '';
       lightboxImage.style.width = '';
       lightboxImage.style.height = '';
     }
 
-    function createPreviewDataUrl(img: HTMLImageElement) {
-      if (!img.naturalWidth || !img.naturalHeight) return '';
-      const maxPreviewSize = 60;
-      const scale = Math.min(
-        1,
-        maxPreviewSize / img.naturalWidth,
-        maxPreviewSize / img.naturalHeight
-      );
-      const width = Math.max(1, Math.round(img.naturalWidth * scale));
-      const height = Math.max(1, Math.round(img.naturalHeight * scale));
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return '';
-      ctx.drawImage(img, 0, 0, width, height);
-      return canvas.toDataURL('image/jpeg', 0.6);
-    }
-
-    function queueFullImageLoad(img: HTMLImageElement, token: number) {
-      if (!lightbox || !lightboxImage) return;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (!lightbox.classList.contains('active')) return;
-          if (token !== loadToken) return;
-          lightboxImage.src = img.currentSrc || img.src;
-          settleFullImage(token);
-        });
+    function waitForImageReady(img: HTMLImageElement, token: number) {
+      if (token !== loadToken) return Promise.reject();
+      if (img.complete && img.naturalWidth && img.naturalHeight) {
+        return Promise.resolve(token);
+      }
+      if (img.decode) {
+        return img.decode().then(() => token).catch(() => token);
+      }
+      return new Promise<number>((resolve) => {
+        const finalize = () => resolve(token);
+        img.addEventListener('load', finalize, { once: true });
+        img.addEventListener('error', finalize, { once: true });
       });
     }
 
-    function settleFullImage(token: number) {
-      if (!lightbox || !lightboxImage) return;
-      const markLoaded = () => {
-        if (token !== loadToken) return;
-        lightbox.classList.add('is-loaded');
-      };
+    function loadFullImage(img: HTMLImageElement, token: number) {
+      if (!lightbox || !lightboxImage) return Promise.reject();
+      if (token !== loadToken) return Promise.reject();
+      lightboxImage.src = img.currentSrc || img.src;
       if (lightboxImage.decode) {
-        lightboxImage.decode().then(markLoaded).catch(() => markLoaded());
-      } else {
-        lightboxImage.addEventListener('load', markLoaded, { once: true });
+        return lightboxImage.decode().then(() => token).catch(() => token);
       }
+      return new Promise<number>((resolve) => {
+        const finalize = () => resolve(token);
+        lightboxImage.addEventListener('load', finalize, { once: true });
+        lightboxImage.addEventListener('error', finalize, { once: true });
+      });
     }
 
     function normalizeDate(value?: string | null) {
