@@ -60,6 +60,7 @@ Flow:
 3. Move files into `public/images/<gallery>/`
 4. Rename using EXIF metadata
 5. Create/update the gallery JSON file in `src/content/galleries/`
+6. Extract EXIF metadata into the gallery JSON (date/camera/lens/GPS)
 
 Requirements:
 ```bash
@@ -70,6 +71,20 @@ export GOOGLE_MAPS_API_KEY="your_key_here" # optional for city lookup
 Usage:
 ```bash
 python3 scripts/rename_new_gallery_images.py
+```
+
+### scripts/extract_gallery_exif.py (Python - EXIF Metadata)
+Extracts EXIF metadata into a gallery JSON file for use in the lightbox info panel.
+
+Requirements:
+```bash
+pip install exifread
+export GOOGLE_MAPS_API_KEY="your_key_here" # optional for location lookup
+```
+
+Usage:
+```bash
+python3 scripts/extract_gallery_exif.py copenhagen
 ```
 
 ## What These Scripts Do

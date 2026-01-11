@@ -121,6 +121,14 @@ netlify deploy --prod
 - Check that the deployment succeeded in Netlify dashboard
 - Verify the correct branch is being deployed
 
+### Visible Redirect Interstitial on `/`
+
+If users see a visible redirect message on the homepage:
+
+1. Ensure `public/_redirects` contains a forced rule like `/ /<latest> 302!`.
+2. If it still appears, remove `src/pages/index.astro` and rely on Netlify redirects only.
+3. As a fallback, render the newest gallery at `/` and use `history.replaceState` to update the URL.
+
 ## Environment Variables
 
 If you need to add environment variables:
@@ -128,6 +136,19 @@ If you need to add environment variables:
 1. In Netlify: Site Settings > Environment variables
 2. Add variables as needed
 3. Redeploy for changes to take effect
+
+### Lightbox Map Embed Key (Optional)
+
+To enable the lightbox map panel in production, add:
+
+- Name: `PUBLIC_GOOGLE_MAPS_STATIC_API_KEY`
+- Value: A Google Maps Static Maps API key restricted by HTTP referrer (e.g., `https://samthegeek.net/*`)
+
+Optional fallback:
+- Name: `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`
+- Value: A Google Maps Embed API key restricted by HTTP referrer (e.g., `https://samthegeek.net/*`)
+
+These keys are exposed in client-side HTML, so the referrer restriction and limiting enabled APIs are required.
 
 ## Support
 

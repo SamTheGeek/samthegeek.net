@@ -2,7 +2,8 @@
 """Rename and import a new batch of gallery images.
 
 Prompts for a source folder and whether to use an existing gallery or create a new one.
-Creates/updates gallery JSON metadata and renames files using EXIF data.
+Creates/updates gallery JSON metadata, renames files using EXIF data,
+and extracts EXIF metadata into the gallery JSON.
 
 Requires: pip install exifread
 Environment: GOOGLE_MAPS_API_KEY (optional for city lookup)
@@ -29,6 +30,7 @@ except ImportError:  # pragma: no cover
     print("Missing dependency: exifread. Install with `pip install exifread`.")
     sys.exit(1)
 
+from extract_gallery_exif import extract_gallery_exif
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"}
 DEFAULT_IMAGES_DIR = Path("public/images")
@@ -302,6 +304,7 @@ def main() -> int:
         return 1
     apply_rename_plan(plan)
     update_gallery_json(gallery_name, gallery_dir, galleries_dir, title=title)
+    extract_gallery_exif(gallery_name, images_dir, galleries_dir)
 
     return 0
 
