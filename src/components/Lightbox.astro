@@ -6,14 +6,15 @@
   <div class="lightbox-controls" role="group" aria-label="Lightbox controls">
     <div class="lightbox-controls-row">
       <button class="lightbox-info-toggle" type="button" aria-label="Show photo info" aria-pressed="false">
-        <svg viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M10 4.1a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Zm-1.3 4.6h2.6v7h-2.6v-7Z" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="info-ring" cx="12" cy="12" r="9" />
+          <path d="M12 11v6" />
+          <circle class="info-dot" cx="12" cy="7.5" r="1.4" />
         </svg>
       </button>
-      <span class="lightbox-divider" aria-hidden="true">|</span>
       <button class="lightbox-close" type="button" aria-label="Close lightbox">
-        <svg viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M5.2 5.2 14.8 14.8M14.8 5.2 5.2 14.8" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 5 19 19M19 5 5 19" />
         </svg>
       </button>
     </div>
@@ -85,6 +86,7 @@
     width: 100%;
     height: 100%;
     padding: 2rem;
+    pointer-events: none;
   }
 
   .lightbox-content img {
@@ -98,6 +100,7 @@
     transform: translateZ(0) scale(0.985);
     transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform, opacity;
+    pointer-events: auto;
   }
 
   .lightbox.active .lightbox-content img {
@@ -158,13 +161,25 @@
     position: absolute;
     top: 0;
     right: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 0.35rem;
+    justify-items: center;
     min-height: var(--pill-height);
     width: var(--pill-width);
-    justify-content: center;
     z-index: 3;
+  }
+
+  .lightbox-controls-row::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1px;
+    height: 0.9rem;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
   }
 
   .lightbox-info {
@@ -321,7 +336,7 @@
   }
 
   .lightbox-map-section {
-    padding-bottom: 0.6rem;
+    padding-bottom: 0;
   }
 
   .lightbox-controls button {
@@ -329,31 +344,44 @@
     border: none;
     color: #f1f1f1;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 100%;
+    height: var(--pill-height);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease;
   }
 
   .lightbox-controls button:hover {
     opacity: 0.7;
-    transform: translateY(-1px);
   }
 
   .lightbox-controls button svg {
-    width: 0.85rem;
-    height: 0.85rem;
+    width: 1rem;
+    height: 1rem;
     stroke: currentColor;
-    stroke-width: 1.6;
+    stroke-width: 1.7;
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
+    display: block;
+    align-self: center;
+    justify-self: center;
+    overflow: visible;
   }
+
+  .lightbox-controls button svg .info-ring {
+    fill: none;
+  }
+
+  .lightbox-controls button svg .info-dot {
+    fill: currentColor;
+    stroke: none;
+  }
+
 
   .lightbox-info-toggle.active {
     background: rgba(255, 255, 255, 0.2);
@@ -374,10 +402,6 @@
     height: 100%;
   }
 
-  .lightbox-divider {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
-  }
 
   @media (max-width: 768px) {
     .lightbox-controls {
@@ -439,9 +463,10 @@
     // Close lightbox
     closeBtn?.addEventListener('click', closeLightbox);
     lightbox?.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
+      if (!lightboxContent) return;
+      if (lightboxContent.contains(e.target as Node)) return;
+      if (controls?.contains(e.target as Node)) return;
+      closeLightbox();
     });
 
     // Info toggle
@@ -463,12 +488,26 @@
 
     window.addEventListener('resize', updateInfoWidth);
 
+    window.addEventListener('popstate', () => {
+      const target = findImageFromUrl();
+      if (target) {
+        openLightbox(target);
+        return;
+      }
+      if (lightbox?.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+
+    openFromUrlParam();
+
     function openLightbox(img: HTMLImageElement) {
       if (!lightbox || !lightboxImage) return;
 
       lightboxImage.src = img.src;
       lightboxImage.alt = img.alt;
       hydrateInfo(img);
+      setPhotoParam(img);
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
       infoBox?.classList.remove('active');
@@ -491,6 +530,7 @@
 
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
+      clearPhotoParam();
       clearInfo();
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
@@ -500,6 +540,45 @@
         infoToggle.setAttribute('aria-label', 'Show photo info');
       }
       imageResizeObserver?.disconnect();
+    }
+
+    function openFromUrlParam() {
+      const target = findImageFromUrl();
+      if (target) {
+        openLightbox(target);
+      }
+    }
+
+    function findImageFromUrl() {
+      const value = getPhotoParam();
+      if (!value) return null;
+      const decodedValue = decodeURIComponent(value);
+      for (const img of galleryImages) {
+        const path = new URL(img.src).pathname;
+        const filename = decodeURIComponent(path.split('/').pop() || '');
+        if (filename === value || filename === decodedValue) return img as HTMLImageElement;
+      }
+      return null;
+    }
+
+    function getPhotoParam() {
+      const url = new URL(window.location.href);
+      return url.searchParams.get('photo');
+    }
+
+    function setPhotoParam(img: HTMLImageElement) {
+      const url = new URL(window.location.href);
+      const path = new URL(img.src).pathname;
+      const filename = decodeURIComponent(path.split('/').pop() || '');
+      url.searchParams.set('photo', filename);
+      history.replaceState({}, '', url);
+    }
+
+    function clearPhotoParam() {
+      const url = new URL(window.location.href);
+      if (!url.searchParams.has('photo')) return;
+      url.searchParams.delete('photo');
+      history.replaceState({}, '', url);
     }
 
     function updateInfoWidth() {

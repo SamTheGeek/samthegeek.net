@@ -254,11 +254,12 @@ const isActive = (href: string) => {
 
         .nav-row::after {
           content: '';
-          position: absolute;
+          position: sticky;
           top: 0;
           right: 0;
           width: 24px;
           height: 100%;
+          margin-left: auto;
           pointer-events: none;
           background: linear-gradient(270deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
         }
