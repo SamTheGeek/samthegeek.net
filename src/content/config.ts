@@ -47,4 +47,11 @@ const galleries = defineCollection({
   }),
 });
 
-export const collections = { blog, galleries };
+const galleryDescriptions = defineCollection({
+  type: 'content',
+  schema: z.object({
+    description: z.string(),
+  }),
+});
+
+export const collections = { blog, galleries, galleryDescriptions };

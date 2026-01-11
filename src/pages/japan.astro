@@ -4,9 +4,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Gallery from '../components/Gallery.astro';
 
 const gallery = await getEntry('galleries', 'japan');
+const galleryDescription = await getEntry('galleryDescriptions', 'japan');
 if (!gallery) throw new Error('Gallery not found');
+const description = galleryDescription?.data.description ?? gallery.data.description ?? `Photos from ${gallery.data.location}`;
+const shareImage = gallery.data.images[0]?.src;
+const shareImageAlt = gallery.data.images[0]?.alt;
 ---
 
-<BaseLayout title={`${gallery.data.title} - I am Sam`} description={gallery.data.description || `Photos from ${gallery.data.location}`}>
+<BaseLayout
+  title={`${gallery.data.title} - I am Sam`}
+  description={description}
+  image={shareImage}
+  imageAlt={shareImageAlt}
+>
   <Gallery title={gallery.data.title} images={gallery.data.images} />
 </BaseLayout>

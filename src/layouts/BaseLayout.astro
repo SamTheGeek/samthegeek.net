@@ -3,10 +3,25 @@ interface Props {
   title: string;
   description?: string;
   activePath?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
 }
 
-const { title, description = "Hi there! I'm Sam, helping great people make awesome things since 1992.", activePath } = Astro.props;
+const {
+  title,
+  description = "Hi there! I'm Sam, helping great people make awesome things since 1992.",
+  activePath,
+  image,
+  imageAlt,
+  type = 'website',
+} = Astro.props;
 const currentPath = activePath ?? Astro.url.pathname;
+const siteOrigin = Astro.site?.toString() ?? Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin);
+const metaImage = new URL(image ?? '/images/about/profile-720.jpg', siteOrigin);
+const metaImageAlt = imageAlt ?? 'Portrait of Sam Gross';
+const siteName = 'I am Sam';
 
 const normalizePath = (value: string) => value.replace(/\/+$/, '') || '/';
 
@@ -29,6 +44,20 @@ const isActive = (href: string) => {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={metaImage} />
+    <meta property="og:image:alt" content={metaImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={metaImage} />
+    <meta name="twitter:image:alt" content={metaImageAlt} />
+    <slot name="head" />
     <title>{title}</title>
     <style is:global>
       * {
