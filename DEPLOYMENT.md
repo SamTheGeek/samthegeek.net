@@ -129,6 +129,19 @@ If you need to add environment variables:
 2. Add variables as needed
 3. Redeploy for changes to take effect
 
+### Lightbox Map Embed Key (Optional)
+
+To enable the lightbox map panel in production, add:
+
+- Name: `PUBLIC_GOOGLE_MAPS_STATIC_API_KEY`
+- Value: A Google Maps Static Maps API key restricted by HTTP referrer (e.g., `https://samthegeek.net/*`)
+
+Optional fallback:
+- Name: `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`
+- Value: A Google Maps Embed API key restricted by HTTP referrer (e.g., `https://samthegeek.net/*`)
+
+These keys are exposed in client-side HTML, so the referrer restriction and limiting enabled APIs are required.
+
 ## Support
 
 - Netlify Docs: https://docs.netlify.com
