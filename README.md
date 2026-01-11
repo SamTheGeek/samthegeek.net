@@ -23,6 +23,17 @@ npm run build
 npm run preview
 ```
 
+## 🗺️ Lightbox Maps (Optional)
+
+The lightbox can show an embedded Google Map when EXIF GPS data is present.
+
+1. Copy `.env.example` to `.env`.
+2. Set `PUBLIC_GOOGLE_MAPS_STATIC_API_KEY` to a Google Maps Static Maps API key.
+3. Optionally set `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY` as a fallback.
+3. Restrict the key by HTTP referrer (e.g., `http://localhost:4321/*` for local dev).
+
+Note: These keys are exposed to the client by design, so rely on referrer restrictions and limiting the enabled APIs.
+
 ## 📖 Documentation
 
 - [CLAUDE.md](CLAUDE.md) - Development guide and architecture documentation

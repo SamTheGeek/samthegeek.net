@@ -3,19 +3,46 @@ import Lightbox from './Lightbox.astro';
 
 interface Props {
   title: string;
-  images: Array<{ src: string; alt: string; id: number }>;
+  images: Array<{
+    src: string;
+    alt: string;
+    exif?: {
+      date?: string;
+      camera?: string;
+      lens?: string;
+      focalLength?: string;
+      aperture?: string;
+      shutterSpeed?: string;
+      iso?: string;
+      latitude?: number;
+      longitude?: number;
+      location?: string;
+    };
+  }>;
 }
 
 const { title, images } = Astro.props;
 ---
 
 <div class="gallery-page">
-  <h1>{title}</h1>
-
   <div class="gallery-grid">
     {images.map((image) => (
       <div class="gallery-item">
-        <img src={image.src} alt={image.alt} loading="lazy" />
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          data-exif-date={image.exif?.date}
+          data-exif-camera={image.exif?.camera}
+          data-exif-lens={image.exif?.lens}
+          data-exif-focal-length={image.exif?.focalLength}
+          data-exif-aperture={image.exif?.aperture}
+          data-exif-shutter-speed={image.exif?.shutterSpeed}
+          data-exif-iso={image.exif?.iso}
+          data-exif-latitude={image.exif?.latitude}
+          data-exif-longitude={image.exif?.longitude}
+          data-exif-location={image.exif?.location}
+        />
       </div>
     ))}
   </div>
@@ -24,26 +51,23 @@ const { title, images } = Astro.props;
 <Lightbox />
 
 <style>
-  .gallery-page h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #222;
-  }
-
   .gallery-grid {
     --tile-gap: 0.25rem;
     column-gap: var(--tile-gap);
-    columns: 3 300px;
-    margin-top: 2rem;
+    column-count: 3;
+    margin-top: 0;
+    column-fill: auto;
+    line-height: 0;
   }
 
   .gallery-item {
+    display: inline-block;
+    width: 100%;
     break-inside: avoid;
     margin-bottom: var(--tile-gap);
     overflow: hidden;
     background: #f5f5f5;
+    line-height: normal;
     transition: opacity 0.2s;
   }
 
@@ -58,13 +82,15 @@ const { title, images } = Astro.props;
     cursor: pointer;
   }
 
-  @media (max-width: 768px) {
-    .gallery-page h1 {
-      font-size: 2rem;
-    }
-
+  @media (max-width: 1280px) {
     .gallery-grid {
-      columns: 1 250px;
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      column-count: 1;
       column-gap: var(--tile-gap);
     }
   }
