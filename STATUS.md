@@ -24,7 +24,8 @@ This file is the single source of truth for current status, progress, and next t
 - Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
 - Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
 - Blog cleanup: removed leftover Squarespace embed markup in `googles-red-alert` and build completes cleanly.
-- Lightbox flicker fix: add low-res preview placeholder and fade in full-res after decode.
+- Lightbox flicker fix: size low-res preview to final display and defer full-res load until preview paint (keep for tests).
+- Gallery masonry fix: Blink now shows multiple columns via balanced column fill + explicit column width (keep for tests).
 
 ## Gallery Status
 
@@ -54,27 +55,27 @@ This file is the single source of truth for current status, progress, and next t
 - Added `photo` query parameter handling for lightbox deep links.
 - Implemented blog RSS feed with legacy ordering/guids and `/blog?format=rss` redirect.
 - Final design check against the original site for near-identical matching (approved).
-- Lightbox flicker fix: added low-res preview placeholder and fade in full-res after decode.
+- Lightbox flicker fix: sized low-res preview to final display and deferred full-res load until preview paint.
+- Gallery masonry fix: balanced column fill and explicit column width to restore multi-column layout in Blink.
 
 ## Pending Tasks (Priority Order)
 
-1. Gallery: fix masonry layout issues in Blink/Chromium-based browsers.
-3. Lightbox: animate photo zooming from masonry position to full screen (and back).
-4. Redirect the live site to the Netlify site and finalize SSL.
-5. Verify all galleries + lightbox behavior (desktop + mobile).
-6. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness.
-7. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
-8. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
-9. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
-10. Use an AI service to automatically add alt text for every photo
-11. Add a "Bicycling" information page adjacent to the "About" page
-12. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
-13. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
-14. Replace gallery photos with versions that contain EXIF data.
-15. Smoothly animate on the width breakpoint for responsive design.
-16. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
-17. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.
-18. Write a new blog post updating the synology icpl downloader
-19. Write a blog post about writing this site
-20. Redesign the blog again to make it good.
-21. Fix the lightbox map embed to make it use mapbox styled to look like the website
+1. Lightbox: animate photo zooming from masonry position to full screen (and back).
+2. Redirect the live site to the Netlify site and finalize SSL.
+3. Verify all galleries + lightbox behavior (desktop + mobile).
+4. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use
+5. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
+6. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
+7. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
+8. Use an AI service to automatically add alt text for every photo
+9. Add a "Bicycling" information page adjacent to the "About" page
+10. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
+11. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
+12. Replace gallery photos with versions that contain EXIF data.
+13. Smoothly animate on the width breakpoint for responsive design.
+14. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
+15. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.
+16. Write a new blog post updating the synology icpl downloader
+17. Write a blog post about writing this site
+18. Redesign the blog again to make it good.
+19. Fix the lightbox map embed to make it use mapbox styled to look like the website
