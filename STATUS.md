@@ -8,6 +8,9 @@ This file is the single source of truth for current status, progress, and next t
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - Galleries: all images downloaded for Copenhagen, Italy, Los Angeles, France, Japan, Canada, Elsewhere.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
+- Deployment: Netlify live redirect and SSL setup steps documented for execution.
+- Favicon now uses the about profile photo embedded as SVG.
+- SVG favicon preferred in the head, PNG favicon masked to a circular crop.
 - About page now pulls copy from markdown with a refreshed layout and round photo mask.
 - Downloaded images are present in `public/images/`.
 - Lightbox design refreshed (overlay, stage styling, info panel) and awaiting approval.
