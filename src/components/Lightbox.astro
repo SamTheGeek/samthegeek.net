@@ -88,9 +88,11 @@
     height: 100%;
     padding: 2rem;
     pointer-events: none;
+    overflow: hidden;
   }
 
   .lightbox-image {
+    position: absolute;
     max-width: min(100%, 1400px);
     max-height: min(90vh, 860px);
     object-fit: contain;
@@ -116,11 +118,13 @@
 
   .lightbox.is-loaded .lightbox-preview {
     opacity: 0;
+    transition-delay: 0.02s;
   }
 
   .lightbox.is-loaded .lightbox-image {
     opacity: 1;
     transform: translateZ(0) scale(1);
+    transition-delay: 0.02s;
   }
 
   .lightbox-controls {
@@ -463,6 +467,8 @@
     const controls = document.querySelector('.lightbox-controls');
     const lightboxContent = document.querySelector('.lightbox-content');
     let imageResizeObserver: ResizeObserver | null = null;
+    let loadToken = 0;
+    let activeImage: HTMLImageElement | null = null;
     const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
     const staticMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_STATIC_API_KEY || mapsKey;
 
@@ -502,7 +508,10 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    window.addEventListener('resize', updateInfoWidth);
+    window.addEventListener('resize', () => {
+      updateInfoWidth();
+      updatePreviewSizing();
+    });
 
     window.addEventListener('popstate', () => {
       const target = findImageFromUrl();
@@ -520,8 +529,10 @@
     function openLightbox(img: HTMLImageElement) {
       if (!lightbox || !lightboxImage || !lightboxPreview) return;
 
+      loadToken += 1;
+      activeImage = img;
       lightbox.classList.remove('is-loaded');
-      lightboxImage.src = img.src;
+      lightboxImage.removeAttribute('src');
       lightboxImage.alt = img.alt;
       hydratePreview(img);
       hydrateInfo(img);
@@ -541,18 +552,20 @@
         imageResizeObserver = new ResizeObserver(() => updateInfoWidth());
         imageResizeObserver.observe(lightboxImage);
       }
-      settleFullImage();
+      queueFullImageLoad(img, loadToken);
     }
 
     function closeLightbox() {
       if (!lightbox) return;
 
+      loadToken += 1;
       lightbox.classList.remove('active');
       lightbox.classList.remove('is-loaded');
       document.body.style.overflow = '';
       clearPhotoParam();
       clearInfo();
       clearPreview();
+      activeImage = null;
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
       if (infoToggle) {
@@ -644,25 +657,74 @@
       const previewData = createPreviewDataUrl(img);
       if (previewData) {
         lightboxPreview.src = previewData;
+      } else if (img.currentSrc) {
+        lightboxPreview.src = img.currentSrc;
       } else {
         lightboxPreview.removeAttribute('src');
       }
       applyAspectRatio(img);
+      updatePreviewSizing();
+      if (!previewData && !img.complete) {
+        img.addEventListener(
+          'load',
+          () => {
+            if (img !== activeImage) return;
+            hydratePreview(img);
+          },
+          { once: true }
+        );
+      }
     }
 
     function applyAspectRatio(img: HTMLImageElement) {
       if (!lightboxImage || !lightboxPreview) return;
-      if (!img.naturalWidth || !img.naturalHeight) return;
-      const ratio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      const dimensions = getImageDimensions(img);
+      if (!dimensions) return;
+      const ratio = `${dimensions.width} / ${dimensions.height}`;
       lightboxImage.style.aspectRatio = ratio;
       lightboxPreview.style.aspectRatio = ratio;
+    }
+
+    function updatePreviewSizing() {
+      if (!activeImage || !lightboxImage || !lightboxPreview || !lightboxContent) return;
+      const dimensions = getImageDimensions(activeImage);
+      if (!dimensions) return;
+      const contentRect = lightboxContent.getBoundingClientRect();
+      const maxWidth = Math.min(contentRect.width, 1400);
+      const maxHeight = Math.min(window.innerHeight * 0.9, 860);
+      const scale = Math.min(
+        1,
+        maxWidth / dimensions.width,
+        maxHeight / dimensions.height
+      );
+      const width = Math.max(1, Math.floor(dimensions.width * scale));
+      const height = Math.max(1, Math.floor(dimensions.height * scale));
+      lightboxImage.style.width = `${width}px`;
+      lightboxImage.style.height = `${height}px`;
+      lightboxPreview.style.width = `${width}px`;
+      lightboxPreview.style.height = `${height}px`;
+    }
+
+    function getImageDimensions(img: HTMLImageElement) {
+      if (img.naturalWidth && img.naturalHeight) {
+        return { width: img.naturalWidth, height: img.naturalHeight };
+      }
+      const rect = img.getBoundingClientRect();
+      if (rect.width && rect.height) {
+        return { width: rect.width, height: rect.height };
+      }
+      return null;
     }
 
     function clearPreview() {
       if (!lightboxPreview || !lightboxImage) return;
       lightboxPreview.removeAttribute('src');
       lightboxPreview.style.aspectRatio = '';
+      lightboxPreview.style.width = '';
+      lightboxPreview.style.height = '';
       lightboxImage.style.aspectRatio = '';
+      lightboxImage.style.width = '';
+      lightboxImage.style.height = '';
     }
 
     function createPreviewDataUrl(img: HTMLImageElement) {
@@ -684,9 +746,24 @@
       return canvas.toDataURL('image/jpeg', 0.6);
     }
 
-    function settleFullImage() {
+    function queueFullImageLoad(img: HTMLImageElement, token: number) {
       if (!lightbox || !lightboxImage) return;
-      const markLoaded = () => lightbox.classList.add('is-loaded');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!lightbox.classList.contains('active')) return;
+          if (token !== loadToken) return;
+          lightboxImage.src = img.currentSrc || img.src;
+          settleFullImage(token);
+        });
+      });
+    }
+
+    function settleFullImage(token: number) {
+      if (!lightbox || !lightboxImage) return;
+      const markLoaded = () => {
+        if (token !== loadToken) return;
+        lightbox.classList.add('is-loaded');
+      };
       if (lightboxImage.decode) {
         lightboxImage.decode().then(markLoaded).catch(() => markLoaded());
       } else {
