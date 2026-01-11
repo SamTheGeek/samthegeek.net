@@ -14,6 +14,7 @@ This file is the single source of truth for current status, progress, and next t
 - Added EXIF extraction script and wired it into new gallery import; Copenhagen run found no EXIF data.
 - Lightbox map uses Google Static Maps with dynamic sizing + scale=2 for crisp display and click-through; EXIF location uses Google or Nominatim fallback.
 - Lightbox now supports filename-based deep links via the `photo` query parameter.
+- Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
 
 ## Gallery Status
 
@@ -55,4 +56,4 @@ This file is the single source of truth for current status, progress, and next t
 10. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
 11. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
 12. Replace gallery photos with versions that contain EXIF data.
-14. Smoothly animate on the width breakpoint for responsive design.
+13. Smoothly animate on the width breakpoint for responsive design.
