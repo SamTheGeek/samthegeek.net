@@ -75,7 +75,7 @@ This file is the single source of truth for current status, progress, and next t
 ## Pending Tasks (Priority Order)
 
 1. Verify all galleries + lightbox behavior (desktop + mobile).
-2. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use
+2. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use github runners to test, and check for both functionality and common issues in the web. They also should look at all the fixes we've had to make and make sure we don't make those fixes again.
 3. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
 4. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
 5. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
