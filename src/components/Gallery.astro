@@ -55,13 +55,14 @@ const { title, images } = Astro.props;
     --tile-gap: 0.25rem;
     column-gap: var(--tile-gap);
     column-count: 3;
+    column-width: 280px;
+    column-fill: balance;
     margin-top: 0;
-    column-fill: auto;
     line-height: 0;
   }
 
   .gallery-item {
-    display: inline-block;
+    display: block;
     width: 100%;
     break-inside: avoid;
     margin-bottom: var(--tile-gap);
