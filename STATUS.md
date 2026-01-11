@@ -20,6 +20,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox info panel now supports EXIF fields and optional Google Maps embed key wiring.
 - Added EXIF extraction script and wired it into new gallery import; Copenhagen run found no EXIF data.
 - Lightbox map uses Google Static Maps with dynamic sizing + scale=2 for crisp display and click-through; EXIF location uses Google or Nominatim fallback.
+- Lightbox now supports filename-based deep links via the `photo` query parameter.
 
 ## Gallery Status
 
