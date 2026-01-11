@@ -49,8 +49,8 @@ This file is the single source of truth for current status, progress, and next t
 7. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
 8. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
 9. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
-10. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
-11. Replace gallery photos with versions that contain EXIF data.
-10. Use an AI service to automatically add alt text for every photo 
+10. Use an AI service to automatically add alt text for every photo
 11. Add a "Bicycling" information page adjacent to the "About" page
 12. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
+13. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
+14. Replace gallery photos with versions that contain EXIF data.
