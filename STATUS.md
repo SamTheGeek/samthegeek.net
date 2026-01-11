@@ -62,6 +62,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox flicker fix: sized low-res preview to final display and deferred full-res load until preview paint.
 - Gallery masonry fix: balanced column fill and explicit column width to restore multi-column layout in Blink.
 - Lightbox zoom animation: thumbnail-to-lightbox zoom now animates on open.
+- Gallery JSONs updated to reference local images for all galleries.
 - About page rebuilt with markdown content, compact layout, and updated photo styling.
 
 ## Pending Tasks (Priority Order)
