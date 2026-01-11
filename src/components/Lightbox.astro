@@ -352,11 +352,22 @@
     align-items: center;
     justify-content: center;
     line-height: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   .lightbox-controls button:hover {
     opacity: 0.7;
+    transform: translateY(-1px);
+  }
+
+  .lightbox-controls button svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
   }
 
   .lightbox-controls button svg {
@@ -488,6 +499,7 @@
 
     window.addEventListener('resize', updateInfoWidth);
 
+<<<<<<< HEAD
     window.addEventListener('popstate', () => {
       const target = findImageFromUrl();
       if (target) {
@@ -501,13 +513,18 @@
 
     openFromUrlParam();
 
+=======
+>>>>>>> e541fbb (Implement EXIF in lightbox)
     function openLightbox(img: HTMLImageElement) {
       if (!lightbox || !lightboxImage) return;
 
       lightboxImage.src = img.src;
       lightboxImage.alt = img.alt;
       hydrateInfo(img);
+<<<<<<< HEAD
       setPhotoParam(img);
+=======
+>>>>>>> e541fbb (Implement EXIF in lightbox)
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
       infoBox?.classList.remove('active');
@@ -530,7 +547,10 @@
 
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
+<<<<<<< HEAD
       clearPhotoParam();
+=======
+>>>>>>> e541fbb (Implement EXIF in lightbox)
       clearInfo();
       infoBox?.classList.remove('active');
       controls?.classList.remove('expanded');
@@ -542,6 +562,7 @@
       imageResizeObserver?.disconnect();
     }
 
+<<<<<<< HEAD
     function openFromUrlParam() {
       const target = findImageFromUrl();
       if (target) {
@@ -581,6 +602,8 @@
       history.replaceState({}, '', url);
     }
 
+=======
+>>>>>>> e541fbb (Implement EXIF in lightbox)
     function updateInfoWidth() {
       if (!controls || !lightbox || !lightboxImage) return;
       if (!lightbox.classList.contains('active')) return;
