@@ -23,6 +23,22 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox map uses Google Static Maps with dynamic sizing + scale=2 for crisp display and click-through; EXIF location uses Google or Nominatim fallback.
 - Lightbox now supports filename-based deep links via the `photo` query parameter.
 - Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
+- Root redirect page now uses a static meta refresh without JS or layout chrome.
+- Centered about-page content and footer in the header/footer layout at narrow widths.
+- Added `scripts/run-tests.mjs` with regression checks and wired it into `npm run build`.
+- Added GitHub Actions CI workflow to run build/tests on PRs.
+- Added Playwright E2E tests (behavior, layout, and accessibility) and CI browser install.
+- Added regression checks for gallery lazy-loading in the build-time test runner.
+- Added a repo setup script and wired Playwright browser install into `postinstall`.
+- Underlined About page body links to satisfy link-in-text accessibility checks.
+- About page body links now inherit text color; a11y scan excludes the Jelly easter-egg link.
+- Stripped Squarespace-derived `sqs-*` class names from blog content HTML.
+- Stripped Squarespace-derived `data-*` attributes from blog content HTML.
+- Stripped legacy `elementtiming`, `onload`, and `yui_*` IDs from blog content HTML.
+- Stripped remaining legacy HTML attributes from blog content (kept only core href/src/alt/sizing attrs).
+- Forced About page body link styling to override global link styles for a11y tests.
+- Restored Jelly easter-egg link styling to match body text without underline.
+- Added blog slug/urlId/guid uniqueness checks to the test runner.
 - Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
 - Lightbox design refreshed (overlay, stage styling, info panel) and awaiting approval.
 - Lightbox info panel now supports EXIF fields and optional Google Maps embed key wiring.
@@ -56,6 +72,9 @@ This file is the single source of truth for current status, progress, and next t
 - Updated gallery layout to a masonry-style column layout with consistent spacing.
 - Added renaming/import scripts and build artifact verification script (committed on `main`).
 - Documented all scripts in `README.md` and `DOWNLOAD_IMAGES_README.md`.
+- Added repo setup script (`scripts/setup_repo.sh`) and Playwright browser install on `postinstall`.
+- Added regression tests + Playwright E2E suite, wired into build and PR CI.
+- Cleaned legacy Squarespace markup from blog content (classes + attributes).
 - Removed year-based gallery slugs (redirects from legacy URLs to place-only slugs).
 - Refined base sidebar design to match the live site layout.
 - Implemented responsive sidebar/header/footer reflow with scrollable nav rows.
@@ -79,20 +98,20 @@ This file is the single source of truth for current status, progress, and next t
 ## Pending Tasks (Priority Order)
 
 1. Verify all galleries + lightbox behavior (desktop + mobile).
-2. Add tests that run on any GitHub branch, not just main. Including protecting against parse errors and enforcing markdown cleanliness. These should use
-3. Create a setup bash script to get the dev environment setup exactly as it should be on any new machine.
-4. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
-5. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
-6. Use an AI service to automatically add alt text for every photo
-7. Add a "Bicycling" information page adjacent to the "About" page
-8. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
-9. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
-10. Replace gallery photos with versions that contain EXIF data.
-11. Smoothly animate on the width breakpoint for responsive design.
-12. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
-13. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.
-14. Write a new blog post updating the synology icpl downloader
-15. Write a blog post about writing this site
-16. Redesign the blog again to make it good.
-17. Fix the lightbox map embed to make it use mapbox styled to look like the website
-18. Accessibility and performance audit
+2. Investigate duplicate blog ID warnings reported by Astro content loader.
+3. Change the way photos are laid out and ordered to prevent awkwardly tall or wide photos from disrupting the overall gallery or distracting too much from the art.
+4. Add custom fonts and styling to reflect the original site's intent, even if using different fonts.
+5. Use an AI service to automatically add alt text for every photo
+6. Add a "Bicycling" information page adjacent to the "About" page
+7. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
+8. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
+9. Replace gallery photos with versions that contain EXIF data.
+10. Smoothly animate on the width breakpoint for responsive design.
+11. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
+12. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.
+13. Write a new blog post updating the synology icpl downloader
+14. Write a blog post about writing this site
+15. Redesign the blog again to make it good.
+16. Fix the lightbox map embed to make it use mapbox styled to look like the website
+17. Accessibility and performance audit (beyond current automated checks).
+18. Make the low resolution photos webp (use the script to make alternate versions when loading them into json) for faster loading while keeping the lightbox versions as jpeg — swapping at the same time as we already swap when switching to the animation.
