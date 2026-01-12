@@ -50,6 +50,95 @@ const { title, images } = Astro.props;
 
 <Lightbox />
 
+<script is:inline>
+  const galleryGrid = document.querySelector('.gallery-grid');
+  const galleryItems = galleryGrid ? Array.from(galleryGrid.querySelectorAll('.gallery-item')) : [];
+
+  function classifyAspect(item) {
+    const img = item.querySelector('img');
+    if (!img || !img.naturalWidth || !img.naturalHeight) return;
+    const ratio = img.naturalHeight / img.naturalWidth;
+    if (ratio > 16 / 9) {
+      item.dataset.aspect = 'tall';
+    } else if (ratio < 9 / 16) {
+      item.dataset.aspect = 'wide';
+    } else {
+      item.dataset.aspect = 'normal';
+    }
+  }
+
+  function getColumnCount() {
+    if (!galleryGrid) return 1;
+    const style = window.getComputedStyle(galleryGrid);
+    const count = Number.parseInt(style.columnCount, 10);
+    return Number.isNaN(count) ? 1 : Math.max(1, count);
+  }
+
+  function findFirstRowItems(items) {
+    const positions = items.map((item) => ({ item, top: item.getBoundingClientRect().top }));
+    const minTop = Math.min(...positions.map((pos) => pos.top));
+    const threshold = minTop + 4;
+    return positions.filter((pos) => pos.top <= threshold).map((pos) => pos.item);
+  }
+
+  function reorderItems() {
+    if (!galleryGrid || galleryItems.length === 0) return;
+    const ordered = [...galleryItems];
+    const maxPasses = Math.min(5, ordered.length);
+    let pass = 0;
+
+    while (pass < maxPasses) {
+      ordered.forEach((item) => galleryGrid.appendChild(item));
+      const firstRow = findFirstRowItems(ordered);
+      let swapped = false;
+
+      for (const rowItem of firstRow) {
+        const aspect = rowItem.dataset.aspect;
+        if (aspect === 'tall' || aspect === 'wide') {
+          const swapIndex = ordered.findIndex(
+            (candidate, index) =>
+              index > ordered.indexOf(rowItem) && candidate.dataset.aspect === 'normal'
+          );
+          if (swapIndex !== -1) {
+            const rowIndex = ordered.indexOf(rowItem);
+            const tmp = ordered[rowIndex];
+            ordered[rowIndex] = ordered[swapIndex];
+            ordered[swapIndex] = tmp;
+            swapped = true;
+          }
+        }
+      }
+
+      if (!swapped) break;
+      pass += 1;
+    }
+
+    ordered.forEach((item) => galleryGrid.appendChild(item));
+  }
+
+  function initOrdering() {
+    if (!galleryGrid || galleryItems.length === 0) return;
+    galleryItems.forEach((item) => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      if (img.complete) {
+        classifyAspect(item);
+      } else {
+        img.addEventListener('load', () => {
+          classifyAspect(item);
+          reorderItems();
+        }, { once: true });
+      }
+    });
+    reorderItems();
+  }
+
+  initOrdering();
+  window.addEventListener('resize', () => {
+    window.requestAnimationFrame(reorderItems);
+  });
+</script>
+
 <style>
   .gallery-grid {
     --tile-gap: 0.25rem;
