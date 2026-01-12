@@ -41,7 +41,7 @@ import AboutContent from '../content/about.md';
     <footer class="about-footer">
       <span class="photo-credit">
         Thanks to
-        <a href="https://jellystyle.com/about" target="_blank" rel="noreferrer noopener">Jelly</a>
+        <a class="easter-egg-link" href="https://jellystyle.com/about" target="_blank" rel="noreferrer noopener">Jelly</a>
         for the profile photo.
       </span>
     </footer>
@@ -131,12 +131,21 @@ import AboutContent from '../content/about.md';
       color: inherit;
     }
 
+    .photo-credit .easter-egg-link {
+      color: inherit !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
+    }
+
     .about-body :global(p + p) {
       margin-top: 1rem;
     }
 
     .about-body :global(a) {
-      color: #0073a6;
+      color: inherit !important;
+      text-decoration: underline !important;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
     }
 
     @media (max-width: 900px) {
@@ -152,11 +161,19 @@ import AboutContent from '../content/about.md';
 
       .about-page {
         min-height: auto;
+        align-items: center;
+      }
+
+      .about-shell {
+        width: min(720px, 100%);
       }
 
       .about-footer {
         margin-top: 1.5rem;
         padding-bottom: 0.75rem;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
       }
     }
   </style>

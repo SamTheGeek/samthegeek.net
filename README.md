@@ -22,6 +22,21 @@ npm run build
 # Preview production build
 npm run preview
 ```
+
+For a fresh machine setup, run:
+```bash
+bash scripts/setup_repo.sh
+```
+
+## ✅ Testing
+
+```bash
+# Fast regression checks
+npm run test
+
+# Full build + Playwright E2E
+npm run test:e2e
+```
 ## 🧱 Tools Used
 
 - Astro for the site framework and content collections
