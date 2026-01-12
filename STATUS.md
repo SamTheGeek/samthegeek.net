@@ -23,6 +23,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox map uses Google Static Maps with dynamic sizing + scale=2 for crisp display and click-through; EXIF location uses Google or Nominatim fallback.
 - Lightbox now supports filename-based deep links via the `photo` query parameter.
 - Root redirect forced via Netlify `_redirects` with `302!` to avoid visible interstitials.
+- Root redirect page now uses a static meta refresh without JS or layout chrome.
 - Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
 - Lightbox design refreshed (overlay, stage styling, info panel) and awaiting approval.
 - Lightbox info panel now supports EXIF fields and optional Google Maps embed key wiring.
