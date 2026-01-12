@@ -5,11 +5,19 @@
   "packageManager": "npm@11.6.2",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/generate-latest-redirect.mjs && astro build && node scripts/verify-build-artifacts.mjs",
+    "build": "node scripts/generate-latest-redirect.mjs && node scripts/run-tests.mjs && astro build && node scripts/verify-build-artifacts.mjs",
     "preview": "astro preview",
+    "test": "node scripts/run-tests.mjs",
+    "test:e2e": "npm run build && npx playwright test",
+    "postinstall": "npx playwright install",
+    "setup": "bash scripts/setup_repo.sh",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^5.16.8"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.9.0",
+    "@playwright/test": "^1.50.1"
   }
 }

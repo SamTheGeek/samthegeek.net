@@ -30,6 +30,28 @@ npm run preview
 - Python scripts (with `exifread`) for gallery imports and metadata
 - OpenAI Codex & Claude Code
 
+For a fresh machine setup, run:
+```bash
+bash scripts/setup_repo.sh
+```
+
+## ✅ Testing
+
+```bash
+# Fast regression checks
+npm run test
+
+# Full build + Playwright E2E
+npm run test:e2e
+```
+## 🧱 Tools Used
+
+- Astro for the site framework and content collections
+- Node.js + npm (via NVM) for builds and local dev
+- Netlify + GitHub Actions for deployment
+- Python scripts (with `exifread`) for gallery imports and metadata
+- OpenAI Codex & Claude Code
+
 ## 🗺️ Lightbox Maps (Optional)
 
 The lightbox can show an embedded Google Map when EXIF GPS data is present.
