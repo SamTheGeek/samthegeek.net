@@ -39,6 +39,9 @@ This file is the single source of truth for current status, progress, and next t
 - Forced About page body link styling to override global link styles for a11y tests.
 - Restored Jelly easter-egg link styling to match body text without underline.
 - Added blog slug/urlId/guid uniqueness checks to the test runner.
+- Restored Jelly easter-egg link to match body text (no underline or color shift).
+- Added Playwright coverage for all gallery pages and mobile lightbox open.
+- Gallery tiles now avoid tall/wide images in the first row while preserving the full grid layout.
 - Blog: re-imported live posts with date-based slugs; list/post templates updated with categories/tags, likes/share UI, pagination, and archive routes.
 - Lightbox design refreshed (overlay, stage styling, info panel) and awaiting approval.
 - Lightbox info panel now supports EXIF fields and optional Google Maps embed key wiring.
