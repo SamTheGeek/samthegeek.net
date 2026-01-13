@@ -31,6 +31,7 @@ const filteredPosts = sortedPosts.filter((post) => {
   description={`Posts filed under ${category}.`}
   activePath="/blog"
 >
+  <meta slot="head" name="view-transition" content="same-origin" />
   <h1 class="archive-title">Category: {category}</h1>
   <BlogList posts={filteredPosts} page={1} totalPages={1} />
 </BaseLayout>

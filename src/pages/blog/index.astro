@@ -17,5 +17,6 @@ const pagePosts = sortedPosts.slice(0, postsPerPage);
   description="Thoughts on technology, product development, and making things."
   activePath="/blog"
 >
+  <meta slot="head" name="view-transition" content="same-origin" />
   <BlogList posts={pagePosts} page={page} totalPages={totalPages} />
 </BaseLayout>

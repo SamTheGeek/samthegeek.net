@@ -312,6 +312,13 @@
   line-height: 1.8;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .entry-title,
+  .entry-date time {
+    view-transition-name: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   .entry-title {
     font-size: 22px;

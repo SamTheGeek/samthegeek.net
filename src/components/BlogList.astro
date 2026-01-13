@@ -78,24 +78,31 @@ const hasPrev = page > 1;
 const hasNext = page < totalPages;
 const prevHref = page === 2 ? '/blog' : `/blog/page/${page - 1}`;
 const nextHref = `/blog/page/${page + 1}`;
+
+const buildViewTransitionId = (slug: string): string =>
+  slug.toLowerCase().replace(/[^a-z0-9-_]/g, '-');
 ---
 
 <div class="blog-page">
   <div class="article-list hfeed">
     {posts.map((post, index) => {
       const postHref = `/blog/${post.slug}`;
+      const transitionId = buildViewTransitionId(post.slug);
       const categories = buildCategoryLinks(post);
       const renderedHtml = post.rendered?.html ?? '';
       return (
         <>
           <article class="hentry post-type-text">
             <header>
-              <h1 class="entry-title">
+              <h1 class="entry-title" style={`view-transition-name: post-title-${transitionId};`}>
                 <a href={postHref}>{post.data.title}</a>
               </h1>
               <div class="entry-info">
                 <span class="published entry-date">
-                  <time datetime={post.data.pubDate.toISOString()}>
+                  <time
+                    datetime={post.data.pubDate.toISOString()}
+                    style={`view-transition-name: post-date-${transitionId};`}
+                  >
                     {formatDate(post.data.pubDate)}
                   </time>
                 </span>
