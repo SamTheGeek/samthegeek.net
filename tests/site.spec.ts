@@ -20,6 +20,12 @@ const loadFirstGalleryImage = async () => {
 
 const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+const loadGallerySlugs = async () => {
+  const galleriesDir = path.join(process.cwd(), 'src', 'content', 'galleries');
+  const entries = await fs.readdir(galleriesDir);
+  return entries.filter((entry) => entry.endsWith('.json')).map((entry) => entry.replace('.json', ''));
+};
+
 test.describe('Site behavior', () => {
   test('lightbox opens on click', async ({ page }) => {
     await page.goto('/copenhagen');
@@ -77,6 +83,27 @@ test.describe('Site behavior', () => {
       Number.parseInt(getComputedStyle(el).columnCount, 10)
     );
     expect(columnCount).toBeGreaterThan(1);
+  });
+
+  test('all galleries render images and lightbox opens', async ({ page }) => {
+    const slugs = await loadGallerySlugs();
+    for (const slug of slugs) {
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.goto(`/${slug}`);
+      const images = page.locator('.gallery-item img');
+      await expect(images.first()).toBeVisible();
+      await images.first().click();
+      await expect(page.locator('#lightbox')).toHaveClass(/active/);
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#lightbox')).not.toHaveClass(/active/);
+    }
+  });
+
+  test('lightbox opens on mobile viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 430, height: 932 });
+    await page.goto('/copenhagen');
+    await page.locator('.gallery-item img').first().click();
+    await expect(page.locator('#lightbox')).toHaveClass(/active/);
   });
 
   test('about page has no critical a11y violations (except easter egg link)', async ({ page }) => {
