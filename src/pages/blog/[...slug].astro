@@ -21,6 +21,7 @@ const prevPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
 const postHref = `/blog/${post.slug}`;
 const categories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
+const transitionId = post.slug.toLowerCase().replace(/[^a-z0-9-_]/g, '-');
 
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('en-US', {
@@ -36,14 +37,18 @@ function formatDate(date: Date): string {
   description={post.data.description}
   activePath="/blog"
 >
+  <meta slot="head" name="view-transition" content="same-origin" />
   <article class="blog-page blog-post hentry post-type-text">
     <header class="post-header">
-      <h1 class="entry-title">
+      <h1 class="entry-title" style={`view-transition-name: post-title-${transitionId};`}>
         <a href={postHref}>{post.data.title}</a>
       </h1>
       <div class="entry-info">
         <span class="published entry-date">
-          <time datetime={post.data.pubDate.toISOString()}>
+          <time
+            datetime={post.data.pubDate.toISOString()}
+            style={`view-transition-name: post-date-${transitionId};`}
+          >
             {formatDate(post.data.pubDate)}
           </time>
         </span>

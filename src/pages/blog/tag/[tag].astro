@@ -28,6 +28,7 @@ const filteredPosts = sortedPosts.filter((post) => (post.data.tags ?? []).includ
   description={`Posts tagged ${tag}.`}
   activePath="/blog"
 >
+  <meta slot="head" name="view-transition" content="same-origin" />
   <h1 class="archive-title">Tag: {tag}</h1>
   <BlogList posts={filteredPosts} page={1} totalPages={1} />
 </BaseLayout>
