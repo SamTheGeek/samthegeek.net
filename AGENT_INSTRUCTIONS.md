@@ -108,7 +108,7 @@ The project uses Astro's file-based routing system:
 
 - `.github/workflows/deploy.yml` - GitHub Actions workflow for deployment
 - `netlify.toml` - Netlify configuration with redirects and headers
-- `DEPLOYMENT.md` - Detailed deployment and SSL setup guide
+- `Docs/DEPLOYMENT.md` - Detailed deployment and SSL setup guide
 - `astro.config.mjs` - Astro configuration
 - `package.json` - Project dependencies and scripts
 - `src/content/galleries/*.json` - Gallery metadata
