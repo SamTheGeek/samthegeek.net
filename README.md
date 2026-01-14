@@ -68,15 +68,15 @@ Troubleshooting: if the static map image returns 403 but the URL works in a new 
 
 ## 📖 Documentation
 
-- [CLAUDE.md](CLAUDE.md) - Development guide and architecture documentation
-- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment setup and SSL configuration
-- [DOWNLOAD_IMAGES_README.md](DOWNLOAD_IMAGES_README.md) - Image download + rename workflows
+- [Docs/CLAUDE.md](Docs/CLAUDE.md) - Development guide and architecture documentation
+- [Docs/DEPLOYMENT.md](Docs/DEPLOYMENT.md) - Deployment setup and SSL configuration
+- [Docs/DOWNLOAD_IMAGES_README.md](Docs/DOWNLOAD_IMAGES_README.md) - Image download + rename workflows
 - [STATUS.md](STATUS.md) - Current status, progress, and next tasks
 - [AGENT_INSTRUCTIONS.md](AGENT_INSTRUCTIONS.md) - Repository workflows and conventions for assistants
 
 ## 🧰 Scripts
 
-Scripts live in the `scripts/` directory. See `DOWNLOAD_IMAGES_README.md` for image-related workflows.
+Scripts live in the `scripts/` directory. See `Docs/DOWNLOAD_IMAGES_README.md` for image-related workflows.
 Gallery scripts auto-bootstrap `exifread` in a local `.venv` and read `.env` for `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`.
 
 - `scripts/download_gallery_images.py` - Download gallery images from `ALL_GALLERY_URLS.txt` into `public/images/<gallery>/`.
