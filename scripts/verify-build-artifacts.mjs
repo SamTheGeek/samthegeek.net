@@ -4,9 +4,8 @@ import path from 'node:path';
 const distDir = path.resolve('dist');
 const forbiddenEntries = [
   'README.md',
-  'DOWNLOAD_IMAGES_README.md',
-  'CLAUDE.md',
   'STATUS.md',
+  'Docs',
   'scripts',
 ];
 
