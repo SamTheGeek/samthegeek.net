@@ -176,13 +176,14 @@ test.describe('Image processing', () => {
     }
   });
 
-  test('conversion script exists and is valid', async () => {
-    const scriptPath = path.join(process.cwd(), 'scripts', 'convert-images-to-webp.mjs');
+  test('image processing script exists and is valid', async () => {
+    const scriptPath = path.join(process.cwd(), 'scripts', 'process-gallery-images.mjs');
     const stat = await fs.stat(scriptPath);
     expect(stat.isFile()).toBe(true);
-    // Check the script is importable (valid JS)
+    // Check the script contains expected functionality
     const content = await fs.readFile(scriptPath, 'utf8');
-    expect(content).toContain('convert');
-    expect(content).toContain('webp');
+    expect(content).toContain('convertToWebP');
+    expect(content).toContain('extractExifMetadata');
+    expect(content).toContain('createGalleryJson');
   });
 });
