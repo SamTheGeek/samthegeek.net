@@ -26,7 +26,7 @@ This file is the single source of truth for current status, progress, and next t
 12. Redesign the blog again to make it good (note to self: use the Claude UI skill).
 13. Fix the lightbox map embed to make it use mapbox styled to look like the website
 14. Accessibility and performance audit (beyond current automated checks).
-15. Make the low resolution photos webp (use the script to make alternate versions when loading them into json) for faster loading while keeping the lightbox versions as jpeg — swapping at the same time as we already swap when switching to the animation.
+15. Make the photos WebP for faster loading, maintaining a jpeg fallback. Create a pipeline that automatically converts + extracts metadata using github actions whenever a new photo or photos is checked in — automatically creating a gallery page if that exists at the same time. This script should only run after a PR is merged with those photos, opening a new PR with the new gallery + converted images. Tests should be updated to handle these kinds of cases. Also we need a workflow that will convert all the existing images and open a new PR, but this should only be run manually.
 
 ## Completed Tasks
 
