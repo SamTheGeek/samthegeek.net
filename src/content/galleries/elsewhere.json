@@ -5,39 +5,48 @@
   "description": "Photos from around the world",
   "images": [
     {
-      "src": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.jpeg",
+      "webpSrc": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.webp",
+      "jpgSrc": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF0716.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF0716.webp",
+      "jpgSrc": "/images/elsewhere/DSCF0716.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF0717.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF0717.webp",
+      "jpgSrc": "/images/elsewhere/DSCF0717.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF3417.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF3417.webp",
+      "jpgSrc": "/images/elsewhere/DSCF3417.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF4066.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF4066.webp",
+      "jpgSrc": "/images/elsewhere/DSCF4066.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF4495.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF4495.webp",
+      "jpgSrc": "/images/elsewhere/DSCF4495.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF4831.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF4831.webp",
+      "jpgSrc": "/images/elsewhere/DSCF4831.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/DSCF4892.jpeg",
+      "webpSrc": "/images/elsewhere/DSCF4892.webp",
+      "jpgSrc": "/images/elsewhere/DSCF4892.jpeg",
       "alt": "Elsewhere photo"
     },
     {
-      "src": "/images/elsewhere/IMG_5530-1.jpeg",
+      "webpSrc": "/images/elsewhere/IMG_5530-1.webp",
+      "jpgSrc": "/images/elsewhere/IMG_5530-1.jpeg",
       "alt": "Elsewhere photo"
     }
   ]

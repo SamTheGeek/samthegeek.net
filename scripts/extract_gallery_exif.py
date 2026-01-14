@@ -348,7 +348,7 @@ def extract_gallery_exif(gallery_name: str, images_dir: Path, galleries_dir: Pat
     processed_any = False
 
     for image in images:
-        src = image.get("src")
+        src = image.get("jpgSrc") or image.get("src")
         if not src:
             continue
         image_path = parse_src_to_path(src, images_dir)

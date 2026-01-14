@@ -99,20 +99,25 @@ const testGalleryMetadata = async () => {
     assert(images.length > 0, `${filename} should include at least one image.`);
 
     for (const image of images) {
-      const src = typeof image.src === 'string' ? image.src : '';
+      const jpgSrc = typeof image.jpgSrc === 'string' ? image.jpgSrc : '';
+      const webpSrc = typeof image.webpSrc === 'string' ? image.webpSrc : '';
       const alt = typeof image.alt === 'string' ? image.alt.trim() : '';
       assert(
-        src.startsWith('/images/'),
-        `${filename} image src should start with /images/.`
+        jpgSrc.startsWith('/images/'),
+        `${filename} image jpgSrc should start with /images/.`
+      );
+      assert(
+        webpSrc.startsWith('/images/'),
+        `${filename} image webpSrc should start with /images/.`
       );
       assert(alt.length > 0, `${filename} image alt text should be present.`);
-      if (src.startsWith('/images/')) {
-        const relPath = src.replace(/^\/+/, '');
+      if (jpgSrc.startsWith('/images/')) {
+        const relPath = jpgSrc.replace(/^\/+/, '');
         const fullPath = path.join(root, 'public', relPath);
         try {
           await fs.access(fullPath);
         } catch {
-          errors.push(`Missing image file for ${filename}: ${src}`);
+          errors.push(`Missing image file for ${filename}: ${jpgSrc}`);
         }
       }
       if (image.exif) {

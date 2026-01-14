@@ -7,7 +7,7 @@ const gallery = await getEntry('galleries', 'japan');
 const galleryDescription = await getEntry('galleryDescriptions', 'japan');
 if (!gallery) throw new Error('Gallery not found');
 const description = galleryDescription?.data.description ?? gallery.data.description ?? `Photos from ${gallery.data.location}`;
-const shareImage = gallery.data.images[0]?.src;
+const shareImage = gallery.data.images[0]?.jpgSrc;
 const shareImageAlt = gallery.data.images[0]?.alt;
 ---
 

@@ -263,7 +263,11 @@ def update_gallery_json(gallery_name: str, gallery_dir: Path, galleries_dir: Pat
     title_value = data.get("title", gallery_name)
     images = sorted([p.name for p in iter_image_files(gallery_dir)])
     data["images"] = [
-        {"src": f"/images/{gallery_name}/{filename}", "alt": f"{title_value} photo"}
+        {
+            "webpSrc": f"/images/{gallery_name}/{Path(filename).stem}.webp",
+            "jpgSrc": f"/images/{gallery_name}/{filename}",
+            "alt": f"{title_value} photo",
+        }
         for filename in images
     ]
     json_path.write_text(json.dumps(data, indent=2))

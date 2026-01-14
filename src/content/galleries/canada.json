@@ -5,55 +5,68 @@
   "description": "Photos from Canada",
   "images": [
     {
-      "src": "/images/canada/DSCF1829.JPG",
+      "webpSrc": "/images/canada/DSCF1829.webp",
+      "jpgSrc": "/images/canada/DSCF1829.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF1879.JPG",
+      "webpSrc": "/images/canada/DSCF1879.webp",
+      "jpgSrc": "/images/canada/DSCF1879.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF1883.JPG",
+      "webpSrc": "/images/canada/DSCF1883.webp",
+      "jpgSrc": "/images/canada/DSCF1883.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF1893.JPG",
+      "webpSrc": "/images/canada/DSCF1893.webp",
+      "jpgSrc": "/images/canada/DSCF1893.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF1902.JPG",
+      "webpSrc": "/images/canada/DSCF1902.webp",
+      "jpgSrc": "/images/canada/DSCF1902.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF1993.JPG",
+      "webpSrc": "/images/canada/DSCF1993.webp",
+      "jpgSrc": "/images/canada/DSCF1993.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF2042.JPG",
+      "webpSrc": "/images/canada/DSCF2042.webp",
+      "jpgSrc": "/images/canada/DSCF2042.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF2073.JPG",
+      "webpSrc": "/images/canada/DSCF2073.webp",
+      "jpgSrc": "/images/canada/DSCF2073.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF2112.JPG",
+      "webpSrc": "/images/canada/DSCF2112.webp",
+      "jpgSrc": "/images/canada/DSCF2112.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF2133.JPG",
+      "webpSrc": "/images/canada/DSCF2133.webp",
+      "jpgSrc": "/images/canada/DSCF2133.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF2158.JPG",
+      "webpSrc": "/images/canada/DSCF2158.webp",
+      "jpgSrc": "/images/canada/DSCF2158.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/DSCF2207.JPG",
+      "webpSrc": "/images/canada/DSCF2207.webp",
+      "jpgSrc": "/images/canada/DSCF2207.JPG",
       "alt": "Canada photo"
     },
     {
-      "src": "/images/canada/IMG_2664.JPG",
+      "webpSrc": "/images/canada/IMG_2664.webp",
+      "jpgSrc": "/images/canada/IMG_2664.JPG",
       "alt": "Canada photo"
     }
   ]
