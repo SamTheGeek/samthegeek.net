@@ -1,7 +1,8 @@
 name: Process New Photos
 
 # This workflow runs when a PR with new photos is merged to main.
-# It converts new JPEG images to WebP format and opens a PR with the optimized images.
+# It processes new JPEG images: converts to WebP, extracts EXIF metadata,
+# registers them in gallery JSON, and creates new galleries if needed.
 
 on:
   push:
@@ -54,13 +55,16 @@ jobs:
         if: steps.check-images.outputs.has_images == 'true'
         run: npm ci
 
-      - name: Install sharp
+      - name: Install image processing dependencies
         if: steps.check-images.outputs.has_images == 'true'
-        run: npm install sharp --save-dev
+        run: npm install sharp exifr --save-dev
 
-      - name: Convert images to WebP
+      - name: Process gallery images
         if: steps.check-images.outputs.has_images == 'true'
-        run: node scripts/convert-images-to-webp.mjs
+        env:
+          PUBLIC_GOOGLE_MAPS_EMBED_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        run: node scripts/process-gallery-images.mjs
 
       - name: Check for changes
         if: steps.check-images.outputs.has_images == 'true'
@@ -70,30 +74,50 @@ jobs:
             echo "No changes to commit"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
-            echo "Changes detected"
+            # Count changes
+            WEBP_COUNT=$(git status --porcelain | grep -E '\.webp$' | wc -l || echo 0)
+            JSON_COUNT=$(git status --porcelain | grep -E '\.json$' | wc -l || echo 0)
+            PAGE_COUNT=$(git status --porcelain | grep -E '\.astro$' | wc -l || echo 0)
+            MD_COUNT=$(git status --porcelain | grep -E '\.md$' | wc -l || echo 0)
+            echo "WebP files: $WEBP_COUNT"
+            echo "JSON files: $JSON_COUNT"
+            echo "Page files: $PAGE_COUNT"
+            echo "MD files: $MD_COUNT"
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "webp_count=$WEBP_COUNT" >> $GITHUB_OUTPUT
+            echo "json_count=$JSON_COUNT" >> $GITHUB_OUTPUT
+            echo "page_count=$PAGE_COUNT" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Pull Request
         if: steps.check-images.outputs.has_images == 'true' && steps.check-changes.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: 'chore: convert images to WebP format'
-          title: 'chore: Convert new images to WebP format'
+          commit-message: 'chore: process new gallery images'
+          title: 'chore: Process new gallery images'
           body: |
             ## Summary
-            This PR converts newly added JPEG images to WebP format for faster loading.
+            This PR processes newly added gallery images.
 
             **Galleries processed:** ${{ steps.check-images.outputs.galleries }}
 
             ## Changes
-            - Converted JPEG images to WebP format
-            - Updated gallery JSON files with `webpSrc` references
+            - **${{ steps.check-changes.outputs.webp_count }}** WebP images created
+            - **${{ steps.check-changes.outputs.json_count }}** gallery JSON files updated
+            - **${{ steps.check-changes.outputs.page_count }}** gallery pages created (if new galleries)
+
+            ### What was done:
+            - Converted JPEG images to WebP format for faster loading
+            - Extracted EXIF metadata (camera, lens, settings, GPS)
+            - Registered images in gallery JSON files
+            - Created gallery pages for any new gallery folders
+            - Performed reverse geocoding for location names (if GPS data available)
 
             ## Test plan
             - [ ] Verify WebP images load correctly on the site
-            - [ ] Verify JPEG fallback works in Safari < 14 or other older browsers
-            - [ ] Check that image quality is acceptable
-          branch: auto/webp-conversion
+            - [ ] Verify JPEG fallback works in older browsers
+            - [ ] Check that EXIF metadata displays correctly in lightbox
+            - [ ] Verify any new gallery pages render correctly
+          branch: auto/process-photos
           delete-branch: true
           labels: automerge
