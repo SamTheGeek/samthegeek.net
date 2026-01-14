@@ -186,4 +186,185 @@ test.describe('Image processing', () => {
     expect(content).toContain('extractExifMetadata');
     expect(content).toContain('createGalleryJson');
   });
+
+  test('all gallery JSONs have required structure', async () => {
+    const slugs = await loadGallerySlugs();
+    expect(slugs.length).toBeGreaterThan(0);
+
+    for (const slug of slugs) {
+      const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', `${slug}.json`);
+      const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+
+      // Required top-level fields
+      expect(data).toHaveProperty('title');
+      expect(data).toHaveProperty('location');
+      expect(data).toHaveProperty('publishedDate');
+      expect(data).toHaveProperty('images');
+      expect(Array.isArray(data.images)).toBe(true);
+      expect(data.images.length).toBeGreaterThan(0);
+
+      // Each image must have src and alt
+      for (const image of data.images) {
+        expect(image).toHaveProperty('src');
+        expect(image).toHaveProperty('alt');
+        expect(image.src).toMatch(/^\/images\//);
+      }
+    }
+  });
+
+  test('gallery EXIF data has valid structure when present', async () => {
+    const slugs = await loadGallerySlugs();
+
+    for (const slug of slugs) {
+      const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', `${slug}.json`);
+      const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+
+      for (const image of data.images) {
+        if (image.exif) {
+          // Validate EXIF field types when present
+          if (image.exif.date !== undefined) {
+            expect(typeof image.exif.date).toBe('string');
+          }
+          if (image.exif.camera !== undefined) {
+            expect(typeof image.exif.camera).toBe('string');
+          }
+          if (image.exif.lens !== undefined) {
+            expect(typeof image.exif.lens).toBe('string');
+          }
+          if (image.exif.focalLength !== undefined) {
+            expect(typeof image.exif.focalLength).toBe('string');
+            expect(image.exif.focalLength).toMatch(/mm$/);
+          }
+          if (image.exif.aperture !== undefined) {
+            expect(typeof image.exif.aperture).toBe('string');
+            expect(image.exif.aperture).toMatch(/^f\//);
+          }
+          if (image.exif.shutterSpeed !== undefined) {
+            expect(typeof image.exif.shutterSpeed).toBe('string');
+            expect(image.exif.shutterSpeed).toMatch(/s$/);
+          }
+          if (image.exif.iso !== undefined) {
+            expect(typeof image.exif.iso).toBe('string');
+            expect(image.exif.iso).toMatch(/^ISO /);
+          }
+          if (image.exif.latitude !== undefined) {
+            expect(typeof image.exif.latitude).toBe('number');
+            expect(image.exif.latitude).toBeGreaterThanOrEqual(-90);
+            expect(image.exif.latitude).toBeLessThanOrEqual(90);
+          }
+          if (image.exif.longitude !== undefined) {
+            expect(typeof image.exif.longitude).toBe('number');
+            expect(image.exif.longitude).toBeGreaterThanOrEqual(-180);
+            expect(image.exif.longitude).toBeLessThanOrEqual(180);
+          }
+          if (image.exif.location !== undefined) {
+            expect(typeof image.exif.location).toBe('string');
+          }
+        }
+      }
+    }
+  });
+
+  test('each gallery JSON has a corresponding page', async () => {
+    const slugs = await loadGallerySlugs();
+    const pagesDir = path.join(process.cwd(), 'src', 'pages');
+
+    for (const slug of slugs) {
+      const pagePath = path.join(pagesDir, `${slug}.astro`);
+      try {
+        const stat = await fs.stat(pagePath);
+        expect(stat.isFile()).toBe(true);
+      } catch {
+        // Page doesn't exist - this is an error
+        throw new Error(`Missing page for gallery: ${slug}`);
+      }
+    }
+  });
+});
+
+test.describe('GitHub Actions workflows', () => {
+  test('process-photos workflow exists with correct triggers', async () => {
+    const workflowPath = path.join(process.cwd(), '.github', 'workflows', 'process-photos.yml');
+    const content = await fs.readFile(workflowPath, 'utf8');
+
+    // Check for correct trigger
+    expect(content).toContain('push:');
+    expect(content).toContain('branches:');
+    expect(content).toContain('main');
+    expect(content).toContain('public/images/**/*.jpg');
+
+    // Check for required steps
+    expect(content).toContain('process-gallery-images.mjs');
+    expect(content).toContain('sharp');
+    expect(content).toContain('exifr');
+    expect(content).toContain('create-pull-request');
+  });
+
+  test('convert-all-images workflow exists with manual trigger', async () => {
+    const workflowPath = path.join(process.cwd(), '.github', 'workflows', 'convert-all-images.yml');
+    const content = await fs.readFile(workflowPath, 'utf8');
+
+    // Check for manual trigger
+    expect(content).toContain('workflow_dispatch:');
+    expect(content).toContain('inputs:');
+
+    // Check for required options
+    expect(content).toContain('quality');
+    expect(content).toContain('force');
+    expect(content).toContain('gallery');
+    expect(content).toContain('skip_webp');
+    expect(content).toContain('skip_geocode');
+
+    // Check for required steps
+    expect(content).toContain('process-gallery-images.mjs');
+    expect(content).toContain('create-pull-request');
+  });
+
+  test('CI workflow exists and runs tests', async () => {
+    const workflowPath = path.join(process.cwd(), '.github', 'workflows', 'ci.yml');
+    const content = await fs.readFile(workflowPath, 'utf8');
+
+    expect(content).toContain('pull_request:');
+    expect(content).toContain('playwright');
+  });
+});
+
+test.describe('Content schema', () => {
+  test('config.ts includes webpSrc in gallery schema', async () => {
+    const configPath = path.join(process.cwd(), 'src', 'content', 'config.ts');
+    const content = await fs.readFile(configPath, 'utf8');
+
+    // Check for webpSrc field in schema
+    expect(content).toContain('webpSrc');
+    expect(content).toContain('z.string().optional()');
+
+    // Check for EXIF schema fields
+    expect(content).toContain('exif:');
+    expect(content).toContain('latitude');
+    expect(content).toContain('longitude');
+    expect(content).toContain('location');
+  });
+});
+
+test.describe('Gallery component', () => {
+  test('Gallery.astro uses picture elements with WebP source', async () => {
+    const componentPath = path.join(process.cwd(), 'src', 'components', 'Gallery.astro');
+    const content = await fs.readFile(componentPath, 'utf8');
+
+    // Check for picture element
+    expect(content).toContain('<picture>');
+    expect(content).toContain('</picture>');
+
+    // Check for WebP source
+    expect(content).toContain('type="image/webp"');
+    expect(content).toContain('webpSrc');
+
+    // Check for JPEG fallback img
+    expect(content).toContain('<img');
+    expect(content).toContain('src={image.src}');
+
+    // Check for data attributes for EXIF
+    expect(content).toContain('data-exif-');
+    expect(content).toContain('data-webp-src');
+  });
 });
