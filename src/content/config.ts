@@ -29,7 +29,8 @@ const galleries = defineCollection({
     publishedDate: z.coerce.date(),
     description: z.string().optional(),
     images: z.array(z.object({
-      src: z.string(),
+      webpSrc: z.string(),
+      jpgSrc: z.string(),
       alt: z.string(),
       exif: z.object({
         date: z.string().optional(),

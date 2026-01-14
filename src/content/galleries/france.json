@@ -5,183 +5,228 @@
   "description": "Photos from France",
   "images": [
     {
-      "src": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.jpg",
+      "webpSrc": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.webp",
+      "jpgSrc": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.jpg",
+      "webpSrc": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.webp",
+      "jpgSrc": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.jpg",
+      "webpSrc": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.webp",
+      "jpgSrc": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.jpg",
+      "webpSrc": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.webp",
+      "jpgSrc": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.jpg",
+      "webpSrc": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.webp",
+      "jpgSrc": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.jpg",
+      "webpSrc": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.webp",
+      "jpgSrc": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.jpg",
+      "webpSrc": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.webp",
+      "jpgSrc": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.jpg",
+      "webpSrc": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.webp",
+      "jpgSrc": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.jpg",
+      "webpSrc": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.webp",
+      "jpgSrc": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.jpg",
+      "webpSrc": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.webp",
+      "jpgSrc": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.jpg",
+      "webpSrc": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.webp",
+      "jpgSrc": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.jpg",
+      "webpSrc": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.webp",
+      "jpgSrc": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.jpg",
+      "webpSrc": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.webp",
+      "jpgSrc": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.jpg",
+      "webpSrc": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.webp",
+      "jpgSrc": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.jpg",
+      "webpSrc": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.webp",
+      "jpgSrc": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.jpg",
+      "webpSrc": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.webp",
+      "jpgSrc": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.jpg",
+      "webpSrc": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.webp",
+      "jpgSrc": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.jpg",
+      "webpSrc": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.webp",
+      "jpgSrc": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.jpg",
+      "webpSrc": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.webp",
+      "jpgSrc": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.jpg",
+      "webpSrc": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.webp",
+      "jpgSrc": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.jpg",
+      "webpSrc": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.webp",
+      "jpgSrc": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.jpg",
+      "webpSrc": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.webp",
+      "jpgSrc": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.jpg",
+      "webpSrc": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.webp",
+      "jpgSrc": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.jpg",
+      "webpSrc": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.webp",
+      "jpgSrc": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.jpg",
+      "webpSrc": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.webp",
+      "jpgSrc": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.jpg",
+      "webpSrc": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.webp",
+      "jpgSrc": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.jpg",
+      "webpSrc": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.webp",
+      "jpgSrc": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.jpg",
+      "webpSrc": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.webp",
+      "jpgSrc": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.jpg",
+      "webpSrc": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.webp",
+      "jpgSrc": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.jpg",
+      "webpSrc": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.webp",
+      "jpgSrc": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.jpg",
+      "webpSrc": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.webp",
+      "jpgSrc": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.jpg",
+      "webpSrc": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.webp",
+      "jpgSrc": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.jpg",
+      "webpSrc": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.webp",
+      "jpgSrc": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.jpg",
+      "webpSrc": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.webp",
+      "jpgSrc": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.jpg",
+      "webpSrc": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.webp",
+      "jpgSrc": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.jpg",
+      "webpSrc": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.webp",
+      "jpgSrc": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.jpg",
+      "webpSrc": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.webp",
+      "jpgSrc": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.jpg",
+      "webpSrc": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.webp",
+      "jpgSrc": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.jpg",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DSCF8805.JPG",
+      "webpSrc": "/images/france/DSCF8805.webp",
+      "jpgSrc": "/images/france/DSCF8805.JPG",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DSCF9382.JPG",
+      "webpSrc": "/images/france/DSCF9382.webp",
+      "jpgSrc": "/images/france/DSCF9382.JPG",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DSCF9407.JPG",
+      "webpSrc": "/images/france/DSCF9407.webp",
+      "jpgSrc": "/images/france/DSCF9407.JPG",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DSCF9415.JPG",
+      "webpSrc": "/images/france/DSCF9415.webp",
+      "jpgSrc": "/images/france/DSCF9415.JPG",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DSCF9420.JPG",
+      "webpSrc": "/images/france/DSCF9420.webp",
+      "jpgSrc": "/images/france/DSCF9420.JPG",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/DSCF9534.JPG",
+      "webpSrc": "/images/france/DSCF9534.webp",
+      "jpgSrc": "/images/france/DSCF9534.JPG",
       "alt": "France photo"
     },
     {
-      "src": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.jpg",
+      "webpSrc": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.webp",
+      "jpgSrc": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.jpg",
       "alt": "France photo"
     }
   ]

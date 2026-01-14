@@ -49,7 +49,10 @@
     </div>
   </div>
   <div class="lightbox-content">
-    <img id="lightbox-image" class="lightbox-image" src="" alt="" />
+    <picture class="lightbox-picture">
+      <source id="lightbox-source" type="image/webp" srcset="" />
+      <img id="lightbox-image" class="lightbox-image" src="" alt="" />
+    </picture>
   </div>
 </div>
 
@@ -113,6 +116,15 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 1;
+  }
+
+  .lightbox-picture {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
   }
 
   .lightbox-image {
@@ -470,6 +482,7 @@
   function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+    const lightboxSource = document.getElementById('lightbox-source') as HTMLSourceElement | null;
     const lightboxDate = document.getElementById('lightbox-date');
     const lightboxHeader = document.getElementById('lightbox-info-header');
     const lightboxLocation = document.getElementById('lightbox-location');
@@ -620,6 +633,7 @@
       lastHiddenImage = img;
       lightbox.classList.remove('is-loaded');
       lightboxImage.classList.add('is-loading');
+      lightboxSource?.removeAttribute('srcset');
       lightboxImage.removeAttribute('src');
       lightboxImage.alt = img.alt;
       sizingDimensions = null;
@@ -1023,6 +1037,10 @@
 
     function clearPreview() {
       if (!lightboxImage) return;
+      if (lightboxSource) {
+        lightboxSource.removeAttribute('srcset');
+      }
+      lightboxImage.removeAttribute('src');
       lightboxImage.style.aspectRatio = '';
       lightboxImage.style.width = '';
       lightboxImage.style.height = '';
@@ -1046,7 +1064,15 @@
     function loadFullImage(img: HTMLImageElement, token: number) {
       if (!lightbox || !lightboxImage) return Promise.reject();
       if (token !== loadToken) return Promise.reject();
-      lightboxImage.src = img.currentSrc || img.src;
+      const { webpSrc, jpgSrc } = getImageSources(img);
+      if (lightboxSource) {
+        if (webpSrc) {
+          lightboxSource.srcset = webpSrc;
+        } else {
+          lightboxSource.removeAttribute('srcset');
+        }
+      }
+      lightboxImage.src = jpgSrc;
       if (lightboxImage.decode) {
         return lightboxImage.decode().then(() => token).catch(() => token);
       }
@@ -1055,6 +1081,12 @@
         lightboxImage.addEventListener('load', finalize, { once: true });
         lightboxImage.addEventListener('error', finalize, { once: true });
       });
+    }
+
+    function getImageSources(img: HTMLImageElement) {
+      const webpSrc = img.dataset.webpSrc || '';
+      const jpgSrc = img.dataset.jpgSrc || img.src;
+      return { webpSrc, jpgSrc };
     }
 
     function normalizeDate(value?: string | null) {

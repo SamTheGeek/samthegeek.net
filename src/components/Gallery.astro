@@ -4,7 +4,8 @@ import Lightbox from './Lightbox.astro';
 interface Props {
   title: string;
   images: Array<{
-    src: string;
+    webpSrc: string;
+    jpgSrc: string;
     alt: string;
     exif?: {
       date?: string;
@@ -28,21 +29,26 @@ const { title, images } = Astro.props;
   <div class="gallery-grid">
     {images.map((image) => (
       <div class="gallery-item">
-        <img
-          src={image.src}
-          alt={image.alt}
-          loading="lazy"
-          data-exif-date={image.exif?.date}
-          data-exif-camera={image.exif?.camera}
-          data-exif-lens={image.exif?.lens}
-          data-exif-focal-length={image.exif?.focalLength}
-          data-exif-aperture={image.exif?.aperture}
-          data-exif-shutter-speed={image.exif?.shutterSpeed}
-          data-exif-iso={image.exif?.iso}
-          data-exif-latitude={image.exif?.latitude}
-          data-exif-longitude={image.exif?.longitude}
-          data-exif-location={image.exif?.location}
-        />
+        <picture>
+          <source type="image/webp" srcset={image.webpSrc} />
+          <img
+            src={image.jpgSrc}
+            alt={image.alt}
+            loading="lazy"
+            data-webp-src={image.webpSrc}
+            data-jpg-src={image.jpgSrc}
+            data-exif-date={image.exif?.date}
+            data-exif-camera={image.exif?.camera}
+            data-exif-lens={image.exif?.lens}
+            data-exif-focal-length={image.exif?.focalLength}
+            data-exif-aperture={image.exif?.aperture}
+            data-exif-shutter-speed={image.exif?.shutterSpeed}
+            data-exif-iso={image.exif?.iso}
+            data-exif-latitude={image.exif?.latitude}
+            data-exif-longitude={image.exif?.longitude}
+            data-exif-location={image.exif?.location}
+          />
+        </picture>
       </div>
     ))}
   </div>

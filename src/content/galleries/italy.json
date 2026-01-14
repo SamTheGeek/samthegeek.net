@@ -5,167 +5,208 @@
   "description": "Photos from Italy",
   "images": [
     {
-      "src": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.jpeg",
+      "webpSrc": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.webp",
+      "jpgSrc": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF0778.jpeg",
+      "webpSrc": "/images/italy/DSCF0778.webp",
+      "jpgSrc": "/images/italy/DSCF0778.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF0844.jpeg",
+      "webpSrc": "/images/italy/DSCF0844.webp",
+      "jpgSrc": "/images/italy/DSCF0844.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF0867.jpeg",
+      "webpSrc": "/images/italy/DSCF0867.webp",
+      "jpgSrc": "/images/italy/DSCF0867.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF0879.jpeg",
+      "webpSrc": "/images/italy/DSCF0879.webp",
+      "jpgSrc": "/images/italy/DSCF0879.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF0888.jpeg",
+      "webpSrc": "/images/italy/DSCF0888.webp",
+      "jpgSrc": "/images/italy/DSCF0888.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF0951.jpeg",
+      "webpSrc": "/images/italy/DSCF0951.webp",
+      "jpgSrc": "/images/italy/DSCF0951.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1002.jpeg",
+      "webpSrc": "/images/italy/DSCF1002.webp",
+      "jpgSrc": "/images/italy/DSCF1002.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1055.jpeg",
+      "webpSrc": "/images/italy/DSCF1055.webp",
+      "jpgSrc": "/images/italy/DSCF1055.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1061.jpeg",
+      "webpSrc": "/images/italy/DSCF1061.webp",
+      "jpgSrc": "/images/italy/DSCF1061.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1080.jpeg",
+      "webpSrc": "/images/italy/DSCF1080.webp",
+      "jpgSrc": "/images/italy/DSCF1080.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1085.jpeg",
+      "webpSrc": "/images/italy/DSCF1085.webp",
+      "jpgSrc": "/images/italy/DSCF1085.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1360.jpeg",
+      "webpSrc": "/images/italy/DSCF1360.webp",
+      "jpgSrc": "/images/italy/DSCF1360.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1484.jpeg",
+      "webpSrc": "/images/italy/DSCF1484.webp",
+      "jpgSrc": "/images/italy/DSCF1484.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1510.jpeg",
+      "webpSrc": "/images/italy/DSCF1510.webp",
+      "jpgSrc": "/images/italy/DSCF1510.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1600.jpeg",
+      "webpSrc": "/images/italy/DSCF1600.webp",
+      "jpgSrc": "/images/italy/DSCF1600.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1644.jpeg",
+      "webpSrc": "/images/italy/DSCF1644.webp",
+      "jpgSrc": "/images/italy/DSCF1644.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF1736.jpeg",
+      "webpSrc": "/images/italy/DSCF1736.webp",
+      "jpgSrc": "/images/italy/DSCF1736.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2483.jpeg",
+      "webpSrc": "/images/italy/DSCF2483.webp",
+      "jpgSrc": "/images/italy/DSCF2483.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2490.jpeg",
+      "webpSrc": "/images/italy/DSCF2490.webp",
+      "jpgSrc": "/images/italy/DSCF2490.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2524.jpeg",
+      "webpSrc": "/images/italy/DSCF2524.webp",
+      "jpgSrc": "/images/italy/DSCF2524.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2541.jpeg",
+      "webpSrc": "/images/italy/DSCF2541.webp",
+      "jpgSrc": "/images/italy/DSCF2541.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2547.jpeg",
+      "webpSrc": "/images/italy/DSCF2547.webp",
+      "jpgSrc": "/images/italy/DSCF2547.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2555.jpeg",
+      "webpSrc": "/images/italy/DSCF2555.webp",
+      "jpgSrc": "/images/italy/DSCF2555.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2610.jpeg",
+      "webpSrc": "/images/italy/DSCF2610.webp",
+      "jpgSrc": "/images/italy/DSCF2610.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2614.jpeg",
+      "webpSrc": "/images/italy/DSCF2614.webp",
+      "jpgSrc": "/images/italy/DSCF2614.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2627.jpeg",
+      "webpSrc": "/images/italy/DSCF2627.webp",
+      "jpgSrc": "/images/italy/DSCF2627.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2630.jpeg",
+      "webpSrc": "/images/italy/DSCF2630.webp",
+      "jpgSrc": "/images/italy/DSCF2630.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2635.jpeg",
+      "webpSrc": "/images/italy/DSCF2635.webp",
+      "jpgSrc": "/images/italy/DSCF2635.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2642.jpeg",
+      "webpSrc": "/images/italy/DSCF2642.webp",
+      "jpgSrc": "/images/italy/DSCF2642.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2644.jpeg",
+      "webpSrc": "/images/italy/DSCF2644.webp",
+      "jpgSrc": "/images/italy/DSCF2644.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2652.jpeg",
+      "webpSrc": "/images/italy/DSCF2652.webp",
+      "jpgSrc": "/images/italy/DSCF2652.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2673.jpeg",
+      "webpSrc": "/images/italy/DSCF2673.webp",
+      "jpgSrc": "/images/italy/DSCF2673.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2674.jpeg",
+      "webpSrc": "/images/italy/DSCF2674.webp",
+      "jpgSrc": "/images/italy/DSCF2674.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2691.jpeg",
+      "webpSrc": "/images/italy/DSCF2691.webp",
+      "jpgSrc": "/images/italy/DSCF2691.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2765.jpeg",
+      "webpSrc": "/images/italy/DSCF2765.webp",
+      "jpgSrc": "/images/italy/DSCF2765.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2862.jpeg",
+      "webpSrc": "/images/italy/DSCF2862.webp",
+      "jpgSrc": "/images/italy/DSCF2862.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2881.jpeg",
+      "webpSrc": "/images/italy/DSCF2881.webp",
+      "jpgSrc": "/images/italy/DSCF2881.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF2929.jpeg",
+      "webpSrc": "/images/italy/DSCF2929.webp",
+      "jpgSrc": "/images/italy/DSCF2929.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/DSCF6211.jpeg",
+      "webpSrc": "/images/italy/DSCF6211.webp",
+      "jpgSrc": "/images/italy/DSCF6211.jpeg",
       "alt": "Italy photo"
     },
     {
-      "src": "/images/italy/IMG_2633.jpeg",
+      "webpSrc": "/images/italy/IMG_2633.webp",
+      "jpgSrc": "/images/italy/IMG_2633.jpeg",
       "alt": "Italy photo"
     }
   ]

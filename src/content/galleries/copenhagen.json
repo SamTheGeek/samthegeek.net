@@ -5,7 +5,8 @@
   "description": "Photos from Copenhagen",
   "images": [
     {
-      "src": "/images/copenhagen/DSCF5424.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5424.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5424.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:08 10:43:00",
@@ -21,7 +22,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5450.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5450.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5450.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 13:06:38",
@@ -37,7 +39,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5515.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5515.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5515.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 14:11:30",
@@ -53,7 +56,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5516.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5516.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5516.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 14:12:11",
@@ -69,7 +73,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5526.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5526.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5526.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 14:14:09",
@@ -85,7 +90,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5545.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5545.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5545.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 17:16:54",
@@ -100,7 +106,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5552.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5552.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5552.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 20:37:25",
@@ -116,7 +123,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5562.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5562.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5562.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:09 22:30:46",
@@ -132,7 +140,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5608.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5608.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5608.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:10 11:37:10",
@@ -148,7 +157,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5629.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5629.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5629.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:10 11:59:29",
@@ -164,7 +174,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5652.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5652.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5652.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:10 12:10:29",
@@ -180,7 +191,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5678.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5678.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5678.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:11 13:56:42",
@@ -195,7 +207,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5760.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5760.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5760.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:11 16:55:27",
@@ -210,7 +223,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5771.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5771.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5771.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:11 20:15:45",
@@ -225,7 +239,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5846.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5846.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5846.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 11:52:21",
@@ -241,7 +256,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5861.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5861.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5861.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 11:54:57",
@@ -257,7 +273,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5907.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5907.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5907.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 12:29:13",
@@ -273,7 +290,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5954.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5954.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5954.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 16:19:30",
@@ -288,7 +306,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF5996.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF5996.webp",
+      "jpgSrc": "/images/copenhagen/DSCF5996.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 16:23:54",
@@ -303,7 +322,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6025.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6025.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6025.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 16:30:05",
@@ -318,7 +338,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6042.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6042.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6042.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 16:33:31",
@@ -333,7 +354,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6134.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6134.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6134.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 11:46:19",
@@ -349,7 +371,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6148.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6148.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6148.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 12:12:08",
@@ -365,7 +388,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6164.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6164.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6164.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 12:22:02",
@@ -381,7 +405,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6168.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6168.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6168.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 12:22:32",
@@ -397,7 +422,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6211.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6211.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6211.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 14:12:44",
@@ -413,7 +439,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6218.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6218.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6218.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 14:13:50",
@@ -429,7 +456,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6271.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6271.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6271.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 16:40:34",
@@ -445,7 +473,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6275.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6275.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6275.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 16:57:45",
@@ -461,7 +490,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6283.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6283.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6283.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 17:18:02",
@@ -477,7 +507,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/DSCF6291.jpeg",
+      "webpSrc": "/images/copenhagen/DSCF6291.webp",
+      "jpgSrc": "/images/copenhagen/DSCF6291.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:14 17:18:56",
@@ -493,7 +524,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/IMG_2522.jpeg",
+      "webpSrc": "/images/copenhagen/IMG_2522.webp",
+      "jpgSrc": "/images/copenhagen/IMG_2522.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:11 12:59:53",
@@ -508,7 +540,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/IMG_2577.jpeg",
+      "webpSrc": "/images/copenhagen/IMG_2577.webp",
+      "jpgSrc": "/images/copenhagen/IMG_2577.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:12 16:37:09",
@@ -523,7 +556,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/IMG_2607.jpeg",
+      "webpSrc": "/images/copenhagen/IMG_2607.webp",
+      "jpgSrc": "/images/copenhagen/IMG_2607.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:13 19:25:55",
@@ -539,7 +573,8 @@
       }
     },
     {
-      "src": "/images/copenhagen/IMG_2613.jpeg",
+      "webpSrc": "/images/copenhagen/IMG_2613.webp",
+      "jpgSrc": "/images/copenhagen/IMG_2613.jpeg",
       "alt": "Copenhagen photo",
       "exif": {
         "date": "2022:06:13 19:27:59",
