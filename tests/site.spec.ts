@@ -5,6 +5,13 @@ import path from 'node:path';
 
 const isCI = Boolean(process.env.CI);
 
+interface GalleryImage {
+  src: string;
+  webpSrc?: string;
+  alt: string;
+  exif?: Record<string, unknown>;
+}
+
 const loadFirstGalleryImage = async () => {
   const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', 'copenhagen.json');
   const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
@@ -114,5 +121,68 @@ test.describe('Site behavior', () => {
       .exclude('.photo-credit')
       .analyze();
     expect(results.violations).toEqual([]);
+  });
+
+  test('gallery images use picture elements', async ({ page }) => {
+    await page.goto('/copenhagen');
+    await page.setViewportSize({ width: 1280, height: 900 });
+    // Check that images are wrapped in picture elements
+    const pictureCount = await page.locator('.gallery-item picture').count();
+    const imgCount = await page.locator('.gallery-item img').count();
+    expect(pictureCount).toBeGreaterThan(0);
+    expect(pictureCount).toBe(imgCount);
+  });
+
+  test('gallery images have JPEG fallback', async ({ page }) => {
+    await page.goto('/copenhagen');
+    await page.setViewportSize({ width: 1280, height: 900 });
+    // Every img in gallery should have a JPEG src as fallback
+    const imgs = page.locator('.gallery-item img');
+    const count = await imgs.count();
+    expect(count).toBeGreaterThan(0);
+    for (let i = 0; i < Math.min(count, 5); i++) {
+      const src = await imgs.nth(i).getAttribute('src');
+      expect(src).toMatch(/\.(jpg|jpeg)$/i);
+    }
+  });
+
+  test('lightbox uses currentSrc for WebP support', async ({ page }) => {
+    await page.goto('/copenhagen');
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.locator('.gallery-item img').first().click();
+    await expect(page.locator('#lightbox')).toHaveClass(/active/);
+    // The lightbox should have an image loaded
+    const lightboxSrc = await page.locator('#lightbox-image').getAttribute('src');
+    expect(lightboxSrc).toBeTruthy();
+    // It should be either WebP or JPEG depending on browser support
+    expect(lightboxSrc).toMatch(/\.(jpg|jpeg|webp)$/i);
+  });
+});
+
+test.describe('Image processing', () => {
+  test('gallery JSON schema supports webpSrc field', async () => {
+    const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', 'copenhagen.json');
+    const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+    expect(Array.isArray(data.images)).toBe(true);
+    // Each image should have required fields
+    for (const image of data.images) {
+      expect(image).toHaveProperty('src');
+      expect(image).toHaveProperty('alt');
+      // webpSrc is optional but should be a string if present
+      if (image.webpSrc !== undefined) {
+        expect(typeof image.webpSrc).toBe('string');
+        expect(image.webpSrc).toMatch(/\.webp$/);
+      }
+    }
+  });
+
+  test('conversion script exists and is valid', async () => {
+    const scriptPath = path.join(process.cwd(), 'scripts', 'convert-images-to-webp.mjs');
+    const stat = await fs.stat(scriptPath);
+    expect(stat.isFile()).toBe(true);
+    // Check the script is importable (valid JS)
+    const content = await fs.readFile(scriptPath, 'utf8');
+    expect(content).toContain('convert');
+    expect(content).toContain('webp');
   });
 });

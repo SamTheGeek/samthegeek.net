@@ -5,6 +5,7 @@ interface Props {
   title: string;
   images: Array<{
     src: string;
+    webpSrc?: string;
     alt: string;
     exif?: {
       date?: string;
@@ -28,21 +29,27 @@ const { title, images } = Astro.props;
   <div class="gallery-grid">
     {images.map((image) => (
       <div class="gallery-item">
-        <img
-          src={image.src}
-          alt={image.alt}
-          loading="lazy"
-          data-exif-date={image.exif?.date}
-          data-exif-camera={image.exif?.camera}
-          data-exif-lens={image.exif?.lens}
-          data-exif-focal-length={image.exif?.focalLength}
-          data-exif-aperture={image.exif?.aperture}
-          data-exif-shutter-speed={image.exif?.shutterSpeed}
-          data-exif-iso={image.exif?.iso}
-          data-exif-latitude={image.exif?.latitude}
-          data-exif-longitude={image.exif?.longitude}
-          data-exif-location={image.exif?.location}
-        />
+        <picture>
+          {image.webpSrc && (
+            <source srcset={image.webpSrc} type="image/webp" />
+          )}
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            data-webp-src={image.webpSrc}
+            data-exif-date={image.exif?.date}
+            data-exif-camera={image.exif?.camera}
+            data-exif-lens={image.exif?.lens}
+            data-exif-focal-length={image.exif?.focalLength}
+            data-exif-aperture={image.exif?.aperture}
+            data-exif-shutter-speed={image.exif?.shutterSpeed}
+            data-exif-iso={image.exif?.iso}
+            data-exif-latitude={image.exif?.latitude}
+            data-exif-longitude={image.exif?.longitude}
+            data-exif-location={image.exif?.location}
+          />
+        </picture>
       </div>
     ))}
   </div>
