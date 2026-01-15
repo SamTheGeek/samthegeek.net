@@ -6,6 +6,8 @@ interface Props {
   images: Array<{
     src: string;
     webpSrc?: string;
+    width?: number;
+    height?: number;
     alt: string;
     exif?: {
       date?: string;
@@ -27,123 +29,163 @@ const { title, images } = Astro.props;
 
 <div class="gallery-page">
   <div class="gallery-grid">
-    {images.map((image) => (
-      <div class="gallery-item">
-        <picture>
-          {image.webpSrc && (
-            <source srcset={image.webpSrc} type="image/webp" />
-          )}
-          <img
-            src={image.src}
-            alt={image.alt}
-            loading="lazy"
-            data-webp-src={image.webpSrc}
-            data-exif-date={image.exif?.date}
-            data-exif-camera={image.exif?.camera}
-            data-exif-lens={image.exif?.lens}
-            data-exif-focal-length={image.exif?.focalLength}
-            data-exif-aperture={image.exif?.aperture}
-            data-exif-shutter-speed={image.exif?.shutterSpeed}
-            data-exif-iso={image.exif?.iso}
-            data-exif-latitude={image.exif?.latitude}
-            data-exif-longitude={image.exif?.longitude}
-            data-exif-location={image.exif?.location}
-          />
-        </picture>
-      </div>
-    ))}
+    {images.map((image, index) => {
+      // First 6 images are likely above the fold - prioritize them
+      const isAboveFold = index < 6;
+      return (
+        <div class="gallery-item">
+          <picture>
+            {image.webpSrc && (
+              <source srcset={image.webpSrc} type="image/webp" />
+            )}
+            <img
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              loading={isAboveFold ? "eager" : "lazy"}
+              decoding={isAboveFold ? "sync" : "async"}
+              fetchpriority={index === 0 ? "high" : undefined}
+              style={image.width && image.height ? `aspect-ratio: ${image.width} / ${image.height}` : undefined}
+              data-webp-src={image.webpSrc}
+              data-exif-date={image.exif?.date}
+              data-exif-camera={image.exif?.camera}
+              data-exif-lens={image.exif?.lens}
+              data-exif-focal-length={image.exif?.focalLength}
+              data-exif-aperture={image.exif?.aperture}
+              data-exif-shutter-speed={image.exif?.shutterSpeed}
+              data-exif-iso={image.exif?.iso}
+              data-exif-latitude={image.exif?.latitude}
+              data-exif-longitude={image.exif?.longitude}
+              data-exif-location={image.exif?.location}
+            />
+          </picture>
+        </div>
+      );
+    })}
   </div>
 </div>
 
 <Lightbox />
 
 <script is:inline>
-  const galleryGrid = document.querySelector('.gallery-grid');
-  const galleryItems = galleryGrid ? Array.from(galleryGrid.querySelectorAll('.gallery-item')) : [];
+  // Optimized gallery layout script - reduces layout thrashing
+  (function() {
+    const galleryGrid = document.querySelector('.gallery-grid');
+    if (!galleryGrid) return;
 
-  function classifyAspect(item) {
-    const img = item.querySelector('img');
-    if (!img || !img.naturalWidth || !img.naturalHeight) return;
-    const ratio = img.naturalHeight / img.naturalWidth;
-    if (ratio > 16 / 9) {
-      item.dataset.aspect = 'tall';
-    } else if (ratio < 9 / 16) {
-      item.dataset.aspect = 'wide';
-    } else {
-      item.dataset.aspect = 'normal';
-    }
-  }
+    const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+    if (galleryItems.length === 0) return;
 
-  function getColumnCount() {
-    if (!galleryGrid) return 1;
-    const style = window.getComputedStyle(galleryGrid);
-    const count = Number.parseInt(style.columnCount, 10);
-    return Number.isNaN(count) ? 1 : Math.max(1, count);
-  }
+    let reorderPending = false;
+    let resizeTimeout = null;
 
-  function findFirstRowItems(items) {
-    const positions = items.map((item) => ({ item, top: item.getBoundingClientRect().top }));
-    const minTop = Math.min(...positions.map((pos) => pos.top));
-    const threshold = minTop + 4;
-    return positions.filter((pos) => pos.top <= threshold).map((pos) => pos.item);
-  }
-
-  function reorderItems() {
-    if (!galleryGrid || galleryItems.length === 0) return;
-    const ordered = [...galleryItems];
-    const maxPasses = Math.min(5, ordered.length);
-    let pass = 0;
-
-    while (pass < maxPasses) {
-      ordered.forEach((item) => galleryGrid.appendChild(item));
-      const firstRow = findFirstRowItems(ordered);
-      let swapped = false;
-
-      for (const rowItem of firstRow) {
-        const aspect = rowItem.dataset.aspect;
-        if (aspect === 'tall' || aspect === 'wide') {
-          const swapIndex = ordered.findIndex(
-            (candidate, index) =>
-              index > ordered.indexOf(rowItem) && candidate.dataset.aspect === 'normal'
-          );
-          if (swapIndex !== -1) {
-            const rowIndex = ordered.indexOf(rowItem);
-            const tmp = ordered[rowIndex];
-            ordered[rowIndex] = ordered[swapIndex];
-            ordered[swapIndex] = tmp;
-            swapped = true;
-          }
-        }
-      }
-
-      if (!swapped) break;
-      pass += 1;
-    }
-
-    ordered.forEach((item) => galleryGrid.appendChild(item));
-  }
-
-  function initOrdering() {
-    if (!galleryGrid || galleryItems.length === 0) return;
-    galleryItems.forEach((item) => {
+    // Classify aspect ratio from image dimensions (no layout read needed if dimensions available)
+    function classifyAspect(item) {
       const img = item.querySelector('img');
       if (!img) return;
-      if (img.complete) {
-        classifyAspect(item);
-      } else {
-        img.addEventListener('load', () => {
-          classifyAspect(item);
-          reorderItems();
-        }, { once: true });
-      }
-    });
-    reorderItems();
-  }
 
-  initOrdering();
-  window.addEventListener('resize', () => {
-    window.requestAnimationFrame(reorderItems);
-  });
+      // Try to get dimensions from attributes first (no layout read)
+      let width = img.width || img.naturalWidth;
+      let height = img.height || img.naturalHeight;
+
+      if (!width || !height) return;
+
+      const ratio = height / width;
+      if (ratio > 16 / 9) {
+        item.dataset.aspect = 'tall';
+      } else if (ratio < 9 / 16) {
+        item.dataset.aspect = 'wide';
+      } else {
+        item.dataset.aspect = 'normal';
+      }
+    }
+
+    // Batch DOM operations using DocumentFragment
+    function reorderItems() {
+      if (reorderPending) return;
+      reorderPending = true;
+
+      requestAnimationFrame(() => {
+        reorderPending = false;
+
+        // Read phase: batch all layout reads first
+        const positions = galleryItems.map((item) => ({
+          item,
+          top: item.getBoundingClientRect().top
+        }));
+
+        // Calculate first row items
+        const minTop = Math.min(...positions.map((pos) => pos.top));
+        const threshold = minTop + 4;
+        const firstRowItems = positions
+          .filter((pos) => pos.top <= threshold)
+          .map((pos) => pos.item);
+
+        // Build optimized order
+        const ordered = [...galleryItems];
+        let changed = false;
+
+        for (const rowItem of firstRowItems) {
+          const aspect = rowItem.dataset.aspect;
+          if (aspect === 'tall' || aspect === 'wide') {
+            const rowIndex = ordered.indexOf(rowItem);
+            const swapIndex = ordered.findIndex(
+              (candidate, index) => index > rowIndex && candidate.dataset.aspect === 'normal'
+            );
+            if (swapIndex !== -1) {
+              [ordered[rowIndex], ordered[swapIndex]] = [ordered[swapIndex], ordered[rowIndex]];
+              changed = true;
+            }
+          }
+        }
+
+        // Write phase: batch all DOM writes
+        if (changed) {
+          const fragment = document.createDocumentFragment();
+          ordered.forEach((item) => fragment.appendChild(item));
+          galleryGrid.appendChild(fragment);
+        }
+      });
+    }
+
+    // Initialize: classify all images
+    function init() {
+      let pendingLoads = 0;
+
+      galleryItems.forEach((item) => {
+        const img = item.querySelector('img');
+        if (!img) return;
+
+        if (img.complete && (img.naturalWidth || img.width)) {
+          classifyAspect(item);
+        } else {
+          pendingLoads++;
+          img.addEventListener('load', () => {
+            classifyAspect(item);
+            pendingLoads--;
+            // Only reorder once when all images loaded
+            if (pendingLoads === 0) {
+              reorderItems();
+            }
+          }, { once: true });
+        }
+      });
+
+      // Initial reorder if images already loaded
+      if (pendingLoads === 0) {
+        reorderItems();
+      }
+    }
+
+    // Debounced resize handler
+    window.addEventListener('resize', () => {
+      if (resizeTimeout) clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(reorderItems, 150);
+    });
+
+    init();
+  })();
 </script>
 
 <style>

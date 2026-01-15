@@ -633,11 +633,27 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
         }
       }
 
+      // Get image dimensions for CLS prevention
+      let width, height;
+      try {
+        const metadata = await sharp(imagePath).metadata();
+        width = metadata.width;
+        height = metadata.height;
+      } catch (err) {
+        console.log(`    Warning: Could not get dimensions for ${imageFile}`);
+      }
+
       // Build image entry
       const imageEntry = {
         src: imageSrc,
         alt: `${galleryData.title} photo`,
       };
+
+      // Add dimensions if available (critical for CLS)
+      if (width && height) {
+        imageEntry.width = width;
+        imageEntry.height = height;
+      }
 
       // Add webpSrc if WebP exists
       const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp');
