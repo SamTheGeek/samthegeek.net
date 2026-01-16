@@ -77,45 +77,85 @@ Troubleshooting: if the static map image returns 403 but the URL works in a new 
 ## 🧰 Scripts
 
 Scripts live in the `scripts/` directory. See `Docs/DOWNLOAD_IMAGES_README.md` for image-related workflows.
+
+### Image Processing (Node.js - Recommended)
+- `scripts/process-gallery-images.mjs` - **Main image processing script**: converts to WebP, extracts EXIF metadata, registers images in gallery JSON, creates new galleries automatically. Used by GitHub Actions workflows.
+
+### Legacy Python Scripts
 Gallery scripts auto-bootstrap `exifread` in a local `.venv` and read `.env` for `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`.
 
 - `scripts/download_gallery_images.py` - Download gallery images from `ALL_GALLERY_URLS.txt` into `public/images/<gallery>/`.
 - `scripts/import_live_content.py` - Import live blog posts + About content, and regenerate blog redirects.
 - `scripts/rename_existing_gallery_images.py` - Rename all existing gallery images using EXIF data + optional Google Maps geocoding.
 - `scripts/rename_new_gallery_images.py` - Import/rename a new batch of images into an existing or new gallery.
+- `scripts/extract_gallery_exif.py` - Extract EXIF metadata into gallery JSON files.
+
+### Build Scripts
 - `scripts/generate-latest-redirect.mjs` - Generate `public/_redirects` so `/` routes to the newest gallery.
 - `scripts/verify-build-artifacts.mjs` - Ensure docs/scripts never ship in the production build output.
 
 ## 📸 Importing New Photos
 
-Use the rename/import workflow to add new images to an existing or new gallery.
+### Automated Workflow (Recommended)
 
-Requirements:
+The easiest way to add photos is via GitHub Actions:
+
+1. **Add photos** to `public/images/<gallery-name>/` (create folder if new gallery)
+2. **Commit and push** to a branch, then merge to `main`
+3. **GitHub Actions automatically**:
+   - Converts images to WebP format (with JPEG fallback)
+   - Extracts EXIF metadata (camera, lens, settings, GPS)
+   - Reverse geocodes GPS to city names
+   - Registers images in gallery JSON
+   - Creates gallery page if folder is new
+   - Opens a PR with all processed files
+
+### Manual Processing
+
+Run the image processor locally:
+
 ```bash
-pip install exifread
-export PUBLIC_GOOGLE_MAPS_EMBED_API_KEY="your_key_here" # optional for city lookup
+# Process all galleries
+node scripts/process-gallery-images.mjs
+
+# Process specific gallery
+node scripts/process-gallery-images.mjs --gallery japan
+
+# Options
+node scripts/process-gallery-images.mjs --help
 ```
 
-If your system Python blocks global installs, use a virtual env first:
+Options:
+- `--gallery <name>` - Process only a specific gallery
+- `--force` - Re-process images even if already in JSON
+- `--quality <n>` - WebP quality (1-100, default: 80)
+- `--skip-webp` - Skip WebP conversion (metadata only)
+- `--skip-geocode` - Skip reverse geocoding
+- `--dry-run` - Show what would be done
+
+### Manual GitHub Workflow
+
+Trigger the "Process All Gallery Images" workflow from GitHub Actions UI with options:
+- Quality setting
+- Force re-processing
+- Gallery filter
+- Skip WebP/geocoding options
+
+### Legacy Python Workflow
+
+For manual control, use the Python scripts:
+
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-Tip: the scripts will auto-create `.venv` and install `exifread` if missing.
-
-API key setup:
-- Put a dev/testing Google Maps key in `.env` at the repo root as `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY=...`.
-- Keep production keys separate; this key is used by the lightbox and the Python scripts.
-
-Workflow:
-```bash
+pip install exifread  # or let scripts auto-install
 python3 scripts/rename_new_gallery_images.py
 python3 scripts/extract_gallery_exif.py <gallery-slug>
 ```
 
-This will move images into `public/images/<gallery>/`, update `src/content/galleries/<gallery>.json`,
-and refresh EXIF metadata for the lightbox info panel.
+### API Keys
+
+For reverse geocoding (GPS → city names):
+- Set `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY` in `.env` or GitHub Secrets
+- Falls back to OpenStreetMap Nominatim if no key provided
 
 ## 🌐 Deployment
 

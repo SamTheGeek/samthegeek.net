@@ -1,0 +1,123 @@
+name: Process New Photos
+
+# This workflow runs when a PR with new photos is merged to main.
+# It processes new JPEG images: converts to WebP, extracts EXIF metadata,
+# registers them in gallery JSON, and creates new galleries if needed.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'public/images/**/*.jpg'
+      - 'public/images/**/*.jpeg'
+      - 'public/images/**/*.JPG'
+      - 'public/images/**/*.JPEG'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  process-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check for new images
+        id: check-images
+        run: |
+          # Get list of changed files in the last commit
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'public/images/**' | grep -iE '\.(jpg|jpeg)$' || true)
+          if [ -z "$CHANGED" ]; then
+            echo "No new JPEG images found"
+            echo "has_images=false" >> $GITHUB_OUTPUT
+          else
+            echo "Found new images:"
+            echo "$CHANGED"
+            echo "has_images=true" >> $GITHUB_OUTPUT
+            # Store the list of galleries that have new images
+            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ',' | sed 's/,$//')
+            echo "galleries=$GALLERIES" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.check-images.outputs.has_images == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.check-images.outputs.has_images == 'true'
+        run: npm ci
+
+      - name: Install image processing dependencies
+        if: steps.check-images.outputs.has_images == 'true'
+        run: npm install sharp exifr --save-dev
+
+      - name: Process gallery images
+        if: steps.check-images.outputs.has_images == 'true'
+        env:
+          PUBLIC_GOOGLE_MAPS_EMBED_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        run: node scripts/process-gallery-images.mjs
+
+      - name: Check for changes
+        if: steps.check-images.outputs.has_images == 'true'
+        id: check-changes
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            # Count changes
+            WEBP_COUNT=$(git status --porcelain | grep -E '\.webp$' | wc -l || echo 0)
+            JSON_COUNT=$(git status --porcelain | grep -E '\.json$' | wc -l || echo 0)
+            PAGE_COUNT=$(git status --porcelain | grep -E '\.astro$' | wc -l || echo 0)
+            MD_COUNT=$(git status --porcelain | grep -E '\.md$' | wc -l || echo 0)
+            echo "WebP files: $WEBP_COUNT"
+            echo "JSON files: $JSON_COUNT"
+            echo "Page files: $PAGE_COUNT"
+            echo "MD files: $MD_COUNT"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "webp_count=$WEBP_COUNT" >> $GITHUB_OUTPUT
+            echo "json_count=$JSON_COUNT" >> $GITHUB_OUTPUT
+            echo "page_count=$PAGE_COUNT" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.check-images.outputs.has_images == 'true' && steps.check-changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore: process new gallery images'
+          title: 'chore: Process new gallery images'
+          body: |
+            ## Summary
+            This PR processes newly added gallery images.
+
+            **Galleries processed:** ${{ steps.check-images.outputs.galleries }}
+
+            ## Changes
+            - **${{ steps.check-changes.outputs.webp_count }}** WebP images created
+            - **${{ steps.check-changes.outputs.json_count }}** gallery JSON files updated
+            - **${{ steps.check-changes.outputs.page_count }}** gallery pages created (if new galleries)
+
+            ### What was done:
+            - Converted JPEG images to WebP format for faster loading
+            - Extracted EXIF metadata (camera, lens, settings, GPS)
+            - Registered images in gallery JSON files
+            - Created gallery pages for any new gallery folders
+            - Performed reverse geocoding for location names (if GPS data available)
+
+            ## Test plan
+            - [ ] Verify WebP images load correctly on the site
+            - [ ] Verify JPEG fallback works in older browsers
+            - [ ] Check that EXIF metadata displays correctly in lightbox
+            - [ ] Verify any new gallery pages render correctly
+          branch: auto/process-photos
+          delete-branch: true
+          labels: automerge
