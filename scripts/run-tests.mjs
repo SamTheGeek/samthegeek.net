@@ -173,9 +173,19 @@ const testBlogIdsUnique = async () => {
 
 const testPerformanceHints = async () => {
   const gallery = await readText('src/components/Gallery.astro');
+  // Check for lazy loading - either literal or conditional expression
+  const hasLazyLoading =
+    gallery.includes('loading="lazy"') ||
+    gallery.includes("loading='lazy'") ||
+    gallery.includes('loading={') && gallery.includes('"lazy"');
   assert(
-    gallery.includes('loading="lazy"'),
-    'Gallery images should opt into lazy loading.'
+    hasLazyLoading,
+    'Gallery images should opt into lazy loading (literal or conditional).'
+  );
+  // Check for performance optimizations
+  assert(
+    gallery.includes('width=') && gallery.includes('height='),
+    'Gallery images should include width and height attributes for CLS.'
   );
 };
 

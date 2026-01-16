@@ -30,6 +30,9 @@ const galleries = defineCollection({
     description: z.string().optional(),
     images: z.array(z.object({
       src: z.string(),
+      webpSrc: z.string().optional(),
+      width: z.number().optional(),
+      height: z.number().optional(),
       alt: z.string(),
       exif: z.object({
         date: z.string().optional(),
