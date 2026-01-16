@@ -9,7 +9,7 @@ on:
       quality:
         description: 'WebP quality (1-100)'
         required: false
-        default: '80'
+        default: '100'
       force:
         description: 'Force re-processing of all images'
         required: false
