@@ -46,7 +46,9 @@ test.describe('Site behavior', () => {
     const filename = await loadFirstGalleryImage();
     await page.goto(`/copenhagen?photo=${encodeURIComponent(filename)}`);
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
-    await expect(page.locator('#lightbox-image')).toHaveAttribute('src', new RegExp(escapeRegExp(filename)));
+    // The lightbox may use either JPEG or WebP (via currentSrc), so match the base filename
+    const baseName = filename.replace(/\.(jpe?g|webp)$/i, '');
+    await expect(page.locator('#lightbox-image')).toHaveAttribute('src', new RegExp(escapeRegExp(baseName) + '\\.(jpe?g|webp)'));
   });
 
   test('about page stays centered on narrow screens', async ({ page }) => {
