@@ -14,7 +14,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.8"
+    "astro": "^5.16.10"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.0",
