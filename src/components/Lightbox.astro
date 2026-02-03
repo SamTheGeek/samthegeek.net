@@ -3,6 +3,7 @@
 ---
 
 <div id="lightbox" class="lightbox">
+  <div class="lightbox-overlay" aria-hidden="true"></div>
   <div class="lightbox-controls" role="group" aria-label="Lightbox controls">
     <div class="lightbox-controls-row">
       <button class="lightbox-info-toggle" type="button" aria-label="Show photo info" aria-pressed="false">
@@ -58,10 +59,11 @@
     display: flex;
     position: fixed;
     z-index: 9999;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
+    width: 100vw;
+    height: 100dvh;
     justify-content: center;
     align-items: center;
     opacity: 1;
@@ -82,21 +84,21 @@
     pointer-events: none;
   }
 
-  .lightbox::before {
-    content: '';
-    position: absolute;
+  .lightbox-overlay {
+    position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 50% 45%, rgba(35, 35, 35, 0.45) 0%, rgba(0, 0, 0, 0.86) 72%, rgba(0, 0, 0, 0.92) 100%);
+    background: rgba(0, 0, 0, 0.86);
     opacity: 0;
     transition: opacity var(--fade-duration) ease;
+    z-index: 0;
   }
 
-  .lightbox.active::before {
+  .lightbox.active .lightbox-overlay {
     opacity: 1;
     transition-delay: var(--fade-delay-open);
   }
 
-  .lightbox.is-closing::before {
+  .lightbox.is-closing .lightbox-overlay {
     opacity: 0;
     transition-delay: 0s;
   }
