@@ -9,6 +9,7 @@ This file is the single source of truth for current status, progress, and next t
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 - Galleries: all images downloaded locally; see the gallery status list below.
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
+- Safari 26 theme-color workaround + lightbox rounded-corner dimming fix implemented (pending verification).
 
 ## Pending Tasks (Priority Order)
 

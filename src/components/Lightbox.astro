@@ -1001,6 +1001,8 @@
     function lockScroll() {
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       bodyPaddingRight = document.body.style.paddingRight || '';
+      document.documentElement.classList.add('lightbox-open');
+      document.body.classList.add('lightbox-open');
       document.body.style.overflow = 'hidden';
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -1008,6 +1010,8 @@
     }
 
     function unlockScroll() {
+      document.documentElement.classList.remove('lightbox-open');
+      document.body.classList.remove('lightbox-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = bodyPaddingRight;
       bodyPaddingRight = '';
