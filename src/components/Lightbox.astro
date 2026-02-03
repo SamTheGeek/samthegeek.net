@@ -67,8 +67,8 @@
     opacity: 1;
     visibility: hidden;
     pointer-events: none;
-    --zoom-duration: 900ms;
-    --fade-duration: 765ms;
+    --zoom-duration: 400ms;
+    --fade-duration: 340ms;
     --fade-delay-open: calc(var(--zoom-duration) - var(--fade-duration));
   }
 
@@ -132,7 +132,7 @@
   }
 
   .lightbox-image.is-loading {
-    animation: lightbox-pulse 0.9s ease-in-out infinite;
+    animation: lightbox-pulse 0.6s ease-in-out infinite;
   }
 
   @keyframes lightbox-pulse {
@@ -444,6 +444,11 @@
 
 
   @media (max-width: 768px) {
+    .lightbox {
+      --zoom-duration: 300ms;
+      --fade-duration: 250ms;
+    }
+
     .lightbox-controls {
       top: 10px;
       right: 10px;
@@ -487,8 +492,8 @@
     const infoBox = document.getElementById('lightbox-info');
     const controls = document.querySelector('.lightbox-controls');
     const lightboxContent = document.querySelector('.lightbox-content');
-    const zoomDurationMs = 900;
-    const openDelayMs = 60;
+    const zoomDurationMs = 400;
+    const openDelayMs = 0;
     let imageResizeObserver: ResizeObserver | null = null;
     let loadToken = 0;
     let activeImage: HTMLImageElement | null = null;
@@ -795,8 +800,6 @@
     function scheduleInfoWidthUpdates() {
       updateInfoWidth();
       requestAnimationFrame(updateInfoWidth);
-      setTimeout(updateInfoWidth, 120);
-      setTimeout(updateInfoWidth, 300);
       if (lightboxImage?.decode) {
         lightboxImage.decode().then(updateInfoWidth).catch(() => undefined);
       }
