@@ -38,10 +38,15 @@ jobs:
           else
             echo "Found new images:"
             echo "$CHANGED"
-            echo "has_images=true" >> $GITHUB_OUTPUT
-            # Store the list of galleries that have new images
-            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ',' | sed 's/,$//')
-            echo "galleries=$GALLERIES" >> $GITHUB_OUTPUT
+            # Store only valid gallery folders (exclude non-gallery image folders)
+            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | grep -Ev '^(about|blog)$' | tr '\n' ',' | sed 's/,$//')
+            if [ -z "$GALLERIES" ]; then
+              echo "No gallery folders changed (only excluded folders like about/blog)"
+              echo "has_images=false" >> $GITHUB_OUTPUT
+            else
+              echo "has_images=true" >> $GITHUB_OUTPUT
+              echo "galleries=$GALLERIES" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Setup Node.js
