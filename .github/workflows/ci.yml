@@ -13,6 +13,7 @@ on:
       - '**/*.webp'
       - 'src/content/galleries/**/*.json'
       - 'src/content/galleries/**'
+      - 'scripts/**'
       - 'Docs/**'
       - 'README.md'
       - 'STATUS.md'
@@ -37,8 +38,16 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci
 
+      - name: Cache Playwright browser binaries
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
       - name: Install Playwright Chromium browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
 
       - name: Build site and run static checks
         run: npm run build
