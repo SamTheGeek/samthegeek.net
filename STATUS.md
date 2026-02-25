@@ -6,7 +6,8 @@ This file is the single source of truth for current status, progress, and next t
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
-- CI Playwright workflow now skips docs/workflow/photo-only PRs, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.
+- CI Playwright workflow now skips docs/workflow/photo-only PRs and `scripts/**` changes, caches Playwright browser binaries, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.
+- Added a repo-managed CodeQL workflow scoped to JavaScript/TypeScript and only relevant source/config path changes.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 - Galleries: all images downloaded locally; see the gallery status list below.
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
