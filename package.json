@@ -9,9 +9,10 @@
     "preview": "astro preview",
     "test": "node scripts/run-tests.mjs",
     "test:e2e": "npm run build && npx playwright test",
-    "postinstall": "npx playwright install",
+    "postinstall": "npx playwright install chromium",
     "setup": "bash scripts/setup_repo.sh",
-    "astro": "astro"
+    "astro": "astro",
+    "test:e2e:ci": "npx playwright test --project=chromium --reporter=line"
   },
   "dependencies": {
     "astro": "^5.17.3"
