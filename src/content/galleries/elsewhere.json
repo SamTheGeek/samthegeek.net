@@ -6,39 +6,57 @@
   "images": [
     {
       "src": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1666
     },
     {
       "src": "/images/elsewhere/DSCF0716.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1666
     },
     {
       "src": "/images/elsewhere/DSCF0717.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 1666,
+      "height": 2500
     },
     {
       "src": "/images/elsewhere/DSCF3417.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1666
     },
     {
       "src": "/images/elsewhere/DSCF4066.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/elsewhere/DSCF4495.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/elsewhere/DSCF4831.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/elsewhere/DSCF4892.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/elsewhere/IMG_5530-1.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 2500,
+      "height": 1666
     }
   ]
 }

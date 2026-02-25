@@ -6,55 +6,81 @@
   "images": [
     {
       "src": "/images/canada/DSCF1829.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF1879.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF1883.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF1893.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF1902.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF1993.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 3750
     },
     {
       "src": "/images/canada/DSCF2042.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF2073.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF2112.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF2133.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/DSCF2158.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 563
     },
     {
       "src": "/images/canada/DSCF2207.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1667
     },
     {
       "src": "/images/canada/IMG_2664.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 2500,
+      "height": 1875
     }
   ]
 }

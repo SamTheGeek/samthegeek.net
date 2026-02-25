@@ -19,7 +19,9 @@
         "longitude": 12.555869444444445,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5424.webp"
+      "webpSrc": "/images/copenhagen/DSCF5424.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF5450.jpeg",
@@ -36,7 +38,9 @@
         "longitude": 12.597922222222223,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5450.webp"
+      "webpSrc": "/images/copenhagen/DSCF5450.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF5515.jpeg",
@@ -53,7 +57,9 @@
         "longitude": 12.595255555555557,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5515.webp"
+      "webpSrc": "/images/copenhagen/DSCF5515.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF5516.jpeg",
@@ -70,7 +76,9 @@
         "longitude": 12.595080555555557,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5516.webp"
+      "webpSrc": "/images/copenhagen/DSCF5516.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5526.jpeg",
@@ -87,7 +95,9 @@
         "longitude": 12.594786111111112,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5526.webp"
+      "webpSrc": "/images/copenhagen/DSCF5526.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF5545.jpeg",
@@ -103,7 +113,9 @@
         "latitude": 55.76356944444444,
         "longitude": 12.599091666666668
       },
-      "webpSrc": "/images/copenhagen/DSCF5545.webp"
+      "webpSrc": "/images/copenhagen/DSCF5545.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5552.jpeg",
@@ -120,7 +132,9 @@
         "longitude": 12.566575,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5552.webp"
+      "webpSrc": "/images/copenhagen/DSCF5552.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF5562.jpeg",
@@ -137,7 +151,9 @@
         "longitude": 12.573625,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5562.webp"
+      "webpSrc": "/images/copenhagen/DSCF5562.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF5608.jpeg",
@@ -154,7 +170,9 @@
         "longitude": 12.613816666666667,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5608.webp"
+      "webpSrc": "/images/copenhagen/DSCF5608.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5629.jpeg",
@@ -171,7 +189,9 @@
         "longitude": 12.613655555555555,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5629.webp"
+      "webpSrc": "/images/copenhagen/DSCF5629.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5652.jpeg",
@@ -188,7 +208,9 @@
         "longitude": 12.613577777777778,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5652.webp"
+      "webpSrc": "/images/copenhagen/DSCF5652.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5678.jpeg",
@@ -199,12 +221,14 @@
         "lens": "XF18-55mmF2.8-4 R LM OIS",
         "focalLength": "18mm",
         "aperture": "f/2.8",
-        "shutterSpeed": "10/23s",
+        "shutterSpeed": "1/2s",
         "iso": "ISO 800",
         "latitude": 55.96851111111111,
         "longitude": 12.54353888888889
       },
-      "webpSrc": "/images/copenhagen/DSCF5678.webp"
+      "webpSrc": "/images/copenhagen/DSCF5678.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5760.jpeg",
@@ -220,7 +244,9 @@
         "latitude": 56.03961666666667,
         "longitude": 12.618352777777778
       },
-      "webpSrc": "/images/copenhagen/DSCF5760.webp"
+      "webpSrc": "/images/copenhagen/DSCF5760.webp",
+      "width": 1165,
+      "height": 4549
     },
     {
       "src": "/images/copenhagen/DSCF5771.jpeg",
@@ -236,7 +262,9 @@
         "latitude": 56.034461111111106,
         "longitude": 12.632425000000001
       },
-      "webpSrc": "/images/copenhagen/DSCF5771.webp"
+      "webpSrc": "/images/copenhagen/DSCF5771.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5846.jpeg",
@@ -253,7 +281,9 @@
         "longitude": 12.603294444444444,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5846.webp"
+      "webpSrc": "/images/copenhagen/DSCF5846.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5861.jpeg",
@@ -270,7 +300,9 @@
         "longitude": 12.607474999999999,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5861.webp"
+      "webpSrc": "/images/copenhagen/DSCF5861.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5907.jpeg",
@@ -287,7 +319,9 @@
         "longitude": 12.589241666666668,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF5907.webp"
+      "webpSrc": "/images/copenhagen/DSCF5907.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5954.jpeg",
@@ -303,7 +337,9 @@
         "latitude": 55.66948333333333,
         "longitude": 12.52411388888889
       },
-      "webpSrc": "/images/copenhagen/DSCF5954.webp"
+      "webpSrc": "/images/copenhagen/DSCF5954.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF5996.jpeg",
@@ -319,7 +355,9 @@
         "latitude": 55.66948333333333,
         "longitude": 12.5241
       },
-      "webpSrc": "/images/copenhagen/DSCF5996.webp"
+      "webpSrc": "/images/copenhagen/DSCF5996.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF6025.jpeg",
@@ -335,7 +373,9 @@
         "latitude": 55.66948055555555,
         "longitude": 12.524080555555557
       },
-      "webpSrc": "/images/copenhagen/DSCF6025.webp"
+      "webpSrc": "/images/copenhagen/DSCF6025.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF6042.jpeg",
@@ -351,7 +391,9 @@
         "latitude": 55.66947777777778,
         "longitude": 12.524069444444445
       },
-      "webpSrc": "/images/copenhagen/DSCF6042.webp"
+      "webpSrc": "/images/copenhagen/DSCF6042.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF6134.jpeg",
@@ -368,7 +410,9 @@
         "longitude": 12.591177777777778,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6134.webp"
+      "webpSrc": "/images/copenhagen/DSCF6134.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6148.jpeg",
@@ -385,7 +429,9 @@
         "longitude": 12.593566666666668,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6148.webp"
+      "webpSrc": "/images/copenhagen/DSCF6148.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6164.jpeg",
@@ -402,7 +448,9 @@
         "longitude": 12.588897222222222,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6164.webp"
+      "webpSrc": "/images/copenhagen/DSCF6164.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6168.jpeg",
@@ -419,7 +467,9 @@
         "longitude": 12.588866666666668,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6168.webp"
+      "webpSrc": "/images/copenhagen/DSCF6168.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6211.jpeg",
@@ -436,7 +486,9 @@
         "longitude": 12.582061111111111,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6211.webp"
+      "webpSrc": "/images/copenhagen/DSCF6211.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF6218.jpeg",
@@ -453,7 +505,9 @@
         "longitude": 12.58028611111111,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6218.webp"
+      "webpSrc": "/images/copenhagen/DSCF6218.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6271.jpeg",
@@ -470,7 +524,9 @@
         "longitude": 12.541491666666667,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6271.webp"
+      "webpSrc": "/images/copenhagen/DSCF6271.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6275.jpeg",
@@ -487,7 +543,9 @@
         "longitude": 12.544213888888889,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6275.webp"
+      "webpSrc": "/images/copenhagen/DSCF6275.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/DSCF6283.jpeg",
@@ -504,7 +562,9 @@
         "longitude": 12.544141666666667,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6283.webp"
+      "webpSrc": "/images/copenhagen/DSCF6283.webp",
+      "width": 4000,
+      "height": 6000
     },
     {
       "src": "/images/copenhagen/DSCF6291.jpeg",
@@ -521,7 +581,9 @@
         "longitude": 12.544183333333333,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/DSCF6291.webp"
+      "webpSrc": "/images/copenhagen/DSCF6291.webp",
+      "width": 6000,
+      "height": 4000
     },
     {
       "src": "/images/copenhagen/IMG_2522.jpeg",
@@ -530,14 +592,16 @@
         "date": "2022:06:11 12:59:53",
         "camera": "Spectre",
         "lens": "iPhone 13 Pro back camera 5.7mm f/1.5",
-        "focalLength": "5.7mm",
+        "focalLength": "6mm",
         "aperture": "f/1.5",
         "shutterSpeed": "9.0s",
         "iso": "ISO 32",
         "latitude": 55.969969444444445,
         "longitude": 12.543097222222222
       },
-      "webpSrc": "/images/copenhagen/IMG_2522.webp"
+      "webpSrc": "/images/copenhagen/IMG_2522.webp",
+      "width": 3024,
+      "height": 4032
     },
     {
       "src": "/images/copenhagen/IMG_2577.jpeg",
@@ -546,14 +610,16 @@
         "date": "2022:06:12 16:37:09",
         "camera": "Apple iPhone 13 Pro",
         "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-        "focalLength": "5.7mm",
+        "focalLength": "6mm",
         "aperture": "f/1.5",
         "shutterSpeed": "1/17s",
         "iso": "ISO 3200",
         "latitude": 55.66947777777778,
         "longitude": 12.524055555555556
       },
-      "webpSrc": "/images/copenhagen/IMG_2577.webp"
+      "webpSrc": "/images/copenhagen/IMG_2577.webp",
+      "width": 3024,
+      "height": 4032
     },
     {
       "src": "/images/copenhagen/IMG_2607.jpeg",
@@ -562,7 +628,7 @@
         "date": "2022:06:13 19:25:55",
         "camera": "Apple iPhone 13 Pro",
         "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-        "focalLength": "5.7mm",
+        "focalLength": "6mm",
         "aperture": "f/1.5",
         "shutterSpeed": "1/100s",
         "iso": "ISO 64",
@@ -570,7 +636,9 @@
         "longitude": 12.558469444444444,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/IMG_2607.webp"
+      "webpSrc": "/images/copenhagen/IMG_2607.webp",
+      "width": 3024,
+      "height": 4032
     },
     {
       "src": "/images/copenhagen/IMG_2613.jpeg",
@@ -579,7 +647,7 @@
         "date": "2022:06:13 19:27:59",
         "camera": "Apple iPhone 13 Pro",
         "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-        "focalLength": "5.7mm",
+        "focalLength": "6mm",
         "aperture": "f/1.5",
         "shutterSpeed": "1/313s",
         "iso": "ISO 50",
@@ -587,7 +655,9 @@
         "longitude": 12.558552777777779,
         "location": "København"
       },
-      "webpSrc": "/images/copenhagen/IMG_2613.webp"
+      "webpSrc": "/images/copenhagen/IMG_2613.webp",
+      "width": 3024,
+      "height": 4032
     }
   ]
 }
