@@ -120,3 +120,5 @@ The project uses Astro's file-based routing system:
 - Image downloads use `ALL_GALLERY_URLS.txt` plus `scripts/download_gallery_images.py`.
 - Renaming/import scripts live in `scripts/rename_existing_gallery_images.py`, `scripts/rename_new_gallery_images.py`, and `scripts/import_live_content.py` (require `exifread` and optional `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`).
 - Gallery layout uses a masonry column layout in `src/components/Gallery.astro`.
+- After any change that impacts displayed metadata or metadata extraction, suggest running the `Update Photo Metadata` GitHub Actions workflow.
+- Keep `.github/workflows/update-photo-metadata.yml` aligned with metadata fields shown in the site and extraction logic in `scripts/process-gallery-images.mjs`.

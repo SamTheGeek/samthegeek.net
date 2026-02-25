@@ -9,6 +9,7 @@ This file is the single source of truth for current status, progress, and next t
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 - Galleries: all images downloaded locally; see the gallery status list below.
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
+- Added metadata refresh automation guidance: run the `Update Photo Metadata` workflow after metadata extraction/display changes.
 
 ## Pending Tasks (Priority Order)
 
