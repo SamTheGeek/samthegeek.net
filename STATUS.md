@@ -6,6 +6,8 @@ This file is the single source of truth for current status, progress, and next t
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
+- CI Playwright workflow now skips docs/workflow/photo-only PRs and `scripts/**` changes, caches Playwright browser binaries, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.
+- Added a repo-managed CodeQL workflow scoped to JavaScript/TypeScript and only relevant source/config path changes.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 - Galleries: all images downloaded locally; see the gallery status list below.
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
@@ -20,7 +22,7 @@ This file is the single source of truth for current status, progress, and next t
 3. Add a "Bicycling" information page adjacent to the "About" page
 4. Update the about page information, including a more-recent what I do and also listing the tools I used to make this website. I'd like to be cute and also include a list of things I did while the agent was running to create the site
 5. Investigate lightbox embedded map sizing on iPhone Pro screen sizes.
-6. Split the tests and make them skip when only changing markdown.
+6. Monitor CI runtime after Playwright slimming changes and decide whether to further trim browser test coverage.
 7. Smoothly animate on the width breakpoint for responsive design.
 8. Add smooth view transitions when opening blog posts. (Guideline: <https://developer.chrome.com/docs/web-platform/view-transitions/cross-document>)
 9. Go through all old blog posts and reformat them using modern markdown, fixing any markdown warnings.

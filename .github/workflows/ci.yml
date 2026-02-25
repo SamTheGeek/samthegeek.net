@@ -7,6 +7,18 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '.github/workflows/**'
+      - 'public/images/**'
+      - '**/*.webp'
+      - 'src/content/galleries/**/*.json'
+      - 'src/content/galleries/**'
+      - 'scripts/**'
+      - 'Docs/**'
+      - 'README.md'
+      - 'STATUS.md'
+      - 'AGENTS.md'
+      - 'AGENT_INSTRUCTIONS.md'
 
 jobs:
   build:
@@ -22,10 +34,33 @@ jobs:
           cache: npm
 
       - name: Install dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: Cache Playwright browser binaries
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
 
-      - name: Run Playwright tests
-        run: npm run test:e2e
+      - name: Install Playwright Chromium browser
+        run: npx playwright install chromium
+
+      - name: Build site and run static checks
+        run: npm run build
+
+      - name: Detect newly added blog posts
+        id: blog_changes
+        uses: tj-actions/changed-files@v47
+        with:
+          files: src/content/blog/**
+
+      - name: Run Playwright tests (core)
+        run: npm run test:e2e:ci -- --grep-invert "@blog"
+
+      - name: Run Playwright tests (blog content additions)
+        if: steps.blog_changes.outputs.any_added == 'true'
+        run: npm run test:e2e:ci -- --grep "@blog"

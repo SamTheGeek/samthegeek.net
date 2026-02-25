@@ -316,8 +316,12 @@ async function extractExifMetadata(sharp, imagePath) {
 
           // GPS coordinates
           if (parsed.GPSLatitude !== undefined && parsed.GPSLongitude !== undefined) {
-            result.latitude = parsed.GPSLatitude;
-            result.longitude = parsed.GPSLongitude;
+            const latitude = normalizeGpsCoordinate(parsed.GPSLatitude, parsed.GPSLatitudeRef);
+            const longitude = normalizeGpsCoordinate(parsed.GPSLongitude, parsed.GPSLongitudeRef);
+            if (latitude !== undefined && longitude !== undefined) {
+              result.latitude = latitude;
+              result.longitude = longitude;
+            }
           }
         }
       }
@@ -339,6 +343,60 @@ async function extractExifMetadata(sharp, imagePath) {
 function formatExifDate(date) {
   const pad = (n) => n.toString().padStart(2, '0');
   return `${date.getFullYear()}:${pad(date.getMonth() + 1)}:${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+
+/**
+ * Normalize EXIF GPS values to decimal degrees.
+ * Supports decimal numbers, numeric strings, DMS arrays, and rational objects.
+ */
+function normalizeGpsCoordinate(value, ref) {
+  const parseNumber = (input) => {
+    if (typeof input === 'number') {
+      return Number.isFinite(input) ? input : NaN;
+    }
+    if (typeof input === 'string') {
+      const parsed = Number.parseFloat(input.trim());
+      return Number.isFinite(parsed) ? parsed : NaN;
+    }
+    if (input && typeof input === 'object') {
+      const numerator = Number(input.numerator);
+      const denominator = Number(input.denominator);
+      if (Number.isFinite(numerator) && Number.isFinite(denominator) && denominator !== 0) {
+        return numerator / denominator;
+      }
+    }
+    return NaN;
+  };
+
+  let decimal;
+  if (Array.isArray(value)) {
+    const degrees = parseNumber(value[0]);
+    const minutes = parseNumber(value[1] ?? 0);
+    const seconds = parseNumber(value[2] ?? 0);
+    if (![degrees, minutes, seconds].every(Number.isFinite)) {
+      return undefined;
+    }
+    decimal = Math.abs(degrees) + (minutes / 60) + (seconds / 3600);
+    if (degrees < 0) {
+      decimal = -decimal;
+    }
+  } else {
+    decimal = parseNumber(value);
+    if (!Number.isFinite(decimal)) {
+      return undefined;
+    }
+  }
+
+  if (typeof ref === 'string') {
+    const upperRef = ref.toUpperCase();
+    if (upperRef === 'S' || upperRef === 'W') {
+      decimal = -Math.abs(decimal);
+    } else if (upperRef === 'N' || upperRef === 'E') {
+      decimal = Math.abs(decimal);
+    }
+  }
+
+  return Number.isFinite(decimal) ? decimal : undefined;
 }
 
 /**
@@ -374,7 +432,14 @@ async function importExifr() {
  * Reverse geocode coordinates to get city/location name
  */
 async function reverseGeocode(latitude, longitude, cache) {
-  const cacheKey = `${latitude.toFixed(4)},${longitude.toFixed(4)}`;
+  const normalizedLatitude = normalizeGpsCoordinate(latitude);
+  const normalizedLongitude = normalizeGpsCoordinate(longitude);
+
+  if (normalizedLatitude === undefined || normalizedLongitude === undefined) {
+    return null;
+  }
+
+  const cacheKey = `${normalizedLatitude.toFixed(4)},${normalizedLongitude.toFixed(4)}`;
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey);
   }
@@ -384,7 +449,7 @@ async function reverseGeocode(latitude, longitude, cache) {
 
   if (googleApiKey) {
     try {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApiKey}`;
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${normalizedLatitude},${normalizedLongitude}&key=${googleApiKey}`;
       const response = await fetch(url);
       const data = await response.json();
 
@@ -406,7 +471,7 @@ async function reverseGeocode(latitude, longitude, cache) {
 
   // Fallback to Nominatim (OpenStreetMap)
   try {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&zoom=10&addressdetails=1`;
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1`;
     const response = await fetch(url, {
       headers: { 'User-Agent': 'samthegeek-gallery-processor' }
     });
