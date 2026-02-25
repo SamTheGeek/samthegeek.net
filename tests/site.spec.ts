@@ -125,6 +125,13 @@ test.describe('Site behavior', () => {
     expect(results.violations).toEqual([]);
   });
 
+  test('blog index renders post links @blog', async ({ page }) => {
+    await page.goto('/blog');
+    const posts = page.locator('main a[href^="/blog/"]');
+    expect(await posts.count()).toBeGreaterThan(0);
+    await expect(posts.first()).toBeVisible();
+  });
+
   test('gallery images use picture elements', async ({ page }) => {
     await page.goto('/copenhagen');
     await page.setViewportSize({ width: 1280, height: 900 });

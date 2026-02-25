@@ -13,7 +13,11 @@ on:
       - '**/*.webp'
       - 'src/content/galleries/**/*.json'
       - 'src/content/galleries/**'
-      - '**/*.md'
+      - 'Docs/**'
+      - 'README.md'
+      - 'STATUS.md'
+      - 'AGENTS.md'
+      - 'AGENT_INSTRUCTIONS.md'
 
 jobs:
   build:
@@ -39,5 +43,15 @@ jobs:
       - name: Build site and run static checks
         run: npm run build
 
-      - name: Run Playwright tests
-        run: npm run test:e2e:ci
+      - name: Detect newly added blog posts
+        id: blog_changes
+        uses: tj-actions/changed-files@v47
+        with:
+          files: src/content/blog/**
+
+      - name: Run Playwright tests (core)
+        run: npm run test:e2e:ci -- --grep-invert "@blog"
+
+      - name: Run Playwright tests (blog content additions)
+        if: steps.blog_changes.outputs.any_added == 'true'
+        run: npm run test:e2e:ci -- --grep "@blog"
