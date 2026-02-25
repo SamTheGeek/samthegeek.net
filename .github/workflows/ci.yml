@@ -7,9 +7,16 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '.github/workflows/**'
+      - 'public/images/**'
+      - '**/*.webp'
+      - 'src/content/galleries/**/*.json'
+      - 'src/content/galleries/**'
+      - '**/*.md'
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,10 +29,15 @@ jobs:
           cache: npm
 
       - name: Install dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: Install Playwright Chromium browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Build site and run static checks
+        run: npm run build
 
       - name: Run Playwright tests
-        run: npm run test:e2e
+        run: npm run test:e2e:ci
