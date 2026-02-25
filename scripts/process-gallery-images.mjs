@@ -225,11 +225,6 @@ async function extractExifMetadata(sharp, imagePath) {
   try {
     const image = sharp(imagePath);
     const metadata = await image.metadata();
-    const exifData = metadata.exif;
-
-    if (!exifData) {
-      return null;
-    }
 
     // Parse EXIF buffer - sharp provides raw EXIF, we need to parse it
     // We'll use a simplified approach reading common tags
@@ -600,7 +595,15 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
 
     // Check if image is already registered
     const existingImage = existingImages.get(imageFile);
-    const needsRegistration = !existingImage || options.force;
+    const hasExistingExif = !!(existingImage?.exif && Object.keys(existingImage.exif).length > 0);
+    const missingLocationWithGps = !!(
+      existingImage?.exif &&
+      existingImage.exif.latitude !== undefined &&
+      existingImage.exif.longitude !== undefined &&
+      !existingImage.exif.location &&
+      !options.skipGeocode
+    );
+    const needsRegistration = !existingImage || options.force || !hasExistingExif || missingLocationWithGps;
     const needsWebP = !options.skipWebp && (options.force || !(await webpExists(imagePath)));
 
     // Convert to WebP if needed
@@ -625,7 +628,7 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
       const exif = await extractExifMetadata(sharp, imagePath);
 
       // Reverse geocode if we have coordinates and location isn't set
-      if (exif?.latitude && exif?.longitude && !exif.location && !options.skipGeocode) {
+      if (exif?.latitude !== undefined && exif?.longitude !== undefined && !exif.location && !options.skipGeocode) {
         const location = await reverseGeocode(exif.latitude, exif.longitude, geocodeCache);
         if (location) {
           exif.location = location;

@@ -110,6 +110,8 @@ The easiest way to add photos is via GitHub Actions:
    - Creates gallery page if folder is new
    - Opens a PR with all processed files
 
+If you change metadata extraction/display behavior, run the **Update Photo Metadata** workflow to refresh gallery JSON metadata.
+
 ### Manual Processing
 
 Run the image processor locally:
@@ -140,6 +142,8 @@ Trigger the "Process All Gallery Images" workflow from GitHub Actions UI with op
 - Force re-processing
 - Gallery filter
 - Skip WebP/geocoding options
+
+For metadata-only refreshes (no WebP updates), trigger **Update Photo Metadata**.
 
 ### Legacy Python Workflow
 

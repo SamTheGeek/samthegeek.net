@@ -64,7 +64,13 @@ jobs:
         env:
           PUBLIC_GOOGLE_MAPS_EMBED_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-        run: node scripts/process-gallery-images.mjs
+        run: |
+          IFS=',' read -ra GALLERY_ARRAY <<< "${{ steps.check-images.outputs.galleries }}"
+          for gallery in "${GALLERY_ARRAY[@]}"; do
+            [ -z "$gallery" ] && continue
+            echo "Processing gallery: $gallery"
+            node scripts/process-gallery-images.mjs --gallery "$gallery" --force
+          done
 
       - name: Check for changes
         if: steps.check-images.outputs.has_images == 'true'
