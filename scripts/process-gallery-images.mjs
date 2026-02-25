@@ -146,6 +146,12 @@ async function getGalleryDirs(specificGallery = null) {
     .map((e) => e.name);
 
   if (specificGallery) {
+    if (EXCLUDED_DIRS.includes(specificGallery)) {
+      throw new Error(
+        `Directory '${specificGallery}' is excluded from gallery processing (${EXCLUDED_DIRS.join(', ')})`
+      );
+    }
+
     if (!dirs.includes(specificGallery)) {
       // Check if the directory exists at all
       try {
