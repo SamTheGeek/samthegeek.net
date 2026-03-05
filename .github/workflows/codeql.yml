@@ -4,13 +4,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'astro.config.mjs'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig.json'
-      - '.github/workflows/codeql.yml'
 
 permissions:
   actions: read
@@ -18,13 +11,41 @@ permissions:
   security-events: write
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      relevant: ${{ steps.filter.outputs.any_changed }}
+    steps:
+      - name: Check for relevant changes
+        id: filter
+        uses: tj-actions/changed-files@v47
+        with:
+          files_ignore: |
+            .github/workflows/**
+            public/images/**
+            **/*.webp
+            src/content/galleries/**/*.json
+            src/content/galleries/**
+            scripts/**
+            Docs/**
+            README.md
+            STATUS.md
+            AGENTS.md
+            AGENT_INSTRUCTIONS.md
+
   analyze:
     name: Analyze (javascript-typescript)
+    needs: changes
+    if: needs.changes.outputs.relevant == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            src
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
@@ -36,3 +57,18 @@ jobs:
 
       - name: Analyze
         uses: github/codeql-action/analyze@v4
+
+  codeql-passed:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [analyze]
+    steps:
+      - name: Check analyze result
+        env:
+          ANALYZE_RESULT: ${{ needs.analyze.result }}
+        run: |
+          if [[ "$ANALYZE_RESULT" == "failure" || "$ANALYZE_RESULT" == "cancelled" ]]; then
+            echo "CodeQL analysis failed or was cancelled"
+            exit 1
+          fi
+          echo "CodeQL passed (analyze: $ANALYZE_RESULT)"
