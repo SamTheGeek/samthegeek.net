@@ -20,13 +20,18 @@ jobs:
         id: filter
         uses: tj-actions/changed-files@v47
         with:
-          files: |
-            src/**
-            astro.config.mjs
-            package.json
-            package-lock.json
-            tsconfig.json
-            .github/workflows/codeql.yml
+          files_ignore: |
+            .github/workflows/**
+            public/images/**
+            **/*.webp
+            src/content/galleries/**/*.json
+            src/content/galleries/**
+            scripts/**
+            Docs/**
+            README.md
+            STATUS.md
+            AGENTS.md
+            AGENT_INSTRUCTIONS.md
 
   analyze:
     name: Analyze (javascript-typescript)
@@ -37,6 +42,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            src
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4

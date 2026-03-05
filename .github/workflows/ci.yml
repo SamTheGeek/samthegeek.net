@@ -38,6 +38,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            src
 
       - name: Use Node.js
         uses: actions/setup-node@v6
