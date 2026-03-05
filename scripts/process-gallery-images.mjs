@@ -473,20 +473,25 @@ async function reverseGeocode(latitude, longitude, cache) {
     return null;
   }
 
-  try {
-    // Fetch local-language name and English name in parallel
-    const [localName, enName] = await Promise.all([
-      geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, null),
-      geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, 'en'),
-    ]);
+  const [localResult, enResult] = await Promise.allSettled([
+    geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, null),
+    geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, 'en'),
+  ]);
 
-    if (localName) {
-      const result = { local: localName, en: enName && enName !== localName ? enName : null };
-      cache.set(cacheKey, result);
-      return result;
-    }
-  } catch (error) {
-    console.log(`  Geocoding error (Google): ${error.message}`);
+  if (localResult.status === 'rejected') {
+    console.log(`  Geocoding error (Google): ${localResult.reason?.message}`);
+  }
+  if (enResult.status === 'rejected') {
+    console.log(`  Geocoding error (Google, en): ${enResult.reason?.message}`);
+  }
+
+  const localName = localResult.status === 'fulfilled' ? localResult.value : null;
+  const enName = enResult.status === 'fulfilled' ? enResult.value : null;
+
+  if (localName) {
+    const result = { local: localName, en: enName && enName !== localName ? enName : null };
+    cache.set(cacheKey, result);
+    return result;
   }
 
   cache.set(cacheKey, null);
