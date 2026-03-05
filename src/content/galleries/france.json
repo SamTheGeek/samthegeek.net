@@ -6,183 +6,855 @@
   "images": [
     {
       "src": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.webp",
+      "exif": {
+        "date": "2018:07:25 11:39:01",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 800",
+        "latitude": 48.63656844944445,
+        "longitude": -1.5118829927777777,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.webp",
+      "exif": {
+        "date": "2018:07:25 11:24:18",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "29mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 320",
+        "latitude": 48.63632947666667,
+        "longitude": -1.511919898888889,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.webp",
+      "exif": {
+        "date": "2018:07:21 22:10:49",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/38s",
+        "iso": "ISO 1600",
+        "latitude": 48.852026333611114,
+        "longitude": 2.356049169722222,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.webp",
+      "exif": {
+        "date": "2018:07:22 08:56:08",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 320",
+        "latitude": 48.877030446944445,
+        "longitude": 2.325927284444444,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.webp",
+      "exif": {
+        "date": "2018:07:21 19:07:38",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/140s",
+        "iso": "ISO 200",
+        "latitude": 48.85280070722222,
+        "longitude": 2.353985188888889,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.webp",
+      "exif": {
+        "date": "2018:07:21 12:59:26",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/2200s",
+        "iso": "ISO 200",
+        "latitude": 48.862932129722225,
+        "longitude": 2.3132693919444445,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.webp",
+      "exif": {
+        "date": "2018:07:21 12:45:06",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/3.6",
+        "shutterSpeed": "1/2400s",
+        "iso": "ISO 200",
+        "latitude": 48.872431892222224,
+        "longitude": 2.2990288175,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.webp",
+      "exif": {
+        "date": "2018:07:21 18:16:26",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/900s",
+        "iso": "ISO 200",
+        "latitude": 48.85115228,
+        "longitude": 2.35589955,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.webp",
+      "exif": {
+        "date": "2018:07:21 12:49:05",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "32mm",
+        "aperture": "f/3.6",
+        "shutterSpeed": "1/1800s",
+        "iso": "ISO 200",
+        "latitude": 48.86921006,
+        "longitude": 2.3089531730555555,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.webp",
+      "exif": {
+        "date": "2018:07:25 10:37:56",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "41mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/3500s",
+        "iso": "ISO 200",
+        "latitude": 48.63267929472222,
+        "longitude": -1.5093658305555555
+      }
     },
     {
       "src": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.webp",
+      "exif": {
+        "date": "2018:07:25 11:43:15",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/38s",
+        "iso": "ISO 1600",
+        "latitude": 48.63609328361111,
+        "longitude": -1.5112109388888888,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.webp",
+      "exif": {
+        "date": "2018:07:23 17:02:46",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "32mm",
+        "aperture": "f/3.6",
+        "shutterSpeed": "1/2500s",
+        "iso": "ISO 200",
+        "latitude": 49.35910140083333,
+        "longitude": -0.8547273763888888,
+        "location": "Colleville-sur-Mer"
+      }
     },
     {
       "src": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.webp",
+      "exif": {
+        "date": "2018:07:21 13:07:47",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "32mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/950s",
+        "iso": "ISO 200",
+        "latitude": 48.862600732222226,
+        "longitude": 2.2866409699999997,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.webp",
+      "exif": {
+        "date": "2018:07:21 20:43:57",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "28mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/2700s",
+        "iso": "ISO 200",
+        "latitude": 48.85829016666667,
+        "longitude": 2.2944364044444443,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.webp",
+      "exif": {
+        "date": "2018:07:25 11:33:35",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 48.636430415,
+        "longitude": -1.5113134533333332,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.webp",
+      "exif": {
+        "date": "2018:07:25 12:19:28",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/4400s",
+        "iso": "ISO 200",
+        "latitude": 48.634379718055555,
+        "longitude": -1.511319436111111
+      }
     },
     {
       "src": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.webp",
+      "exif": {
+        "date": "2018:07:22 22:27:30",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "36mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/14s",
+        "iso": "ISO 1600",
+        "latitude": 49.27522455555555,
+        "longitude": -0.7036354166666666,
+        "location": "Bayeux"
+      }
     },
     {
       "src": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.webp",
+      "exif": {
+        "date": "2018:07:25 17:26:49",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/950s",
+        "iso": "ISO 200",
+        "latitude": 48.662073256944446,
+        "longitude": -1.9927622483333334,
+        "location": "Saint-Malo"
+      }
     },
     {
       "src": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.webp",
+      "exif": {
+        "date": "2018:07:22 17:39:13",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "43mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/1300s",
+        "iso": "ISO 200",
+        "latitude": 49.274875003055556,
+        "longitude": -0.7005109019444444,
+        "location": "Bayeux"
+      }
     },
     {
       "src": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.webp",
+      "exif": {
+        "date": "2018:07:21 22:10:38",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/90s",
+        "iso": "ISO 1600",
+        "latitude": 48.85202170944444,
+        "longitude": 2.3560715883333336,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.webp",
+      "exif": {
+        "date": "2018:07:21 12:24:45",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "22mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/1800s",
+        "iso": "ISO 200",
+        "latitude": 48.86171346333334,
+        "longitude": 2.322231218333333,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.webp",
+      "exif": {
+        "date": "2018:07:21 13:16:43",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/3500s",
+        "iso": "ISO 200",
+        "latitude": 48.860711461111116,
+        "longitude": 2.2908213575,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.webp",
+      "exif": {
+        "date": "2018:07:21 22:09:50",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/15s",
+        "iso": "ISO 1600",
+        "latitude": 48.85206442222222,
+        "longitude": 2.355983721388889,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.webp",
+      "exif": {
+        "date": "2018:07:25 10:41:53",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/1800s",
+        "iso": "ISO 200",
+        "latitude": 48.63385127666667,
+        "longitude": -1.5108979966666667
+      }
     },
     {
       "src": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.webp",
+      "exif": {
+        "date": "2018:07:25 10:54:52",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/110s",
+        "iso": "ISO 200",
+        "latitude": 48.635516966944444,
+        "longitude": -1.509859471111111,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.webp",
+      "exif": {
+        "date": "2018:07:25 11:10:18",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/1900s",
+        "iso": "ISO 200",
+        "latitude": 48.635947424166666,
+        "longitude": -1.511224286388889,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.webp",
+      "exif": {
+        "date": "2018:07:21 18:21:51",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/3.6",
+        "shutterSpeed": "1/850s",
+        "iso": "ISO 200",
+        "latitude": 48.85242132944445,
+        "longitude": 2.354778317777778,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.webp",
+      "exif": {
+        "date": "2018:07:21 19:14:11",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/3200s",
+        "iso": "ISO 200",
+        "latitude": 48.85633379555556,
+        "longitude": 2.353494030277778,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.webp",
+      "exif": {
+        "date": "2018:07:22 22:30:14",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/40s",
+        "iso": "ISO 1600",
+        "latitude": 49.274942511666666,
+        "longitude": -0.702869985,
+        "location": "Bayeux"
+      }
     },
     {
       "src": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.webp",
+      "exif": {
+        "date": "2018:07:24 09:46:32",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/1700s",
+        "iso": "ISO 200",
+        "latitude": 49.34341516666667,
+        "longitude": -0.6956369047222223,
+        "location": "Longues-sur-Mer"
+      }
     },
     {
       "src": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.webp",
+      "exif": {
+        "date": "2018:07:23 17:07:18",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "43mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/1100s",
+        "iso": "ISO 200",
+        "latitude": 49.35903272611111,
+        "longitude": -0.8547535913888888,
+        "location": "Colleville-sur-Mer"
+      }
     },
     {
       "src": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.webp",
+      "exif": {
+        "date": "2018:07:21 21:22:02",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/18",
+        "shutterSpeed": "1/52s",
+        "iso": "ISO 1600",
+        "latitude": 48.8580755125,
+        "longitude": 2.2928587269444445,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.webp",
+      "exif": {
+        "date": "2018:07:21 22:13:17",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/45s",
+        "iso": "ISO 1600",
+        "latitude": 48.85228687888889,
+        "longitude": 2.3555650780555557,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.webp",
+      "exif": {
+        "date": "2018:07:23 17:08:04",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/1900s",
+        "iso": "ISO 200",
+        "latitude": 49.35902111194444,
+        "longitude": -0.8547580247222222,
+        "location": "Colleville-sur-Mer"
+      }
     },
     {
       "src": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.webp",
+      "exif": {
+        "date": "2018:07:25 22:12:31",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 320",
+        "latitude": 48.65178803194444,
+        "longitude": -2.0208002008333334,
+        "location": "Saint-Malo"
+      }
     },
     {
       "src": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.webp",
+      "exif": {
+        "date": "2018:07:23 11:58:20",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/2200s",
+        "iso": "ISO 200",
+        "latitude": 49.39725955222222,
+        "longitude": -0.9893749705555555,
+        "location": "Cricqueville-en-Bessin"
+      }
     },
     {
       "src": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.webp",
+      "exif": {
+        "date": "2018:07:25 10:59:39",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/1900s",
+        "iso": "ISO 200",
+        "latitude": 48.6357294475,
+        "longitude": -1.5101227686111112,
+        "location": "Le Mont-Saint-Michel"
+      }
     },
     {
       "src": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.webp",
+      "exif": {
+        "date": "2018:07:21 22:09:49",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/15s",
+        "iso": "ISO 1600",
+        "latitude": 48.852066192500004,
+        "longitude": 2.355979915555556,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/DSCF8805.JPG",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DSCF8805.webp",
+      "exif": {
+        "date": "2018:07:22 00:03:27",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/45s",
+        "iso": "ISO 1600",
+        "latitude": 48.86710852777778,
+        "longitude": 2.321572472222222,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/DSCF9382.JPG",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DSCF9382.webp",
+      "exif": {
+        "date": "2018:07:28 12:42:27",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/550s",
+        "iso": "ISO 200",
+        "latitude": 48.86407083333334,
+        "longitude": 2.325402861111111,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/DSCF9407.JPG",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DSCF9407.webp",
+      "exif": {
+        "date": "2018:07:28 16:31:49",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/13",
+        "shutterSpeed": "1/52s",
+        "iso": "ISO 1600",
+        "latitude": 48.86130636111111,
+        "longitude": 2.352763638888889,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/DSCF9415.JPG",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DSCF9415.webp",
+      "exif": {
+        "date": "2018:07:28 17:32:19",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/150s",
+        "iso": "ISO 200",
+        "latitude": 48.85270661111111,
+        "longitude": 2.354252777777778,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/DSCF9420.JPG",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DSCF9420.webp",
+      "exif": {
+        "date": "2018:07:28 21:36:45",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 1250",
+        "latitude": 48.85373055555556,
+        "longitude": 2.3384374444444447,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/DSCF9534.JPG",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/DSCF9534.webp",
+      "exif": {
+        "date": "2018:07:29 18:12:36",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "32mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/350s",
+        "iso": "ISO 200",
+        "latitude": 48.86610516666667,
+        "longitude": 2.324403722222222,
+        "location": "Paris"
+      }
     },
     {
       "src": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.jpg",
-      "alt": "France photo"
+      "alt": "France photo",
+      "width": 6000,
+      "height": 4000,
+      "webpSrc": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.webp",
+      "exif": {
+        "date": "2018:07:25 21:55:45",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/105s",
+        "iso": "ISO 200",
+        "latitude": 48.64911916472222,
+        "longitude": -2.0282762216666668,
+        "location": "Saint-Malo"
+      }
     }
   ]
 }
