@@ -489,7 +489,11 @@ async function reverseGeocode(latitude, longitude, cache) {
   const enName = enResult.status === 'fulfilled' ? enResult.value : null;
 
   if (localName) {
-    const result = { local: localName, en: enName && enName !== localName ? enName : null };
+    // Only provide an English translation when the local name uses a non-Latin
+    // script (e.g. Japanese, Arabic, Cyrillic). Latin-based names like
+    // "København" or "Köln" are already readable without a translation.
+    const needsTranslation = /[^\p{Script=Latin}\p{Number}\p{Punctuation}\p{White_Space}]/u.test(localName);
+    const result = { local: localName, en: needsTranslation && enName && enName !== localName ? enName : null };
     cache.set(cacheKey, result);
     return result;
   }
