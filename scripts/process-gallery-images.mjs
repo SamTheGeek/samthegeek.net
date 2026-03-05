@@ -467,54 +467,26 @@ async function reverseGeocode(latitude, longitude, cache) {
     return cache.get(cacheKey);
   }
 
-  // Try Google Maps API first
   const googleApiKey = process.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY || process.env.GOOGLE_MAPS_API_KEY;
-
-  if (googleApiKey) {
-    try {
-      // Fetch local-language name and English name in parallel
-      const [localName, enName] = await Promise.all([
-        geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, null),
-        geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, 'en'),
-      ]);
-
-      if (localName) {
-        const result = { local: localName, en: enName && enName !== localName ? enName : null };
-        cache.set(cacheKey, result);
-        return result;
-      }
-    } catch (error) {
-      console.log(`  Geocoding error (Google): ${error.message}`);
-    }
+  if (!googleApiKey) {
+    cache.set(cacheKey, null);
+    return null;
   }
 
-  // Fallback to Nominatim (OpenStreetMap)
   try {
     // Fetch local-language name and English name in parallel
-    const [localResponse, enResponse] = await Promise.all([
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1`, {
-        headers: { 'User-Agent': 'samthegeek-gallery-processor' }
-      }),
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1&accept-language=en`, {
-        headers: { 'User-Agent': 'samthegeek-gallery-processor', 'Accept-Language': 'en' }
-      }),
+    const [localName, enName] = await Promise.all([
+      geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, null),
+      geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, 'en'),
     ]);
-    const [localData, enData] = await Promise.all([localResponse.json(), enResponse.json()]);
-
-    const localAddress = localData.address || {};
-    const enAddress = enData.address || {};
-    const localName = localAddress.city || localAddress.town || localAddress.village || localAddress.county;
-    const enName = enAddress.city || enAddress.town || enAddress.village || enAddress.county;
 
     if (localName) {
       const result = { local: localName, en: enName && enName !== localName ? enName : null };
       cache.set(cacheKey, result);
-      // Rate limit for Nominatim
-      await new Promise(resolve => setTimeout(resolve, 1000));
       return result;
     }
   } catch (error) {
-    console.log(`  Geocoding error (Nominatim): ${error.message}`);
+    console.log(`  Geocoding error (Google): ${error.message}`);
   }
 
   cache.set(cacheKey, null);
