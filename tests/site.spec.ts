@@ -473,3 +473,51 @@ test.describe('Performance optimizations', () => {
     }
   });
 });
+
+test.describe('English location names', () => {
+  test('config.ts includes locationEn in EXIF schema', async () => {
+    const configPath = path.join(process.cwd(), 'src', 'content', 'config.ts');
+    const content = await fs.readFile(configPath, 'utf8');
+    expect(content).toContain('locationEn');
+  });
+
+  test('Gallery.astro passes data-exif-location-en attribute', async () => {
+    const componentPath = path.join(process.cwd(), 'src', 'components', 'Gallery.astro');
+    const content = await fs.readFile(componentPath, 'utf8');
+    expect(content).toContain('data-exif-location-en');
+    expect(content).toContain('locationEn');
+  });
+
+  test('process-gallery-images.mjs uses Google geocoding for locationEn', async () => {
+    const scriptPath = path.join(process.cwd(), 'scripts', 'process-gallery-images.mjs');
+    const content = await fs.readFile(scriptPath, 'utf8');
+    expect(content).toContain('geocodeGoogle');
+    expect(content).toContain('locationEn');
+    expect(content).not.toContain('nominatim');
+  });
+
+  test('gallery EXIF locationEn is a string when present', async () => {
+    const slugs = await loadGallerySlugs();
+    for (const slug of slugs) {
+      const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', `${slug}.json`);
+      const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+      for (const image of data.images) {
+        if (image.exif?.locationEn !== undefined) {
+          expect(typeof image.exif.locationEn).toBe('string');
+          expect(image.exif.locationEn.length).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+
+  test('lightbox shows combined local and English location label', async ({ page }) => {
+    await page.goto('/copenhagen');
+    await page.setViewportSize({ width: 1280, height: 900 });
+    // First Copenhagen image has location "København" and locationEn "Copenhagen"
+    await page.locator('.gallery-item img').first().click();
+    await expect(page.locator('#lightbox')).toHaveClass(/active/);
+    const mapLabel = page.locator('#lightbox-map-label');
+    await expect(mapLabel).toContainText('København');
+    await expect(mapLabel).toContainText('Copenhagen');
+  });
+});
