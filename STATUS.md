@@ -12,6 +12,8 @@ This file is the single source of truth for current status, progress, and next t
 - Galleries: all images downloaded locally; see the gallery status list below.
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
 - Lightbox photo details popover now shows geocoded location only once (above the map).
+- Lightbox location labels now append an English/romanized fallback in parentheses when a geocoded place name uses non-Latin scripts.
+- Lightbox romanized fallback lookup script was adjusted for stricter parser compatibility to prevent build failures in some environments.
 - Added metadata refresh automation guidance: run the `Update Photo Metadata` workflow after metadata extraction/display changes.
 
 

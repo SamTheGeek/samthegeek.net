@@ -498,6 +498,8 @@
     let warmedLayout = false;
     let sizingDimensions: { width: number; height: number } | null = null;
     let infoScrollTimeout: number | null = null;
+    let locationLookupToken = 0;
+    const romanizedLocationCache = new Map<string, string | null>();
     const mapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY;
     const staticMapsKey = import.meta.env.PUBLIC_GOOGLE_MAPS_STATIC_API_KEY || mapsKey;
 
@@ -1078,6 +1080,79 @@
       return false;
     }
 
+    function needsRomanizedFallback(location: string) {
+      if (!location.trim()) return false;
+      if (/\p{Script=Latin}/u.test(location)) return false;
+      return /[\p{Script=Arabic}\p{Script=Hebrew}\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Hangul}\p{Script=Cyrillic}\p{Script=Devanagari}]/u.test(location);
+    }
+
+    function locationCacheKey(location: string, latitude?: string, longitude?: string) {
+      if (!latitude || !longitude) return location.trim();
+      return `${location.trim()}|${latitude.trim()},${longitude.trim()}`;
+    }
+
+    async function fetchRomanizedLocation(location: string, latitude?: string, longitude?: string) {
+      if (!mapsKey || !latitude || !longitude) return null;
+      const lat = Number.parseFloat(latitude);
+      const lng = Number.parseFloat(longitude);
+      if (Number.isNaN(lat) || Number.isNaN(lng)) return null;
+
+      const url = new URL('https://maps.googleapis.com/maps/api/geocode/json');
+      url.searchParams.set('latlng', `${lat},${lng}`);
+      url.searchParams.set('language', 'en');
+      url.searchParams.set('key', mapsKey);
+
+      try {
+        const response = await fetch(url.toString());
+        if (!response.ok) return null;
+        const data = await response.json();
+        if (data.status !== 'OK' || !Array.isArray(data.results)) return null;
+
+        const preferredTypes = ['locality', 'postal_town', 'administrative_area_level_3', 'administrative_area_level_2'];
+        for (const result of data.results) {
+          for (const component of result.address_components || []) {
+            if (component.types?.some((type) => preferredTypes.includes(type))) {
+              const romanized = component.long_name;
+              if (!romanized || romanized === location) continue;
+              return romanized;
+            }
+          }
+        }
+      } catch {
+        return null;
+      }
+
+      return null;
+    }
+
+    function setLocationLabel(location: string, romanized?: string | null) {
+      if (!lightboxMapLabel) return;
+      const value = romanized ? `${location} (${romanized})` : location;
+      lightboxMapLabel.textContent = value ? `Location – ${value}` : 'Location';
+    }
+
+    async function hydrateRomanizedLocation(
+      location: string,
+      latitude: string | undefined,
+      longitude: string | undefined,
+      imageSrc: string,
+      token: number,
+    ) {
+      const cacheKey = locationCacheKey(location, latitude, longitude);
+      let romanized = romanizedLocationCache.get(cacheKey);
+
+      if (romanized === undefined) {
+        romanized = await fetchRomanizedLocation(location, latitude, longitude);
+        romanizedLocationCache.set(cacheKey, romanized ?? null);
+      }
+
+      if (!romanized) return;
+      if (token !== locationLookupToken) return;
+      const activeSrc = activeImage?.currentSrc || activeImage?.src || '';
+      if (activeSrc !== imageSrc) return;
+      setLocationLabel(location, romanized);
+    }
+
     function hydrateInfo(img: HTMLImageElement) {
       const date = normalizeDate(img.dataset.exifDate);
       const location = img.dataset.exifLocation || '';
@@ -1094,8 +1169,12 @@
       if (lightboxHeader) {
         lightboxHeader.style.display = date ? 'flex' : 'none';
       }
-      if (lightboxMapLabel) {
-        lightboxMapLabel.textContent = location ? `Location – ${location}` : 'Location';
+
+      const locationToken = ++locationLookupToken;
+      setLocationLabel(location);
+      if (needsRomanizedFallback(location)) {
+        const imageSrc = img.currentSrc || img.src;
+        void hydrateRomanizedLocation(location, latitude, longitude, imageSrc, locationToken);
       }
 
       const settingsParts = [focalLength, aperture, shutterSpeed, iso].filter(Boolean);
@@ -1153,6 +1232,7 @@
     }
 
     function clearInfo() {
+      locationLookupToken++;
       if (lightboxDate) lightboxDate.textContent = '';
       if (lightboxHeader) lightboxHeader.style.display = '';
       setSectionValue('camera', '');
