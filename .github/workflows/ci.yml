@@ -70,6 +70,8 @@ jobs:
         run: mkdir -p public
 
       - name: Build site and run static checks
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build
 
       - name: Detect newly added blog posts
