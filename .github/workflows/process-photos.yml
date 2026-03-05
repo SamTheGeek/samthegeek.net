@@ -115,7 +115,7 @@ jobs:
       - name: Push changes and create PR
         if: steps.check-changes.outputs.has_changes == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.CONVERT_IMAGES_PAT }}
           GALLERY: ${{ matrix.gallery }}
           BATCH_SIZE: '50'
           PR_TITLE: 'Process new photos: ${{ matrix.gallery }}'
