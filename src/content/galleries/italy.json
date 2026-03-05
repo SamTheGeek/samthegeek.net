@@ -7,207 +7,740 @@
     {
       "src": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.webp"
+      "webpSrc": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.webp",
+      "width": 3840,
+      "height": 2160,
+      "exif": {
+        "date": "2019:08:04 13:24:49",
+        "camera": "Apple iPhone XS",
+        "lens": "iPhone XS back dual camera 4.25mm f/1.8",
+        "focalLength": "4mm",
+        "aperture": "f/1.8",
+        "shutterSpeed": "1/8001s",
+        "iso": "ISO 25",
+        "latitude": 42.89300211111111,
+        "longitude": 12.626244416666667
+      }
     },
     {
       "src": "/images/italy/DSCF0778.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF0778.webp"
+      "webpSrc": "/images/italy/DSCF0778.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:01 10:49:52",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 500",
+        "latitude": 43.836442472222224,
+        "longitude": 4.360503027777777
+      }
     },
     {
       "src": "/images/italy/DSCF0844.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF0844.webp"
+      "webpSrc": "/images/italy/DSCF0844.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:01 20:27:08",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.5",
+        "shutterSpeed": "1/200s",
+        "iso": "ISO 200",
+        "latitude": 43.83643988888889,
+        "longitude": 4.360530083333333
+      }
     },
     {
       "src": "/images/italy/DSCF0867.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF0867.webp"
+      "webpSrc": "/images/italy/DSCF0867.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:01 20:36:08",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 1000",
+        "latitude": 43.836547305555555,
+        "longitude": 4.360498472222222
+      }
     },
     {
       "src": "/images/italy/DSCF0879.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF0879.webp"
+      "webpSrc": "/images/italy/DSCF0879.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:02 07:32:48",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.8",
+        "shutterSpeed": "1/180s",
+        "iso": "ISO 200",
+        "latitude": 43.836661166666666,
+        "longitude": 4.360395777777778
+      }
     },
     {
       "src": "/images/italy/DSCF0888.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF0888.webp"
+      "webpSrc": "/images/italy/DSCF0888.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:02 08:14:10",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/2900s",
+        "iso": "ISO 200",
+        "latitude": 41.89820402777778,
+        "longitude": 12.468228777777778
+      }
     },
     {
       "src": "/images/italy/DSCF0951.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF0951.webp"
+      "webpSrc": "/images/italy/DSCF0951.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:02 08:37:30",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/100s",
+        "iso": "ISO 200",
+        "latitude": 41.89922561111111,
+        "longitude": 12.47377
+      }
     },
     {
       "src": "/images/italy/DSCF1002.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1002.webp"
+      "webpSrc": "/images/italy/DSCF1002.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:02 10:45:19",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/220s",
+        "iso": "ISO 200",
+        "latitude": 41.89571161111111,
+        "longitude": 12.483938777777777
+      }
     },
     {
       "src": "/images/italy/DSCF1055.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1055.webp"
+      "webpSrc": "/images/italy/DSCF1055.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:03 15:39:32",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/250s",
+        "iso": "ISO 200",
+        "latitude": 43.83652883333333,
+        "longitude": 4.360547388888889
+      }
     },
     {
       "src": "/images/italy/DSCF1061.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1061.webp"
+      "webpSrc": "/images/italy/DSCF1061.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:03 15:45:15",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/640s",
+        "iso": "ISO 200",
+        "latitude": 43.83652880555556,
+        "longitude": 4.360547055555555
+      }
     },
     {
       "src": "/images/italy/DSCF1080.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1080.webp"
+      "webpSrc": "/images/italy/DSCF1080.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:03 16:03:23",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/350s",
+        "iso": "ISO 200",
+        "latitude": 43.462838194444444,
+        "longitude": 11.876316416666667
+      }
     },
     {
       "src": "/images/italy/DSCF1085.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1085.webp"
+      "webpSrc": "/images/italy/DSCF1085.webp",
+      "width": 9600,
+      "height": 2160,
+      "exif": {
+        "date": "2019:08:06 15:31:37",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/7.1",
+        "shutterSpeed": "1/280s",
+        "iso": "ISO 200",
+        "latitude": 43.83652880555556,
+        "longitude": 4.360545833333333
+      }
     },
     {
       "src": "/images/italy/DSCF1360.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1360.webp"
+      "webpSrc": "/images/italy/DSCF1360.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:07 10:51:38",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/4000s",
+        "iso": "ISO 200",
+        "latitude": 43.83652844444445,
+        "longitude": 4.360506166666666
+      }
     },
     {
       "src": "/images/italy/DSCF1484.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1484.webp"
+      "webpSrc": "/images/italy/DSCF1484.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:07 19:13:20",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.2",
+        "shutterSpeed": "1/2200s",
+        "iso": "ISO 200",
+        "latitude": 43.27379483333333,
+        "longitude": 11.987918166666665
+      }
     },
     {
       "src": "/images/italy/DSCF1510.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1510.webp"
+      "webpSrc": "/images/italy/DSCF1510.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:07 19:16:12",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/250s",
+        "iso": "ISO 200",
+        "latitude": 43.27379711111111,
+        "longitude": 11.987885277777776
+      }
     },
     {
       "src": "/images/italy/DSCF1600.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1600.webp"
+      "webpSrc": "/images/italy/DSCF1600.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:09 21:57:25",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/20s",
+        "iso": "ISO 1600",
+        "latitude": 43.83652825,
+        "longitude": 4.360482305555555
+      }
     },
     {
       "src": "/images/italy/DSCF1644.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1644.webp"
+      "webpSrc": "/images/italy/DSCF1644.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:10 09:09:44",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/320s",
+        "iso": "ISO 200",
+        "latitude": 43.77053211111111,
+        "longitude": 11.255287055555556
+      }
     },
     {
       "src": "/images/italy/DSCF1736.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF1736.webp"
+      "webpSrc": "/images/italy/DSCF1736.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:08:10 11:29:08",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/3200s",
+        "iso": "ISO 200",
+        "latitude": 43.76854052777778,
+        "longitude": 11.255894055555556
+      }
     },
     {
       "src": "/images/italy/DSCF2483.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2483.webp"
+      "webpSrc": "/images/italy/DSCF2483.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:21 13:55:50",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/4000s",
+        "iso": "ISO 640",
+        "latitude": 41.91290491666666,
+        "longitude": 12.5064875
+      }
     },
     {
       "src": "/images/italy/DSCF2490.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2490.webp"
+      "webpSrc": "/images/italy/DSCF2490.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:21 14:27:23",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/4000s",
+        "iso": "ISO 640",
+        "latitude": 41.88963563888889,
+        "longitude": 12.490840027777777
+      }
     },
     {
       "src": "/images/italy/DSCF2524.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2524.webp"
+      "webpSrc": "/images/italy/DSCF2524.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:21 14:43:53",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 640",
+        "latitude": 41.885923444444444,
+        "longitude": 12.484259944444444
+      }
     },
     {
       "src": "/images/italy/DSCF2541.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2541.webp"
+      "webpSrc": "/images/italy/DSCF2541.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:21 16:08:24",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/500s",
+        "iso": "ISO 800",
+        "latitude": 41.89896319444444,
+        "longitude": 12.482428583333334
+      }
     },
     {
       "src": "/images/italy/DSCF2547.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2547.webp"
+      "webpSrc": "/images/italy/DSCF2547.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 16:13:53",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 800",
+        "latitude": 45.42918088888889,
+        "longitude": 12.332068583333333
+      }
     },
     {
       "src": "/images/italy/DSCF2555.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2555.webp"
+      "webpSrc": "/images/italy/DSCF2555.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 16:24:50",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/1000s",
+        "iso": "ISO 800",
+        "latitude": 45.43087819444444,
+        "longitude": 12.330307611111111
+      }
     },
     {
       "src": "/images/italy/DSCF2610.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2610.webp"
+      "webpSrc": "/images/italy/DSCF2610.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:03:19",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 5000",
+        "latitude": 45.43398172222222,
+        "longitude": 12.337690444444444
+      }
     },
     {
       "src": "/images/italy/DSCF2614.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2614.webp"
+      "webpSrc": "/images/italy/DSCF2614.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:04:08",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/30s",
+        "iso": "ISO 1600",
+        "latitude": 45.43414680555555,
+        "longitude": 12.338289944444446
+      }
     },
     {
       "src": "/images/italy/DSCF2627.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2627.webp"
+      "webpSrc": "/images/italy/DSCF2627.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:07:11",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/250s",
+        "iso": "ISO 6400",
+        "latitude": 45.43371716666666,
+        "longitude": 12.33964263888889
+      }
     },
     {
       "src": "/images/italy/DSCF2630.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2630.webp"
+      "webpSrc": "/images/italy/DSCF2630.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:09:50",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/250s",
+        "iso": "ISO 6400",
+        "latitude": 45.433318,
+        "longitude": 12.339832888888889
+      }
     },
     {
       "src": "/images/italy/DSCF2635.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2635.webp"
+      "webpSrc": "/images/italy/DSCF2635.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:10:54",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 6400",
+        "latitude": 45.43352108333333,
+        "longitude": 12.340571277777778
+      }
     },
     {
       "src": "/images/italy/DSCF2642.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2642.webp"
+      "webpSrc": "/images/italy/DSCF2642.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:12:48",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 6400",
+        "latitude": 45.43381308333333,
+        "longitude": 12.341456222222222
+      }
     },
     {
       "src": "/images/italy/DSCF2644.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2644.webp"
+      "webpSrc": "/images/italy/DSCF2644.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:13:39",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/60s",
+        "iso": "ISO 6400",
+        "latitude": 45.4338315,
+        "longitude": 12.341679277777779
+      }
     },
     {
       "src": "/images/italy/DSCF2652.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2652.webp"
+      "webpSrc": "/images/italy/DSCF2652.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:14:46",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/60s",
+        "iso": "ISO 6400",
+        "latitude": 45.43394413888888,
+        "longitude": 12.342101055555556
+      }
     },
     {
       "src": "/images/italy/DSCF2673.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2673.webp"
+      "webpSrc": "/images/italy/DSCF2673.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:20:15",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/640s",
+        "iso": "ISO 6400",
+        "latitude": 45.433915444444445,
+        "longitude": 12.342227916666667
+      }
     },
     {
       "src": "/images/italy/DSCF2674.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2674.webp"
+      "webpSrc": "/images/italy/DSCF2674.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:21:13",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/2000s",
+        "iso": "ISO 6400",
+        "latitude": 45.434070138888885,
+        "longitude": 12.34194388888889
+      }
     },
     {
       "src": "/images/italy/DSCF2691.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2691.webp"
+      "webpSrc": "/images/italy/DSCF2691.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:22 17:32:11",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/250s",
+        "iso": "ISO 6400",
+        "latitude": 45.435327638888886,
+        "longitude": 12.339546555555556
+      }
     },
     {
       "src": "/images/italy/DSCF2765.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2765.webp"
+      "webpSrc": "/images/italy/DSCF2765.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:23 13:15:20",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 1600",
+        "latitude": 45.42977027777778,
+        "longitude": 12.358694027777778
+      }
     },
     {
       "src": "/images/italy/DSCF2862.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2862.webp"
+      "webpSrc": "/images/italy/DSCF2862.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:23 19:38:36",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/30s",
+        "iso": "ISO 1600",
+        "latitude": 45.43566808333333,
+        "longitude": 12.333693861111112
+      }
     },
     {
       "src": "/images/italy/DSCF2881.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2881.webp"
+      "webpSrc": "/images/italy/DSCF2881.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:11:23 20:05:41",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/125s",
+        "iso": "ISO 3200",
+        "latitude": 43.83649772222223,
+        "longitude": 4.3604147499999995
+      }
     },
     {
       "src": "/images/italy/DSCF2929.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF2929.webp"
+      "webpSrc": "/images/italy/DSCF2929.webp",
+      "width": 5342,
+      "height": 3645,
+      "exif": {
+        "date": "2019:11:24 09:33:18",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/2000s",
+        "iso": "ISO 800",
+        "latitude": 45.43442675,
+        "longitude": 12.32982163888889
+      }
     },
     {
       "src": "/images/italy/DSCF6211.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF6211.webp"
+      "webpSrc": "/images/italy/DSCF6211.webp",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2022:06:14 14:12:44",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/2.5",
+        "shutterSpeed": "1/52s",
+        "iso": "ISO 800",
+        "latitude": 55.67916023805555,
+        "longitude": 12.582059832777778
+      }
     },
     {
       "src": "/images/italy/IMG_2633.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/IMG_2633.webp"
+      "webpSrc": "/images/italy/IMG_2633.webp",
+      "width": 13216,
+      "height": 3680,
+      "exif": {
+        "date": "2019:08:03 15:27:12",
+        "camera": "Apple iPhone XS",
+        "lens": "iPhone XS back camera 6mm f/2.4",
+        "focalLength": "6mm",
+        "aperture": "f/2.4",
+        "shutterSpeed": "1/1410s",
+        "iso": "ISO 16",
+        "latitude": 43.46751388888889,
+        "longitude": 11.884869444444444
+      }
     }
   ]
 }
