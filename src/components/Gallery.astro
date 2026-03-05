@@ -20,6 +20,7 @@ interface Props {
       latitude?: number;
       longitude?: number;
       location?: string;
+      locationEn?: string;
     };
   }>;
 }
@@ -58,6 +59,7 @@ const { title, images } = Astro.props;
               data-exif-latitude={image.exif?.latitude}
               data-exif-longitude={image.exif?.longitude}
               data-exif-location={image.exif?.location}
+              data-exif-location-en={image.exif?.locationEn}
             />
           </picture>
         </div>

@@ -1081,6 +1081,7 @@
     function hydrateInfo(img: HTMLImageElement) {
       const date = normalizeDate(img.dataset.exifDate);
       const location = img.dataset.exifLocation || '';
+      const locationEn = img.dataset.exifLocationEn || '';
       const camera = img.dataset.exifCamera || '';
       const lens = img.dataset.exifLens || '';
       const focalLength = img.dataset.exifFocalLength || '';
@@ -1095,7 +1096,11 @@
         lightboxHeader.style.display = date ? 'flex' : 'none';
       }
       if (lightboxMapLabel) {
-        lightboxMapLabel.textContent = location ? `Location – ${location}` : 'Location';
+        let locationLabel = location;
+        if (location && locationEn) {
+          locationLabel = `${location} (${locationEn})`;
+        }
+        lightboxMapLabel.textContent = locationLabel ? `Location – ${locationLabel}` : 'Location';
       }
 
       const settingsParts = [focalLength, aperture, shutterSpeed, iso].filter(Boolean);

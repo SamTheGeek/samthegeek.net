@@ -45,6 +45,7 @@ const galleries = defineCollection({
         latitude: z.number().optional(),
         longitude: z.number().optional(),
         location: z.string().optional(),
+        locationEn: z.string().optional(),
       }).optional(),
     })),
   }),
