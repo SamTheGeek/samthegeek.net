@@ -6,39 +6,156 @@
   "images": [
     {
       "src": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 4312,
+      "height": 2874,
+      "exif": {
+        "date": "2019:04:24 05:45:51",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/1400s",
+        "iso": "ISO 200",
+        "latitude": 33.51287763888889,
+        "longitude": -111.94868486111112
+      }
     },
     {
       "src": "/images/elsewhere/DSCF0716.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:04:28 11:58:09",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "46mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/2500s",
+        "iso": "ISO 200",
+        "latitude": 43.83644477777778,
+        "longitude": 4.360478916666667
+      }
     },
     {
       "src": "/images/elsewhere/DSCF0717.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 4000,
+      "height": 6000,
+      "exif": {
+        "date": "2019:04:28 11:58:15",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "46mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/4400s",
+        "iso": "ISO 200",
+        "latitude": 43.83644477777778,
+        "longitude": 4.360478916666667
+      }
     },
     {
       "src": "/images/elsewhere/DSCF3417.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 5563,
+      "height": 3708,
+      "exif": {
+        "date": "2019:12:17 07:23:44",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/3.6",
+        "shutterSpeed": "1/30s",
+        "iso": "ISO 200",
+        "latitude": 27.163148638888888,
+        "longitude": 78.03905002777778
+      }
     },
     {
       "src": "/images/elsewhere/DSCF4066.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:12:18 10:52:55",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.2",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 44.19100683333333,
+        "longitude": 4.4435656111111115
+      }
     },
     {
       "src": "/images/elsewhere/DSCF4495.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:12:18 11:31:37",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/300s",
+        "iso": "ISO 200",
+        "latitude": 44.19226888888888,
+        "longitude": 4.445410694444445
+      }
     },
     {
       "src": "/images/elsewhere/DSCF4831.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:12:18 12:26:00",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 26.987826527777777,
+        "longitude": 75.85199213888889
+      }
     },
     {
       "src": "/images/elsewhere/DSCF4892.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:12:18 12:29:15",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF56mmF1.2 R",
+        "focalLength": "56mm",
+        "aperture": "f/1.8",
+        "shutterSpeed": "1/8000s",
+        "iso": "ISO 200",
+        "latitude": 44.19067769444444,
+        "longitude": 4.443121333333334
+      }
     },
     {
       "src": "/images/elsewhere/IMG_5530-1.jpeg",
-      "alt": "Elsewhere photo"
+      "alt": "Elsewhere photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2019:04:24 05:54:48",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/640s",
+        "iso": "ISO 200",
+        "latitude": 33.51096111111111,
+        "longitude": -111.9490888888889
+      }
     }
   ]
 }
