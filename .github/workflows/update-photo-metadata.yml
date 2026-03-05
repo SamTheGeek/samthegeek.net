@@ -29,11 +29,48 @@ permissions:
   pull-requests: write
 
 jobs:
+  list-galleries:
+    runs-on: ubuntu-latest
+    outputs:
+      galleries: ${{ steps.list.outputs.galleries_json }}
+    steps:
+      - name: List galleries
+        id: list
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GALLERY_INPUT: ${{ github.event.inputs.gallery || '' }}
+          REPO: ${{ github.repository }}
+        run: |
+          if [ -n "$GALLERY_INPUT" ]; then
+            GALLERIES_JSON="[\"$GALLERY_INPUT\"]"
+          else
+            GALLERIES_JSON=$(gh api "repos/$REPO/contents/public/images" \
+              --jq '[.[] | select(.type == "dir") | .name | select(. != "about" and . != "blog")]')
+          fi
+          echo "galleries_json=$GALLERIES_JSON" >> $GITHUB_OUTPUT
+          echo "Galleries to process: $GALLERIES_JSON"
+
   update-metadata:
+    needs: list-galleries
+    strategy:
+      matrix:
+        gallery: ${{ fromJson(needs.list-galleries.outputs.galleries) }}
+      fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            package.json
+            package-lock.json
+            scripts
+            src/content/galleries
+            src/content/galleryDescriptions
+            src/pages
+            public/images/${{ matrix.gallery }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -46,14 +83,13 @@ jobs:
 
       - name: Refresh photo metadata
         env:
+          GALLERY: ${{ matrix.gallery }}
+          SKIP_GEOCODE: ${{ github.event.inputs.skip_geocode || 'false' }}
           PUBLIC_GOOGLE_MAPS_EMBED_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: |
-          ARGS="--force --skip-webp"
-          if [ -n "${{ inputs.gallery }}" ]; then
-            ARGS="$ARGS --gallery ${{ inputs.gallery }}"
-          fi
-          if [ "${{ inputs.skip_geocode }}" = "true" ]; then
+          ARGS="--force --skip-webp --gallery $GALLERY"
+          if [ "$SKIP_GEOCODE" = "true" ]; then
             ARGS="$ARGS --skip-geocode"
           fi
           node scripts/process-gallery-images.mjs $ARGS
@@ -75,11 +111,11 @@ jobs:
         if: steps.check-changes.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: 'chore: refresh gallery metadata'
-          title: 'chore: Refresh gallery metadata'
+          commit-message: 'chore: refresh gallery metadata (${{ matrix.gallery }})'
+          title: 'chore: Refresh gallery metadata (${{ matrix.gallery }})'
           body: |
             ## Summary
-            This PR refreshes gallery metadata from photo files.
+            This PR refreshes gallery metadata for **${{ matrix.gallery }}** from photo files.
 
             ## Changes
             - **${{ steps.check-changes.outputs.json_count }}** gallery JSON files updated
@@ -88,6 +124,6 @@ jobs:
             - Re-extracted EXIF metadata (camera, lens, settings, GPS)
             - Re-ran reverse geocoding for location names when GPS was available
             - Updated gallery JSON metadata only (no WebP conversion)
-          branch: auto/update-photo-metadata
+          branch: auto/update-photo-metadata-${{ matrix.gallery }}
           delete-branch: true
           labels: automerge

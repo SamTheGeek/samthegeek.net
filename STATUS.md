@@ -8,6 +8,7 @@ This file is the single source of truth for current status, progress, and next t
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - CI Playwright workflow now skips docs/workflow/photo-only PRs and `scripts/**` changes, caches Playwright browser binaries, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.
 - Added a repo-managed CodeQL workflow scoped to JavaScript/TypeScript and only relevant source/config path changes.
+- `Update Photo Metadata` workflow now discovers galleries via GitHub API, runs per-gallery matrix jobs, uses sparse checkout + `blob:none`, and opens per-gallery PR branches to reduce clone overhead and improve PR reliability.
 - Deployment: Netlify site is live; live-site redirect and SSL pending (after design refinements).
 - Galleries: all images downloaded locally; see the gallery status list below.
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
