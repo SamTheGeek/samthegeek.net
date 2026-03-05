@@ -429,7 +429,30 @@ async function importExifr() {
 }
 
 /**
- * Reverse geocode coordinates to get city/location name
+ * Fetch a city/location name from Google Maps Geocoding API for a given language.
+ * Returns the name string, or null if not found.
+ */
+async function geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, language) {
+  const langParam = language ? `&language=${language}` : '';
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${normalizedLatitude},${normalizedLongitude}&key=${googleApiKey}${langParam}`;
+  const response = await fetch(url);
+  const data = await response.json();
+
+  if (data.status === 'OK' && data.results?.length > 0) {
+    for (const result of data.results) {
+      for (const component of result.address_components || []) {
+        if (component.types?.some(t => ['locality', 'postal_town', 'administrative_area_level_3', 'administrative_area_level_2'].includes(t))) {
+          return component.long_name;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Reverse geocode coordinates to get city/location name in local language and English.
+ * Returns { local, en } or null if nothing could be resolved.
  */
 async function reverseGeocode(latitude, longitude, cache) {
   const normalizedLatitude = normalizeGpsCoordinate(latitude);
@@ -449,20 +472,16 @@ async function reverseGeocode(latitude, longitude, cache) {
 
   if (googleApiKey) {
     try {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${normalizedLatitude},${normalizedLongitude}&key=${googleApiKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
+      // Fetch local-language name and English name in parallel
+      const [localName, enName] = await Promise.all([
+        geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, null),
+        geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, 'en'),
+      ]);
 
-      if (data.status === 'OK' && data.results?.length > 0) {
-        for (const result of data.results) {
-          for (const component of result.address_components || []) {
-            if (component.types?.some(t => ['locality', 'postal_town', 'administrative_area_level_3', 'administrative_area_level_2'].includes(t))) {
-              const location = component.long_name;
-              cache.set(cacheKey, location);
-              return location;
-            }
-          }
-        }
+      if (localName) {
+        const result = { local: localName, en: enName && enName !== localName ? enName : null };
+        cache.set(cacheKey, result);
+        return result;
       }
     } catch (error) {
       console.log(`  Geocoding error (Google): ${error.message}`);
@@ -471,20 +490,28 @@ async function reverseGeocode(latitude, longitude, cache) {
 
   // Fallback to Nominatim (OpenStreetMap)
   try {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1`;
-    const response = await fetch(url, {
-      headers: { 'User-Agent': 'samthegeek-gallery-processor' }
-    });
-    const data = await response.json();
+    // Fetch local-language name and English name in parallel
+    const [localResponse, enResponse] = await Promise.all([
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1`, {
+        headers: { 'User-Agent': 'samthegeek-gallery-processor' }
+      }),
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1&accept-language=en`, {
+        headers: { 'User-Agent': 'samthegeek-gallery-processor', 'Accept-Language': 'en' }
+      }),
+    ]);
+    const [localData, enData] = await Promise.all([localResponse.json(), enResponse.json()]);
 
-    const address = data.address || {};
-    const location = address.city || address.town || address.village || address.county;
+    const localAddress = localData.address || {};
+    const enAddress = enData.address || {};
+    const localName = localAddress.city || localAddress.town || localAddress.village || localAddress.county;
+    const enName = enAddress.city || enAddress.town || enAddress.village || enAddress.county;
 
-    if (location) {
-      cache.set(cacheKey, location);
+    if (localName) {
+      const result = { local: localName, en: enName && enName !== localName ? enName : null };
+      cache.set(cacheKey, result);
       // Rate limit for Nominatim
       await new Promise(resolve => setTimeout(resolve, 1000));
-      return location;
+      return result;
     }
   } catch (error) {
     console.log(`  Geocoding error (Nominatim): ${error.message}`);
@@ -700,10 +727,13 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
 
       // Reverse geocode if we have coordinates and location isn't set
       if (exif?.latitude !== undefined && exif?.longitude !== undefined && !exif.location && !options.skipGeocode) {
-        const location = await reverseGeocode(exif.latitude, exif.longitude, geocodeCache);
-        if (location) {
-          exif.location = location;
-          console.log(`    Location: ${location}`);
+        const geocoded = await reverseGeocode(exif.latitude, exif.longitude, geocodeCache);
+        if (geocoded) {
+          exif.location = geocoded.local;
+          if (geocoded.en) {
+            exif.locationEn = geocoded.en;
+          }
+          console.log(`    Location: ${geocoded.local}${geocoded.en ? ` (${geocoded.en})` : ''}`);
         }
       }
 
