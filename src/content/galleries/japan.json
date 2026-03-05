@@ -6,7 +6,11 @@
   "images": [
     {
       "src": "/images/japan/01BE9BFC-9BD8-449C-8BF0-57695E4722BC-868-0000026D68057236_photo.jpg",
-      "alt": "Japan photo"
+      "alt": "Japan photo",
+      "exif": {
+        "location": "東京",
+        "locationEn": "Tokyo"
+      }
     },
     {
       "src": "/images/japan/02402D0A-2E76-4960-80BE-15CAA182E964-1312-0000030353DDE51C_photo.jpg",
