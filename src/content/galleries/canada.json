@@ -6,55 +6,224 @@
   "images": [
     {
       "src": "/images/canada/DSCF1829.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:17 21:58:12",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "39mm",
+        "aperture": "f/3.6",
+        "shutterSpeed": "1/800s",
+        "iso": "ISO 200",
+        "latitude": 43.836528111111114,
+        "longitude": 4.360468833333333
+      }
     },
     {
       "src": "/images/canada/DSCF1879.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:18 14:04:42",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/2400s",
+        "iso": "ISO 200",
+        "latitude": 43.836528111111114,
+        "longitude": 4.3604672777777775
+      }
     },
     {
       "src": "/images/canada/DSCF1883.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:18 14:08:10",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "24mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/1800s",
+        "iso": "ISO 200",
+        "latitude": 43.836528111111114,
+        "longitude": 4.3604672777777775
+      }
     },
     {
       "src": "/images/canada/DSCF1893.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:18 14:13:17",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "46mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/420s",
+        "iso": "ISO 200",
+        "latitude": 43.836528111111114,
+        "longitude": 4.360467166666666
+      }
     },
     {
       "src": "/images/canada/DSCF1902.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:18 14:14:25",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "46mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/1000s",
+        "iso": "ISO 200",
+        "latitude": 43.836528111111114,
+        "longitude": 4.360467055555556
+      }
     },
     {
       "src": "/images/canada/DSCF1993.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:18 16:25:33",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/5.6",
+        "shutterSpeed": "1/140s",
+        "iso": "ISO 200",
+        "latitude": 43.83652805555556,
+        "longitude": 4.36046175
+      }
     },
     {
       "src": "/images/canada/DSCF2042.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:21 08:45:36",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/2400s",
+        "iso": "ISO 200",
+        "latitude": 43.83652802777778,
+        "longitude": 4.3604579999999995
+      }
     },
     {
       "src": "/images/canada/DSCF2073.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:22 14:43:24",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/2500s",
+        "iso": "ISO 200",
+        "latitude": 43.836528,
+        "longitude": 4.360455888888889
+      }
     },
     {
       "src": "/images/canada/DSCF2112.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:24 08:48:54",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "55mm",
+        "aperture": "f/4.5",
+        "shutterSpeed": "1/1800s",
+        "iso": "ISO 200",
+        "latitude": 43.83652797222222,
+        "longitude": 4.360453027777777
+      }
     },
     {
       "src": "/images/canada/DSCF2133.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:24 09:20:46",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/550s",
+        "iso": "ISO 200",
+        "latitude": 43.83652797222222,
+        "longitude": 4.36045225
+      }
     },
     {
       "src": "/images/canada/DSCF2158.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 5426,
+      "height": 1440,
+      "exif": {
+        "date": "2017:08:25 09:15:53",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/3.2",
+        "shutterSpeed": "1/1500s",
+        "iso": "ISO 200",
+        "latitude": 43.83652797222222,
+        "longitude": 4.3604516944444445
+      }
     },
     {
       "src": "/images/canada/DSCF2207.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 6000,
+      "height": 4000,
+      "exif": {
+        "date": "2017:08:25 12:33:34",
+        "camera": "FUJIFILM X-T2",
+        "lens": "XF18-55mmF2.8-4 R LM OIS",
+        "focalLength": "18mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/2000s",
+        "iso": "ISO 200",
+        "latitude": 43.83652794444445,
+        "longitude": 4.3604484999999995
+      }
     },
     {
       "src": "/images/canada/IMG_2664.JPG",
-      "alt": "Canada photo"
+      "alt": "Canada photo",
+      "width": 4032,
+      "height": 3024,
+      "exif": {
+        "date": "2017:08:23 10:00:42",
+        "camera": "Apple iPhone 7 Plus",
+        "lens": "iPhone 7 Plus back dual camera 6.6mm f/2.8",
+        "focalLength": "7mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/948s",
+        "iso": "ISO 20",
+        "latitude": 48.915194444444445,
+        "longitude": -123.53334722222222
+      }
     }
   ]
 }
