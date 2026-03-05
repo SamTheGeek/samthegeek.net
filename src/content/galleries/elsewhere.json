@@ -19,7 +19,8 @@
         "iso": "ISO 200",
         "latitude": 33.51287763888889,
         "longitude": -111.94868486111112
-      }
+      },
+      "webpSrc": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.webp"
     },
     {
       "src": "/images/elsewhere/DSCF0716.jpeg",
@@ -36,7 +37,8 @@
         "iso": "ISO 200",
         "latitude": 43.83644477777778,
         "longitude": 4.360478916666667
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF0716.webp"
     },
     {
       "src": "/images/elsewhere/DSCF0717.jpeg",
@@ -53,7 +55,8 @@
         "iso": "ISO 200",
         "latitude": 43.83644477777778,
         "longitude": 4.360478916666667
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF0717.webp"
     },
     {
       "src": "/images/elsewhere/DSCF3417.jpeg",
@@ -70,7 +73,8 @@
         "iso": "ISO 200",
         "latitude": 27.163148638888888,
         "longitude": 78.03905002777778
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF3417.webp"
     },
     {
       "src": "/images/elsewhere/DSCF4066.jpeg",
@@ -87,7 +91,8 @@
         "iso": "ISO 200",
         "latitude": 44.19100683333333,
         "longitude": 4.4435656111111115
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF4066.webp"
     },
     {
       "src": "/images/elsewhere/DSCF4495.jpeg",
@@ -104,7 +109,8 @@
         "iso": "ISO 200",
         "latitude": 44.19226888888888,
         "longitude": 4.445410694444445
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF4495.webp"
     },
     {
       "src": "/images/elsewhere/DSCF4831.jpeg",
@@ -121,7 +127,8 @@
         "iso": "ISO 200",
         "latitude": 26.987826527777777,
         "longitude": 75.85199213888889
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF4831.webp"
     },
     {
       "src": "/images/elsewhere/DSCF4892.jpeg",
@@ -138,7 +145,8 @@
         "iso": "ISO 200",
         "latitude": 44.19067769444444,
         "longitude": 4.443121333333334
-      }
+      },
+      "webpSrc": "/images/elsewhere/DSCF4892.webp"
     },
     {
       "src": "/images/elsewhere/IMG_5530-1.jpeg",
@@ -155,7 +163,8 @@
         "iso": "ISO 200",
         "latitude": 33.51096111111111,
         "longitude": -111.9490888888889
-      }
+      },
+      "webpSrc": "/images/elsewhere/IMG_5530-1.webp"
     }
   ]
 }
