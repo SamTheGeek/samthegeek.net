@@ -7,21 +7,33 @@ on:
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - '.github/workflows/**'
-      - 'public/images/**'
-      - '**/*.webp'
-      - 'src/content/galleries/**/*.json'
-      - 'src/content/galleries/**'
-      - 'scripts/**'
-      - 'Docs/**'
-      - 'README.md'
-      - 'STATUS.md'
-      - 'AGENTS.md'
-      - 'AGENT_INSTRUCTIONS.md'
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      relevant: ${{ steps.filter.outputs.any_changed }}
+    steps:
+      - name: Check for relevant changes
+        id: filter
+        uses: tj-actions/changed-files@v47
+        with:
+          files_ignore: |
+            .github/workflows/**
+            public/images/**
+            **/*.webp
+            src/content/galleries/**/*.json
+            src/content/galleries/**
+            scripts/**
+            Docs/**
+            README.md
+            STATUS.md
+            AGENTS.md
+            AGENT_INSTRUCTIONS.md
+
   build:
+    needs: changes
+    if: needs.changes.outputs.relevant == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -64,3 +76,18 @@ jobs:
       - name: Run Playwright tests (blog content additions)
         if: steps.blog_changes.outputs.any_added == 'true'
         run: npm run test:e2e:ci -- --grep "@blog"
+
+  ci-passed:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [build]
+    steps:
+      - name: Check build result
+        env:
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: |
+          if [[ "$BUILD_RESULT" == "failure" || "$BUILD_RESULT" == "cancelled" ]]; then
+            echo "Build failed or was cancelled"
+            exit 1
+          fi
+          echo "CI passed (build: $BUILD_RESULT)"
