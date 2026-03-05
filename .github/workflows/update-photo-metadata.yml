@@ -127,3 +127,4 @@ jobs:
           branch: auto/update-photo-metadata-${{ matrix.gallery }}
           delete-branch: true
           labels: automerge
+          token: ${{ secrets.CONVERT_IMAGES_PAT }}
