@@ -19,8 +19,7 @@
         "shutterSpeed": "1/100s",
         "iso": "ISO 800",
         "latitude": 48.63656844944445,
-        "longitude": -1.5118829927777777,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.5118829927777777
       }
     },
     {
@@ -38,8 +37,7 @@
         "shutterSpeed": "1/100s",
         "iso": "ISO 320",
         "latitude": 48.63632947666667,
-        "longitude": -1.511919898888889,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.511919898888889
       }
     },
     {
@@ -57,8 +55,7 @@
         "shutterSpeed": "1/38s",
         "iso": "ISO 1600",
         "latitude": 48.852026333611114,
-        "longitude": 2.356049169722222,
-        "location": "Paris"
+        "longitude": 2.356049169722222
       }
     },
     {
@@ -76,8 +73,7 @@
         "shutterSpeed": "1/100s",
         "iso": "ISO 320",
         "latitude": 48.877030446944445,
-        "longitude": 2.325927284444444,
-        "location": "Paris"
+        "longitude": 2.325927284444444
       }
     },
     {
@@ -95,8 +91,7 @@
         "shutterSpeed": "1/140s",
         "iso": "ISO 200",
         "latitude": 48.85280070722222,
-        "longitude": 2.353985188888889,
-        "location": "Paris"
+        "longitude": 2.353985188888889
       }
     },
     {
@@ -114,8 +109,7 @@
         "shutterSpeed": "1/2200s",
         "iso": "ISO 200",
         "latitude": 48.862932129722225,
-        "longitude": 2.3132693919444445,
-        "location": "Paris"
+        "longitude": 2.3132693919444445
       }
     },
     {
@@ -133,8 +127,7 @@
         "shutterSpeed": "1/2400s",
         "iso": "ISO 200",
         "latitude": 48.872431892222224,
-        "longitude": 2.2990288175,
-        "location": "Paris"
+        "longitude": 2.2990288175
       }
     },
     {
@@ -152,8 +145,7 @@
         "shutterSpeed": "1/900s",
         "iso": "ISO 200",
         "latitude": 48.85115228,
-        "longitude": 2.35589955,
-        "location": "Paris"
+        "longitude": 2.35589955
       }
     },
     {
@@ -171,8 +163,7 @@
         "shutterSpeed": "1/1800s",
         "iso": "ISO 200",
         "latitude": 48.86921006,
-        "longitude": 2.3089531730555555,
-        "location": "Paris"
+        "longitude": 2.3089531730555555
       }
     },
     {
@@ -208,8 +199,7 @@
         "shutterSpeed": "1/38s",
         "iso": "ISO 1600",
         "latitude": 48.63609328361111,
-        "longitude": -1.5112109388888888,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.5112109388888888
       }
     },
     {
@@ -227,8 +217,7 @@
         "shutterSpeed": "1/2500s",
         "iso": "ISO 200",
         "latitude": 49.35910140083333,
-        "longitude": -0.8547273763888888,
-        "location": "Colleville-sur-Mer"
+        "longitude": -0.8547273763888888
       }
     },
     {
@@ -246,8 +235,7 @@
         "shutterSpeed": "1/950s",
         "iso": "ISO 200",
         "latitude": 48.862600732222226,
-        "longitude": 2.2866409699999997,
-        "location": "Paris"
+        "longitude": 2.2866409699999997
       }
     },
     {
@@ -265,8 +253,7 @@
         "shutterSpeed": "1/2700s",
         "iso": "ISO 200",
         "latitude": 48.85829016666667,
-        "longitude": 2.2944364044444443,
-        "location": "Paris"
+        "longitude": 2.2944364044444443
       }
     },
     {
@@ -284,8 +271,7 @@
         "shutterSpeed": "1/8000s",
         "iso": "ISO 200",
         "latitude": 48.636430415,
-        "longitude": -1.5113134533333332,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.5113134533333332
       }
     },
     {
@@ -321,8 +307,7 @@
         "shutterSpeed": "1/14s",
         "iso": "ISO 1600",
         "latitude": 49.27522455555555,
-        "longitude": -0.7036354166666666,
-        "location": "Bayeux"
+        "longitude": -0.7036354166666666
       }
     },
     {
@@ -340,8 +325,7 @@
         "shutterSpeed": "1/950s",
         "iso": "ISO 200",
         "latitude": 48.662073256944446,
-        "longitude": -1.9927622483333334,
-        "location": "Saint-Malo"
+        "longitude": -1.9927622483333334
       }
     },
     {
@@ -359,8 +343,7 @@
         "shutterSpeed": "1/1300s",
         "iso": "ISO 200",
         "latitude": 49.274875003055556,
-        "longitude": -0.7005109019444444,
-        "location": "Bayeux"
+        "longitude": -0.7005109019444444
       }
     },
     {
@@ -378,8 +361,7 @@
         "shutterSpeed": "1/90s",
         "iso": "ISO 1600",
         "latitude": 48.85202170944444,
-        "longitude": 2.3560715883333336,
-        "location": "Paris"
+        "longitude": 2.3560715883333336
       }
     },
     {
@@ -397,8 +379,7 @@
         "shutterSpeed": "1/1800s",
         "iso": "ISO 200",
         "latitude": 48.86171346333334,
-        "longitude": 2.322231218333333,
-        "location": "Paris"
+        "longitude": 2.322231218333333
       }
     },
     {
@@ -416,8 +397,7 @@
         "shutterSpeed": "1/3500s",
         "iso": "ISO 200",
         "latitude": 48.860711461111116,
-        "longitude": 2.2908213575,
-        "location": "Paris"
+        "longitude": 2.2908213575
       }
     },
     {
@@ -435,8 +415,7 @@
         "shutterSpeed": "1/15s",
         "iso": "ISO 1600",
         "latitude": 48.85206442222222,
-        "longitude": 2.355983721388889,
-        "location": "Paris"
+        "longitude": 2.355983721388889
       }
     },
     {
@@ -472,8 +451,7 @@
         "shutterSpeed": "1/110s",
         "iso": "ISO 200",
         "latitude": 48.635516966944444,
-        "longitude": -1.509859471111111,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.509859471111111
       }
     },
     {
@@ -491,8 +469,7 @@
         "shutterSpeed": "1/1900s",
         "iso": "ISO 200",
         "latitude": 48.635947424166666,
-        "longitude": -1.511224286388889,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.511224286388889
       }
     },
     {
@@ -510,8 +487,7 @@
         "shutterSpeed": "1/850s",
         "iso": "ISO 200",
         "latitude": 48.85242132944445,
-        "longitude": 2.354778317777778,
-        "location": "Paris"
+        "longitude": 2.354778317777778
       }
     },
     {
@@ -529,8 +505,7 @@
         "shutterSpeed": "1/3200s",
         "iso": "ISO 200",
         "latitude": 48.85633379555556,
-        "longitude": 2.353494030277778,
-        "location": "Paris"
+        "longitude": 2.353494030277778
       }
     },
     {
@@ -548,8 +523,7 @@
         "shutterSpeed": "1/40s",
         "iso": "ISO 1600",
         "latitude": 49.274942511666666,
-        "longitude": -0.702869985,
-        "location": "Bayeux"
+        "longitude": -0.702869985
       }
     },
     {
@@ -567,8 +541,7 @@
         "shutterSpeed": "1/1700s",
         "iso": "ISO 200",
         "latitude": 49.34341516666667,
-        "longitude": -0.6956369047222223,
-        "location": "Longues-sur-Mer"
+        "longitude": -0.6956369047222223
       }
     },
     {
@@ -586,8 +559,7 @@
         "shutterSpeed": "1/1100s",
         "iso": "ISO 200",
         "latitude": 49.35903272611111,
-        "longitude": -0.8547535913888888,
-        "location": "Colleville-sur-Mer"
+        "longitude": -0.8547535913888888
       }
     },
     {
@@ -605,8 +577,7 @@
         "shutterSpeed": "1/52s",
         "iso": "ISO 1600",
         "latitude": 48.8580755125,
-        "longitude": 2.2928587269444445,
-        "location": "Paris"
+        "longitude": 2.2928587269444445
       }
     },
     {
@@ -624,8 +595,7 @@
         "shutterSpeed": "1/45s",
         "iso": "ISO 1600",
         "latitude": 48.85228687888889,
-        "longitude": 2.3555650780555557,
-        "location": "Paris"
+        "longitude": 2.3555650780555557
       }
     },
     {
@@ -643,8 +613,7 @@
         "shutterSpeed": "1/1900s",
         "iso": "ISO 200",
         "latitude": 49.35902111194444,
-        "longitude": -0.8547580247222222,
-        "location": "Colleville-sur-Mer"
+        "longitude": -0.8547580247222222
       }
     },
     {
@@ -662,8 +631,7 @@
         "shutterSpeed": "1/100s",
         "iso": "ISO 320",
         "latitude": 48.65178803194444,
-        "longitude": -2.0208002008333334,
-        "location": "Saint-Malo"
+        "longitude": -2.0208002008333334
       }
     },
     {
@@ -681,8 +649,7 @@
         "shutterSpeed": "1/2200s",
         "iso": "ISO 200",
         "latitude": 49.39725955222222,
-        "longitude": -0.9893749705555555,
-        "location": "Cricqueville-en-Bessin"
+        "longitude": -0.9893749705555555
       }
     },
     {
@@ -700,8 +667,7 @@
         "shutterSpeed": "1/1900s",
         "iso": "ISO 200",
         "latitude": 48.6357294475,
-        "longitude": -1.5101227686111112,
-        "location": "Le Mont-Saint-Michel"
+        "longitude": -1.5101227686111112
       }
     },
     {
@@ -719,8 +685,7 @@
         "shutterSpeed": "1/15s",
         "iso": "ISO 1600",
         "latitude": 48.852066192500004,
-        "longitude": 2.355979915555556,
-        "location": "Paris"
+        "longitude": 2.355979915555556
       }
     },
     {
@@ -738,8 +703,7 @@
         "shutterSpeed": "1/45s",
         "iso": "ISO 1600",
         "latitude": 48.86710852777778,
-        "longitude": 2.321572472222222,
-        "location": "Paris"
+        "longitude": 2.321572472222222
       }
     },
     {
@@ -757,8 +721,7 @@
         "shutterSpeed": "1/550s",
         "iso": "ISO 200",
         "latitude": 48.86407083333334,
-        "longitude": 2.325402861111111,
-        "location": "Paris"
+        "longitude": 2.325402861111111
       }
     },
     {
@@ -776,8 +739,7 @@
         "shutterSpeed": "1/52s",
         "iso": "ISO 1600",
         "latitude": 48.86130636111111,
-        "longitude": 2.352763638888889,
-        "location": "Paris"
+        "longitude": 2.352763638888889
       }
     },
     {
@@ -795,8 +757,7 @@
         "shutterSpeed": "1/150s",
         "iso": "ISO 200",
         "latitude": 48.85270661111111,
-        "longitude": 2.354252777777778,
-        "location": "Paris"
+        "longitude": 2.354252777777778
       }
     },
     {
@@ -814,8 +775,7 @@
         "shutterSpeed": "1/100s",
         "iso": "ISO 1250",
         "latitude": 48.85373055555556,
-        "longitude": 2.3384374444444447,
-        "location": "Paris"
+        "longitude": 2.3384374444444447
       }
     },
     {
@@ -833,8 +793,7 @@
         "shutterSpeed": "1/350s",
         "iso": "ISO 200",
         "latitude": 48.86610516666667,
-        "longitude": 2.324403722222222,
-        "location": "Paris"
+        "longitude": 2.324403722222222
       }
     },
     {
@@ -852,8 +811,7 @@
         "shutterSpeed": "1/105s",
         "iso": "ISO 200",
         "latitude": 48.64911916472222,
-        "longitude": -2.0282762216666668,
-        "location": "Saint-Malo"
+        "longitude": -2.0282762216666668
       }
     }
   ]
