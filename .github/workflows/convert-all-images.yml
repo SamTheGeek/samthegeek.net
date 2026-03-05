@@ -2,6 +2,7 @@ name: Process All Gallery Images
 
 # This workflow manually processes all existing gallery images.
 # It converts to WebP, extracts EXIF metadata, and registers images in JSON.
+# Each gallery gets its own PR to keep push sizes manageable.
 
 on:
   workflow_dispatch:
@@ -35,7 +36,33 @@ permissions:
   pull-requests: write
 
 jobs:
-  process-all:
+  list-galleries:
+    runs-on: ubuntu-latest
+    outputs:
+      galleries: ${{ steps.list.outputs.galleries_json }}
+    steps:
+      - name: List galleries
+        id: list
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GALLERY_INPUT: ${{ inputs.gallery }}
+          REPO: ${{ github.repository }}
+        run: |
+          if [ -n "$GALLERY_INPUT" ]; then
+            GALLERIES_JSON="[\"$GALLERY_INPUT\"]"
+          else
+            GALLERIES_JSON=$(gh api "repos/$REPO/contents/public/images" \
+              --jq '[.[] | select(.type == "dir") | .name | select(. != "about" and . != "blog")]')
+          fi
+          echo "galleries_json=$GALLERIES_JSON" >> $GITHUB_OUTPUT
+          echo "Galleries to process: $GALLERIES_JSON"
+
+  process-gallery:
+    needs: list-galleries
+    strategy:
+      matrix:
+        gallery: ${{ fromJson(needs.list-galleries.outputs.galleries) }}
+      fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -55,20 +82,22 @@ jobs:
 
       - name: Process gallery images
         env:
+          GALLERY: ${{ matrix.gallery }}
+          QUALITY: ${{ inputs.quality }}
+          FORCE: ${{ inputs.force }}
+          SKIP_WEBP: ${{ inputs.skip_webp }}
+          SKIP_GEOCODE: ${{ inputs.skip_geocode }}
           PUBLIC_GOOGLE_MAPS_EMBED_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: |
-          ARGS="--quality ${{ inputs.quality }}"
-          if [ "${{ inputs.force }}" = "true" ]; then
+          ARGS="--quality $QUALITY --gallery $GALLERY"
+          if [ "$FORCE" = "true" ]; then
             ARGS="$ARGS --force"
           fi
-          if [ -n "${{ inputs.gallery }}" ]; then
-            ARGS="$ARGS --gallery ${{ inputs.gallery }}"
-          fi
-          if [ "${{ inputs.skip_webp }}" = "true" ]; then
+          if [ "$SKIP_WEBP" = "true" ]; then
             ARGS="$ARGS --skip-webp"
           fi
-          if [ "${{ inputs.skip_geocode }}" = "true" ]; then
+          if [ "$SKIP_GEOCODE" = "true" ]; then
             ARGS="$ARGS --skip-geocode"
           fi
           node scripts/process-gallery-images.mjs $ARGS
@@ -76,39 +105,37 @@ jobs:
       - name: Check for changes
         id: check-changes
         run: |
-          if git diff --quiet && git diff --cached --quiet; then
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
             echo "No changes to commit"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
-            # Count changes
             WEBP_COUNT=$(git status --porcelain | grep -E '\.webp$' | wc -l || echo 0)
             JSON_COUNT=$(git status --porcelain | grep -E '\.json$' | wc -l || echo 0)
             PAGE_COUNT=$(git status --porcelain | grep -E '\.astro$' | wc -l || echo 0)
-            MD_COUNT=$(git status --porcelain | grep -E '\.md$' | wc -l || echo 0)
             echo "WebP files: $WEBP_COUNT"
             echo "JSON files: $JSON_COUNT"
             echo "Page files: $PAGE_COUNT"
-            echo "MD files: $MD_COUNT"
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "webp_count=$WEBP_COUNT" >> $GITHUB_OUTPUT
             echo "json_count=$JSON_COUNT" >> $GITHUB_OUTPUT
             echo "page_count=$PAGE_COUNT" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create Pull Request
+      - name: Push changes and create PR
         if: steps.check-changes.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v8
-        with:
-          commit-message: 'chore: process all gallery images'
-          title: 'chore: Process all gallery images'
-          body: |
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GALLERY: ${{ matrix.gallery }}
+          RUN_NUMBER: ${{ github.run_number }}
+          BATCH_SIZE: '50'
+          PR_TITLE: 'Process all photos: ${{ matrix.gallery }}'
+          PR_BODY: |
             ## Summary
-            This PR processes all gallery images.
+            This PR processes gallery images for **${{ matrix.gallery }}**.
 
             **Settings:**
             - Quality: ${{ inputs.quality }}
             - Force re-process: ${{ inputs.force }}
-            - Gallery filter: ${{ inputs.gallery || 'All galleries' }}
             - Skip WebP: ${{ inputs.skip_webp }}
             - Skip geocode: ${{ inputs.skip_geocode }}
 
@@ -129,5 +156,4 @@ jobs:
             - [ ] Verify JPEG fallback works in older browsers
             - [ ] Check that EXIF metadata displays correctly in lightbox
             - [ ] Run `npm run build` to verify no build errors
-          branch: manual/process-images-${{ github.run_number }}
-          delete-branch: true
+        run: bash scripts/push-gallery-pr.sh "$GALLERY" "auto/process-gallery-$GALLERY-$RUN_NUMBER"
