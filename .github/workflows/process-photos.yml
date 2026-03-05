@@ -43,15 +43,19 @@ jobs:
           else
             echo "Found new images:"
             echo "$CHANGED"
-            # Store only valid gallery folders (exclude non-gallery image folders)
-            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | grep -Ev '^(about|blog)$')
+            # Store only valid gallery folders (exclude non-gallery image folders).
+            # grep -Ev exits 1 on no matches, so || true prevents bash -e from aborting
+            # before the has_images=false write below.
+            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | grep -Ev '^(about|blog)$' || true)
             if [ -z "$GALLERIES" ]; then
               echo "No gallery folders changed (only excluded folders like about/blog)"
               echo "has_images=false" >> $GITHUB_OUTPUT
               echo "galleries_json=[]" >> $GITHUB_OUTPUT
             else
               echo "has_images=true" >> $GITHUB_OUTPUT
-              GALLERIES_JSON=$(echo "$GALLERIES" | jq -R -s 'split("\n") | map(select(. != ""))')
+              # Use -c for compact (single-line) JSON; multi-line values in $GITHUB_OUTPUT
+              # require the <<EOF syntax and would break the matrix expression.
+              GALLERIES_JSON=$(echo "$GALLERIES" | jq -Rsc '[split("\n") | .[] | select(. != "")]')
               echo "galleries_json=$GALLERIES_JSON" >> $GITHUB_OUTPUT
             fi
           fi
