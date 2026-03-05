@@ -429,7 +429,30 @@ async function importExifr() {
 }
 
 /**
- * Reverse geocode coordinates to get city/location name
+ * Fetch a city/location name from Google Maps Geocoding API for a given language.
+ * Returns the name string, or null if not found.
+ */
+async function geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, language) {
+  const langParam = language ? `&language=${language}` : '';
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${normalizedLatitude},${normalizedLongitude}&key=${googleApiKey}${langParam}`;
+  const response = await fetch(url);
+  const data = await response.json();
+
+  if (data.status === 'OK' && data.results?.length > 0) {
+    for (const result of data.results) {
+      for (const component of result.address_components || []) {
+        if (component.types?.some(t => ['locality', 'postal_town', 'administrative_area_level_3', 'administrative_area_level_2'].includes(t))) {
+          return component.long_name;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Reverse geocode coordinates to get city/location name in local language and English.
+ * Returns { local, en } or null if nothing could be resolved.
  */
 async function reverseGeocode(latitude, longitude, cache) {
   const normalizedLatitude = normalizeGpsCoordinate(latitude);
@@ -444,50 +467,35 @@ async function reverseGeocode(latitude, longitude, cache) {
     return cache.get(cacheKey);
   }
 
-  // Try Google Maps API first
   const googleApiKey = process.env.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY || process.env.GOOGLE_MAPS_API_KEY;
-
-  if (googleApiKey) {
-    try {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${normalizedLatitude},${normalizedLongitude}&key=${googleApiKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
-
-      if (data.status === 'OK' && data.results?.length > 0) {
-        for (const result of data.results) {
-          for (const component of result.address_components || []) {
-            if (component.types?.some(t => ['locality', 'postal_town', 'administrative_area_level_3', 'administrative_area_level_2'].includes(t))) {
-              const location = component.long_name;
-              cache.set(cacheKey, location);
-              return location;
-            }
-          }
-        }
-      }
-    } catch (error) {
-      console.log(`  Geocoding error (Google): ${error.message}`);
-    }
+  if (!googleApiKey) {
+    cache.set(cacheKey, null);
+    return null;
   }
 
-  // Fallback to Nominatim (OpenStreetMap)
-  try {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${normalizedLatitude}&lon=${normalizedLongitude}&format=json&zoom=10&addressdetails=1`;
-    const response = await fetch(url, {
-      headers: { 'User-Agent': 'samthegeek-gallery-processor' }
-    });
-    const data = await response.json();
+  const [localResult, enResult] = await Promise.allSettled([
+    geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, null),
+    geocodeGoogle(normalizedLatitude, normalizedLongitude, googleApiKey, 'en'),
+  ]);
 
-    const address = data.address || {};
-    const location = address.city || address.town || address.village || address.county;
+  if (localResult.status === 'rejected') {
+    console.log(`  Geocoding error (Google): ${localResult.reason?.message}`);
+  }
+  if (enResult.status === 'rejected') {
+    console.log(`  Geocoding error (Google, en): ${enResult.reason?.message}`);
+  }
 
-    if (location) {
-      cache.set(cacheKey, location);
-      // Rate limit for Nominatim
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return location;
-    }
-  } catch (error) {
-    console.log(`  Geocoding error (Nominatim): ${error.message}`);
+  const localName = localResult.status === 'fulfilled' ? localResult.value : null;
+  const enName = enResult.status === 'fulfilled' ? enResult.value : null;
+
+  if (localName) {
+    // Only provide an English translation when the local name uses a non-Latin
+    // script (e.g. Japanese, Arabic, Cyrillic). Latin-based names like
+    // "København" or "Köln" are already readable without a translation.
+    const needsTranslation = /[^\p{Script=Latin}\p{Number}\p{Punctuation}\p{White_Space}]/u.test(localName);
+    const result = { local: localName, en: needsTranslation && enName && enName !== localName ? enName : null };
+    cache.set(cacheKey, result);
+    return result;
   }
 
   cache.set(cacheKey, null);
@@ -700,10 +708,13 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
 
       // Reverse geocode if we have coordinates and location isn't set
       if (exif?.latitude !== undefined && exif?.longitude !== undefined && !exif.location && !options.skipGeocode) {
-        const location = await reverseGeocode(exif.latitude, exif.longitude, geocodeCache);
-        if (location) {
-          exif.location = location;
-          console.log(`    Location: ${location}`);
+        const geocoded = await reverseGeocode(exif.latitude, exif.longitude, geocodeCache);
+        if (geocoded) {
+          exif.location = geocoded.local;
+          if (geocoded.en) {
+            exif.locationEn = geocoded.en;
+          }
+          console.log(`    Location: ${geocoded.local}${geocoded.en ? ` (${geocoded.en})` : ''}`);
         }
       }
 
