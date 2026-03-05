@@ -7,12 +7,12 @@ const root = process.cwd();
 // filesystem (images are not checked out in the sparse clone).
 let _remoteImagePaths = null;
 const getRemoteImagePaths = async () => {
-  if (_remoteImagePaths \!== null) return _remoteImagePaths;
+  if (_remoteImagePaths !== null) return _remoteImagePaths;
 
   const token = process.env.GITHUB_TOKEN;
   const repository = process.env.GITHUB_REPOSITORY;
   const sha = process.env.GITHUB_SHA;
-  if (\!token || \!repository || \!sha) return null;
+  if (!token || !repository || !sha) return null;
 
   const [owner, repo] = repository.split('/');
   const headers = {
