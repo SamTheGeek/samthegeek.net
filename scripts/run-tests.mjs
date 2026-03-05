@@ -2,6 +2,39 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
+
+// In CI, check image file existence via the GitHub API rather than the
+// filesystem (images are not checked out in the sparse clone).
+let _remoteImagePaths = null;
+const getRemoteImagePaths = async () => {
+  if (_remoteImagePaths !== null) return _remoteImagePaths;
+
+  const token = process.env.GITHUB_TOKEN;
+  const repository = process.env.GITHUB_REPOSITORY;
+  const sha = process.env.GITHUB_SHA;
+  if (!token || !repository || !sha) return null;
+
+  const [owner, repo] = repository.split('/');
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+
+  const treeRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/git/trees/${sha}?recursive=1`,
+    { headers },
+  );
+  const treeData = await treeRes.json();
+
+  _remoteImagePaths = new Set(
+    (treeData.tree ?? [])
+      .filter((item) => item.path.startsWith('public/images/'))
+      .map((item) => item.path),
+  );
+  return _remoteImagePaths;
+};
+
 const errors = [];
 
 const readText = async (relativePath) => {
@@ -108,11 +141,18 @@ const testGalleryMetadata = async () => {
       assert(alt.length > 0, `${filename} image alt text should be present.`);
       if (src.startsWith('/images/')) {
         const relPath = src.replace(/^\/+/, '');
-        const fullPath = path.join(root, 'public', relPath);
-        try {
-          await fs.access(fullPath);
-        } catch {
-          errors.push(`Missing image file for ${filename}: ${src}`);
+        const remoteImagePaths = await getRemoteImagePaths();
+        if (remoteImagePaths !== null) {
+          if (!remoteImagePaths.has(`public/${relPath}`)) {
+            errors.push(`Missing image file for ${filename}: ${src}`);
+          }
+        } else {
+          const fullPath = path.join(root, 'public', relPath);
+          try {
+            await fs.access(fullPath);
+          } catch {
+            errors.push(`Missing image file for ${filename}: ${src}`);
+          }
         }
       }
       if (image.exif) {

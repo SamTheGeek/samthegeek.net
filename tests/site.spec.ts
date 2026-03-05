@@ -306,7 +306,7 @@ test.describe('GitHub Actions workflows', () => {
     expect(content).toContain('process-gallery-images.mjs');
     expect(content).toContain('sharp');
     expect(content).toContain('exifr');
-    expect(content).toContain('create-pull-request');
+    expect(content).toContain('push-gallery-pr.sh');
   });
 
   test('convert-all-images workflow exists with manual trigger', async () => {
@@ -326,7 +326,7 @@ test.describe('GitHub Actions workflows', () => {
 
     // Check for required steps
     expect(content).toContain('process-gallery-images.mjs');
-    expect(content).toContain('create-pull-request');
+    expect(content).toContain('push-gallery-pr.sh');
   });
 
   test('CI workflow exists and runs tests', async () => {
