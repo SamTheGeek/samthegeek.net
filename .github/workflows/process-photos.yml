@@ -3,6 +3,7 @@ name: Process New Photos
 # This workflow runs when a PR with new photos is merged to main.
 # It processes new JPEG images: converts to WebP, extracts EXIF metadata,
 # registers them in gallery JSON, and creates new galleries if needed.
+# Each changed gallery gets its own PR to keep push sizes manageable.
 
 on:
   push:
@@ -19,8 +20,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  process-photos:
+  detect-galleries:
     runs-on: ubuntu-latest
+    outputs:
+      galleries: ${{ steps.check-images.outputs.galleries_json }}
+      has_images: ${{ steps.check-images.outputs.has_images }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -35,82 +39,86 @@ jobs:
           if [ -z "$CHANGED" ]; then
             echo "No new JPEG images found"
             echo "has_images=false" >> $GITHUB_OUTPUT
+            echo "galleries_json=[]" >> $GITHUB_OUTPUT
           else
             echo "Found new images:"
             echo "$CHANGED"
             # Store only valid gallery folders (exclude non-gallery image folders)
-            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | grep -Ev '^(about|blog)$' | tr '\n' ',' | sed 's/,$//')
+            GALLERIES=$(echo "$CHANGED" | sed -n 's|public/images/\([^/]*\)/.*|\1|p' | sort -u | grep -Ev '^(about|blog)$')
             if [ -z "$GALLERIES" ]; then
               echo "No gallery folders changed (only excluded folders like about/blog)"
               echo "has_images=false" >> $GITHUB_OUTPUT
+              echo "galleries_json=[]" >> $GITHUB_OUTPUT
             else
               echo "has_images=true" >> $GITHUB_OUTPUT
-              echo "galleries=$GALLERIES" >> $GITHUB_OUTPUT
+              GALLERIES_JSON=$(echo "$GALLERIES" | jq -R -s 'split("\n") | map(select(. != ""))')
+              echo "galleries_json=$GALLERIES_JSON" >> $GITHUB_OUTPUT
             fi
           fi
 
+  process-gallery:
+    needs: detect-galleries
+    if: needs.detect-galleries.outputs.has_images == 'true'
+    strategy:
+      matrix:
+        gallery: ${{ fromJson(needs.detect-galleries.outputs.galleries) }}
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
       - name: Setup Node.js
-        if: steps.check-images.outputs.has_images == 'true'
         uses: actions/setup-node@v6
         with:
           node-version: lts/*
           cache: npm
 
       - name: Install dependencies
-        if: steps.check-images.outputs.has_images == 'true'
         run: npm ci
 
       - name: Install image processing dependencies
-        if: steps.check-images.outputs.has_images == 'true'
         run: npm install sharp exifr --save-dev
 
       - name: Process gallery images
-        if: steps.check-images.outputs.has_images == 'true'
         env:
+          GALLERY: ${{ matrix.gallery }}
           PUBLIC_GOOGLE_MAPS_EMBED_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_EMBED_API_KEY }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-        run: |
-          IFS=',' read -ra GALLERY_ARRAY <<< "${{ steps.check-images.outputs.galleries }}"
-          for gallery in "${GALLERY_ARRAY[@]}"; do
-            [ -z "$gallery" ] && continue
-            echo "Processing gallery: $gallery"
-            node scripts/process-gallery-images.mjs --gallery "$gallery" --force
-          done
+        run: node scripts/process-gallery-images.mjs --gallery "$GALLERY" --force
 
       - name: Check for changes
-        if: steps.check-images.outputs.has_images == 'true'
         id: check-changes
         run: |
-          if git diff --quiet && git diff --cached --quiet; then
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
             echo "No changes to commit"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
-            # Count changes
             WEBP_COUNT=$(git status --porcelain | grep -E '\.webp$' | wc -l || echo 0)
             JSON_COUNT=$(git status --porcelain | grep -E '\.json$' | wc -l || echo 0)
             PAGE_COUNT=$(git status --porcelain | grep -E '\.astro$' | wc -l || echo 0)
-            MD_COUNT=$(git status --porcelain | grep -E '\.md$' | wc -l || echo 0)
             echo "WebP files: $WEBP_COUNT"
             echo "JSON files: $JSON_COUNT"
             echo "Page files: $PAGE_COUNT"
-            echo "MD files: $MD_COUNT"
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "webp_count=$WEBP_COUNT" >> $GITHUB_OUTPUT
             echo "json_count=$JSON_COUNT" >> $GITHUB_OUTPUT
             echo "page_count=$PAGE_COUNT" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create Pull Request
-        if: steps.check-images.outputs.has_images == 'true' && steps.check-changes.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v8
-        with:
-          commit-message: 'chore: process new gallery images'
-          title: 'chore: Process new gallery images'
-          body: |
+      - name: Push changes and create PR
+        if: steps.check-changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GALLERY: ${{ matrix.gallery }}
+          BATCH_SIZE: '50'
+          PR_TITLE: 'Process new photos: ${{ matrix.gallery }}'
+          PR_LABELS: automerge
+          PR_BODY: |
             ## Summary
-            This PR processes newly added gallery images.
-
-            **Galleries processed:** ${{ steps.check-images.outputs.galleries }}
+            This PR processes newly added gallery images for **${{ matrix.gallery }}**.
 
             ## Changes
             - **${{ steps.check-changes.outputs.webp_count }}** WebP images created
@@ -129,6 +137,4 @@ jobs:
             - [ ] Verify JPEG fallback works in older browsers
             - [ ] Check that EXIF metadata displays correctly in lightbox
             - [ ] Verify any new gallery pages render correctly
-          branch: auto/process-photos
-          delete-branch: true
-          labels: automerge
+        run: bash scripts/push-gallery-pr.sh "$GALLERY" "auto/process-photos-$GALLERY"
