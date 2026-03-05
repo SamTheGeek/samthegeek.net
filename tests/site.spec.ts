@@ -511,13 +511,13 @@ test.describe('English location names', () => {
   });
 
   test('lightbox shows combined local and English location label', async ({ page }) => {
-    await page.goto('/copenhagen');
+    await page.goto('/japan');
     await page.setViewportSize({ width: 1280, height: 900 });
-    // First Copenhagen image has location "København" and locationEn "Copenhagen"
+    // First Japan image has location "東京" (non-Latin) and locationEn "Tokyo"
     await page.locator('.gallery-item img').first().click();
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
     const mapLabel = page.locator('#lightbox-map-label');
-    await expect(mapLabel).toContainText('København');
-    await expect(mapLabel).toContainText('Copenhagen');
+    await expect(mapLabel).toContainText('東京');
+    await expect(mapLabel).toContainText('Tokyo');
   });
 });
