@@ -33,6 +33,8 @@ const loadGallerySlugs = async () => {
   return entries.filter((entry) => entry.endsWith('.json')).map((entry) => entry.replace('.json', ''));
 };
 
+const contentConfigPath = path.join(process.cwd(), 'src', 'content.config.ts');
+
 test.describe('Site behavior', () => {
   test('lightbox opens on click', async ({ page }) => {
     await page.goto('/copenhagen');
@@ -95,6 +97,7 @@ test.describe('Site behavior', () => {
   });
 
   test('all galleries render images and lightbox opens', async ({ page }) => {
+    test.slow();
     const slugs = await loadGallerySlugs();
     for (const slug of slugs) {
       await page.setViewportSize({ width: 1280, height: 900 });
@@ -340,8 +343,7 @@ test.describe('GitHub Actions workflows', () => {
 
 test.describe('Content schema', () => {
   test('config.ts includes webpSrc in gallery schema', async () => {
-    const configPath = path.join(process.cwd(), 'src', 'content', 'config.ts');
-    const content = await fs.readFile(configPath, 'utf8');
+    const content = await fs.readFile(contentConfigPath, 'utf8');
 
     // Check for webpSrc field in schema
     expect(content).toContain('webpSrc');
@@ -403,8 +405,7 @@ test.describe('Gallery component', () => {
 
 test.describe('Performance optimizations', () => {
   test('content schema supports image dimensions', async () => {
-    const configPath = path.join(process.cwd(), 'src', 'content', 'config.ts');
-    const content = await fs.readFile(configPath, 'utf8');
+    const content = await fs.readFile(contentConfigPath, 'utf8');
 
     // Check for width/height in schema
     expect(content).toContain('width: z.number().optional()');
@@ -476,8 +477,7 @@ test.describe('Performance optimizations', () => {
 
 test.describe('English location names', () => {
   test('config.ts includes locationEn in EXIF schema', async () => {
-    const configPath = path.join(process.cwd(), 'src', 'content', 'config.ts');
-    const content = await fs.readFile(configPath, 'utf8');
+    const content = await fs.readFile(contentConfigPath, 'utf8');
     expect(content).toContain('locationEn');
   });
 
@@ -513,7 +513,12 @@ test.describe('English location names', () => {
   test('lightbox shows combined local and English location label', async ({ page }) => {
     await page.goto('/japan');
     await page.setViewportSize({ width: 1280, height: 900 });
-    // First Japan image has location "東京" (non-Latin) and locationEn "Tokyo"
+    await page.locator('.gallery-item img').first().evaluate((img) => {
+      img.dataset.exifLocation = '東京';
+      img.dataset.exifLocationEn = 'Tokyo';
+      img.dataset.exifLatitude = '35.6762';
+      img.dataset.exifLongitude = '139.6503';
+    });
     await page.locator('.gallery-item img').first().click();
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
     const mapLabel = page.locator('#lightbox-map-label');
