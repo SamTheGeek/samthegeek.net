@@ -37,6 +37,34 @@ const getRemoteImagePaths = async () => {
 
 const errors = [];
 
+const fileExists = async (targetPath) => {
+  try {
+    await fs.access(targetPath);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const candidateImagePaths = (imageSrc, webpSrc) => {
+  const candidates = new Set();
+
+  if (typeof imageSrc === 'string' && imageSrc.startsWith('/images/')) {
+    candidates.add(imageSrc.replace(/^\/+/, ''));
+    const webpVariant = imageSrc.replace(/\.[^.\/]+$/, '.webp');
+    if (webpVariant.startsWith('/images/')) {
+      candidates.add(webpVariant.replace(/^\/+/, ''));
+    }
+  }
+
+  if (typeof webpSrc === 'string' && webpSrc.startsWith('/images/')) {
+    candidates.add(webpSrc.replace(/^\/+/, ''));
+  }
+
+  return [...candidates];
+};
+
+
 const readText = async (relativePath) => {
   const fullPath = path.join(root, relativePath);
   return fs.readFile(fullPath, 'utf8');
@@ -140,17 +168,24 @@ const testGalleryMetadata = async () => {
       );
       assert(alt.length > 0, `${filename} image alt text should be present.`);
       if (src.startsWith('/images/')) {
-        const relPath = src.replace(/^\/+/, '');
+        const relPaths = candidateImagePaths(src, image.webpSrc);
         const remoteImagePaths = await getRemoteImagePaths();
+
         if (remoteImagePaths !== null) {
-          if (!remoteImagePaths.has(`public/${relPath}`)) {
+          const hasMatch = relPaths.some((relPath) => remoteImagePaths.has(`public/${relPath}`));
+          if (!hasMatch) {
             errors.push(`Missing image file for ${filename}: ${src}`);
           }
         } else {
-          const fullPath = path.join(root, 'public', relPath);
-          try {
-            await fs.access(fullPath);
-          } catch {
+          let hasMatch = false;
+          for (const relPath of relPaths) {
+            const fullPath = path.join(root, 'public', relPath);
+            if (await fileExists(fullPath)) {
+              hasMatch = true;
+              break;
+            }
+          }
+          if (!hasMatch) {
             errors.push(`Missing image file for ${filename}: ${src}`);
           }
         }
@@ -229,6 +264,29 @@ const testPerformanceHints = async () => {
   );
 };
 
+
+const testDependencyAlignment = async () => {
+  const packageJson = JSON.parse(await readText('package.json'));
+  const lockfile = JSON.parse(await readText('package-lock.json'));
+  const rootPackage = lockfile.packages?.[''] ?? {};
+
+  const expectedDeps = {
+    astro: packageJson.dependencies?.astro,
+    '@playwright/test': packageJson.devDependencies?.['@playwright/test'],
+    '@axe-core/playwright': packageJson.devDependencies?.['@axe-core/playwright'],
+  };
+
+  for (const [name, expectedVersion] of Object.entries(expectedDeps)) {
+    assert(Boolean(expectedVersion), `package.json should declare ${name}.`);
+
+    const lockVersion = rootPackage.dependencies?.[name] ?? rootPackage.devDependencies?.[name];
+    assert(
+      lockVersion === expectedVersion,
+      `package-lock.json should pin ${name} to ${expectedVersion} (found ${lockVersion ?? 'missing'}).`
+    );
+  }
+};
+
 const run = async () => {
   await testIndexRedirect();
   await testLightboxMapsKey();
@@ -238,6 +296,7 @@ const run = async () => {
   await testGalleryMetadata();
   await testBlogIdsUnique();
   await testPerformanceHints();
+  await testDependencyAlignment();
 
   if (errors.length > 0) {
     console.error('Tests failed:');

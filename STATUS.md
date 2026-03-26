@@ -5,6 +5,8 @@ This file is the single source of truth for current status, progress, and next t
 ## Current State
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
+- Upgraded to Astro 6 (`astro@6.0.8`) and migrated content collections to `src/content.config.ts` with explicit loaders.
+- Local/CI gallery validation now accepts existing `.webp` assets when JSON `src` points to legacy JPG/JPEG paths.
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - CI Playwright workflow now skips docs/workflow/photo-only PRs and `scripts/**` changes, caches Playwright browser binaries, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.
 - Added a repo-managed CodeQL workflow scoped to JavaScript/TypeScript and only relevant source/config path changes.

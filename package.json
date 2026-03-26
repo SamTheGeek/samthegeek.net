@@ -15,7 +15,7 @@
     "test:e2e:ci": "npx playwright test --project=chromium --reporter=line"
   },
   "dependencies": {
-    "astro": "^5.18.0"
+    "astro": "^6.0.8"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
