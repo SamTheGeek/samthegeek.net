@@ -83,7 +83,7 @@ const nextHref = `/blog/page/${page + 1}`;
 <div class="blog-page">
   <div class="article-list hfeed">
     {posts.map((post, index) => {
-      const postHref = `/blog/${post.slug}`;
+      const postHref = `/blog/${post.id}`;
       const categories = buildCategoryLinks(post);
       const renderedHtml = post.rendered?.html ?? '';
       return (
