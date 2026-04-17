@@ -135,6 +135,48 @@ test.describe('Site behavior', () => {
     await expect(posts.first()).toBeVisible();
   });
 
+  test('blog index links do not contain undefined', async ({ page }) => {
+    await page.goto('/blog');
+    // Post links follow the /blog/YEAR/ pattern (not pagination/category/tag)
+    const posts = page.locator('main a[href^="/blog/"]').filter({ hasText: /.+/ });
+    const allHrefs = await posts.evaluateAll((els) =>
+      els.map((el) => el.getAttribute('href') ?? '')
+    );
+    const postLinks = allHrefs.filter((href) => /^\/blog\/\d{4}\//.test(href));
+    expect(postLinks.length).toBeGreaterThan(0);
+    for (const href of postLinks) {
+      expect(href).not.toContain('undefined');
+    }
+  });
+
+  test('blog post page loads when navigating from index', async ({ page }) => {
+    await page.goto('/blog');
+    const firstLink = page.locator('main a[href^="/blog/"]').first();
+    const href = await firstLink.getAttribute('href');
+    expect(href).toBeTruthy();
+    expect(href).not.toContain('undefined');
+
+    await page.goto(href!);
+    await expect(page).not.toHaveURL('/');
+    await expect(page.locator('article')).toBeVisible();
+    await expect(page.locator('article h1')).toBeVisible();
+  });
+
+  test('blog post page prev/next links do not contain undefined', async ({ page }) => {
+    await page.goto('/blog');
+    const firstLink = page.locator('main a[href^="/blog/"]').first();
+    const href = await firstLink.getAttribute('href');
+    await page.goto(href!);
+
+    const navLinks = page.locator('nav.pagination a');
+    const navCount = await navLinks.count();
+    for (let i = 0; i < navCount; i++) {
+      const navHref = await navLinks.nth(i).getAttribute('href');
+      expect(navHref).not.toContain('undefined');
+      expect(navHref).toMatch(/^\/blog\/\d{4}\//);
+    }
+  });
+
   test('gallery images use picture elements', async ({ page }) => {
     await page.goto('/copenhagen');
     await page.setViewportSize({ width: 1280, height: 900 });
@@ -338,6 +380,45 @@ test.describe('GitHub Actions workflows', () => {
 
     expect(content).toContain('pull_request:');
     expect(content).toContain('playwright');
+  });
+});
+
+test.describe('Blog routing', () => {
+  test('BlogList uses post.id not post.slug for hrefs', async () => {
+    const blogListPath = path.join(process.cwd(), 'src', 'components', 'BlogList.astro');
+    const content = await fs.readFile(blogListPath, 'utf8');
+    expect(content).toContain('post.id');
+    expect(content).not.toContain('post.slug');
+  });
+
+  test('[...slug].astro uses post.id and render(post) API', async () => {
+    const slugPagePath = path.join(process.cwd(), 'src', 'pages', 'blog', '[...slug].astro');
+    const content = await fs.readFile(slugPagePath, 'utf8');
+    expect(content).toContain('post.id');
+    expect(content).not.toContain('post.slug');
+    // Astro 6 render API: render(post) not post.render()
+    expect(content).toContain('render(post)');
+    expect(content).not.toContain('post.render()');
+  });
+
+  test('all blog markdown files have required frontmatter', async () => {
+    const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
+    const files: string[] = [];
+    const walk = async (dir: string) => {
+      for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) await walk(fullPath);
+        else if (entry.name.endsWith('.md')) files.push(fullPath);
+      }
+    };
+    await walk(blogDir);
+    expect(files.length).toBeGreaterThan(0);
+
+    for (const file of files) {
+      const content = await fs.readFile(file, 'utf8');
+      expect(content, `${file} missing title`).toMatch(/^title:/m);
+      expect(content, `${file} missing pubDate`).toMatch(/^pubDate:/m);
+    }
   });
 });
 
