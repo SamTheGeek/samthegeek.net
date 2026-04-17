@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPostFooter from '../../components/BlogPostFooter.astro';
 import '../../styles/blog.css';
@@ -7,19 +7,19 @@ import '../../styles/blog.css';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const currentIndex = sortedPosts.findIndex((entry) => entry.id === post.id);
 const prevPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
-const postHref = `/blog/${post.slug}`;
+const postHref = `/blog/${post.id}`;
 const categories = post.data.categories ?? (post.data.category ? [post.data.category] : []);
 
 function formatDate(date: Date): string {
@@ -74,8 +74,8 @@ function formatDate(date: Date): string {
     <BlogPostFooter post={post} postUrl={postHref} />
 
     <nav class="pagination">
-      {prevPost ? <a href={`/blog/${prevPost.slug}`}>Prev</a> : 'Prev'} /{' '}
-      {nextPost ? <a href={`/blog/${nextPost.slug}`}>Next</a> : 'Next'}
+      {prevPost ? <a href={`/blog/${prevPost.id}`}>Prev</a> : 'Prev'} /{' '}
+      {nextPost ? <a href={`/blog/${nextPost.id}`}>Next</a> : 'Next'}
     </nav>
 
   </article>
