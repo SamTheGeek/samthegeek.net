@@ -41,7 +41,8 @@ test.describe('Site behavior', () => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.locator('.gallery-item img').first().click();
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
-    await expect(page.locator('#lightbox-image')).toHaveAttribute('src', /\/images\//);
+    // Lightbox shows the cached CDN thumbnail immediately; src is a CDN or images URL.
+    await expect(page.locator('#lightbox-image')).toHaveAttribute('src', /images/);
   });
 
   test('deep link opens lightbox for a photo', async ({ page }) => {
@@ -177,39 +178,39 @@ test.describe('Site behavior', () => {
     }
   });
 
-  test('gallery images use picture elements', async ({ page }) => {
+  test('gallery images render with srcset via Netlify image CDN', async ({ page }) => {
     await page.goto('/copenhagen');
     await page.setViewportSize({ width: 1280, height: 900 });
-    // Check that images are wrapped in picture elements
-    const pictureCount = await page.locator('.gallery-item picture').count();
+    // Images are rendered directly (no picture wrapper) with a CDN srcset
     const imgCount = await page.locator('.gallery-item img').count();
-    expect(pictureCount).toBeGreaterThan(0);
-    expect(pictureCount).toBe(imgCount);
+    expect(imgCount).toBeGreaterThan(0);
+    const firstSrcset = await page.locator('.gallery-item img').first().getAttribute('srcset');
+    expect(firstSrcset).toContain('/.netlify/images');
   });
 
-  test('gallery images have JPEG fallback', async ({ page }) => {
+  test('gallery images serve optimized formats via Netlify CDN', async ({ page }) => {
     await page.goto('/copenhagen');
     await page.setViewportSize({ width: 1280, height: 900 });
-    // Every img in gallery should have a JPEG src as fallback
     const imgs = page.locator('.gallery-item img');
     const count = await imgs.count();
     expect(count).toBeGreaterThan(0);
+    // src should go through Netlify image CDN for on-demand format conversion
     for (let i = 0; i < Math.min(count, 5); i++) {
       const src = await imgs.nth(i).getAttribute('src');
-      expect(src).toMatch(/\.(jpg|jpeg)$/i);
+      expect(src).toContain('/.netlify/images');
     }
   });
 
-  test('lightbox uses currentSrc for WebP support', async ({ page }) => {
+  test('lightbox immediately shows cached CDN thumbnail on click', async ({ page }) => {
     await page.goto('/copenhagen');
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.locator('.gallery-item img').first().click();
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
-    // The lightbox should have an image loaded
+    // Lightbox opens instantly by reusing the already-cached CDN thumbnail.
+    // It then upgrades to a viewport-sized CDN image silently in the background.
     const lightboxSrc = await page.locator('#lightbox-image').getAttribute('src');
     expect(lightboxSrc).toBeTruthy();
-    // It should be either WebP or JPEG depending on browser support
-    expect(lightboxSrc).toMatch(/\.(jpg|jpeg|webp)$/i);
+    expect(lightboxSrc).toContain('/.netlify/images');
   });
 });
 
@@ -439,37 +440,32 @@ test.describe('Content schema', () => {
 });
 
 test.describe('Gallery component', () => {
-  test('Gallery.astro uses picture elements with WebP source', async () => {
+  test('Gallery.astro uses Astro Image component with Netlify CDN', async () => {
     const componentPath = path.join(process.cwd(), 'src', 'components', 'Gallery.astro');
     const content = await fs.readFile(componentPath, 'utf8');
 
-    // Check for picture element
-    expect(content).toContain('<picture>');
-    expect(content).toContain('</picture>');
+    // Uses Astro's <Image /> component (not a raw <picture>)
+    expect(content).toContain('<Image');
+    expect(content).toContain("from 'astro:assets'");
 
-    // Check for WebP source
-    expect(content).toContain('type="image/webp"');
-    expect(content).toContain('webpSrc');
+    // Responsive srcset via widths prop
+    expect(content).toContain('widths=');
+    expect(content).toContain('sizes=');
 
-    // Check for JPEG fallback img
-    expect(content).toContain('<img');
-    expect(content).toContain('src={image.src}');
+    // data-full-src for lightbox to load original full-resolution file
+    expect(content).toContain('data-full-src=');
 
-    // Check for data attributes for EXIF
+    // EXIF data attributes still present
     expect(content).toContain('data-exif-');
-    expect(content).toContain('data-webp-src');
   });
 
   test('Gallery.astro has performance optimizations', async () => {
     const componentPath = path.join(process.cwd(), 'src', 'components', 'Gallery.astro');
     const content = await fs.readFile(componentPath, 'utf8');
 
-    // Check for width/height attributes for CLS prevention
-    expect(content).toContain('width={image.width}');
-    expect(content).toContain('height={image.height}');
-
-    // Check for aspect-ratio CSS for CLS prevention
-    expect(content).toContain('aspect-ratio');
+    // width/height attributes for CLS prevention (with fallback defaults)
+    expect(content).toContain('width={image.width');
+    expect(content).toContain('height={image.height');
 
     // Check for fetchpriority on first image for LCP
     expect(content).toContain('fetchpriority');

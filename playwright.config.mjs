@@ -15,7 +15,7 @@ export default defineConfig({
     trace: isCI ? 'off' : 'retain-on-failure',
   },
   webServer: {
-    command: 'npm run preview -- --host 127.0.0.1 --port 4321',
+    command: 'npx --yes serve dist -l 4321 --no-clipboard',
     url: 'http://127.0.0.1:4321',
     reuseExistingServer: !isCI,
     timeout: 120000,
