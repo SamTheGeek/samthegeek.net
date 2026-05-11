@@ -731,14 +731,30 @@
       }
     }
 
+    function getOriginalSrc(img: HTMLImageElement) {
+      // Prefer data-full-src (original path) over img.src which may be a CDN URL.
+      return img.dataset.fullSrc || img.src;
+    }
+
+    function filenameBase(src: string) {
+      const pathname = new URL(src, window.location.origin).pathname;
+      const name = decodeURIComponent(pathname.split('/').pop() || '');
+      return name.replace(/\.[^.]+$/, '').toLowerCase();
+    }
+
     function findImageFromUrl() {
       const value = getPhotoParam();
       if (!value) return null;
+      // Match by full filename first, then fall back to base name (strips extension)
+      // so that ?photo=DSCF1829.JPG matches an image whose data-full-src is DSCF1829.webp.
       const decodedValue = decodeURIComponent(value);
+      const valueBase = decodedValue.replace(/\.[^.]+$/, '').toLowerCase();
       for (const img of galleryImages) {
-        const path = new URL(img.src).pathname;
-        const filename = decodeURIComponent(path.split('/').pop() || '');
+        const originalSrc = getOriginalSrc(img as HTMLImageElement);
+        const pathname = new URL(originalSrc, window.location.origin).pathname;
+        const filename = decodeURIComponent(pathname.split('/').pop() || '');
         if (filename === value || filename === decodedValue) return img as HTMLImageElement;
+        if (filenameBase(originalSrc) === valueBase) return img as HTMLImageElement;
       }
       return null;
     }
@@ -750,7 +766,7 @@
 
     function setPhotoParam(img: HTMLImageElement) {
       const url = new URL(window.location.href);
-      const path = new URL(img.src).pathname;
+      const path = new URL(getOriginalSrc(img), window.location.origin).pathname;
       const filename = decodeURIComponent(path.split('/').pop() || '');
       url.searchParams.set('photo', filename);
       history.replaceState({}, '', url);

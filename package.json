@@ -1,7 +1,7 @@
 {
   "name": "samthegeek.net",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "npm@11.6.2",
   "scripts": {
     "dev": "astro dev",
@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "test": "node scripts/run-tests.mjs",
     "test:e2e": "npm run build && npx playwright test",
-    "postinstall": "npx playwright install chromium",
+    "postinstall": "node scripts/postinstall.mjs",
     "setup": "bash scripts/setup_repo.sh",
     "astro": "astro",
     "test:e2e:ci": "npx playwright test --project=chromium --reporter=line"
