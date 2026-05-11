@@ -41,7 +41,8 @@ test.describe('Site behavior', () => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.locator('.gallery-item img').first().click();
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
-    await expect(page.locator('#lightbox-image')).toHaveAttribute('src', /\/images\//);
+    // Lightbox shows the cached CDN thumbnail immediately; src is a CDN or images URL.
+    await expect(page.locator('#lightbox-image')).toHaveAttribute('src', /images/);
   });
 
   test('deep link opens lightbox for a photo', async ({ page }) => {
@@ -200,15 +201,16 @@ test.describe('Site behavior', () => {
     }
   });
 
-  test('lightbox loads full-resolution image from data-full-src', async ({ page }) => {
+  test('lightbox immediately shows cached CDN thumbnail on click', async ({ page }) => {
     await page.goto('/copenhagen');
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.locator('.gallery-item img').first().click();
     await expect(page.locator('#lightbox')).toHaveClass(/active/);
-    // The lightbox loads the original image from data-full-src (not the CDN thumbnail)
+    // Lightbox opens instantly by reusing the already-cached CDN thumbnail.
+    // It then upgrades to a viewport-sized CDN image silently in the background.
     const lightboxSrc = await page.locator('#lightbox-image').getAttribute('src');
     expect(lightboxSrc).toBeTruthy();
-    expect(lightboxSrc).toMatch(/\/images\/.+\.webp$/i);
+    expect(lightboxSrc).toContain('/.netlify/images');
   });
 });
 

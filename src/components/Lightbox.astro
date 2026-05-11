@@ -1055,7 +1055,28 @@
     function loadFullImage(img: HTMLImageElement, token: number) {
       if (!lightbox || !lightboxImage) return Promise.reject();
       if (token !== loadToken) return Promise.reject();
-      lightboxImage.src = img.dataset.fullSrc || img.currentSrc || img.src;
+
+      // Show the already-cached CDN thumbnail immediately so the lightbox opens
+      // without waiting for a fresh download of the full-resolution original.
+      lightboxImage.src = img.currentSrc || img.src;
+
+      // Silently upgrade to a viewport-sized CDN image in the background.
+      // This avoids downloading the raw original (potentially 10MB+) while still
+      // delivering a sharp image for the lightbox viewport.
+      const fullSrc = img.dataset.fullSrc;
+      if (fullSrc) {
+        const viewportPx = Math.min(
+          Math.round(window.innerWidth * (window.devicePixelRatio || 1)),
+          2400
+        );
+        const hiresSrc = `/.netlify/images?url=${encodeURIComponent(fullSrc)}&w=${viewportPx}`;
+        const hiresImg = new Image();
+        hiresImg.onload = () => {
+          if (token === loadToken) lightboxImage.src = hiresSrc;
+        };
+        hiresImg.src = hiresSrc;
+      }
+
       if (lightboxImage.decode) {
         return lightboxImage.decode().then(() => token).catch(() => token);
       }
