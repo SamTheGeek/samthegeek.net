@@ -1039,7 +1039,7 @@
     function loadFullImage(img: HTMLImageElement, token: number) {
       if (!lightbox || !lightboxImage) return Promise.reject();
       if (token !== loadToken) return Promise.reject();
-      lightboxImage.src = img.currentSrc || img.src;
+      lightboxImage.src = img.dataset.fullSrc || img.currentSrc || img.src;
       if (lightboxImage.decode) {
         return lightboxImage.decode().then(() => token).catch(() => token);
       }
