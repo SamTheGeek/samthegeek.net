@@ -37,7 +37,7 @@ const { title, images } = Astro.props;
       return (
         <div class="gallery-item">
           <Image
-            src={image.webpSrc ?? image.src}
+            src={image.src}
             alt={image.alt}
             width={image.width ?? 1200}
             height={image.height ?? 800}
@@ -46,7 +46,7 @@ const { title, images } = Astro.props;
             loading={isAboveFold ? "eager" : "lazy"}
             decoding={isAboveFold ? "sync" : "async"}
             fetchpriority={index === 0 ? "high" : undefined}
-            data-full-src={image.webpSrc ?? image.src}
+            data-full-src={image.src}
             data-exif-date={image.exif?.date}
             data-exif-camera={image.exif?.camera}
             data-exif-lens={image.exif?.lens}
