@@ -17,7 +17,7 @@
   "dependencies": {
     "@astrojs/netlify": "^7.0.9",
     "@netlify/blobs": "^10.7.7",
-    "astro": "^6.3.3"
+    "astro": "^6.3.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
