@@ -15,7 +15,7 @@
     "test:e2e:ci": "npx playwright test --project=chromium --reporter=line"
   },
   "dependencies": {
-    "@astrojs/netlify": "^7.0.11",
+    "@astrojs/netlify": "^7.0.12",
     "@netlify/blobs": "^10.7.9",
     "astro": "^6.4.4"
   },
