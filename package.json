@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^7.0.13",
-    "@netlify/blobs": "^10.7.9",
+    "@netlify/blobs": "^10.7.10",
     "astro": "^6.4.8"
   },
   "devDependencies": {
