@@ -1,5 +1,6 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
 
@@ -265,6 +266,89 @@ const testPerformanceHints = async () => {
 };
 
 
+const testImageRotationWorkflow = async () => {
+  const script = 'scripts/rotate-gallery-images.mjs';
+  assert(
+    await fileExists(path.join(root, script)),
+    `${script} should exist for fixing images that lost their EXIF orientation.`
+  );
+
+  const workflow = await readText('.github/workflows/rotate-images.yml');
+  assert(
+    workflow.includes(script),
+    'rotate-images workflow should run the rotation script.'
+  );
+  for (const rotation of ['cw', 'ccw', "'180'"]) {
+    assert(
+      workflow.includes(`- ${rotation}`),
+      `rotate-images workflow should offer the ${rotation} rotation.`
+    );
+  }
+  assert(
+    workflow.includes('--images-file'),
+    'rotate-images workflow should pass the intake list as a file, not as a shell argument.'
+  );
+
+  // The conversion must bake EXIF orientation into the pixels, or portrait
+  // photos lose their rotation all over again.
+  const processor = await readText('scripts/process-gallery-images.mjs');
+  assert(
+    processor.includes('.autoOrient()'),
+    'process-gallery-images should autoOrient() before writing WebP.'
+  );
+  assert(
+    processor.includes('metadata.autoOrient ?? metadata'),
+    'process-gallery-images should record auto-oriented dimensions.'
+  );
+
+  const rotator = await import(pathToFileURL(path.join(root, script)).href);
+
+  const rotationCases = [
+    ['cw', 'cw'], ['CW', 'cw'], ['90', 'cw'], ['right', 'cw'],
+    ['ccw', 'ccw'], ['-90', 'ccw'], ['left', 'ccw'],
+    ['180', '180'], ['upside-down', '180'], ['flip', '180'],
+    ['sideways', null], ['', null],
+  ];
+  for (const [input, expected] of rotationCases) {
+    assert(
+      rotator.parseRotation(input) === expected,
+      `parseRotation(${JSON.stringify(input)}) should be ${expected}.`
+    );
+  }
+
+  assert(rotator.rotationDegrees('cw') === 90, 'cw should be 90 degrees clockwise.');
+  assert(rotator.rotationDegrees('ccw') === 270, 'ccw should be 270 degrees clockwise.');
+  assert(rotator.rotationDegrees('180') === 180, '180 should be 180 degrees.');
+
+  const referenceCases = [
+    ['https://samthegeek.net/images/japan/DSCF1234.webp', 'images/japan/DSCF1234.webp'],
+    ['/images/japan/DSCF1234.webp?v=2#top', 'images/japan/DSCF1234.webp'],
+    ['public/images/japan/DSCF1234.webp', 'public/images/japan/DSCF1234.webp'],
+    ['https://x.netlify.app/_image?href=%2Fimages%2Fjapan%2FDSCF1234.webp&w=800', 'images/japan/DSCF1234.webp'],
+  ];
+  for (const [input, expected] of referenceCases) {
+    assert(
+      rotator.normalizeImageReference(input) === expected,
+      `normalizeImageReference(${JSON.stringify(input)}) should be ${expected}.`
+    );
+  }
+
+  // Per-entry rotations override the run-wide default; comments are ignored.
+  const entries = rotator.parseEntries(
+    '/images/a.webp cw\n# skip me\n/images/b.webp | ccw, /images/c.webp => 180\n/images/d.webp',
+    'cw'
+  );
+  assert(entries.length === 4, 'parseEntries should read four entries.');
+  assert(
+    entries.map((entry) => entry.rotation).join(',') === 'cw,ccw,180,cw',
+    'parseEntries should honour per-entry rotations and fall back to the default.'
+  );
+  assert(
+    entries[1].reference === '/images/b.webp',
+    'parseEntries should strip the rotation from the reference.'
+  );
+};
+
 const testDependencyAlignment = async () => {
   const packageJson = JSON.parse(await readText('package.json'));
   const lockfile = JSON.parse(await readText('package-lock.json'));
@@ -296,6 +380,7 @@ const run = async () => {
   await testGalleryMetadata();
   await testBlogIdsUnique();
   await testPerformanceHints();
+  await testImageRotationWorkflow();
   await testDependencyAlignment();
 
   if (errors.length > 0) {

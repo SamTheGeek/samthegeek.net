@@ -9,8 +9,10 @@
 #   PR_BODY    - Pull request body (may be multi-line)
 #
 # Optional environment variables:
-#   PR_LABELS  - Comma-separated label names to apply to the PR
-#   BATCH_SIZE - Number of files to commit per push (default: 50)
+#   PR_LABELS      - Comma-separated label names to apply to the PR
+#   BATCH_SIZE     - Number of files to commit per push (default: 50)
+#   COMMIT_MESSAGE - Commit subject, minus the batch suffix
+#                    (default: "chore: process <gallery> images")
 #
 # Exit codes:
 #   0 - Success (changes pushed and PR created/updated, or no changes found)
@@ -21,6 +23,7 @@ set -euo pipefail
 GALLERY="${1:?Gallery name required}"
 BRANCH="${2:?Branch name required}"
 BATCH_SIZE="${BATCH_SIZE:-50}"
+COMMIT_MESSAGE="${COMMIT_MESSAGE:-chore: process $GALLERY images}"
 
 # Verify required env vars
 : "${PR_TITLE:?PR_TITLE environment variable required}"
@@ -65,7 +68,7 @@ while [ "$i" -lt "$TOTAL" ]; do
   done
 
   BATCH=$(( BATCH + 1 ))
-  git commit -m "chore: process $GALLERY images [batch $BATCH/$TOTAL_BATCHES]"
+  git commit -m "$COMMIT_MESSAGE [batch $BATCH/$TOTAL_BATCHES]"
 
   if [ "$FIRST_PUSH" = true ]; then
     # Force-push on first batch to overwrite any stale remote branch

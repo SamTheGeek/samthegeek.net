@@ -71,6 +71,7 @@ Troubleshooting: if the static map image returns 403 but the URL works in a new 
 - [Docs/CLAUDE.md](Docs/CLAUDE.md) - Development guide and architecture documentation
 - [Docs/DEPLOYMENT.md](Docs/DEPLOYMENT.md) - Deployment setup and SSL configuration
 - [Docs/DOWNLOAD_IMAGES_README.md](Docs/DOWNLOAD_IMAGES_README.md) - Image download + rename workflows
+- [Docs/IMAGE_ROTATION.md](Docs/IMAGE_ROTATION.md) - Fixing photos that display sideways
 - [STATUS.md](STATUS.md) - Current status, progress, and next tasks
 - [AGENT_INSTRUCTIONS.md](AGENT_INSTRUCTIONS.md) - Repository workflows and conventions for assistants
 
@@ -80,6 +81,7 @@ Scripts live in the `scripts/` directory. See `Docs/DOWNLOAD_IMAGES_README.md` f
 
 ### Image Processing (Node.js - Recommended)
 - `scripts/process-gallery-images.mjs` - **Main image processing script**: converts to WebP, extracts EXIF metadata, registers images in gallery JSON, creates new galleries automatically. Used by GitHub Actions workflows.
+- `scripts/rotate-gallery-images.mjs` - Rotate photos that display sideways, baking the rotation into the pixels. See [Docs/IMAGE_ROTATION.md](Docs/IMAGE_ROTATION.md).
 
 ### Legacy Python Scripts
 Gallery scripts auto-bootstrap `exifread` in a local `.venv` and read `.env` for `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`.
@@ -134,6 +136,38 @@ Options:
 - `--skip-webp` - Skip WebP conversion (metadata only)
 - `--skip-geocode` - Skip reverse geocoding
 - `--dry-run` - Show what would be done
+
+## 🔄 Fixing Sideways Photos
+
+Photos shot in portrait store landscape pixels plus an EXIF `Orientation` tag.
+WebP carries no EXIF, so any photo converted before that was handled displays on
+its side. The tag is gone and can't be recovered, so the rotation has to be
+supplied by hand:
+
+1. Copy the URL of each sideways photo from the site.
+2. Trigger the **Rotate Images** workflow from the GitHub Actions UI, paste the
+   URLs, and pick `cw`, `ccw`, or `180`.
+3. Review the PR it opens — check the deploy preview before merging.
+
+Mixed rotations in one batch work by appending a rotation to individual entries:
+
+```text
+/images/japan/DSCF1234.webp,
+/images/japan/DSCF5678.webp ccw,
+/images/italy/DSCF0778.webp => 180
+```
+
+Or run it locally:
+
+```bash
+node scripts/rotate-gallery-images.mjs --rotation cw /images/japan/DSCF1234.webp
+node scripts/rotate-gallery-images.mjs --images-file rotations.txt --dry-run
+```
+
+The rotation is baked into the pixels and `Orientation` is reset to `1`, so the
+photo is upright in every browser, on every OS, and in the downloaded file.
+New imports are handled automatically — the conversion now bakes the camera's
+orientation in. Full details in [Docs/IMAGE_ROTATION.md](Docs/IMAGE_ROTATION.md).
 
 ### Manual GitHub Workflow
 

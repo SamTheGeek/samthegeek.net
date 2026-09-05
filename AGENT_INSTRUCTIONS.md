@@ -122,3 +122,4 @@ The project uses Astro's file-based routing system:
 - Gallery layout uses a masonry column layout in `src/components/Gallery.astro`.
 - After any change that impacts displayed metadata or metadata extraction, suggest running the `Update Photo Metadata` GitHub Actions workflow.
 - Keep `.github/workflows/update-photo-metadata.yml` aligned with metadata fields shown in the site and extraction logic in `scripts/process-gallery-images.mjs`.
+- Photos that display sideways lost their EXIF orientation in conversion and cannot be detected automatically; fix them with the `Rotate Images` workflow or `scripts/rotate-gallery-images.mjs` (see `Docs/IMAGE_ROTATION.md`). Any new image conversion path must call sharp's `autoOrient()` before encoding, or the rotation is lost again.

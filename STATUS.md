@@ -17,6 +17,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox design refresh + EXIF/map integration completed; awaiting approval.
 - Lightbox photo details popover now shows geocoded location only once (above the map).
 - Added metadata refresh automation guidance: run the `Update Photo Metadata` workflow after metadata extraction/display changes.
+- Added an image rotation workflow (`Rotate Images` + `scripts/rotate-gallery-images.mjs`) for photos that lost their EXIF orientation during WebP conversion: paste URLs, pick CW/CCW/180, get a PR with the rotation baked into the pixels. `process-gallery-images.mjs` now auto-orients on conversion so new imports keep their rotation. See `Docs/IMAGE_ROTATION.md`.
 
 
 ## Pending Tasks (Priority Order)
@@ -35,7 +36,8 @@ This file is the single source of truth for current status, progress, and next t
 12. Redesign the blog again to make it good (note to self: use the Claude UI skill).
 13. Fix the lightbox map embed to make it use mapbox styled to look like the website
 14. Accessibility and performance audit (beyond current automated checks).
-15. Make the photos WebP for faster loading, maintaining a jpeg fallback. Create a pipeline that automatically converts + extracts metadata using github actions whenever a new photo or photos is checked in — automatically creating a gallery page if that exists at the same time. This script should only run after a PR is merged with those photos, opening a new PR with the new gallery + converted images. Tests should be updated to handle these kinds of cases. Also we need a workflow that will convert all the existing images and open a new PR, but this should only be run manually.
+15. Audit the existing galleries for photos that are still sideways and run the `Rotate Images` workflow on them (the lost EXIF orientation can't be detected automatically, so this needs a pass by eye).
+16. Make the photos WebP for faster loading, maintaining a jpeg fallback. Create a pipeline that automatically converts + extracts metadata using github actions whenever a new photo or photos is checked in — automatically creating a gallery page if that exists at the same time. This script should only run after a PR is merged with those photos, opening a new PR with the new gallery + converted images. Tests should be updated to handle these kinds of cases. Also we need a workflow that will convert all the existing images and open a new PR, but this should only be run manually.
 
 ## Completed Tasks
 
