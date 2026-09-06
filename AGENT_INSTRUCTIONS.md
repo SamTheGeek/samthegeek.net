@@ -120,6 +120,7 @@ The project uses Astro's file-based routing system:
 - Image downloads use `ALL_GALLERY_URLS.txt` plus `scripts/download_gallery_images.py`.
 - Renaming/import scripts live in `scripts/rename_existing_gallery_images.py`, `scripts/rename_new_gallery_images.py`, and `scripts/import_live_content.py` (require `exifread` and optional `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`).
 - Gallery layout uses a masonry column layout in `src/components/Gallery.astro`.
+- Panoramas are detected from the recorded `width`/`height` in the gallery JSON (aspect ratio >= 2:1) and rendered as a `column-span: all` tile capped at two columns wide. Keeping those dimensions accurate is what keeps the detection right.
 - After any change that impacts displayed metadata or metadata extraction, suggest running the `Update Photo Metadata` GitHub Actions workflow.
 - Keep `.github/workflows/update-photo-metadata.yml` aligned with metadata fields shown in the site and extraction logic in `scripts/process-gallery-images.mjs`.
 - Photos that display sideways lost their EXIF orientation in conversion and cannot be detected automatically; fix them with the `Rotate Images` workflow or `scripts/rotate-gallery-images.mjs` (see `Docs/IMAGE_ROTATION.md`). Any new image conversion path must call sharp's `autoOrient()` before encoding, or the rotation is lost again.

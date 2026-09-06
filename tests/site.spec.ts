@@ -552,6 +552,80 @@ test.describe('Performance optimizations', () => {
   });
 });
 
+test.describe('Panoramic photos', () => {
+  const measureGallery = (page: import('@playwright/test').Page) =>
+    page.evaluate(() => {
+      const grid = document.querySelector('.gallery-grid') as HTMLElement;
+      const panorama = document.querySelector('.gallery-item-panorama') as HTMLElement | null;
+      const regular = document.querySelector(
+        '.gallery-item:not(.gallery-item-panorama)'
+      ) as HTMLElement;
+      return {
+        columnCount: Number.parseInt(getComputedStyle(grid).columnCount, 10),
+        gridWidth: grid.getBoundingClientRect().width,
+        panoramaWidth: panorama?.getBoundingClientRect().width ?? 0,
+        regularWidth: regular.getBoundingClientRect().width,
+      };
+    });
+
+  test('only ultra-wide photos are marked as panoramas', async ({ page }) => {
+    test.slow();
+    const slugs = await loadGallerySlugs();
+
+    for (const slug of slugs) {
+      const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', `${slug}.json`);
+      const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+      const expected = data.images.filter(
+        (image: { width?: number; height?: number }) =>
+          image.width && image.height && image.width / image.height >= 2
+      ).length;
+
+      await page.goto(`/${slug}`);
+      const rendered = await page.locator('.gallery-item-panorama').count();
+      expect(rendered, `panorama count for ${slug}`).toBe(expected);
+    }
+  });
+
+  test('panoramas span two columns in a three-column grid', async ({ page }) => {
+    await page.setViewportSize({ width: 1400, height: 900 });
+    await page.goto('/canada');
+
+    const metrics = await measureGallery(page);
+    expect(metrics.columnCount).toBe(3);
+    // Two columns plus the gap between them, out of three.
+    expect(metrics.panoramaWidth / metrics.gridWidth).toBeGreaterThan(0.6);
+    expect(metrics.panoramaWidth / metrics.gridWidth).toBeLessThan(0.72);
+    expect(metrics.panoramaWidth).toBeGreaterThan(metrics.regularWidth * 1.9);
+  });
+
+  test('panoramas span the full grid in a two-column layout', async ({ page }) => {
+    await page.setViewportSize({ width: 1000, height: 900 });
+    await page.goto('/canada');
+
+    const metrics = await measureGallery(page);
+    expect(metrics.columnCount).toBe(2);
+    expect(metrics.panoramaWidth).toBeCloseTo(metrics.gridWidth, 0);
+  });
+
+  test('photos after a panorama still spread across the columns', async ({ page }) => {
+    await page.setViewportSize({ width: 1400, height: 900 });
+    await page.goto('/canada');
+
+    // The panorama breaks the column flow, so the photos following it are laid
+    // out as their own group - they should still fill more than one column.
+    const trailingColumns = await page.evaluate(() => {
+      const items = [...document.querySelectorAll('.gallery-item')];
+      const panoramaIndex = items.findIndex((item) =>
+        item.classList.contains('gallery-item-panorama')
+      );
+      const trailing = items.slice(panoramaIndex + 1);
+      return new Set(trailing.map((item) => Math.round(item.getBoundingClientRect().left))).size;
+    });
+
+    expect(trailingColumns).toBeGreaterThan(1);
+  });
+});
+
 test.describe('English location names', () => {
   test('config.ts includes locationEn in EXIF schema', async () => {
     const content = await fs.readFile(contentConfigPath, 'utf8');

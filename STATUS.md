@@ -22,6 +22,7 @@ This file is the single source of truth for current status, progress, and next t
 - Shortened all 215 full-UUID photo filenames to the last 8 characters of their UUID via `scripts/shorten-image-names.mjs`; no collisions.
 - `process-gallery-images.mjs` now bakes the rotation in at conversion time and keeps it that way: every WebP it writes is auto-oriented and states `Orientation = 1`, encodes through a temp file that is renamed into place, and records the size the encoder reports. Runs also check the WebP files whose JPEG source is gone - re-encoding any that still carry an orientation tag, and correcting `width`/`height` that disagree with the file on disk. Covered by a test that converts a synthetic portrait frame and checks the pixels; it fails if either `autoOrient()` or the `Orientation = 1` is removed.
 - Re-synced the 40 Italy entries whose JSON recorded pre-WebP dimensions (task 15), as output of the run above; six of them were recorded landscape while the file is portrait.
+- Panoramas (any photo at 2:1 or wider) now get a tile two columns wide in the gallery grid: 2 of 3 columns on desktop, the full width at the two- and one-column breakpoints. There are four - Italy has two, Canada and Japan one each - and the widest ordinary photo is 16:9, so the 2:1 cut-off separates them cleanly. The grid also sets `orphans: 1; widows: 1`, without which Chromium refuses to break a run of two tiles across columns and strands the photos following a panorama in one column.
 
 
 ## Pending Tasks (Priority Order)

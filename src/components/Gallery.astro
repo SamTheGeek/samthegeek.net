@@ -27,6 +27,14 @@ interface Props {
 }
 
 const { title, images } = Astro.props;
+
+// A panorama is a stitched/ultra-wide frame - far wider than any regular
+// landscape photo. The widest ordinary shot in these galleries is 16:9 (1.78),
+// while the panoramas run from 3.6:1 up to 6.7:1, so 2:1 separates them
+// cleanly. Panoramas get a wider tile that spans two columns of the grid.
+const PANORAMA_ASPECT_RATIO = 2;
+const isPanorama = (image: Props['images'][number]) =>
+  Boolean(image.width && image.height && image.width / image.height >= PANORAMA_ASPECT_RATIO);
 ---
 
 <div class="gallery-page">
@@ -34,15 +42,18 @@ const { title, images } = Astro.props;
     {images.map((image, index) => {
       // First 6 images are likely above the fold - prioritize them
       const isAboveFold = index < 6;
+      const panorama = isPanorama(image);
       return (
-        <div class="gallery-item">
+        <div class:list={['gallery-item', { 'gallery-item-panorama': panorama }]}>
           <Image
             src={image.webpSrc ?? image.src}
             alt={image.alt}
             width={image.width ?? 1200}
             height={image.height ?? 800}
-            widths={[400, 800, 1200]}
-            sizes="(max-width: 768px) calc(100vw - 0.5rem), (max-width: 1280px) calc(50vw - 0.375rem), calc(33vw - 0.25rem)"
+            widths={panorama ? [800, 1200, 1600, 2000] : [400, 800, 1200]}
+            sizes={panorama
+              ? "(max-width: 1280px) calc(100vw - 100px), calc((100vw - 350px) * 0.67)"
+              : "(max-width: 768px) calc(100vw - 0.5rem), (max-width: 1280px) calc(50vw - 0.375rem), calc(33vw - 0.25rem)"}
             loading={isAboveFold ? "eager" : "lazy"}
             decoding={isAboveFold ? "sync" : "async"}
             fetchpriority={index === 0 ? "high" : undefined}
@@ -81,6 +92,13 @@ const { title, images } = Astro.props;
 
     // Classify aspect ratio from image dimensions (no layout read needed if dimensions available)
     function classifyAspect(item) {
+      // Panoramas are classified server-side and span their own full-width row,
+      // so they take no part in the column-balancing shuffle below.
+      if (item.classList.contains('gallery-item-panorama')) {
+        item.dataset.aspect = 'panorama';
+        return;
+      }
+
       const img = item.querySelector('img');
       if (!img) return;
 
@@ -190,11 +208,17 @@ const { title, images } = Astro.props;
 <style>
   .gallery-grid {
     --tile-gap: 0.25rem;
+    --gallery-columns: 3;
     column-gap: var(--tile-gap);
     column-count: 3;
     column-width: 280px;
     column-fill: balance;
     -webkit-column-fill: balance;
+    /* Each tile is its own line box, so the default orphans/widows of 2 leave a
+       short run of tiles with no legal column break - which would strand the
+       last couple of photos after a panorama in a single column. */
+    orphans: 1;
+    widows: 1;
     margin-top: 0;
     font-size: 0;
   }
@@ -216,6 +240,32 @@ const { title, images } = Astro.props;
     opacity: 0.9;
   }
 
+  /* Panoramas break out of the column flow and run two columns wide, so an
+     ultra-wide frame is not squeezed into a single column's worth of pixels.
+     Where the grid is two columns or fewer that is the full width of the grid. */
+  .gallery-item-panorama {
+    display: block;
+    width: min(
+      100%,
+      calc(
+        (100% - (var(--gallery-columns) - 1) * var(--tile-gap)) / var(--gallery-columns) * 2 +
+          var(--tile-gap)
+      )
+    );
+    margin-inline: auto;
+    margin-block: calc(var(--tile-gap) * 3);
+    -webkit-column-span: all;
+    column-span: all;
+  }
+
+  .gallery-item-panorama:first-child {
+    margin-block-start: 0;
+  }
+
+  .gallery-item-panorama:last-child {
+    margin-block-end: 0;
+  }
+
   .gallery-item img {
     width: 100%;
     height: auto;
@@ -225,12 +275,14 @@ const { title, images } = Astro.props;
 
   @media (max-width: 1280px) {
     .gallery-grid {
+      --gallery-columns: 2;
       column-count: 2;
     }
   }
 
   @media (max-width: 768px) {
     .gallery-grid {
+      --gallery-columns: 1;
       column-count: 1;
       column-gap: var(--tile-gap);
     }
