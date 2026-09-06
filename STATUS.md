@@ -5,8 +5,11 @@ This file is the single source of truth for current status, progress, and next t
 ## Current State
 
 - Build: `npm run build` succeeds and generates `public/_redirects`.
-- Upgraded to Astro 6 (`astro@6.0.8`) and migrated content collections to `src/content.config.ts` with explicit loaders.
-- Refreshed the local dependency install to match the Astro 6 lockfile; `npm run build` and `npx playwright test` now pass again.
+- Upgraded to Astro 7 (`astro@7.3.1`) and `@astrojs/netlify@8`; content collections stay in `src/content.config.ts` with explicit loaders.
+- Astro 7 brings the Rust compiler, the Sätteri Markdown pipeline and Vite 8. Rendered markup and content are byte-identical to the Astro 6 output once scope hashes, asset hashes and insignificant whitespace are normalized.
+- Astro 7's stricter Rust compiler rejects a nested template literal containing an HTML element inside a function body; `BlogList.astro`'s excerpt builder was refactored to hoist the embed markup into a variable.
+- `vite.build.cssTarget` is pinned so the Vite 8 CSS minifier keeps `@media (max-width: …)` instead of Level 4 range syntax, which would drop the responsive breakpoints on Safari 16.0-16.3.
+- Resolves the three Astro XSS advisories affecting `astro <= 7.0.9`; remaining `npm audit` findings are all in Netlify's local dev toolchain, reachable only via `@astrojs/netlify`.
 - Local/CI gallery validation now accepts existing `.webp` assets when JSON `src` points to legacy JPG/JPEG paths.
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - CI Playwright workflow now skips docs/workflow/photo-only PRs and `scripts/**` changes, caches Playwright browser binaries, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.
