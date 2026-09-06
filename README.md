@@ -82,6 +82,7 @@ Scripts live in the `scripts/` directory. See `Docs/DOWNLOAD_IMAGES_README.md` f
 ### Image Processing (Node.js - Recommended)
 - `scripts/process-gallery-images.mjs` - **Main image processing script**: converts to WebP, extracts EXIF metadata, registers images in gallery JSON, creates new galleries automatically. Used by GitHub Actions workflows.
 - `scripts/rotate-gallery-images.mjs` - Rotate photos that display sideways, baking the rotation into the pixels. See [Docs/IMAGE_ROTATION.md](Docs/IMAGE_ROTATION.md).
+- `scripts/shorten-image-names.mjs` - Shorten full-UUID photo filenames to the last 8 characters of the UUID, updating gallery JSON. Refuses to write if any two photos would collide.
 
 ### Legacy Python Scripts
 Gallery scripts auto-bootstrap `exifread` in a local `.venv` and read `.env` for `PUBLIC_GOOGLE_MAPS_EMBED_API_KEY`.

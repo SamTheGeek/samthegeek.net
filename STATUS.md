@@ -18,6 +18,8 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox photo details popover now shows geocoded location only once (above the map).
 - Added metadata refresh automation guidance: run the `Update Photo Metadata` workflow after metadata extraction/display changes.
 - Added an image rotation workflow (`Rotate Images` + `scripts/rotate-gallery-images.mjs`) for photos that lost their EXIF orientation during WebP conversion: paste URLs, pick CW/CCW/180, get a PR with the rotation baked into the pixels. `process-gallery-images.mjs` now auto-orients on conversion so new imports keep their rotation. See `Docs/IMAGE_ROTATION.md`.
+- Rotated 43 sideways photos (4 CW, 38 CCW, 1 upside-down across Los Angeles, France, Japan and Canada) losslessly, and removed the misfiled `italy/DSCF6211` (a Copenhagen photo already present in that gallery).
+- Shortened all 215 full-UUID photo filenames to the last 8 characters of their UUID via `scripts/shorten-image-names.mjs`; no collisions.
 
 
 ## Pending Tasks (Priority Order)
@@ -36,7 +38,7 @@ This file is the single source of truth for current status, progress, and next t
 12. Redesign the blog again to make it good (note to self: use the Claude UI skill).
 13. Fix the lightbox map embed to make it use mapbox styled to look like the website
 14. Accessibility and performance audit (beyond current automated checks).
-15. Audit the existing galleries for photos that are still sideways and run the `Rotate Images` workflow on them (the lost EXIF orientation can't be detected automatically, so this needs a pass by eye).
+15. Re-sync the Italy gallery's JSON `width`/`height`: 40 entries record the pre-WebP dimensions (e.g. 6000x4000) while the files on disk are downscaled (2500x1666), which skews the masonry layout. Pre-existing, unrelated to the rotation work.
 16. Make the photos WebP for faster loading, maintaining a jpeg fallback. Create a pipeline that automatically converts + extracts metadata using github actions whenever a new photo or photos is checked in — automatically creating a gallery page if that exists at the same time. This script should only run after a PR is merged with those photos, opening a new PR with the new gallery + converted images. Tests should be updated to handle these kinds of cases. Also we need a workflow that will convert all the existing images and open a new PR, but this should only be run manually.
 
 ## Completed Tasks

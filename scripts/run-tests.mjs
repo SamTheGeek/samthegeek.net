@@ -325,6 +325,9 @@ const testImageRotationWorkflow = async () => {
     ['/images/japan/DSCF1234.webp?v=2#top', 'images/japan/DSCF1234.webp'],
     ['public/images/japan/DSCF1234.webp', 'public/images/japan/DSCF1234.webp'],
     ['https://x.netlify.app/_image?href=%2Fimages%2Fjapan%2FDSCF1234.webp&w=800', 'images/japan/DSCF1234.webp'],
+    // The lightbox deep-link, which is what copying the address bar gives you.
+    ['https://samthegeek.net/japan/?photo=DSCF1234.webp', 'japan/DSCF1234.webp'],
+    ['https://samthegeek.net/los-angeles/?photo=A1B2C3D4.webp', 'los-angeles/A1B2C3D4.webp'],
   ];
   for (const [input, expected] of referenceCases) {
     assert(
@@ -347,6 +350,52 @@ const testImageRotationWorkflow = async () => {
     entries[1].reference === '/images/b.webp',
     'parseEntries should strip the rotation from the reference.'
   );
+};
+
+const testImageNameShortening = async () => {
+  const script = 'scripts/shorten-image-names.mjs';
+  assert(
+    await fileExists(path.join(root, script)),
+    `${script} should exist for shortening UUID filenames.`
+  );
+
+  const shortener = await import(pathToFileURL(path.join(root, script)).href);
+
+  // The last 8 characters of the canonical UUID, not of the whole filename
+  // (which would just give you "_photo").
+  const cases = [
+    ['50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo', 'E66E94E8'],
+    ['2FC47DE0-C183-434E-949E-BE6CA12C3E2B', 'A12C3E2B'],
+    ['DSCF1234', null],
+    ['IMG_2664', null],
+    ['not-a-uuid-at-all', null],
+  ];
+  for (const [stem, expected] of cases) {
+    assert(
+      shortener.shortNameFor(stem) === expected,
+      `shortNameFor(${JSON.stringify(stem)}) should be ${expected}.`
+    );
+  }
+
+  // Gallery filenames should already be short, and unique within a gallery.
+  const imagesDir = path.join(root, 'public/images');
+  let galleries = [];
+  try {
+    galleries = (await fs.readdir(imagesDir, { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory() && !['about', 'blog'].includes(entry.name))
+      .map((entry) => entry.name);
+  } catch {
+    return; // Images aren't checked out (sparse CI clone).
+  }
+
+  for (const gallery of galleries) {
+    const files = await fs.readdir(path.join(imagesDir, gallery));
+    const longNames = files.filter((name) => shortener.shortNameFor(shortener.stripExtension(name)));
+    assert(
+      longNames.length === 0,
+      `${gallery} still has ${longNames.length} full-UUID filename(s); run scripts/shorten-image-names.mjs.`
+    );
+  }
 };
 
 const testDependencyAlignment = async () => {
@@ -381,6 +430,7 @@ const run = async () => {
   await testBlogIdsUnique();
   await testPerformanceHints();
   await testImageRotationWorkflow();
+  await testImageNameShortening();
   await testDependencyAlignment();
 
   if (errors.length > 0) {

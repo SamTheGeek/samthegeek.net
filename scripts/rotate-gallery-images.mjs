@@ -116,9 +116,10 @@ export function rotationDegrees(rotation) {
 }
 
 /**
- * Pull the image reference out of anything the user might paste: a live URL, a
- * deploy-preview URL, an Astro `/_image?href=…` optimized URL, a site-root
- * path, a repo path or a bare filename.
+ * Pull the image reference out of anything the user might paste: a lightbox
+ * `/<gallery>/?photo=…` URL, a live or deploy-preview URL, an Astro
+ * `/_image?href=…` optimized URL, a site-root path, a repo path or a bare
+ * filename.
  */
 export function normalizeImageReference(raw) {
   if (typeof raw !== 'string') return '';
@@ -133,7 +134,17 @@ export function normalizeImageReference(raw) {
       const url = new URL(value);
       // Astro's image endpoint wraps the real path in an ?href= parameter.
       const href = url.searchParams.get('href');
-      value = href && /\.[a-z0-9]+$/i.test(href) ? href : url.pathname;
+      // The lightbox deep-links a photo as /<gallery>/?photo=<filename>, which
+      // is what you get by copying the address bar with a photo open.
+      const photo = url.searchParams.get('photo');
+      if (href && /\.[a-z0-9]+$/i.test(href)) {
+        value = href;
+      } else if (photo) {
+        const gallery = url.pathname.split('/').filter(Boolean)[0];
+        value = gallery ? `${gallery}/${photo}` : photo;
+      } else {
+        value = url.pathname;
+      }
     } catch {
       // Fall through and treat it as a plain path.
     }

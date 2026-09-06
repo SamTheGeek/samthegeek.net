@@ -5,9 +5,9 @@
   "description": "Photos from Italy",
   "images": [
     {
-      "src": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.jpeg",
+      "src": "/images/italy/A12C3E2B.jpeg",
       "alt": "Italy photo",
-      "webpSrc": "/images/italy/2FC47DE0-C183-434E-949E-BE6CA12C3E2B.webp",
+      "webpSrc": "/images/italy/A12C3E2B.webp",
       "width": 3840,
       "height": 2160,
       "exif": {
@@ -704,24 +704,6 @@
         "iso": "ISO 800",
         "latitude": 45.43442675,
         "longitude": 12.32982163888889
-      }
-    },
-    {
-      "src": "/images/italy/DSCF6211.jpeg",
-      "alt": "Italy photo",
-      "webpSrc": "/images/italy/DSCF6211.webp",
-      "width": 6000,
-      "height": 4000,
-      "exif": {
-        "date": "2022:06:14 14:12:44",
-        "camera": "FUJIFILM X-T2",
-        "lens": "XF56mmF1.2 R",
-        "focalLength": "56mm",
-        "aperture": "f/2.5",
-        "shutterSpeed": "1/52s",
-        "iso": "ISO 800",
-        "latitude": 55.67916023805555,
-        "longitude": 12.582059832777778
       }
     },
     {

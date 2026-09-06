@@ -5,7 +5,7 @@
   "description": "Photos from around the world",
   "images": [
     {
-      "src": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.jpeg",
+      "src": "/images/elsewhere/E66E94E8.jpeg",
       "alt": "Elsewhere photo",
       "width": 4312,
       "height": 2874,
@@ -20,7 +20,7 @@
         "latitude": 33.51287763888889,
         "longitude": -111.94868486111112
       },
-      "webpSrc": "/images/elsewhere/50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo.webp"
+      "webpSrc": "/images/elsewhere/E66E94E8.webp"
     },
     {
       "src": "/images/elsewhere/DSCF0716.jpeg",

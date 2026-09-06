@@ -29,12 +29,14 @@ Two fixes follow from that:
 
 ### 1. Collect the URLs
 
-Browse the site and copy the URL of each sideways photo — right-click →
-"Copy image address", or just copy it out of the address bar in the lightbox.
-Anything that identifies the image works:
+Browse the site and copy the URL of each sideways photo. The easiest way is to
+open the photo in the lightbox and copy the address bar — that gives you a
+`/<gallery>/?photo=<filename>` link, which the tool understands directly.
+Anything else that identifies the image works too:
 
 | Form | Example |
 | --- | --- |
+| Lightbox link | `https://samthegeek.net/japan/?photo=DSCF1234.webp` |
 | Live URL | `https://samthegeek.net/images/japan/DSCF1234.webp` |
 | Deploy preview URL | `https://deploy-preview-12--samthegeeknet.netlify.app/images/japan/DSCF1234.webp` |
 | Astro-optimized URL | `/_image?href=%2Fimages%2Fjapan%2FDSCF1234.webp&w=800&f=webp` |
