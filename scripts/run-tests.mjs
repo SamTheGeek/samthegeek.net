@@ -1,4 +1,5 @@
 import { promises as fs } from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -289,16 +290,13 @@ const testImageRotationWorkflow = async () => {
     'rotate-images workflow should pass the intake list as a file, not as a shell argument.'
   );
 
-  // The conversion must bake EXIF orientation into the pixels, or portrait
-  // photos lose their rotation all over again.
+  // The conversion itself must bake the rotation in, or portrait photos lose
+  // it all over again; that is exercised for real in
+  // testWebpConversionBakesRotation below.
   const processor = await readText('scripts/process-gallery-images.mjs');
   assert(
     processor.includes('.autoOrient()'),
     'process-gallery-images should autoOrient() before writing WebP.'
-  );
-  assert(
-    processor.includes('metadata.autoOrient ?? metadata'),
-    'process-gallery-images should record auto-oriented dimensions.'
   );
 
   const rotator = await import(pathToFileURL(path.join(root, script)).href);
@@ -350,6 +348,141 @@ const testImageRotationWorkflow = async () => {
     entries[1].reference === '/images/b.webp',
     'parseEntries should strip the rotation from the reference.'
   );
+};
+
+/**
+ * The conversion has to produce an upright file from a camera's portrait
+ * frame - landscape pixels plus an EXIF Orientation tag - because the tag does
+ * not survive the conversion and cannot be recovered afterwards. This is the
+ * bug PR #148 had to clean up by hand, so it is checked against real pixels
+ * rather than against the source of the script.
+ */
+const testWebpConversionBakesRotation = async () => {
+  const converter = await import(
+    pathToFileURL(path.join(root, 'scripts/process-gallery-images.mjs')).href
+  );
+  // The same guard the script applies to its own sharp: without it libvips
+  // hands back a cached copy of a file that was rewritten in place, and the
+  // checks below would read the image as it was before the rotation.
+  const sharp = converter.configureSharp((await import('sharp')).default);
+
+  // Is the marker in the top-right corner, i.e. did the pixels really turn?
+  const markerTopRight = async (file) => {
+    const image = sharp(file);
+    const { width } = await image.metadata();
+    const raw = await image.raw().toBuffer();
+    const isRed = (x, y) => {
+      const i = (y * width + x) * 3;
+      return raw[i] > 200 && raw[i + 1] < 100 && raw[i + 2] < 100;
+    };
+    return isRed(width - 3, 2) && !isRed(2, 2);
+  };
+
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'webp-rotation-'));
+  // The converter narrates what it does; the suite does not need to.
+  const log = console.log;
+  console.log = () => {};
+  try {
+    // A camera-style portrait: a 60x40 landscape frame with a red marker in
+    // the stored top-left, tagged "rotate 90 clockwise to display". Shown
+    // upright it is 40x60 with the marker in the top-right.
+    const marker = await sharp({
+      create: { width: 12, height: 12, channels: 3, background: '#ff0000' },
+    }).png().toBuffer();
+    const source = path.join(dir, 'portrait.jpg');
+    await sharp({ create: { width: 60, height: 40, channels: 3, background: '#ffffff' } })
+      .composite([{ input: marker, top: 0, left: 0 }])
+      .jpeg({ quality: 100 })
+      .withMetadata({ orientation: 6 })
+      .toFile(source);
+
+    const converted = await converter.convertToWebP(sharp, source, 100, false);
+    const webpPath = path.join(dir, 'portrait.webp');
+    assert(converted.converted, 'convertToWebP should convert a JPEG source.');
+
+    const meta = await sharp(webpPath).metadata();
+    assert(
+      meta.width === 40 && meta.height === 60,
+      `Converted WebP should be upright 40x60, got ${meta.width}x${meta.height}.`
+    );
+    assert(
+      await markerTopRight(webpPath),
+      'Converted WebP should have the rotation baked into its pixels.'
+    );
+    assert(
+      meta.orientation === 1,
+      'Converted WebP should state Orientation = 1 outright, so that a downloaded ' +
+      'copy cannot be re-rotated by a viewer.'
+    );
+    assert(
+      converted.width === 40 && converted.height === 60,
+      'convertToWebP should report the displayed size, for the gallery JSON.'
+    );
+    assert(
+      (await fs.readdir(dir)).every((file) => !file.includes('convert-tmp')),
+      'convertToWebP should not leave its temporary file behind.'
+    );
+
+    // A WebP already on disk that still carries an orientation tag gets the
+    // rotation baked in too, instead of being skipped as "already converted".
+    const stale = path.join(dir, 'stale.webp');
+    await sharp(source).webp({ quality: 100 }).withMetadata({ orientation: 6 }).toFile(stale);
+    const repaired = await converter.ensureUprightWebP(sharp, stale, 100, false);
+    assert(repaired.repaired, 'ensureUprightWebP should repair a WebP with Orientation != 1.');
+    assert(
+      repaired.width === 40 && repaired.height === 60,
+      'ensureUprightWebP should report the displayed size after baking.'
+    );
+    const staleMeta = await sharp(stale).metadata();
+    assert(
+      staleMeta.width === 40 && staleMeta.height === 60 && staleMeta.orientation === 1,
+      'A repaired WebP should be upright and state Orientation = 1.'
+    );
+    assert(
+      await markerTopRight(stale),
+      'A repaired WebP should have the rotation baked into its pixels.'
+    );
+
+    // Running again re-encodes nothing: the file is already upright.
+    const before = await fs.readFile(stale);
+    const second = await converter.ensureUprightWebP(sharp, stale, 100, false);
+    assert(!second.repaired, 'ensureUprightWebP should leave an upright WebP alone.');
+    assert(
+      Buffer.compare(before, await fs.readFile(stale)) === 0,
+      'ensureUprightWebP should not rewrite a file it does not need to change.'
+    );
+
+    // A dry run reports the same result without touching the file.
+    const upright = path.join(dir, 'dry-run.webp');
+    await sharp(source).webp({ quality: 100 }).withMetadata({ orientation: 6 }).toFile(upright);
+    const untouched = await fs.readFile(upright);
+    const predicted = await converter.ensureUprightWebP(sharp, upright, 100, true);
+    assert(
+      predicted.repaired && predicted.width === 40 && predicted.height === 60,
+      'A dry run should still report the rotation it would bake in.'
+    );
+    assert(
+      Buffer.compare(untouched, await fs.readFile(upright)) === 0,
+      'A dry run should not write to the image.'
+    );
+
+    // The displayed size is the one the browser lays out, not the stored one.
+    const stored = await sharp(source).metadata();
+    const shown = converter.displayedSize(stored);
+    assert(
+      stored.width === 60 && stored.height === 40 && shown.width === 40 && shown.height === 60,
+      'displayedSize should report the auto-oriented size of a tagged source.'
+    );
+
+    assert(
+      converter.webpPathFor('/images/japan/DSCF1234.jpg') === '/images/japan/DSCF1234.webp' &&
+        converter.webpPathFor('/images/japan/DSCF1234.webp') === '/images/japan/DSCF1234.webp',
+      'webpPathFor should map a source path to the WebP we serve.'
+    );
+  } finally {
+    console.log = log;
+    await fs.rm(dir, { recursive: true, force: true });
+  }
 };
 
 const testImageNameShortening = async () => {
@@ -430,6 +563,7 @@ const run = async () => {
   await testBlogIdsUnique();
   await testPerformanceHints();
   await testImageRotationWorkflow();
+  await testWebpConversionBakesRotation();
   await testImageNameShortening();
   await testDependencyAlignment();
 
