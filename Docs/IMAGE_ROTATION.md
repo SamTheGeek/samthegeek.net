@@ -142,9 +142,16 @@ fails partway leaves the original untouched.
 WebP has no lossless rotation: the file must be decoded and re-encoded, which
 costs one generation of lossy compression. The default quality of `100` matches
 what the gallery images were encoded at, and in practice the re-encoded file
-comes out about the same size. Use `--lossless` if a photo matters enough to
-accept a much larger file, and avoid rotating the same image repeatedly — each
+comes out about the same size. Avoid rotating the same image repeatedly — each
 pass costs another generation.
+
+`--lossless` exists, but it is almost never the right call here. The gallery
+files are already lossy WebP: encoding losslessly preserves the compression
+artefacts exactly, it does not recover detail the original encode threw away.
+What it does do is roughly double the file — a 24MP photo went 8.8 MB lossy to
+12.3 MB lossless, and an iPhone frame 3.2 MB to 8.1 MB — for images served to
+browsers. Reach for it only when rotating a source that is genuinely lossless
+to begin with.
 
 ## Verifying a fix
 

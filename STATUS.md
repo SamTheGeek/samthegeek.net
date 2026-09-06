@@ -18,7 +18,7 @@ This file is the single source of truth for current status, progress, and next t
 - Lightbox photo details popover now shows geocoded location only once (above the map).
 - Added metadata refresh automation guidance: run the `Update Photo Metadata` workflow after metadata extraction/display changes.
 - Added an image rotation workflow (`Rotate Images` + `scripts/rotate-gallery-images.mjs`) for photos that lost their EXIF orientation during WebP conversion: paste URLs, pick CW/CCW/180, get a PR with the rotation baked into the pixels. `process-gallery-images.mjs` now auto-orients on conversion so new imports keep their rotation. See `Docs/IMAGE_ROTATION.md`.
-- Rotated 43 sideways photos (4 CW, 38 CCW, 1 upside-down across Los Angeles, France, Japan and Canada) losslessly, and removed the misfiled `italy/DSCF6211` (a Copenhagen photo already present in that gallery).
+- Rotated 43 sideways photos (4 CW, 38 CCW, 1 upside-down across Los Angeles, France, Japan and Canada) at quality 100, and removed the misfiled `italy/DSCF6211` (a Copenhagen photo already present in that gallery). Lossless was tried first and reverted: the sources are already lossy WebP, so it preserved existing artefacts at roughly double the bytes without recovering any detail.
 - Shortened all 215 full-UUID photo filenames to the last 8 characters of their UUID via `scripts/shorten-image-names.mjs`; no collisions.
 
 
