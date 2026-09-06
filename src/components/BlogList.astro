@@ -41,6 +41,7 @@ const extractFirstEmbed = (html: string): string | null => {
 
 const buildExcerptHtml = (html: string, maxChars: number): string => {
   const embed = extractFirstEmbed(html);
+  const embedHtml = embed ? `<div class="feed-embed">${embed}</div>` : '';
   const cleaned = stripFigures(stripCaptions(html));
   const blocks = cleaned.match(/<(p|ul|ol|blockquote|h2|h3)[^>]*>[\s\S]*?<\/\1>/gi) ?? [];
   const picked: string[] = [];
@@ -53,10 +54,11 @@ const buildExcerptHtml = (html: string, maxChars: number): string => {
     if (count >= maxChars) break;
   }
   if (picked.length) {
-    return `${embed ? `<div class="feed-embed">${embed}</div>` : ''}${picked.join('')}`;
+    return `${embedHtml}${picked.join('')}`;
   }
   const fallback = stripHtml(cleaned);
-  return `${embed ? `<div class="feed-embed">${embed}</div>` : ''}<p>${fallback.slice(0, maxChars).trim()}${fallback.length > maxChars ? '…' : ''}</p>`;
+  const ellipsis = fallback.length > maxChars ? '…' : '';
+  return `${embedHtml}<p>${fallback.slice(0, maxChars).trim()}${ellipsis}</p>`;
 };
 
 const extractLeadImage = (html: string) => {
