@@ -1,0 +1,124 @@
+name: Rotate Images
+
+# Manually fix photos that display sideways because their EXIF orientation was
+# lost during the WebP conversion.
+#
+# Paste the URLs of the affected images, pick one of the three rotations, and
+# the workflow rotates the pixels (and resets the EXIF Orientation tag to 1) so
+# they display upright in every browser, on every OS, and when downloaded.
+# The result arrives as a PR for review — rotations are a judgement call, so
+# nothing lands on main automatically.
+
+on:
+  workflow_dispatch:
+    inputs:
+      images:
+        description: 'Image URLs or paths, separated by commas or newlines. Append cw/ccw/180 to an entry to override the rotation below.'
+        required: true
+        type: string
+      rotation:
+        description: 'Rotation to apply (as seen by a viewer)'
+        required: true
+        default: 'cw'
+        type: choice
+        options:
+          - cw
+          - ccw
+          - '180'
+      quality:
+        description: 'Re-encode quality (1-100)'
+        required: false
+        default: '100'
+      dry_run:
+        description: 'Preview the changes without opening a PR'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  rotate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        env:
+          # Rotation needs sharp, not a browser.
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci
+
+      - name: Collect images to rotate
+        env:
+          IMAGES: ${{ inputs.images }}
+        run: |
+          # Written via the environment, never interpolated into the shell.
+          printf '%s\n' "$IMAGES" > "$RUNNER_TEMP/rotate-images.txt"
+          echo "Images requested:"
+          cat "$RUNNER_TEMP/rotate-images.txt"
+
+      - name: Rotate images
+        id: rotate
+        env:
+          ROTATION: ${{ inputs.rotation }}
+          QUALITY: ${{ inputs.quality }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          ARGS=(--images-file "$RUNNER_TEMP/rotate-images.txt"
+                --rotation "$ROTATION"
+                --quality "$QUALITY"
+                --report "$RUNNER_TEMP/rotate-report.json"
+                --summary "$RUNNER_TEMP/rotate-summary.md")
+          if [ "$DRY_RUN" = "true" ]; then
+            ARGS+=(--dry-run)
+          fi
+          node scripts/rotate-gallery-images.mjs "${ARGS[@]}"
+
+      - name: Publish job summary
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/rotate-summary.md" ]; then
+            cat "$RUNNER_TEMP/rotate-summary.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Check for changes
+        id: check-changes
+        if: inputs.dry_run != true
+        run: |
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "No changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            IMAGE_COUNT=$(git status --porcelain | grep -cE '\.(webp|jpg|jpeg|png)$' || true)
+            JSON_COUNT=$(git status --porcelain | grep -cE '\.json$' || true)
+            echo "Rotated image files: $IMAGE_COUNT"
+            echo "Gallery JSON files: $JSON_COUNT"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "image_count=$IMAGE_COUNT" >> $GITHUB_OUTPUT
+            echo "json_count=$JSON_COUNT" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Push changes and create PR
+        if: steps.check-changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.CONVERT_IMAGES_PAT }}
+          RUN_NUMBER: ${{ github.run_number }}
+          BATCH_SIZE: '25'
+          COMMIT_MESSAGE: 'fix: rotate images that lost their EXIF orientation'
+          PR_TITLE: 'Rotate images that lost their EXIF orientation'
+        run: |
+          PR_BODY=$(cat "$RUNNER_TEMP/rotate-summary.md")
+          export PR_BODY
+          bash scripts/push-gallery-pr.sh "rotation" "auto/rotate-images-$RUN_NUMBER"

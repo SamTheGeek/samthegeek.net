@@ -1,5 +1,6 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
 
@@ -265,6 +266,138 @@ const testPerformanceHints = async () => {
 };
 
 
+const testImageRotationWorkflow = async () => {
+  const script = 'scripts/rotate-gallery-images.mjs';
+  assert(
+    await fileExists(path.join(root, script)),
+    `${script} should exist for fixing images that lost their EXIF orientation.`
+  );
+
+  const workflow = await readText('.github/workflows/rotate-images.yml');
+  assert(
+    workflow.includes(script),
+    'rotate-images workflow should run the rotation script.'
+  );
+  for (const rotation of ['cw', 'ccw', "'180'"]) {
+    assert(
+      workflow.includes(`- ${rotation}`),
+      `rotate-images workflow should offer the ${rotation} rotation.`
+    );
+  }
+  assert(
+    workflow.includes('--images-file'),
+    'rotate-images workflow should pass the intake list as a file, not as a shell argument.'
+  );
+
+  // The conversion must bake EXIF orientation into the pixels, or portrait
+  // photos lose their rotation all over again.
+  const processor = await readText('scripts/process-gallery-images.mjs');
+  assert(
+    processor.includes('.autoOrient()'),
+    'process-gallery-images should autoOrient() before writing WebP.'
+  );
+  assert(
+    processor.includes('metadata.autoOrient ?? metadata'),
+    'process-gallery-images should record auto-oriented dimensions.'
+  );
+
+  const rotator = await import(pathToFileURL(path.join(root, script)).href);
+
+  const rotationCases = [
+    ['cw', 'cw'], ['CW', 'cw'], ['90', 'cw'], ['right', 'cw'],
+    ['ccw', 'ccw'], ['-90', 'ccw'], ['left', 'ccw'],
+    ['180', '180'], ['upside-down', '180'], ['flip', '180'],
+    ['sideways', null], ['', null],
+  ];
+  for (const [input, expected] of rotationCases) {
+    assert(
+      rotator.parseRotation(input) === expected,
+      `parseRotation(${JSON.stringify(input)}) should be ${expected}.`
+    );
+  }
+
+  assert(rotator.rotationDegrees('cw') === 90, 'cw should be 90 degrees clockwise.');
+  assert(rotator.rotationDegrees('ccw') === 270, 'ccw should be 270 degrees clockwise.');
+  assert(rotator.rotationDegrees('180') === 180, '180 should be 180 degrees.');
+
+  const referenceCases = [
+    ['https://samthegeek.net/images/japan/DSCF1234.webp', 'images/japan/DSCF1234.webp'],
+    ['/images/japan/DSCF1234.webp?v=2#top', 'images/japan/DSCF1234.webp'],
+    ['public/images/japan/DSCF1234.webp', 'public/images/japan/DSCF1234.webp'],
+    ['https://x.netlify.app/_image?href=%2Fimages%2Fjapan%2FDSCF1234.webp&w=800', 'images/japan/DSCF1234.webp'],
+    // The lightbox deep-link, which is what copying the address bar gives you.
+    ['https://samthegeek.net/japan/?photo=DSCF1234.webp', 'japan/DSCF1234.webp'],
+    ['https://samthegeek.net/los-angeles/?photo=A1B2C3D4.webp', 'los-angeles/A1B2C3D4.webp'],
+  ];
+  for (const [input, expected] of referenceCases) {
+    assert(
+      rotator.normalizeImageReference(input) === expected,
+      `normalizeImageReference(${JSON.stringify(input)}) should be ${expected}.`
+    );
+  }
+
+  // Per-entry rotations override the run-wide default; comments are ignored.
+  const entries = rotator.parseEntries(
+    '/images/a.webp cw\n# skip me\n/images/b.webp | ccw, /images/c.webp => 180\n/images/d.webp',
+    'cw'
+  );
+  assert(entries.length === 4, 'parseEntries should read four entries.');
+  assert(
+    entries.map((entry) => entry.rotation).join(',') === 'cw,ccw,180,cw',
+    'parseEntries should honour per-entry rotations and fall back to the default.'
+  );
+  assert(
+    entries[1].reference === '/images/b.webp',
+    'parseEntries should strip the rotation from the reference.'
+  );
+};
+
+const testImageNameShortening = async () => {
+  const script = 'scripts/shorten-image-names.mjs';
+  assert(
+    await fileExists(path.join(root, script)),
+    `${script} should exist for shortening UUID filenames.`
+  );
+
+  const shortener = await import(pathToFileURL(path.join(root, script)).href);
+
+  // The last 8 characters of the canonical UUID, not of the whole filename
+  // (which would just give you "_photo").
+  const cases = [
+    ['50A3ED07-A33B-45AB-A859-AB71E66E94E8-3843-000005218633E382_photo', 'E66E94E8'],
+    ['2FC47DE0-C183-434E-949E-BE6CA12C3E2B', 'A12C3E2B'],
+    ['DSCF1234', null],
+    ['IMG_2664', null],
+    ['not-a-uuid-at-all', null],
+  ];
+  for (const [stem, expected] of cases) {
+    assert(
+      shortener.shortNameFor(stem) === expected,
+      `shortNameFor(${JSON.stringify(stem)}) should be ${expected}.`
+    );
+  }
+
+  // Gallery filenames should already be short, and unique within a gallery.
+  const imagesDir = path.join(root, 'public/images');
+  let galleries = [];
+  try {
+    galleries = (await fs.readdir(imagesDir, { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory() && !['about', 'blog'].includes(entry.name))
+      .map((entry) => entry.name);
+  } catch {
+    return; // Images aren't checked out (sparse CI clone).
+  }
+
+  for (const gallery of galleries) {
+    const files = await fs.readdir(path.join(imagesDir, gallery));
+    const longNames = files.filter((name) => shortener.shortNameFor(shortener.stripExtension(name)));
+    assert(
+      longNames.length === 0,
+      `${gallery} still has ${longNames.length} full-UUID filename(s); run scripts/shorten-image-names.mjs.`
+    );
+  }
+};
+
 const testDependencyAlignment = async () => {
   const packageJson = JSON.parse(await readText('package.json'));
   const lockfile = JSON.parse(await readText('package-lock.json'));
@@ -296,6 +429,8 @@ const run = async () => {
   await testGalleryMetadata();
   await testBlogIdsUnique();
   await testPerformanceHints();
+  await testImageRotationWorkflow();
+  await testImageNameShortening();
   await testDependencyAlignment();
 
   if (errors.length > 0) {

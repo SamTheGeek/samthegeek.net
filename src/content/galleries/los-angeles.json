@@ -5,7 +5,7 @@
   "description": "Photos from Los Angeles",
   "images": [
     {
-      "src": "/images/los-angeles/004A8581-CA94-4F31-8083-233515969290-1153-00000282C6B1609C_photo.jpg",
+      "src": "/images/los-angeles/15969290.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -20,10 +20,10 @@
         "latitude": 34.063149279166666,
         "longitude": -118.35980574499999
       },
-      "webpSrc": "/images/los-angeles/004A8581-CA94-4F31-8083-233515969290-1153-00000282C6B1609C_photo.webp"
+      "webpSrc": "/images/los-angeles/15969290.webp"
     },
     {
-      "src": "/images/los-angeles/00CE2B98-25F4-45E2-8ABF-0CB42E37FD62-1118-000001DE2EB80A51_photo.jpg",
+      "src": "/images/los-angeles/2E37FD62.jpg",
       "alt": "Los Angeles photo",
       "width": 3840,
       "height": 2160,
@@ -38,10 +38,10 @@
         "latitude": 34.053748776666666,
         "longitude": -118.24322597166666
       },
-      "webpSrc": "/images/los-angeles/00CE2B98-25F4-45E2-8ABF-0CB42E37FD62-1118-000001DE2EB80A51_photo.webp"
+      "webpSrc": "/images/los-angeles/2E37FD62.webp"
     },
     {
-      "src": "/images/los-angeles/05422B0E-2FD2-4423-83C9-CAF2C2B30D1F-1152-000001E04A301ADF_photo.jpg",
+      "src": "/images/los-angeles/C2B30D1F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -56,10 +56,10 @@
         "latitude": 34.056534685555555,
         "longitude": -118.27663785416667
       },
-      "webpSrc": "/images/los-angeles/05422B0E-2FD2-4423-83C9-CAF2C2B30D1F-1152-000001E04A301ADF_photo.webp"
+      "webpSrc": "/images/los-angeles/C2B30D1F.webp"
     },
     {
-      "src": "/images/los-angeles/071ADC52-3D3A-4D28-A163-6DDB57E828E3-1152-000001E0C220B234_photo.jpg",
+      "src": "/images/los-angeles/57E828E3.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -74,10 +74,10 @@
         "latitude": 33.990548600277776,
         "longitude": -118.46498810111112
       },
-      "webpSrc": "/images/los-angeles/071ADC52-3D3A-4D28-A163-6DDB57E828E3-1152-000001E0C220B234_photo.webp"
+      "webpSrc": "/images/los-angeles/57E828E3.webp"
     },
     {
-      "src": "/images/los-angeles/0F93DD44-FCB1-442E-8BBD-66BADDB66F0E-1152-000001E014BBB1A1_photo.jpg",
+      "src": "/images/los-angeles/DDB66F0E.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -92,10 +92,10 @@
         "latitude": 34.050714425277775,
         "longitude": -118.24789340527778
       },
-      "webpSrc": "/images/los-angeles/0F93DD44-FCB1-442E-8BBD-66BADDB66F0E-1152-000001E014BBB1A1_photo.webp"
+      "webpSrc": "/images/los-angeles/DDB66F0E.webp"
     },
     {
-      "src": "/images/los-angeles/0FBADEBA-8ED2-4DF3-802B-6C1311C502F1-2900-000005573E6EF4DA_photo.jpg",
+      "src": "/images/los-angeles/11C502F1.jpg",
       "alt": "Los Angeles photo",
       "width": 3300,
       "height": 2199,
@@ -110,13 +110,13 @@
         "latitude": 34.116486111111115,
         "longitude": -118.34216388888889
       },
-      "webpSrc": "/images/los-angeles/0FBADEBA-8ED2-4DF3-802B-6C1311C502F1-2900-000005573E6EF4DA_photo.webp"
+      "webpSrc": "/images/los-angeles/11C502F1.webp"
     },
     {
-      "src": "/images/los-angeles/170077DA-C801-4CA8-91E5-715CAAB2511D-1152-000001E03C7302D7_photo.jpg",
+      "src": "/images/los-angeles/AAB2511D.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 15:19:38",
         "camera": "FUJIFILM X-T2",
@@ -128,10 +128,10 @@
         "latitude": 34.05431442305555,
         "longitude": -118.25038255
       },
-      "webpSrc": "/images/los-angeles/170077DA-C801-4CA8-91E5-715CAAB2511D-1152-000001E03C7302D7_photo.webp"
+      "webpSrc": "/images/los-angeles/AAB2511D.webp"
     },
     {
-      "src": "/images/los-angeles/17C14DE2-4F62-416A-8FE6-B10BA20C3A6C-1152-000001E01FB9EE16_photo.jpg",
+      "src": "/images/los-angeles/A20C3A6C.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -146,10 +146,10 @@
         "latitude": 34.05097179194444,
         "longitude": -118.24908210694444
       },
-      "webpSrc": "/images/los-angeles/17C14DE2-4F62-416A-8FE6-B10BA20C3A6C-1152-000001E01FB9EE16_photo.webp"
+      "webpSrc": "/images/los-angeles/A20C3A6C.webp"
     },
     {
-      "src": "/images/los-angeles/18A352E1-A479-4DD1-9DB2-3AD8933C55FE-1152-000001E09E0AE923_photo.jpg",
+      "src": "/images/los-angeles/933C55FE.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -164,10 +164,10 @@
         "latitude": 34.06251593527777,
         "longitude": -118.36118279333333
       },
-      "webpSrc": "/images/los-angeles/18A352E1-A479-4DD1-9DB2-3AD8933C55FE-1152-000001E09E0AE923_photo.webp"
+      "webpSrc": "/images/los-angeles/933C55FE.webp"
     },
     {
-      "src": "/images/los-angeles/191E0613-E1EA-4A29-ACA3-079ECDDBFBB2-1153-00000282DB5FED8B_photo.jpg",
+      "src": "/images/los-angeles/CDDBFBB2.jpg",
       "alt": "Los Angeles photo",
       "width": 3882,
       "height": 3883,
@@ -182,10 +182,10 @@
         "latitude": 34.063080916666664,
         "longitude": -118.35981358333333
       },
-      "webpSrc": "/images/los-angeles/191E0613-E1EA-4A29-ACA3-079ECDDBFBB2-1153-00000282DB5FED8B_photo.webp"
+      "webpSrc": "/images/los-angeles/CDDBFBB2.webp"
     },
     {
-      "src": "/images/los-angeles/1A186015-6240-4A9F-8D1B-C30BE44D7637-1152-000001E04B458602_photo.jpg",
+      "src": "/images/los-angeles/E44D7637.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -200,10 +200,10 @@
         "latitude": 34.06244998,
         "longitude": -118.36098107111111
       },
-      "webpSrc": "/images/los-angeles/1A186015-6240-4A9F-8D1B-C30BE44D7637-1152-000001E04B458602_photo.webp"
+      "webpSrc": "/images/los-angeles/E44D7637.webp"
     },
     {
-      "src": "/images/los-angeles/29FB6950-8A67-4C17-B61C-7D5D43B0F726-11987-00000FD92B327E82_photo.jpg",
+      "src": "/images/los-angeles/43B0F726.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -218,10 +218,10 @@
         "latitude": 34.1360346525,
         "longitude": -118.33003142027778
       },
-      "webpSrc": "/images/los-angeles/29FB6950-8A67-4C17-B61C-7D5D43B0F726-11987-00000FD92B327E82_photo.webp"
+      "webpSrc": "/images/los-angeles/43B0F726.webp"
     },
     {
-      "src": "/images/los-angeles/2AAF8236-A58D-4356-B13B-5B7F3B2AF29C-1153-00000282B5FEB1AE_photo.jpg",
+      "src": "/images/los-angeles/3B2AF29C.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -236,10 +236,10 @@
         "latitude": 34.063099172499996,
         "longitude": -118.35914607722222
       },
-      "webpSrc": "/images/los-angeles/2AAF8236-A58D-4356-B13B-5B7F3B2AF29C-1153-00000282B5FEB1AE_photo.webp"
+      "webpSrc": "/images/los-angeles/3B2AF29C.webp"
     },
     {
-      "src": "/images/los-angeles/2BE4902B-9C49-4425-BDA3-50F4E4B73940-1152-000001E08B3B8437_photo.jpg",
+      "src": "/images/los-angeles/E4B73940.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -254,10 +254,10 @@
         "latitude": 34.06216569833333,
         "longitude": -118.36108335861111
       },
-      "webpSrc": "/images/los-angeles/2BE4902B-9C49-4425-BDA3-50F4E4B73940-1152-000001E08B3B8437_photo.webp"
+      "webpSrc": "/images/los-angeles/E4B73940.webp"
     },
     {
-      "src": "/images/los-angeles/305D4D54-973F-4A3B-9505-38746ED1464F-1152-000001E0A5EB7194_photo.jpg",
+      "src": "/images/los-angeles/6ED1464F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -272,10 +272,10 @@
         "latitude": 34.06241011083333,
         "longitude": -118.36159391555555
       },
-      "webpSrc": "/images/los-angeles/305D4D54-973F-4A3B-9505-38746ED1464F-1152-000001E0A5EB7194_photo.webp"
+      "webpSrc": "/images/los-angeles/6ED1464F.webp"
     },
     {
-      "src": "/images/los-angeles/31CCE1B7-8290-4A4E-94C4-35256F11D5D2-1152-000001E023977897_photo.jpg",
+      "src": "/images/los-angeles/6F11D5D2.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -290,10 +290,10 @@
         "latitude": 34.05433504861111,
         "longitude": -118.249965255
       },
-      "webpSrc": "/images/los-angeles/31CCE1B7-8290-4A4E-94C4-35256F11D5D2-1152-000001E023977897_photo.webp"
+      "webpSrc": "/images/los-angeles/6F11D5D2.webp"
     },
     {
-      "src": "/images/los-angeles/35744ED7-10C4-4D8F-A5E2-8E4EFFF67787-1153-0000028296F4643F_photo.jpg",
+      "src": "/images/los-angeles/FFF67787.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -308,10 +308,10 @@
         "latitude": 34.06414621888889,
         "longitude": -118.34389375944444
       },
-      "webpSrc": "/images/los-angeles/35744ED7-10C4-4D8F-A5E2-8E4EFFF67787-1153-0000028296F4643F_photo.webp"
+      "webpSrc": "/images/los-angeles/FFF67787.webp"
     },
     {
-      "src": "/images/los-angeles/3A9EA34A-13CE-4978-89AF-5B01596C569E-1152-000001E03E2E0E70_photo.jpg",
+      "src": "/images/los-angeles/596C569E.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -326,10 +326,10 @@
         "latitude": 34.05308343777777,
         "longitude": -118.25083479888889
       },
-      "webpSrc": "/images/los-angeles/3A9EA34A-13CE-4978-89AF-5B01596C569E-1152-000001E03E2E0E70_photo.webp"
+      "webpSrc": "/images/los-angeles/596C569E.webp"
     },
     {
-      "src": "/images/los-angeles/4097D926-348C-40E0-B970-B65938495BA3-1152-000001E09BB2410E_photo.jpg",
+      "src": "/images/los-angeles/38495BA3.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -344,10 +344,10 @@
         "latitude": 34.06245103,
         "longitude": -118.36119835472222
       },
-      "webpSrc": "/images/los-angeles/4097D926-348C-40E0-B970-B65938495BA3-1152-000001E09BB2410E_photo.webp"
+      "webpSrc": "/images/los-angeles/38495BA3.webp"
     },
     {
-      "src": "/images/los-angeles/436EDC77-5D8C-430C-8B27-51D9B4A7705A-1152-000001E0B5E8C808_photo.jpg",
+      "src": "/images/los-angeles/B4A7705A.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -362,10 +362,10 @@
         "latitude": 34.00906476722222,
         "longitude": -118.49775963305555
       },
-      "webpSrc": "/images/los-angeles/436EDC77-5D8C-430C-8B27-51D9B4A7705A-1152-000001E0B5E8C808_photo.webp"
+      "webpSrc": "/images/los-angeles/B4A7705A.webp"
     },
     {
-      "src": "/images/los-angeles/43840CB3-C87D-48A9-8506-3E443B88F094-11987-00000FD92AFAFA08_photo.jpg",
+      "src": "/images/los-angeles/3B88F094.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -380,10 +380,10 @@
         "latitude": 34.136168946944444,
         "longitude": -118.32998170944444
       },
-      "webpSrc": "/images/los-angeles/43840CB3-C87D-48A9-8506-3E443B88F094-11987-00000FD92AFAFA08_photo.webp"
+      "webpSrc": "/images/los-angeles/3B88F094.webp"
     },
     {
-      "src": "/images/los-angeles/4836A1BB-4EA4-4DA4-B581-868469039B6F-1153-00000282D6D5EE4B_photo.jpg",
+      "src": "/images/los-angeles/69039B6F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -398,13 +398,13 @@
         "latitude": 34.063341244444445,
         "longitude": -118.35966014777777
       },
-      "webpSrc": "/images/los-angeles/4836A1BB-4EA4-4DA4-B581-868469039B6F-1153-00000282D6D5EE4B_photo.webp"
+      "webpSrc": "/images/los-angeles/69039B6F.webp"
     },
     {
-      "src": "/images/los-angeles/552E4A19-B358-4B58-9C0C-62AEFAD44CD6-1153-00000282CDBD7812_photo.jpg",
+      "src": "/images/los-angeles/FAD44CD6.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:20 13:21:52",
         "camera": "FUJIFILM X-T2",
@@ -416,10 +416,10 @@
         "latitude": 34.06354670416666,
         "longitude": -118.35987372583332
       },
-      "webpSrc": "/images/los-angeles/552E4A19-B358-4B58-9C0C-62AEFAD44CD6-1153-00000282CDBD7812_photo.webp"
+      "webpSrc": "/images/los-angeles/FAD44CD6.webp"
     },
     {
-      "src": "/images/los-angeles/59412B3F-6982-4197-869E-294113E20A5B-1153-00000282A43CCF75_photo.jpg",
+      "src": "/images/los-angeles/13E20A5B.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -434,10 +434,10 @@
         "latitude": 34.0641196975,
         "longitude": -118.34381948333333
       },
-      "webpSrc": "/images/los-angeles/59412B3F-6982-4197-869E-294113E20A5B-1153-00000282A43CCF75_photo.webp"
+      "webpSrc": "/images/los-angeles/13E20A5B.webp"
     },
     {
-      "src": "/images/los-angeles/5D1802BE-BD52-44E0-8601-3600601707AE-2900-000005573E8AE9C5_photo.jpg",
+      "src": "/images/los-angeles/601707AE.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -452,10 +452,10 @@
         "latitude": 34.07609230944445,
         "longitude": -118.47472301666667
       },
-      "webpSrc": "/images/los-angeles/5D1802BE-BD52-44E0-8601-3600601707AE-2900-000005573E8AE9C5_photo.webp"
+      "webpSrc": "/images/los-angeles/601707AE.webp"
     },
     {
-      "src": "/images/los-angeles/5D54D9DA-57CB-4512-ABFF-A67299BD4C1E-11987-00000FD933F53AA5_photo.jpg",
+      "src": "/images/los-angeles/99BD4C1E.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -470,10 +470,10 @@
         "latitude": 34.07027771027778,
         "longitude": -118.40483272750001
       },
-      "webpSrc": "/images/los-angeles/5D54D9DA-57CB-4512-ABFF-A67299BD4C1E-11987-00000FD933F53AA5_photo.webp"
+      "webpSrc": "/images/los-angeles/99BD4C1E.webp"
     },
     {
-      "src": "/images/los-angeles/600ECBB0-9F54-47BD-819F-DE06E3CAE9C8-1152-000001E0C311D207_photo.jpg",
+      "src": "/images/los-angeles/E3CAE9C8.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -488,13 +488,13 @@
         "latitude": 34.01313654444444,
         "longitude": -118.49757922916666
       },
-      "webpSrc": "/images/los-angeles/600ECBB0-9F54-47BD-819F-DE06E3CAE9C8-1152-000001E0C311D207_photo.webp"
+      "webpSrc": "/images/los-angeles/E3CAE9C8.webp"
     },
     {
-      "src": "/images/los-angeles/60DF41C5-FFEE-4395-9DE8-F38426FEDDF0-1152-000001E03C15F5A5_photo.jpg",
+      "src": "/images/los-angeles/26FEDDF0.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 15:19:14",
         "camera": "FUJIFILM X-T2",
@@ -506,10 +506,10 @@
         "latitude": 34.0544112275,
         "longitude": -118.25030698083333
       },
-      "webpSrc": "/images/los-angeles/60DF41C5-FFEE-4395-9DE8-F38426FEDDF0-1152-000001E03C15F5A5_photo.webp"
+      "webpSrc": "/images/los-angeles/26FEDDF0.webp"
     },
     {
-      "src": "/images/los-angeles/6A7C5EBB-7915-40C6-8A6A-03FCC36645EC-1152-000001E0AB8B89BA_photo.jpg",
+      "src": "/images/los-angeles/C36645EC.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -524,10 +524,10 @@
         "latitude": 34.00779610861111,
         "longitude": -118.49976367138889
       },
-      "webpSrc": "/images/los-angeles/6A7C5EBB-7915-40C6-8A6A-03FCC36645EC-1152-000001E0AB8B89BA_photo.webp"
+      "webpSrc": "/images/los-angeles/C36645EC.webp"
     },
     {
-      "src": "/images/los-angeles/6E5E2E3B-7AAF-4D00-995B-33BBCECEB7D9-1153-00000282A9619C26_photo.jpg",
+      "src": "/images/los-angeles/CECEB7D9.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -542,10 +542,10 @@
         "latitude": 34.0644153425,
         "longitude": -118.34418049499999
       },
-      "webpSrc": "/images/los-angeles/6E5E2E3B-7AAF-4D00-995B-33BBCECEB7D9-1153-00000282A9619C26_photo.webp"
+      "webpSrc": "/images/los-angeles/CECEB7D9.webp"
     },
     {
-      "src": "/images/los-angeles/6F9558D8-48A6-465C-8EE3-45E7960CDE17-1152-000001E0C2829D89_photo.jpg",
+      "src": "/images/los-angeles/960CDE17.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -560,10 +560,10 @@
         "latitude": 33.99361732277778,
         "longitude": -118.48034355722223
       },
-      "webpSrc": "/images/los-angeles/6F9558D8-48A6-465C-8EE3-45E7960CDE17-1152-000001E0C2829D89_photo.webp"
+      "webpSrc": "/images/los-angeles/960CDE17.webp"
     },
     {
-      "src": "/images/los-angeles/70D63C7E-0E75-4E15-97D8-CA80B6480D4F-1153-00000282D5A50049_photo.jpg",
+      "src": "/images/los-angeles/B6480D4F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -578,10 +578,10 @@
         "latitude": 34.06352195611111,
         "longitude": -118.35980630166667
       },
-      "webpSrc": "/images/los-angeles/70D63C7E-0E75-4E15-97D8-CA80B6480D4F-1153-00000282D5A50049_photo.webp"
+      "webpSrc": "/images/los-angeles/B6480D4F.webp"
     },
     {
-      "src": "/images/los-angeles/79E0D7F8-5FF4-43A3-B43A-C4163BA29EE4-1153-00000282D46E3288_photo.jpg",
+      "src": "/images/los-angeles/3BA29EE4.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -596,10 +596,10 @@
         "latitude": 34.06359706027777,
         "longitude": -118.35988854777777
       },
-      "webpSrc": "/images/los-angeles/79E0D7F8-5FF4-43A3-B43A-C4163BA29EE4-1153-00000282D46E3288_photo.webp"
+      "webpSrc": "/images/los-angeles/3BA29EE4.webp"
     },
     {
-      "src": "/images/los-angeles/7B37DB7E-98C7-448E-A014-FC807008C73A-1116-000001DDD3D91C00_photo.jpg",
+      "src": "/images/los-angeles/7008C73A.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -614,10 +614,10 @@
         "latitude": 34.050657414999996,
         "longitude": -118.25438398055556
       },
-      "webpSrc": "/images/los-angeles/7B37DB7E-98C7-448E-A014-FC807008C73A-1116-000001DDD3D91C00_photo.webp"
+      "webpSrc": "/images/los-angeles/7008C73A.webp"
     },
     {
-      "src": "/images/los-angeles/7C8CD969-54F0-4A30-ABF6-2B3F6C9D04CA-11987-00000FD92D6CB796_photo.jpg",
+      "src": "/images/los-angeles/6C9D04CA.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -632,10 +632,10 @@
         "latitude": 34.10876537027778,
         "longitude": -118.28733388527777
       },
-      "webpSrc": "/images/los-angeles/7C8CD969-54F0-4A30-ABF6-2B3F6C9D04CA-11987-00000FD92D6CB796_photo.webp"
+      "webpSrc": "/images/los-angeles/6C9D04CA.webp"
     },
     {
-      "src": "/images/los-angeles/80A69AD3-35C9-47F3-BC20-6DE606A4EBFA-2900-000005574CE82930_photo.jpg",
+      "src": "/images/los-angeles/06A4EBFA.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -650,10 +650,10 @@
         "latitude": 34.11989453861111,
         "longitude": -118.30075422805555
       },
-      "webpSrc": "/images/los-angeles/80A69AD3-35C9-47F3-BC20-6DE606A4EBFA-2900-000005574CE82930_photo.webp"
+      "webpSrc": "/images/los-angeles/06A4EBFA.webp"
     },
     {
-      "src": "/images/los-angeles/80CCB617-CFD3-42CC-A1FD-9982B238F2D6-1116-000001DDB1B40626_photo.jpg",
+      "src": "/images/los-angeles/B238F2D6.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -668,10 +668,10 @@
         "latitude": 34.05393510138889,
         "longitude": -118.24313514055555
       },
-      "webpSrc": "/images/los-angeles/80CCB617-CFD3-42CC-A1FD-9982B238F2D6-1116-000001DDB1B40626_photo.webp"
+      "webpSrc": "/images/los-angeles/B238F2D6.webp"
     },
     {
-      "src": "/images/los-angeles/837625C5-53F7-4F40-9D2B-AC55DEB0AD4E-1152-000001E08D4D8AF7_photo.jpg",
+      "src": "/images/los-angeles/DEB0AD4E.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -686,13 +686,13 @@
         "latitude": 34.06222525916667,
         "longitude": -118.36145379388888
       },
-      "webpSrc": "/images/los-angeles/837625C5-53F7-4F40-9D2B-AC55DEB0AD4E-1152-000001E08D4D8AF7_photo.webp"
+      "webpSrc": "/images/los-angeles/DEB0AD4E.webp"
     },
     {
-      "src": "/images/los-angeles/892CD285-9451-4D42-AA11-6DDCBD78A902-1152-000001E03E776453_photo.jpg",
+      "src": "/images/los-angeles/BD78A902.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 15:52:31",
         "camera": "FUJIFILM X-T2",
@@ -704,13 +704,13 @@
         "latitude": 34.05319160472222,
         "longitude": -118.25094689222222
       },
-      "webpSrc": "/images/los-angeles/892CD285-9451-4D42-AA11-6DDCBD78A902-1152-000001E03E776453_photo.webp"
+      "webpSrc": "/images/los-angeles/BD78A902.webp"
     },
     {
-      "src": "/images/los-angeles/8AB8AED4-16B7-4AE3-8B0E-55B1F13CAFF4-11987-00000FD93306FB83_photo.jpg",
+      "src": "/images/los-angeles/F13CAFF4.jpg",
       "alt": "Los Angeles photo",
-      "width": 3840,
-      "height": 2160,
+      "width": 2160,
+      "height": 3840,
       "exif": {
         "date": "2019:01:26 16:58:28",
         "camera": "Apple iPhone XS",
@@ -722,10 +722,10 @@
         "latitude": 33.88420421027778,
         "longitude": -118.41220365694446
       },
-      "webpSrc": "/images/los-angeles/8AB8AED4-16B7-4AE3-8B0E-55B1F13CAFF4-11987-00000FD93306FB83_photo.webp"
+      "webpSrc": "/images/los-angeles/F13CAFF4.webp"
     },
     {
-      "src": "/images/los-angeles/8D2416F1-E8F7-4ED1-BA58-CC156A5445B2-1152-000001E04A6546AF_photo.jpg",
+      "src": "/images/los-angeles/6A5445B2.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -740,10 +740,10 @@
         "latitude": 34.062552221666664,
         "longitude": -118.36119514972222
       },
-      "webpSrc": "/images/los-angeles/8D2416F1-E8F7-4ED1-BA58-CC156A5445B2-1152-000001E04A6546AF_photo.webp"
+      "webpSrc": "/images/los-angeles/6A5445B2.webp"
     },
     {
-      "src": "/images/los-angeles/8D92556D-A32B-4D56-8BC0-B87DC76836D5-1152-000001E09C508684_photo.jpg",
+      "src": "/images/los-angeles/C76836D5.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -758,13 +758,13 @@
         "latitude": 34.06242690722222,
         "longitude": -118.3611644136111
       },
-      "webpSrc": "/images/los-angeles/8D92556D-A32B-4D56-8BC0-B87DC76836D5-1152-000001E09C508684_photo.webp"
+      "webpSrc": "/images/los-angeles/C76836D5.webp"
     },
     {
-      "src": "/images/los-angeles/91D90023-0B24-4677-8CCD-39A9634F169E-1152-000001E03D3880C9_photo.jpg",
+      "src": "/images/los-angeles/634F169E.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 15:48:10",
         "camera": "FUJIFILM X-T2",
@@ -776,13 +776,13 @@
         "latitude": 34.05308651111111,
         "longitude": -118.25104998916666
       },
-      "webpSrc": "/images/los-angeles/91D90023-0B24-4677-8CCD-39A9634F169E-1152-000001E03D3880C9_photo.webp"
+      "webpSrc": "/images/los-angeles/634F169E.webp"
     },
     {
-      "src": "/images/los-angeles/93BB74F7-4E46-4BD1-B561-C6BC83BA4359-1152-000001E03B793617_photo.jpg",
+      "src": "/images/los-angeles/83BA4359.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 15:17:24",
         "camera": "FUJIFILM X-T2",
@@ -794,10 +794,10 @@
         "latitude": 34.054403245555555,
         "longitude": -118.25070019444445
       },
-      "webpSrc": "/images/los-angeles/93BB74F7-4E46-4BD1-B561-C6BC83BA4359-1152-000001E03B793617_photo.webp"
+      "webpSrc": "/images/los-angeles/83BA4359.webp"
     },
     {
-      "src": "/images/los-angeles/97422557-1408-4FC8-BA4B-18386BEEB1AC-11987-00000FD9334C82CD_photo.jpg",
+      "src": "/images/los-angeles/6BEEB1AC.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -812,10 +812,10 @@
         "latitude": 34.070299070833336,
         "longitude": -118.40480194361112
       },
-      "webpSrc": "/images/los-angeles/97422557-1408-4FC8-BA4B-18386BEEB1AC-11987-00000FD9334C82CD_photo.webp"
+      "webpSrc": "/images/los-angeles/6BEEB1AC.webp"
     },
     {
-      "src": "/images/los-angeles/9AB4CDD4-59C6-483E-918C-B82EC01E82AC-1152-000001E03A948ADD_photo.jpg",
+      "src": "/images/los-angeles/C01E82AC.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -830,10 +830,10 @@
         "latitude": 34.05436972361111,
         "longitude": -118.2507692575
       },
-      "webpSrc": "/images/los-angeles/9AB4CDD4-59C6-483E-918C-B82EC01E82AC-1152-000001E03A948ADD_photo.webp"
+      "webpSrc": "/images/los-angeles/C01E82AC.webp"
     },
     {
-      "src": "/images/los-angeles/9DD97607-853A-42F4-8BCD-CD8C2BB39A12-1153-00000282C5B01CC6_photo.jpg",
+      "src": "/images/los-angeles/2BB39A12.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -848,10 +848,10 @@
         "latitude": 34.06317932166667,
         "longitude": -118.35987228805556
       },
-      "webpSrc": "/images/los-angeles/9DD97607-853A-42F4-8BCD-CD8C2BB39A12-1153-00000282C5B01CC6_photo.webp"
+      "webpSrc": "/images/los-angeles/2BB39A12.webp"
     },
     {
-      "src": "/images/los-angeles/9E54F631-4EB7-4CD8-AFA8-649DF86FFD68-1153-00000282C2055EB4_photo.jpg",
+      "src": "/images/los-angeles/F86FFD68.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -866,13 +866,13 @@
         "latitude": 34.063114274166665,
         "longitude": -118.36004866249999
       },
-      "webpSrc": "/images/los-angeles/9E54F631-4EB7-4CD8-AFA8-649DF86FFD68-1153-00000282C2055EB4_photo.webp"
+      "webpSrc": "/images/los-angeles/F86FFD68.webp"
     },
     {
-      "src": "/images/los-angeles/9F567170-0D08-4674-BFDF-EE96A29F9D8A-1152-000001E04972CC7B_photo.jpg",
+      "src": "/images/los-angeles/A29F9D8A.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 16:07:43",
         "camera": "FUJIFILM X-T2",
@@ -884,10 +884,10 @@
         "latitude": 34.05347388027778,
         "longitude": -118.25050933805555
       },
-      "webpSrc": "/images/los-angeles/9F567170-0D08-4674-BFDF-EE96A29F9D8A-1152-000001E04972CC7B_photo.webp"
+      "webpSrc": "/images/los-angeles/A29F9D8A.webp"
     },
     {
-      "src": "/images/los-angeles/A372EF18-CC55-43C2-B8C7-68EE532466F5-1153-00000282DD3390B9_photo.jpg",
+      "src": "/images/los-angeles/532466F5.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -902,10 +902,10 @@
         "latitude": 34.06300064166666,
         "longitude": -118.3598025386111
       },
-      "webpSrc": "/images/los-angeles/A372EF18-CC55-43C2-B8C7-68EE532466F5-1153-00000282DD3390B9_photo.webp"
+      "webpSrc": "/images/los-angeles/532466F5.webp"
     },
     {
-      "src": "/images/los-angeles/A8B13A37-F9CA-442D-B7AA-84DC9FFE73FA-1152-000001E0153CDCAC_photo.jpg",
+      "src": "/images/los-angeles/9FFE73FA.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -920,10 +920,10 @@
         "latitude": 34.05100142361111,
         "longitude": -118.24955843333333
       },
-      "webpSrc": "/images/los-angeles/A8B13A37-F9CA-442D-B7AA-84DC9FFE73FA-1152-000001E0153CDCAC_photo.webp"
+      "webpSrc": "/images/los-angeles/9FFE73FA.webp"
     },
     {
-      "src": "/images/los-angeles/AB9A31B9-B01B-49E2-AB97-8349060EE851-1152-000001E02990D614_photo.jpg",
+      "src": "/images/los-angeles/060EE851.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -938,10 +938,10 @@
         "latitude": 34.054513665555554,
         "longitude": -118.25069026083334
       },
-      "webpSrc": "/images/los-angeles/AB9A31B9-B01B-49E2-AB97-8349060EE851-1152-000001E02990D614_photo.webp"
+      "webpSrc": "/images/los-angeles/060EE851.webp"
     },
     {
-      "src": "/images/los-angeles/AD8FD2E0-0F63-4B69-9D01-07BB00228909-1116-000001DDC6C8688B_photo.jpg",
+      "src": "/images/los-angeles/00228909.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -956,13 +956,13 @@
         "latitude": 34.050656088611106,
         "longitude": -118.25548789583334
       },
-      "webpSrc": "/images/los-angeles/AD8FD2E0-0F63-4B69-9D01-07BB00228909-1116-000001DDC6C8688B_photo.webp"
+      "webpSrc": "/images/los-angeles/00228909.webp"
     },
     {
-      "src": "/images/los-angeles/ADEC3B9C-A440-4918-A40B-F472EFF49B35-1152-000001E04018A892_photo.jpg",
+      "src": "/images/los-angeles/EFF49B35.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 15:55:56",
         "camera": "FUJIFILM X-T2",
@@ -974,10 +974,10 @@
         "latitude": 34.053150251111106,
         "longitude": -118.25118615777778
       },
-      "webpSrc": "/images/los-angeles/ADEC3B9C-A440-4918-A40B-F472EFF49B35-1152-000001E04018A892_photo.webp"
+      "webpSrc": "/images/los-angeles/EFF49B35.webp"
     },
     {
-      "src": "/images/los-angeles/AE509217-4ACA-463D-882A-B52C19961CBD-1152-000001E0442D3BFE_photo.jpg",
+      "src": "/images/los-angeles/19961CBD.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -992,10 +992,10 @@
         "latitude": 34.053398663611105,
         "longitude": -118.25064824583333
       },
-      "webpSrc": "/images/los-angeles/AE509217-4ACA-463D-882A-B52C19961CBD-1152-000001E0442D3BFE_photo.webp"
+      "webpSrc": "/images/los-angeles/19961CBD.webp"
     },
     {
-      "src": "/images/los-angeles/AFC22770-52E8-439B-B595-10993015F474-1152-000001E0ADA5EBAB_photo.jpg",
+      "src": "/images/los-angeles/3015F474.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1010,10 +1010,10 @@
         "latitude": 34.00783462444444,
         "longitude": -118.49932591305556
       },
-      "webpSrc": "/images/los-angeles/AFC22770-52E8-439B-B595-10993015F474-1152-000001E0ADA5EBAB_photo.webp"
+      "webpSrc": "/images/los-angeles/3015F474.webp"
     },
     {
-      "src": "/images/los-angeles/B277D4CD-0318-4D07-8A74-81EE91C5FD95-1153-000002829D8BD4AF_photo.jpg",
+      "src": "/images/los-angeles/91C5FD95.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1028,10 +1028,10 @@
         "latitude": 34.06408072666667,
         "longitude": -118.34382584333333
       },
-      "webpSrc": "/images/los-angeles/B277D4CD-0318-4D07-8A74-81EE91C5FD95-1153-000002829D8BD4AF_photo.webp"
+      "webpSrc": "/images/los-angeles/91C5FD95.webp"
     },
     {
-      "src": "/images/los-angeles/B2B95077-2147-44D2-8899-6A9528BBB6A6-1153-00000282D01BD83E_photo.jpg",
+      "src": "/images/los-angeles/28BBB6A6.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1046,10 +1046,10 @@
         "latitude": 34.06357397916666,
         "longitude": -118.35985994055555
       },
-      "webpSrc": "/images/los-angeles/B2B95077-2147-44D2-8899-6A9528BBB6A6-1153-00000282D01BD83E_photo.webp"
+      "webpSrc": "/images/los-angeles/28BBB6A6.webp"
     },
     {
-      "src": "/images/los-angeles/B6B73218-587A-47F8-B66E-2ECEE91954E0-1152-000001E016FF522B_photo.jpg",
+      "src": "/images/los-angeles/E91954E0.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1064,10 +1064,10 @@
         "latitude": 34.05102215388889,
         "longitude": -118.24931216083334
       },
-      "webpSrc": "/images/los-angeles/B6B73218-587A-47F8-B66E-2ECEE91954E0-1152-000001E016FF522B_photo.webp"
+      "webpSrc": "/images/los-angeles/E91954E0.webp"
     },
     {
-      "src": "/images/los-angeles/B8943456-9938-477F-A304-E8DDFC7AB71F-11987-00000FD93492C9BE_photo.jpg",
+      "src": "/images/los-angeles/FC7AB71F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1082,10 +1082,10 @@
         "latitude": 34.07027751805556,
         "longitude": -118.40483300444446
       },
-      "webpSrc": "/images/los-angeles/B8943456-9938-477F-A304-E8DDFC7AB71F-11987-00000FD93492C9BE_photo.webp"
+      "webpSrc": "/images/los-angeles/FC7AB71F.webp"
     },
     {
-      "src": "/images/los-angeles/BB4D325E-18C3-4069-97ED-4A10E4D76C78-1118-000001DE6646FD55_photo.jpg",
+      "src": "/images/los-angeles/E4D76C78.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1100,10 +1100,10 @@
         "latitude": 34.05076829555555,
         "longitude": -118.24792624222222
       },
-      "webpSrc": "/images/los-angeles/BB4D325E-18C3-4069-97ED-4A10E4D76C78-1118-000001DE6646FD55_photo.webp"
+      "webpSrc": "/images/los-angeles/E4D76C78.webp"
     },
     {
-      "src": "/images/los-angeles/C30A5D09-D5FB-4ACF-906E-D2E1452729BD-1152-000001E0C184AA29_photo.jpg",
+      "src": "/images/los-angeles/452729BD.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1118,10 +1118,10 @@
         "latitude": 34.015053216388885,
         "longitude": -118.50066243416667
       },
-      "webpSrc": "/images/los-angeles/C30A5D09-D5FB-4ACF-906E-D2E1452729BD-1152-000001E0C184AA29_photo.webp"
+      "webpSrc": "/images/los-angeles/452729BD.webp"
     },
     {
-      "src": "/images/los-angeles/C4252683-A889-43DE-A7E6-58EE5D19EFF7-1153-00000282C89DBC3A_photo.jpg",
+      "src": "/images/los-angeles/5D19EFF7.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1136,10 +1136,10 @@
         "latitude": 34.06352621138888,
         "longitude": -118.36006676583332
       },
-      "webpSrc": "/images/los-angeles/C4252683-A889-43DE-A7E6-58EE5D19EFF7-1153-00000282C89DBC3A_photo.webp"
+      "webpSrc": "/images/los-angeles/5D19EFF7.webp"
     },
     {
-      "src": "/images/los-angeles/C4F43E34-F8B8-48E9-AF78-D5272CCAA504-1152-000001E0282B362B_photo.jpg",
+      "src": "/images/los-angeles/2CCAA504.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1154,10 +1154,10 @@
         "latitude": 34.054345936111105,
         "longitude": -118.25048717861111
       },
-      "webpSrc": "/images/los-angeles/C4F43E34-F8B8-48E9-AF78-D5272CCAA504-1152-000001E0282B362B_photo.webp"
+      "webpSrc": "/images/los-angeles/2CCAA504.webp"
     },
     {
-      "src": "/images/los-angeles/C72F5AC9-C084-4A56-B9F9-8FDFEEAFD76F-1152-000001E032320A0E_photo.jpg",
+      "src": "/images/los-angeles/EEAFD76F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1172,10 +1172,10 @@
         "latitude": 34.05448316388889,
         "longitude": -118.25040955611111
       },
-      "webpSrc": "/images/los-angeles/C72F5AC9-C084-4A56-B9F9-8FDFEEAFD76F-1152-000001E032320A0E_photo.webp"
+      "webpSrc": "/images/los-angeles/EEAFD76F.webp"
     },
     {
-      "src": "/images/los-angeles/C93C4545-69FE-4A50-9810-0C1BEA99F2B9-1152-000001E03287C4B9_photo.jpg",
+      "src": "/images/los-angeles/EA99F2B9.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1190,10 +1190,10 @@
         "latitude": 34.05428409194444,
         "longitude": -118.25056563111112
       },
-      "webpSrc": "/images/los-angeles/C93C4545-69FE-4A50-9810-0C1BEA99F2B9-1152-000001E03287C4B9_photo.webp"
+      "webpSrc": "/images/los-angeles/EA99F2B9.webp"
     },
     {
-      "src": "/images/los-angeles/CA2181AE-B141-48DA-AAE0-F0D422B70254-1153-00000282BE508AF9_photo.jpg",
+      "src": "/images/los-angeles/22B70254.jpg",
       "alt": "Los Angeles photo",
       "width": 1553,
       "height": 3375,
@@ -1208,10 +1208,10 @@
         "latitude": 34.063058416666664,
         "longitude": -118.35905241666666
       },
-      "webpSrc": "/images/los-angeles/CA2181AE-B141-48DA-AAE0-F0D422B70254-1153-00000282BE508AF9_photo.webp"
+      "webpSrc": "/images/los-angeles/22B70254.webp"
     },
     {
-      "src": "/images/los-angeles/CB61C093-F717-4493-B588-350E2C475476-2900-000005574C3DC9CB_photo.jpg",
+      "src": "/images/los-angeles/2C475476.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1226,10 +1226,10 @@
         "latitude": 34.119890813611114,
         "longitude": -118.30075849611111
       },
-      "webpSrc": "/images/los-angeles/CB61C093-F717-4493-B588-350E2C475476-2900-000005574C3DC9CB_photo.webp"
+      "webpSrc": "/images/los-angeles/2C475476.webp"
     },
     {
-      "src": "/images/los-angeles/D919B4B4-C224-4E1B-A559-262967926C7F-2900-000005574A73445C_photo.jpg",
+      "src": "/images/los-angeles/67926C7F.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1244,7 +1244,7 @@
         "latitude": 34.119883583055554,
         "longitude": -118.30076678083333
       },
-      "webpSrc": "/images/los-angeles/D919B4B4-C224-4E1B-A559-262967926C7F-2900-000005574A73445C_photo.webp"
+      "webpSrc": "/images/los-angeles/67926C7F.webp"
     },
     {
       "src": "/images/los-angeles/DSCF0395.JPG",
@@ -1283,7 +1283,7 @@
       "webpSrc": "/images/los-angeles/DSCF0403.webp"
     },
     {
-      "src": "/images/los-angeles/E0D8C109-56C7-4A83-9E79-5A47B7EEEEC5-1116-000001DDAFEDF473_photo.jpg",
+      "src": "/images/los-angeles/B7EEEEC5.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1298,10 +1298,10 @@
         "latitude": 34.053902442777776,
         "longitude": -118.24312814
       },
-      "webpSrc": "/images/los-angeles/E0D8C109-56C7-4A83-9E79-5A47B7EEEEC5-1116-000001DDAFEDF473_photo.webp"
+      "webpSrc": "/images/los-angeles/B7EEEEC5.webp"
     },
     {
-      "src": "/images/los-angeles/E4884806-1899-486D-A02F-74EE08FE2AC2-2900-000005574A1F564B_photo.jpg",
+      "src": "/images/los-angeles/08FE2AC2.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1316,10 +1316,10 @@
         "latitude": 34.119881720555554,
         "longitude": -118.30076891499999
       },
-      "webpSrc": "/images/los-angeles/E4884806-1899-486D-A02F-74EE08FE2AC2-2900-000005574A1F564B_photo.webp"
+      "webpSrc": "/images/los-angeles/08FE2AC2.webp"
     },
     {
-      "src": "/images/los-angeles/E6F16B96-E58C-450E-831A-66BB6BD4BCB0-1116-000001DDDF629DE4_photo.jpg",
+      "src": "/images/los-angeles/6BD4BCB0.jpg",
       "alt": "Los Angeles photo",
       "width": 3281,
       "height": 4922,
@@ -1334,10 +1334,10 @@
         "latitude": 34.05079580555555,
         "longitude": -118.248024
       },
-      "webpSrc": "/images/los-angeles/E6F16B96-E58C-450E-831A-66BB6BD4BCB0-1116-000001DDDF629DE4_photo.webp"
+      "webpSrc": "/images/los-angeles/6BD4BCB0.webp"
     },
     {
-      "src": "/images/los-angeles/E80B2A46-7E96-418A-B6CA-8D10B0FB5F0A-2900-0000055749FEEEDE_photo.jpg",
+      "src": "/images/los-angeles/B0FB5F0A.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1352,10 +1352,10 @@
         "latitude": 34.11988073444444,
         "longitude": -118.30077004472221
       },
-      "webpSrc": "/images/los-angeles/E80B2A46-7E96-418A-B6CA-8D10B0FB5F0A-2900-0000055749FEEEDE_photo.webp"
+      "webpSrc": "/images/los-angeles/B0FB5F0A.webp"
     },
     {
-      "src": "/images/los-angeles/EC335B4A-942A-4EFC-A44F-033045DF94BB-1153-00000282B3CDFC89_photo.jpg",
+      "src": "/images/los-angeles/45DF94BB.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1370,10 +1370,10 @@
         "latitude": 34.06312856333333,
         "longitude": -118.35927604277778
       },
-      "webpSrc": "/images/los-angeles/EC335B4A-942A-4EFC-A44F-033045DF94BB-1153-00000282B3CDFC89_photo.webp"
+      "webpSrc": "/images/los-angeles/45DF94BB.webp"
     },
     {
-      "src": "/images/los-angeles/EDBFAF4C-9810-4C9A-99F8-2E13D3AEF8CA-11987-00000FD93B990C05_photo.jpg",
+      "src": "/images/los-angeles/D3AEF8CA.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1388,10 +1388,10 @@
         "latitude": 34.07027114500001,
         "longitude": -118.40484218861111
       },
-      "webpSrc": "/images/los-angeles/EDBFAF4C-9810-4C9A-99F8-2E13D3AEF8CA-11987-00000FD93B990C05_photo.webp"
+      "webpSrc": "/images/los-angeles/D3AEF8CA.webp"
     },
     {
-      "src": "/images/los-angeles/F5AB7514-36C3-48DA-BBC8-6FB1B06576A6-11987-00000FD932D5696D_photo.jpg",
+      "src": "/images/los-angeles/B06576A6.jpg",
       "alt": "Los Angeles photo",
       "width": 6000,
       "height": 4000,
@@ -1406,13 +1406,13 @@
         "latitude": 34.07030800583334,
         "longitude": -118.40478906694445
       },
-      "webpSrc": "/images/los-angeles/F5AB7514-36C3-48DA-BBC8-6FB1B06576A6-11987-00000FD932D5696D_photo.webp"
+      "webpSrc": "/images/los-angeles/B06576A6.webp"
     },
     {
-      "src": "/images/los-angeles/FD759887-9623-4CF9-A8AC-B564BF7BB683-1116-000001DDC9E0D062_photo.jpg",
+      "src": "/images/los-angeles/BF7BB683.jpg",
       "alt": "Los Angeles photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "exif": {
         "date": "2019:01:23 11:58:14",
         "camera": "FUJIFILM X-T2",
@@ -1424,7 +1424,7 @@
         "latitude": 34.05052710277778,
         "longitude": -118.25541307583333
       },
-      "webpSrc": "/images/los-angeles/FD759887-9623-4CF9-A8AC-B564BF7BB683-1116-000001DDC9E0D062_photo.webp"
+      "webpSrc": "/images/los-angeles/BF7BB683.webp"
     }
   ]
 }

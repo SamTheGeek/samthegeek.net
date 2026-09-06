@@ -208,7 +208,11 @@ async function convertToWebP(sharp, imagePath, quality, dryRun) {
   }
 
   try {
+    // autoOrient() bakes the source's EXIF Orientation into the pixels. WebP
+    // output carries no EXIF, so without this a portrait photo (which stores
+    // landscape pixels plus an orientation tag) would display sideways.
     await sharp(imagePath)
+      .autoOrient()
       .webp({ quality, effort: 4 })
       .toFile(webpPath);
 
@@ -718,12 +722,15 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
         }
       }
 
-      // Get image dimensions for CLS prevention
+      // Get image dimensions for CLS prevention. Record the *displayed* size:
+      // a portrait photo stores landscape pixels plus an EXIF Orientation tag,
+      // and the WebP we serve has that rotation baked in.
       let width, height;
       try {
         const metadata = await sharp(imagePath).metadata();
-        width = metadata.width;
-        height = metadata.height;
+        const upright = metadata.autoOrient ?? metadata;
+        width = upright.width;
+        height = upright.height;
       } catch (err) {
         console.log(`    Warning: Could not get dimensions for ${imageFile}`);
       }
