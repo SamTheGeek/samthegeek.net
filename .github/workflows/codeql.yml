@@ -1,9 +1,10 @@
-name: CodeQL
+name: "CodeQL Advanced"
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 permissions:
   actions: read
@@ -39,6 +40,14 @@ jobs:
     if: needs.changes.outputs.relevant == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - language: actions
+          build-mode: none
+        - language: javascript-typescript
+          build-mode: none
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -50,13 +59,16 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4.37.9
         with:
-          languages: javascript-typescript
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4.37.9
 
       - name: Analyze
         uses: github/codeql-action/analyze@v4.37.9
+        with:
+          category: "/language:${{matrix.language}}"
 
   codeql-passed:
     runs-on: ubuntu-latest
