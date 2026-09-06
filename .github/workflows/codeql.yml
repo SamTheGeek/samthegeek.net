@@ -17,12 +17,20 @@ jobs:
     outputs:
       relevant: ${{ steps.filter.outputs.any_changed }}
     steps:
+      # changed-files only falls back to the REST API on pull_request events;
+      # on push it needs a real git repository to diff against.
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          filter: blob:none
+          fetch-depth: 0
+          sparse-checkout: .github
+
       - name: Check for relevant changes
         id: filter
         uses: tj-actions/changed-files@v47
         with:
           files_ignore: |
-            .github/workflows/**
             public/images/**
             **/*.webp
             src/content/galleries/**/*.json
@@ -35,7 +43,7 @@ jobs:
             AGENT_INSTRUCTIONS.md
 
   analyze:
-    name: Analyze (javascript-typescript)
+    name: Analyze (${{ matrix.language }})
     needs: changes
     if: needs.changes.outputs.relevant == 'true'
     runs-on: ubuntu-latest
@@ -55,15 +63,13 @@ jobs:
           filter: blob:none
           sparse-checkout: |
             src
+            .github
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4.37.9
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4.37.9
 
       - name: Analyze
         uses: github/codeql-action/analyze@v4.37.9
@@ -73,12 +79,17 @@ jobs:
   codeql-passed:
     runs-on: ubuntu-latest
     if: always()
-    needs: [analyze]
+    needs: [changes, analyze]
     steps:
       - name: Check analyze result
         env:
+          CHANGES_RESULT: ${{ needs.changes.result }}
           ANALYZE_RESULT: ${{ needs.analyze.result }}
         run: |
+          if [[ "$CHANGES_RESULT" != "success" ]]; then
+            echo "Change detection failed or was cancelled (changes: $CHANGES_RESULT)"
+            exit 1
+          fi
           if [[ "$ANALYZE_RESULT" == "failure" || "$ANALYZE_RESULT" == "cancelled" ]]; then
             echo "CodeQL analysis failed or was cancelled"
             exit 1
