@@ -31,10 +31,30 @@ const { title, images } = Astro.props;
 // A panorama is a stitched/ultra-wide frame - far wider than any regular
 // landscape photo. The widest ordinary shot in these galleries is 16:9 (1.78),
 // while the panoramas run from 3.6:1 up to 6.7:1, so 2:1 separates them
-// cleanly. Panoramas get a wider tile that spans two columns of the grid.
+// cleanly. Panoramas get a tile two columns wide; photos flow in beside them.
 const PANORAMA_ASPECT_RATIO = 2;
 const isPanorama = (image: Props['images'][number]) =>
   Boolean(image.width && image.height && image.width / image.height >= PANORAMA_ASPECT_RATIO);
+
+// Masonry geometry. The grid's rows are a fine slice of one column's width
+// (see --row-unit), which lets each tile's height be stated as a whole number
+// of rows worked out from its aspect ratio - so photos keep their proportions
+// while stacking freely, and a tile can be two columns wide without forcing a
+// break in the flow.
+//
+// ROW_STEPS is how many rows make up one column width. GAP_ROWS is the tile
+// gap measured in those rows; the gap is a fixed 4px while a row scales with
+// the column, so it can only be approximated. The leftover is a pixel or two,
+// which `object-fit: cover` absorbs rather than showing as an uneven gap.
+const ROW_STEPS = 200;
+const GAP_ROWS = 2;
+
+const rowSpan = (image: Props['images'][number], columns: number) => {
+  const ratio = (image.height ?? 800) / (image.width ?? 1200);
+  // A tile n columns wide is n column widths plus the gaps it swallows.
+  const tileWidthInRows = columns * ROW_STEPS + (columns - 1) * GAP_ROWS;
+  return Math.max(1, Math.round(ratio * tileWidthInRows) + GAP_ROWS);
+};
 ---
 
 <div class="gallery-page">
@@ -43,8 +63,14 @@ const isPanorama = (image: Props['images'][number]) =>
       // First 6 images are likely above the fold - prioritize them
       const isAboveFold = index < 6;
       const panorama = isPanorama(image);
+      const spans = panorama
+        ? `--row-span:${rowSpan(image, 1)};--row-span-wide:${rowSpan(image, 2)}`
+        : `--row-span:${rowSpan(image, 1)}`;
       return (
-        <div class:list={['gallery-item', { 'gallery-item-panorama': panorama }]}>
+        <div
+          class:list={['gallery-item', { 'gallery-item-panorama': panorama }]}
+          style={spans}
+        >
           <Image
             src={image.webpSrc ?? image.src}
             alt={image.alt}
@@ -78,161 +104,42 @@ const isPanorama = (image: Props['images'][number]) =>
 
 <Lightbox />
 
-<script is:inline>
-  // Optimized gallery layout script - reduces layout thrashing
-  (function() {
-    const galleryGrid = document.querySelector('.gallery-grid');
-    if (!galleryGrid) return;
-
-    const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
-    if (galleryItems.length === 0) return;
-
-    let reorderPending = false;
-    let resizeTimeout = null;
-
-    // Classify aspect ratio from image dimensions (no layout read needed if dimensions available)
-    function classifyAspect(item) {
-      // Panoramas are classified server-side and span their own full-width row,
-      // so they take no part in the column-balancing shuffle below.
-      if (item.classList.contains('gallery-item-panorama')) {
-        item.dataset.aspect = 'panorama';
-        return;
-      }
-
-      const img = item.querySelector('img');
-      if (!img) return;
-
-      // Try to get dimensions from attributes first (no layout read)
-      let width = img.width || img.naturalWidth;
-      let height = img.height || img.naturalHeight;
-
-      if (!width || !height) return;
-
-      const ratio = height / width;
-      if (ratio > 16 / 9) {
-        item.dataset.aspect = 'tall';
-      } else if (ratio < 9 / 16) {
-        item.dataset.aspect = 'wide';
-      } else {
-        item.dataset.aspect = 'normal';
-      }
-    }
-
-    // Batch DOM operations using DocumentFragment
-    function reorderItems() {
-      if (reorderPending) return;
-      reorderPending = true;
-
-      requestAnimationFrame(() => {
-        reorderPending = false;
-
-        // Read phase: batch all layout reads first
-        const positions = galleryItems.map((item) => ({
-          item,
-          top: item.getBoundingClientRect().top
-        }));
-
-        // Calculate first row items
-        const minTop = Math.min(...positions.map((pos) => pos.top));
-        const threshold = minTop + 4;
-        const firstRowItems = positions
-          .filter((pos) => pos.top <= threshold)
-          .map((pos) => pos.item);
-
-        // Build optimized order
-        const ordered = [...galleryItems];
-        let changed = false;
-
-        for (const rowItem of firstRowItems) {
-          const aspect = rowItem.dataset.aspect;
-          if (aspect === 'tall' || aspect === 'wide') {
-            const rowIndex = ordered.indexOf(rowItem);
-            const swapIndex = ordered.findIndex(
-              (candidate, index) => index > rowIndex && candidate.dataset.aspect === 'normal'
-            );
-            if (swapIndex !== -1) {
-              [ordered[rowIndex], ordered[swapIndex]] = [ordered[swapIndex], ordered[rowIndex]];
-              changed = true;
-            }
-          }
-        }
-
-        // Write phase: batch all DOM writes
-        if (changed) {
-          const fragment = document.createDocumentFragment();
-          ordered.forEach((item) => fragment.appendChild(item));
-          galleryGrid.appendChild(fragment);
-        }
-      });
-    }
-
-    // Initialize: classify all images
-    function init() {
-      let pendingLoads = 0;
-
-      galleryItems.forEach((item) => {
-        const img = item.querySelector('img');
-        if (!img) return;
-
-        if (img.complete && (img.naturalWidth || img.width)) {
-          classifyAspect(item);
-        } else {
-          pendingLoads++;
-          img.addEventListener('load', () => {
-            classifyAspect(item);
-            pendingLoads--;
-            // Only reorder once when all images loaded
-            if (pendingLoads === 0) {
-              reorderItems();
-            }
-          }, { once: true });
-        }
-      });
-
-      // Initial reorder if images already loaded
-      if (pendingLoads === 0) {
-        reorderItems();
-      }
-    }
-
-    // Debounced resize handler
-    window.addEventListener('resize', () => {
-      if (resizeTimeout) clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(reorderItems, 150);
-    });
-
-    init();
-  })();
-</script>
-
 <style>
+  /* The row unit below is a slice of one column's width, so the grid needs to
+     know that width as a length: an inline-size container makes 100cqw the
+     grid's own width. */
+  .gallery-page {
+    container-type: inline-size;
+  }
+
   .gallery-grid {
     --tile-gap: 0.25rem;
     --gallery-columns: 3;
+    /* One column width, and the fine row slice tiles are measured in. Rows are
+       gapless - each tile carries the gap as its own padding - so a tile's
+       height is exactly its row span, which is what makes the arithmetic in the
+       frontmatter come out. */
+    --column-width: calc(
+      (100cqw - (var(--gallery-columns) - 1) * var(--tile-gap)) / var(--gallery-columns)
+    );
+    --row-unit: calc(var(--column-width) / 200);
+    display: grid;
+    grid-template-columns: repeat(var(--gallery-columns), minmax(0, 1fr));
+    grid-auto-rows: var(--row-unit);
+    /* Dense packing is what lets a photo sit beside a two-column panorama
+       instead of leaving the rest of the row empty. */
+    grid-auto-flow: row dense;
     column-gap: var(--tile-gap);
-    column-count: 3;
-    column-width: 280px;
-    column-fill: balance;
-    -webkit-column-fill: balance;
-    /* Each tile is its own line box, so the default orphans/widows of 2 leave a
-       short run of tiles with no legal column break - which would strand the
-       last couple of photos after a panorama in a single column. */
-    orphans: 1;
-    widows: 1;
+    row-gap: 0;
     margin-top: 0;
-    font-size: 0;
   }
 
   .gallery-item {
-    display: inline-block;
-    width: 100%;
-    vertical-align: top;
-    -webkit-column-break-inside: avoid;
-    break-inside: avoid;
-    margin-bottom: var(--tile-gap);
+    box-sizing: border-box;
+    padding-bottom: var(--tile-gap);
+    grid-row-end: span var(--row-span);
     overflow: hidden;
     background: #f5f5f5;
-    line-height: normal;
     transition: opacity 0.2s;
   }
 
@@ -240,35 +147,19 @@ const isPanorama = (image: Props['images'][number]) =>
     opacity: 0.9;
   }
 
-  /* Panoramas break out of the column flow and run two columns wide, so an
-     ultra-wide frame is not squeezed into a single column's worth of pixels.
-     Where the grid is two columns or fewer that is the full width of the grid. */
+  /* Panoramas run two columns wide, so an ultra-wide frame is not squeezed into
+     a single column's worth of pixels. At two columns that is the full width. */
   .gallery-item-panorama {
-    display: block;
-    width: min(
-      100%,
-      calc(
-        (100% - (var(--gallery-columns) - 1) * var(--tile-gap)) / var(--gallery-columns) * 2 +
-          var(--tile-gap)
-      )
-    );
-    margin-inline: auto;
-    margin-block: calc(var(--tile-gap) * 3);
-    -webkit-column-span: all;
-    column-span: all;
-  }
-
-  .gallery-item-panorama:first-child {
-    margin-block-start: 0;
-  }
-
-  .gallery-item-panorama:last-child {
-    margin-block-end: 0;
+    grid-column-end: span 2;
+    grid-row-end: span var(--row-span-wide);
   }
 
   .gallery-item img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    /* The row grid quantises each tile to within a pixel or two of the photo's
+       true height; cover soaks that up instead of leaving an uneven gap. */
+    object-fit: cover;
     display: block;
     cursor: pointer;
   }
@@ -276,15 +167,18 @@ const isPanorama = (image: Props['images'][number]) =>
   @media (max-width: 1280px) {
     .gallery-grid {
       --gallery-columns: 2;
-      column-count: 2;
     }
   }
 
   @media (max-width: 768px) {
     .gallery-grid {
       --gallery-columns: 1;
-      column-count: 1;
-      column-gap: var(--tile-gap);
+    }
+
+    /* Nothing to span at one column - the panorama is a normal tile. */
+    .gallery-item-panorama {
+      grid-column-end: span 1;
+      grid-row-end: span var(--row-span);
     }
   }
 </style>
