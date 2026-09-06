@@ -20,6 +20,8 @@ This file is the single source of truth for current status, progress, and next t
 - Added an image rotation workflow (`Rotate Images` + `scripts/rotate-gallery-images.mjs`) for photos that lost their EXIF orientation during WebP conversion: paste URLs, pick CW/CCW/180, get a PR with the rotation baked into the pixels. `process-gallery-images.mjs` now auto-orients on conversion so new imports keep their rotation. See `Docs/IMAGE_ROTATION.md`.
 - Rotated 45 sideways photos (5 CW, 39 CCW, 1 upside-down across Los Angeles, France, Japan and Canada) at quality 100, and removed the misfiled `italy/DSCF6211` (a Copenhagen photo already present in that gallery). Lossless was tried first and reverted: the sources are already lossy WebP, so it preserved existing artefacts at roughly double the bytes without recovering any detail.
 - Shortened all 215 full-UUID photo filenames to the last 8 characters of their UUID via `scripts/shorten-image-names.mjs`; no collisions.
+- `process-gallery-images.mjs` now bakes the rotation in at conversion time and keeps it that way: every WebP it writes is auto-oriented and states `Orientation = 1`, encodes through a temp file that is renamed into place, and records the size the encoder reports. Runs also check the WebP files whose JPEG source is gone - re-encoding any that still carry an orientation tag, and correcting `width`/`height` that disagree with the file on disk. Covered by a test that converts a synthetic portrait frame and checks the pixels; it fails if either `autoOrient()` or the `Orientation = 1` is removed.
+- Re-synced the 40 Italy entries whose JSON recorded pre-WebP dimensions (task 15), as output of the run above; six of them were recorded landscape while the file is portrait.
 
 
 ## Pending Tasks (Priority Order)
@@ -38,8 +40,7 @@ This file is the single source of truth for current status, progress, and next t
 12. Redesign the blog again to make it good (note to self: use the Claude UI skill).
 13. Fix the lightbox map embed to make it use mapbox styled to look like the website
 14. Accessibility and performance audit (beyond current automated checks).
-15. Re-sync the Italy gallery's JSON `width`/`height`: 40 entries record the pre-WebP dimensions (e.g. 6000x4000) while the files on disk are downscaled (2500x1666), which skews the masonry layout. Pre-existing, unrelated to the rotation work.
-16. Make the photos WebP for faster loading, maintaining a jpeg fallback. Create a pipeline that automatically converts + extracts metadata using github actions whenever a new photo or photos is checked in — automatically creating a gallery page if that exists at the same time. This script should only run after a PR is merged with those photos, opening a new PR with the new gallery + converted images. Tests should be updated to handle these kinds of cases. Also we need a workflow that will convert all the existing images and open a new PR, but this should only be run manually.
+15. Make the photos WebP for faster loading, maintaining a jpeg fallback. Create a pipeline that automatically converts + extracts metadata using github actions whenever a new photo or photos is checked in — automatically creating a gallery page if that exists at the same time. This script should only run after a PR is merged with those photos, opening a new PR with the new gallery + converted images. Tests should be updated to handle these kinds of cases. Also we need a workflow that will convert all the existing images and open a new PR, but this should only be run manually.
 
 ## Completed Tasks
 

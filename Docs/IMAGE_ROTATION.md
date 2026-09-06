@@ -10,20 +10,50 @@ a landscape frame and adds an EXIF `Orientation` tag saying "turn this 90°
 before showing it". Browsers, macOS Preview, and Windows Photos all honour that
 tag, so the JPEG looks upright everywhere.
 
-WebP files, as we write them, carry no EXIF at all. The original conversion
-encoded the stored pixels and dropped the tag with the rest of the metadata, so
-the instruction to rotate went missing and the photo now displays exactly as it
-was stored: on its side.
+The original conversion encoded the stored pixels and dropped the tag with the
+rest of the metadata, so the instruction to rotate went missing and the photo
+displays exactly as it was stored: on its side.
 
 Two fixes follow from that:
 
-- **New photos** — `scripts/process-gallery-images.mjs` now calls sharp's
-  `autoOrient()` before encoding, baking the tag's rotation into the pixels. It
-  also records the *displayed* dimensions in the gallery JSON, so a portrait
-  photo is no longer registered as landscape.
-- **Photos already converted** — the tag is gone and can't be recovered, so the
-  correct rotation has to be supplied by a human. That's what the workflow below
-  is for.
+- **New photos** — `scripts/process-gallery-images.mjs` bakes the rotation in as
+  it converts. See [What the conversion does](#what-the-conversion-does) below;
+  nothing about a photo shot in portrait needs a human any more.
+- **Photos already converted** — where the tag was dropped it can't be
+  recovered, so the correct rotation has to be supplied by a human. That's what
+  the workflow below is for.
+
+## What the conversion does
+
+`scripts/process-gallery-images.mjs` is the only thing that writes gallery
+WebP. Every file it writes gets the same treatment:
+
+1. **Bakes the source's EXIF orientation into the pixels** (`autoOrient()`), so
+   the WebP stores the photo the way it is meant to be seen rather than the
+   frame the camera happened to write.
+2. **States `Orientation = 1` in the output.** The pixels are upright and the
+   file says so, so no browser, OS viewer or photo app re-rotates them — the
+   same guarantee the rotation tool below gives, and it holds for a downloaded
+   copy too.
+3. **Records the displayed dimensions** in the gallery JSON, taken from the
+   encoder's own output. A portrait photo is no longer registered as landscape,
+   and the grid reserves the right space.
+4. **Writes through a temporary file** that is renamed into place, so an encode
+   that fails partway leaves no half-written `.webp` — one would look "already
+   converted" on the next run and be skipped for good.
+
+Runs are self-healing as well as correct going forward. The script now looks at
+the WebP files whose JPEG source has already been removed, which is most of the
+gallery:
+
+- a WebP still carrying an `Orientation` other than `1` has that rotation baked
+  into its pixels and the tag cleared;
+- an entry whose recorded `width`/`height` disagree with the file on disk is
+  corrected;
+- a WebP sitting in a gallery folder with no entry at all is registered.
+
+None of that needs `--force`, and a run where everything is already right
+writes nothing. `--dry-run` reports the same work without touching a file.
 
 ## The rotation workflow
 
