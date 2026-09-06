@@ -4,7 +4,10 @@
  *
  * This script:
  * - Finds all JPEG images in gallery directories
- * - Converts them to WebP format with quality optimization
+ * - Converts them to WebP with the EXIF rotation baked into the pixels, so a
+ *   photo shot in portrait stays upright once its orientation tag is gone
+ * - Bakes the rotation into any WebP already on disk that still carries one
+ * - Keeps the gallery JSON's width/height in step with the files it serves
  * - Extracts EXIF metadata (camera, lens, settings, GPS coordinates)
  * - Registers new images in gallery JSON files
  * - Creates new gallery JSON files for new gallery folders
@@ -24,7 +27,7 @@
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawn } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -57,12 +60,23 @@ async function loadEnv() {
 }
 
 /**
+ * libvips caches decoded images by filename, so a file rewritten in place
+ * reads back as it was before the write - the pre-rotation image, in our case.
+ * This script touches each photo once, so the cache buys nothing and costs
+ * correctness. Callers that use the exported helpers should do the same.
+ */
+export function configureSharp(sharp) {
+  sharp.cache(false);
+  return sharp;
+}
+
+/**
  * Dynamically import sharp, installing it if necessary
  */
 async function getSharp() {
   try {
     const sharp = await import('sharp');
-    return sharp.default;
+    return configureSharp(sharp.default);
   } catch {
     console.log('Installing sharp for image processing...');
     await new Promise((resolve, reject) => {
@@ -77,7 +91,7 @@ async function getSharp() {
       });
     });
     const sharp = await import('sharp');
-    return sharp.default;
+    return configureSharp(sharp.default);
   }
 }
 
@@ -167,27 +181,42 @@ async function getGalleryDirs(specificGallery = null) {
   return dirs;
 }
 
+/** A filename without its extension, e.g. `DSCF1234.webp` -> `DSCF1234`. */
+export function stemOf(file) {
+  return file.replace(/\.[^.]+$/, '');
+}
+
 /**
- * Get all JPEG images in a gallery directory
+ * Get the images in a gallery directory: every JPEG source, plus any WebP that
+ * no longer has a JPEG beside it. Sources are removed once they are converted,
+ * so for most photos the WebP is all that is left - and it still needs its
+ * rotation and its recorded size checked.
  */
 async function getGalleryImages(galleryName) {
   const galleryDir = path.join(IMAGES_DIR, galleryName);
   try {
     const entries = await fs.readdir(galleryDir);
-    return entries.filter((file) => {
-      const ext = path.extname(file);
-      return IMAGE_EXTENSIONS.includes(ext);
-    });
+    const sources = entries.filter((file) => IMAGE_EXTENSIONS.includes(path.extname(file)));
+    const sourceStems = new Set(sources.map(stemOf));
+    const converted = entries.filter(
+      (file) => path.extname(file).toLowerCase() === '.webp' && !sourceStems.has(stemOf(file))
+    );
+    return [...sources, ...converted];
   } catch {
     return [];
   }
+}
+
+/** The WebP we serve for a source image, whatever the source's extension. */
+export function webpPathFor(imagePath) {
+  return imagePath.replace(/\.(jpg|jpeg|webp)$/i, '.webp');
 }
 
 /**
  * Check if WebP version exists for an image
  */
 async function webpExists(imagePath) {
-  const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp');
+  const webpPath = webpPathFor(imagePath);
   try {
     await fs.access(webpPath);
     return true;
@@ -197,30 +226,126 @@ async function webpExists(imagePath) {
 }
 
 /**
+ * The size a file displays at, which is not the size it stores: a photo shot
+ * in portrait keeps landscape pixels plus an EXIF Orientation tag saying to
+ * turn them.
+ */
+export function displayedSize(metadata) {
+  const upright = metadata.autoOrient ?? metadata;
+  return { width: upright.width, height: upright.height };
+}
+
+/**
+ * Encode a source image to WebP with its rotation baked into the pixels.
+ *
+ * Two things make the rotation stick:
+ *
+ * - `autoOrient()` applies the source's EXIF Orientation to the pixels, so the
+ *   WebP stores the photo the way it is meant to be seen. Without it a portrait
+ *   photo is written as the landscape frame the camera stored, and the tag that
+ *   said to turn it is dropped with the rest of the metadata - the file then
+ *   displays sideways with no way left to tell that it should not.
+ * - `withMetadata({ orientation: 1 })` states in the output that the pixels are
+ *   already upright, so no browser, OS viewer or photo app re-rotates them.
+ *   This is what makes the result hold for a downloaded copy, not just on the
+ *   site, and it matches what `scripts/rotate-gallery-images.mjs` writes.
+ *
+ * The encode goes to a temporary file that is renamed into place. A failed or
+ * interrupted encode therefore leaves no half-written `.webp` behind - one
+ * would look "already converted" on the next run and be skipped forever.
+ *
+ * Dimensions come back from the encoder rather than from re-reading the file:
+ * libvips caches reads by filename and mtime, so a re-read can hand back the
+ * pre-conversion image.
+ */
+export async function encodeUprightWebP(sharp, sourcePath, webpPath, quality) {
+  const tempPath = `${webpPath}.convert-tmp.webp`;
+
+  try {
+    const info = await sharp(sourcePath, { failOn: 'error' })
+      .autoOrient()
+      .webp({ quality, effort: 4 })
+      .withMetadata({ orientation: 1 })
+      .toFile(tempPath);
+    await fs.rename(tempPath, webpPath);
+    return { width: info.width, height: info.height };
+  } catch (error) {
+    await fs.rm(tempPath, { force: true });
+    throw error;
+  }
+}
+
+/**
  * Convert a single image to WebP
  */
-async function convertToWebP(sharp, imagePath, quality, dryRun) {
-  const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp');
+export async function convertToWebP(sharp, imagePath, quality, dryRun) {
+  const webpPath = webpPathFor(imagePath);
 
   if (dryRun) {
     console.log(`  [dry-run] Would convert: ${path.basename(imagePath)}`);
-    return { converted: true, webpPath };
+    try {
+      const metadata = await sharp(imagePath).metadata();
+      return { converted: true, webpPath, ...displayedSize(metadata) };
+    } catch {
+      return { converted: true, webpPath };
+    }
   }
 
   try {
-    await sharp(imagePath)
-      .webp({ quality, effort: 4 })
-      .toFile(webpPath);
-
     const originalStat = await fs.stat(imagePath);
+    const { width, height } = await encodeUprightWebP(sharp, imagePath, webpPath, quality);
     const webpStat = await fs.stat(webpPath);
     const savings = ((1 - webpStat.size / originalStat.size) * 100).toFixed(1);
 
     console.log(`  Converted: ${path.basename(imagePath)} -> ${path.basename(webpPath)} (${savings}% smaller)`);
-    return { converted: true, webpPath, originalSize: originalStat.size, webpSize: webpStat.size };
+    return { converted: true, webpPath, width, height, originalSize: originalStat.size, webpSize: webpStat.size };
   } catch (error) {
     console.error(`  Error converting ${path.basename(imagePath)}: ${error.message}`);
     return { converted: false, error: error.message };
+  }
+}
+
+/**
+ * Make sure a WebP already on disk is upright.
+ *
+ * A file that still carries an EXIF Orientation other than 1 shows sideways
+ * anywhere the tag is ignored, and the gallery JSON would record the stored
+ * size rather than the displayed one. Re-encoding bakes the rotation in and
+ * clears the tag, so the invariant "no gallery WebP has Orientation != 1" is
+ * enforced on every run instead of being a one-off audit.
+ *
+ * Returns the file's displayed size either way, so callers can keep the JSON
+ * in step with the pixels.
+ */
+export async function ensureUprightWebP(sharp, webpPath, quality, dryRun) {
+  let metadata;
+  try {
+    metadata = await sharp(webpPath).metadata();
+  } catch (error) {
+    console.error(`  Error reading ${path.basename(webpPath)}: ${error.message}`);
+    return { repaired: false };
+  }
+
+  const size = displayedSize(metadata);
+  if ((metadata.orientation ?? 1) === 1) {
+    return { repaired: false, ...size };
+  }
+
+  if (dryRun) {
+    console.log(`  [dry-run] Would bake rotation into: ${path.basename(webpPath)} (orientation ${metadata.orientation})`);
+    return { repaired: true, ...size };
+  }
+
+  try {
+    const baked = await encodeUprightWebP(sharp, webpPath, webpPath, quality);
+    console.log(
+      `  Baked rotation into: ${path.basename(webpPath)} ` +
+      `(orientation ${metadata.orientation}, ${metadata.width}x${metadata.height} -> ${baked.width}x${baked.height})`
+    );
+    return { repaired: true, ...baked };
+  } catch (error) {
+    console.error(`  Error re-encoding ${path.basename(webpPath)}: ${error.message}`);
+    return { repaired: false, ...size };
   }
 }
 
@@ -643,7 +768,7 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
   const images = await getGalleryImages(galleryName);
   if (images.length === 0) {
     console.log(`  No images found`);
-    return { converted: 0, skipped: 0, registered: 0, totalOriginalSize: 0, totalWebpSize: 0 };
+    return { converted: 0, skipped: 0, registered: 0, repaired: 0, resynced: 0, totalOriginalSize: 0, totalWebpSize: 0 };
   }
 
   console.log(`  Found ${images.length} images`);
@@ -651,18 +776,20 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
   // Load or create gallery JSON
   const { data: galleryData, isNew } = await loadOrCreateGalleryJson(galleryName, options.dryRun);
 
-  // Build a map of existing images by src
+  // Build a map of existing images by filename stem: an entry's `src` often
+  // still points at a `.jpg` that has since been replaced by its `.webp`.
   const existingImages = new Map();
   for (const img of galleryData.images || []) {
-    if (img.src) {
-      const filename = img.src.split('/').pop();
-      existingImages.set(filename, img);
+    for (const key of [img.src, img.webpSrc]) {
+      if (key) existingImages.set(stemOf(key.split('/').pop()), img);
     }
   }
 
   let converted = 0;
   let skipped = 0;
   let registered = 0;
+  let repaired = 0;
+  let resynced = 0;
   let totalOriginalSize = 0;
   let totalWebpSize = 0;
   let jsonUpdated = false;
@@ -670,10 +797,14 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
   for (const imageFile of images) {
     const imagePath = path.join(IMAGES_DIR, galleryName, imageFile);
     const imageSrc = `/images/${galleryName}/${imageFile}`;
-    const webpSrc = imageSrc.replace(/\.(jpg|jpeg)$/i, '.webp');
+    const webpSrc = webpPathFor(imageSrc);
+    const webpPath = webpPathFor(imagePath);
+    // A JPEG still waiting to be converted, as against a WebP whose source has
+    // already been removed.
+    const isSource = IMAGE_EXTENSIONS.includes(path.extname(imageFile));
 
     // Check if image is already registered
-    const existingImage = existingImages.get(imageFile);
+    const existingImage = existingImages.get(stemOf(imageFile));
     const hasExistingExif = !!(existingImage?.exif && Object.keys(existingImage.exif).length > 0);
     const missingLocationWithGps = !!(
       existingImage?.exif &&
@@ -683,13 +814,20 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
       !options.skipGeocode
     );
     const needsRegistration = !existingImage || options.force || !hasExistingExif || missingLocationWithGps;
-    const needsWebP = !options.skipWebp && (options.force || !(await webpExists(imagePath)));
+    const needsWebP = isSource && !options.skipWebp && (options.force || !(await webpExists(imagePath)));
+
+    // The size the WebP we serve displays at, filled in by whichever step last
+    // touched the file, so the JSON can be recorded from the pixels themselves.
+    let displayed = null;
 
     // Convert to WebP if needed
     if (needsWebP) {
       const result = await convertToWebP(sharp, imagePath, options.quality, options.dryRun);
       if (result.converted) {
         converted++;
+        if (result.width && result.height) {
+          displayed = { width: result.width, height: result.height };
+        }
         if (result.originalSize) {
           totalOriginalSize += result.originalSize;
           totalWebpSize += result.webpSize;
@@ -697,6 +835,16 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
       }
     } else if (!options.skipWebp) {
       skipped++;
+      // The WebP is already there. Make sure its rotation is baked into the
+      // pixels rather than left to an EXIF tag, which not every viewer honours
+      // and which a re-encode would drop.
+      if (await webpExists(imagePath)) {
+        const upright = await ensureUprightWebP(sharp, webpPath, options.quality, options.dryRun);
+        if (upright.repaired) repaired++;
+        if (upright.width && upright.height) {
+          displayed = { width: upright.width, height: upright.height };
+        }
+      }
     }
 
     // Register image and extract metadata if needed
@@ -718,20 +866,29 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
         }
       }
 
-      // Get image dimensions for CLS prevention
-      let width, height;
-      try {
-        const metadata = await sharp(imagePath).metadata();
-        width = metadata.width;
-        height = metadata.height;
-      } catch (err) {
-        console.log(`    Warning: Could not get dimensions for ${imageFile}`);
+      // Get image dimensions for CLS prevention. Record the *displayed* size,
+      // read from the WebP we actually serve - its rotation is baked in, so
+      // this is the size the browser lays out - and fall back to the
+      // auto-oriented source when there is no WebP yet.
+      let width = displayed?.width;
+      let height = displayed?.height;
+      if (!width || !height) {
+        try {
+          const measured = (await webpExists(imagePath)) ? webpPath : imagePath;
+          const metadata = await sharp(measured).metadata();
+          ({ width, height } = displayedSize(metadata));
+        } catch (err) {
+          console.log(`    Warning: Could not get dimensions for ${imageFile}`);
+        }
       }
 
-      // Build image entry
+      // Build image entry. An entry that already exists keeps its `src` - for a
+      // photo whose JPEG has been removed, that path is the legacy one the rest
+      // of the site still resolves from - and keeps its `alt`, which may have
+      // been written by hand and is not ours to replace with a placeholder.
       const imageEntry = {
-        src: imageSrc,
-        alt: `${galleryData.title} photo`,
+        ...(!existingImage || isSource ? { src: imageSrc } : {}),
+        ...(existingImage?.alt ? {} : { alt: `${galleryData.title} photo` }),
       };
 
       // Add dimensions if available (critical for CLS)
@@ -741,7 +898,6 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
       }
 
       // Add webpSrc if WebP exists
-      const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp');
       try {
         await fs.access(webpPath);
         imageEntry.webpSrc = webpSrc;
@@ -768,7 +924,6 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
     } else {
       // Just update webpSrc if needed
       if (existingImage) {
-        const webpPath = imagePath.replace(/\.(jpg|jpeg)$/i, '.webp');
         try {
           await fs.access(webpPath);
           if (existingImage.webpSrc !== webpSrc) {
@@ -780,6 +935,23 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
             delete existingImage.webpSrc;
             jsonUpdated = true;
           }
+        }
+
+        // Keep the recorded size in step with the file on disk: a photo whose
+        // rotation is baked into the pixels is no longer the shape the JSON
+        // was written from, and the grid would reserve the wrong space.
+        if (
+          displayed?.width && displayed?.height &&
+          (existingImage.width !== displayed.width || existingImage.height !== displayed.height)
+        ) {
+          console.log(
+            `  Dimensions: ${imageFile} ` +
+            `${existingImage.width}x${existingImage.height} -> ${displayed.width}x${displayed.height}`
+          );
+          existingImage.width = displayed.width;
+          existingImage.height = displayed.height;
+          resynced++;
+          jsonUpdated = true;
         }
       }
     }
@@ -794,7 +966,7 @@ async function processGallery(sharp, galleryName, options, geocodeCache) {
     console.log(`  [dry-run] Would update gallery JSON with ${registered} new/updated images`);
   }
 
-  return { converted, skipped, registered, totalOriginalSize, totalWebpSize };
+  return { converted, skipped, registered, repaired, resynced, totalOriginalSize, totalWebpSize };
 }
 
 /**
@@ -821,6 +993,8 @@ async function main() {
   let totalConverted = 0;
   let totalSkipped = 0;
   let totalRegistered = 0;
+  let totalRepaired = 0;
+  let totalResynced = 0;
   let grandTotalOriginal = 0;
   let grandTotalWebp = 0;
 
@@ -829,6 +1003,8 @@ async function main() {
     totalConverted += result.converted;
     totalSkipped += result.skipped;
     totalRegistered += result.registered;
+    totalRepaired += result.repaired;
+    totalResynced += result.resynced;
     grandTotalOriginal += result.totalOriginalSize;
     grandTotalWebp += result.totalWebpSize;
   }
@@ -839,6 +1015,8 @@ async function main() {
   console.log(`Images registered/updated: ${totalRegistered}`);
   console.log(`WebP converted: ${totalConverted}`);
   console.log(`WebP skipped (exists): ${totalSkipped}`);
+  console.log(`Rotation baked into existing WebP: ${totalRepaired}`);
+  console.log(`Dimensions re-synced in JSON: ${totalResynced}`);
 
   if (grandTotalOriginal > 0) {
     const savedBytes = grandTotalOriginal - grandTotalWebp;
@@ -848,7 +1026,13 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error('Error:', error.message);
-  process.exit(1);
-});
+// Importing this module (the test suite does) must not start a run.
+const isDirectRun =
+  process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (isDirectRun) {
+  main().catch((error) => {
+    console.error('Error:', error.message);
+    process.exit(1);
+  });
+}

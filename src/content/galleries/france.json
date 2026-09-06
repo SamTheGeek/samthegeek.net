@@ -5,11 +5,11 @@
   "description": "Photos from France",
   "images": [
     {
-      "src": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.jpg",
+      "src": "/images/france/06B5E058.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/035C2A3C-2DB9-4851-8F62-CDC006B5E058-2512-000009EE8776ABC4_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/06B5E058.webp",
       "exif": {
         "date": "2018:07:25 11:39:01",
         "camera": "FUJIFILM X-T2",
@@ -23,11 +23,11 @@
       }
     },
     {
-      "src": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.jpg",
+      "src": "/images/france/2AC72A53.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/14321A6A-7FB8-4EC8-9275-D58E2AC72A53-2512-000009EE49ADDBBF_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/2AC72A53.webp",
       "exif": {
         "date": "2018:07:25 11:24:18",
         "camera": "FUJIFILM X-T2",
@@ -41,11 +41,11 @@
       }
     },
     {
-      "src": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.jpg",
+      "src": "/images/france/55B1EA95.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/16C2D5B3-2848-437B-AC2A-821855B1EA95-734-000000E09F4BE1BE_photo.webp",
+      "webpSrc": "/images/france/55B1EA95.webp",
       "exif": {
         "date": "2018:07:21 22:10:49",
         "camera": "FUJIFILM X-T2",
@@ -59,11 +59,11 @@
       }
     },
     {
-      "src": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.jpg",
+      "src": "/images/france/8014DAA1.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/1E1253CF-8F5D-431C-9E39-15988014DAA1-2512-000009EF57963C16_photo.webp",
+      "webpSrc": "/images/france/8014DAA1.webp",
       "exif": {
         "date": "2018:07:22 08:56:08",
         "camera": "FUJIFILM X-T2",
@@ -77,11 +77,11 @@
       }
     },
     {
-      "src": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.jpg",
+      "src": "/images/france/BB4CA783.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/1E34ED77-DA84-47FB-86B8-2995BB4CA783-728-000000E028CBE77E_photo.webp",
+      "webpSrc": "/images/france/BB4CA783.webp",
       "exif": {
         "date": "2018:07:21 19:07:38",
         "camera": "FUJIFILM X-T2",
@@ -95,11 +95,11 @@
       }
     },
     {
-      "src": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.jpg",
+      "src": "/images/france/416729FC.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/1FA264F4-0380-42FE-A4D9-4B21416729FC-266-00000082C75ECD1D_photo.webp",
+      "webpSrc": "/images/france/416729FC.webp",
       "exif": {
         "date": "2018:07:21 12:59:26",
         "camera": "FUJIFILM X-T2",
@@ -113,11 +113,11 @@
       }
     },
     {
-      "src": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.jpg",
+      "src": "/images/france/A4464063.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/24B7FF93-7815-4C05-9B88-6F5FA4464063-266-00000082BF9A63B8_photo.webp",
+      "webpSrc": "/images/france/A4464063.webp",
       "exif": {
         "date": "2018:07:21 12:45:06",
         "camera": "FUJIFILM X-T2",
@@ -131,11 +131,11 @@
       }
     },
     {
-      "src": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.jpg",
+      "src": "/images/france/098F21D0.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/2A09AE7D-BBA3-4BAE-BA37-32A8098F21D0-266-0000008287C835C2_photo.webp",
+      "webpSrc": "/images/france/098F21D0.webp",
       "exif": {
         "date": "2018:07:21 18:16:26",
         "camera": "FUJIFILM X-T2",
@@ -149,11 +149,11 @@
       }
     },
     {
-      "src": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.jpg",
+      "src": "/images/france/7D9BCBD6.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/2C7147CF-DB55-4C48-9C5D-8B557D9BCBD6-266-00000082C0859540_photo.webp",
+      "webpSrc": "/images/france/7D9BCBD6.webp",
       "exif": {
         "date": "2018:07:21 12:49:05",
         "camera": "FUJIFILM X-T2",
@@ -167,11 +167,11 @@
       }
     },
     {
-      "src": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.jpg",
+      "src": "/images/france/3CAF9F6D.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/3424A699-FE67-40A5-8748-51343CAF9F6D-2512-000009EE2F4E8425_photo.webp",
+      "webpSrc": "/images/france/3CAF9F6D.webp",
       "exif": {
         "date": "2018:07:25 10:37:56",
         "camera": "FUJIFILM X-T2",
@@ -185,11 +185,11 @@
       }
     },
     {
-      "src": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.jpg",
+      "src": "/images/france/EED59616.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/3BC9B9ED-62F6-4E0F-ADAE-AD5DEED59616-2512-000009EE976F6809_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/EED59616.webp",
       "exif": {
         "date": "2018:07:25 11:43:15",
         "camera": "FUJIFILM X-T2",
@@ -203,11 +203,11 @@
       }
     },
     {
-      "src": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.jpg",
+      "src": "/images/france/1C29BB3C.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/46BC7643-6892-47AC-B69C-39731C29BB3C-2512-000009EF4642F0FC_photo.webp",
+      "webpSrc": "/images/france/1C29BB3C.webp",
       "exif": {
         "date": "2018:07:23 17:02:46",
         "camera": "FUJIFILM X-T2",
@@ -221,11 +221,11 @@
       }
     },
     {
-      "src": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.jpg",
+      "src": "/images/france/A6D60E7F.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/4B861574-321A-42D3-9EF9-2398A6D60E7F-266-00000082D9EB82E8_photo.webp",
+      "webpSrc": "/images/france/A6D60E7F.webp",
       "exif": {
         "date": "2018:07:21 13:07:47",
         "camera": "FUJIFILM X-T2",
@@ -239,11 +239,11 @@
       }
     },
     {
-      "src": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.jpg",
+      "src": "/images/france/7BDD4ACC.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/6190BA3B-1293-4046-890E-B8057BDD4ACC-734-000000E08198F7A3_photo.webp",
+      "webpSrc": "/images/france/7BDD4ACC.webp",
       "exif": {
         "date": "2018:07:21 20:43:57",
         "camera": "FUJIFILM X-T2",
@@ -257,11 +257,11 @@
       }
     },
     {
-      "src": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.jpg",
+      "src": "/images/france/42E5E21A.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/632E86ED-2A37-496C-9DD5-366942E5E21A-2512-000009EE600D557B_photo.webp",
+      "webpSrc": "/images/france/42E5E21A.webp",
       "exif": {
         "date": "2018:07:25 11:33:35",
         "camera": "FUJIFILM X-T2",
@@ -275,11 +275,11 @@
       }
     },
     {
-      "src": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.jpg",
+      "src": "/images/france/DFC70670.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/6B173027-0626-441F-A3F6-D5C3DFC70670-2512-000009EEC07EC8AF_photo.webp",
+      "webpSrc": "/images/france/DFC70670.webp",
       "exif": {
         "date": "2018:07:25 12:19:28",
         "camera": "FUJIFILM X-T2",
@@ -293,11 +293,11 @@
       }
     },
     {
-      "src": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.jpg",
+      "src": "/images/france/181B1918.jpg",
       "alt": "France photo",
       "width": 4000,
       "height": 6000,
-      "webpSrc": "/images/france/6E952CFB-A4C3-43B0-97F2-5ED9181B1918-2512-000009EF75D2D8B6_photo.webp",
+      "webpSrc": "/images/france/181B1918.webp",
       "exif": {
         "date": "2018:07:22 22:27:30",
         "camera": "FUJIFILM X-T2",
@@ -311,11 +311,11 @@
       }
     },
     {
-      "src": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.jpg",
+      "src": "/images/france/6F677EDE.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/6F64A9E0-CE49-4422-9F19-3AEA6F677EDE-2512-000009EECB4F8210_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/6F677EDE.webp",
       "exif": {
         "date": "2018:07:25 17:26:49",
         "camera": "FUJIFILM X-T2",
@@ -329,11 +329,11 @@
       }
     },
     {
-      "src": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.jpg",
+      "src": "/images/france/B71D55B3.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/7378CC2C-C5D1-4410-8EED-D79FB71D55B3-2512-000009EF5EECDEDF_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/B71D55B3.webp",
       "exif": {
         "date": "2018:07:22 17:39:13",
         "camera": "FUJIFILM X-T2",
@@ -347,11 +347,11 @@
       }
     },
     {
-      "src": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.jpg",
+      "src": "/images/france/4DD9391C.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/73B1A09C-BA7F-492F-8064-EDE44DD9391C-734-000000E09E5A8540_photo.webp",
+      "webpSrc": "/images/france/4DD9391C.webp",
       "exif": {
         "date": "2018:07:21 22:10:38",
         "camera": "FUJIFILM X-T2",
@@ -365,11 +365,11 @@
       }
     },
     {
-      "src": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.jpg",
+      "src": "/images/france/77066E63.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/762AB37F-0A03-4825-A837-3CCC77066E63-266-0000008297E0AF87_photo.webp",
+      "webpSrc": "/images/france/77066E63.webp",
       "exif": {
         "date": "2018:07:21 12:24:45",
         "camera": "FUJIFILM X-T2",
@@ -383,11 +383,11 @@
       }
     },
     {
-      "src": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.jpg",
+      "src": "/images/france/D03948C0.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/835A45E2-4A63-4B8E-8724-7C90D03948C0-266-00000082E793B28B_photo.webp",
+      "webpSrc": "/images/france/D03948C0.webp",
       "exif": {
         "date": "2018:07:21 13:16:43",
         "camera": "FUJIFILM X-T2",
@@ -401,11 +401,11 @@
       }
     },
     {
-      "src": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.jpg",
+      "src": "/images/france/D40B2898.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/83EF984A-E446-46EA-96C7-C165D40B2898-734-000000E092645830_photo.webp",
+      "webpSrc": "/images/france/D40B2898.webp",
       "exif": {
         "date": "2018:07:21 22:09:50",
         "camera": "FUJIFILM X-T2",
@@ -419,11 +419,11 @@
       }
     },
     {
-      "src": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.jpg",
+      "src": "/images/france/81ECD7D5.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/8DC6F2F3-C632-4946-9143-3B4281ECD7D5-2512-000009EE30BDF584_photo.webp",
+      "webpSrc": "/images/france/81ECD7D5.webp",
       "exif": {
         "date": "2018:07:25 10:41:53",
         "camera": "FUJIFILM X-T2",
@@ -437,11 +437,11 @@
       }
     },
     {
-      "src": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.jpg",
+      "src": "/images/france/E1083B3F.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/915C79BE-6ACF-47BA-B9E3-E7BDE1083B3F-2512-000009EE319B09C2_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/E1083B3F.webp",
       "exif": {
         "date": "2018:07:25 10:54:52",
         "camera": "FUJIFILM X-T2",
@@ -455,11 +455,11 @@
       }
     },
     {
-      "src": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.jpg",
+      "src": "/images/france/8CC44379.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/9CF048C9-C7EC-4C50-ACC2-E31A8CC44379-2512-000009EE3D236624_photo.webp",
+      "webpSrc": "/images/france/8CC44379.webp",
       "exif": {
         "date": "2018:07:25 11:10:18",
         "camera": "FUJIFILM X-T2",
@@ -473,11 +473,11 @@
       }
     },
     {
-      "src": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.jpg",
+      "src": "/images/france/45B7FF29.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/A225804A-19F3-4140-BE54-486845B7FF29-266-0000008288ECA6D6_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/45B7FF29.webp",
       "exif": {
         "date": "2018:07:21 18:21:51",
         "camera": "FUJIFILM X-T2",
@@ -491,11 +491,11 @@
       }
     },
     {
-      "src": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.jpg",
+      "src": "/images/france/7CE05FFB.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/A3BA79B9-CD5C-4A10-8789-56C07CE05FFB-728-000000E029F933FC_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/7CE05FFB.webp",
       "exif": {
         "date": "2018:07:21 19:14:11",
         "camera": "FUJIFILM X-T2",
@@ -509,11 +509,11 @@
       }
     },
     {
-      "src": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.jpg",
+      "src": "/images/france/A99BBBA3.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/A472A829-5F62-48F4-8991-687AA99BBBA3-2512-000009EF780AFB8E_photo.webp",
+      "webpSrc": "/images/france/A99BBBA3.webp",
       "exif": {
         "date": "2018:07:22 22:30:14",
         "camera": "FUJIFILM X-T2",
@@ -527,11 +527,11 @@
       }
     },
     {
-      "src": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.jpg",
+      "src": "/images/france/9817A031.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/AEF7B226-6251-4A77-A34B-6D749817A031-2512-000009EEE642109F_photo.webp",
+      "webpSrc": "/images/france/9817A031.webp",
       "exif": {
         "date": "2018:07:24 09:46:32",
         "camera": "FUJIFILM X-T2",
@@ -545,11 +545,11 @@
       }
     },
     {
-      "src": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.jpg",
+      "src": "/images/france/638338E4.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/B6217576-C64D-4A3E-84FD-2498638338E4-2512-000009EF48433343_photo.webp",
+      "webpSrc": "/images/france/638338E4.webp",
       "exif": {
         "date": "2018:07:23 17:07:18",
         "camera": "FUJIFILM X-T2",
@@ -563,11 +563,11 @@
       }
     },
     {
-      "src": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.jpg",
+      "src": "/images/france/FE756B10.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/B997A4BD-07A5-4418-81B4-707DFE756B10-734-000000E08AE8E667_photo.webp",
+      "webpSrc": "/images/france/FE756B10.webp",
       "exif": {
         "date": "2018:07:21 21:22:02",
         "camera": "FUJIFILM X-T2",
@@ -581,11 +581,11 @@
       }
     },
     {
-      "src": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.jpg",
+      "src": "/images/france/AEA185F3.jpg",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
-      "webpSrc": "/images/france/BE239E65-4572-4068-8C5E-1881AEA185F3-734-000000E0ABF6E199_photo.webp",
+      "width": 4000,
+      "height": 6000,
+      "webpSrc": "/images/france/AEA185F3.webp",
       "exif": {
         "date": "2018:07:21 22:13:17",
         "camera": "FUJIFILM X-T2",
@@ -599,11 +599,11 @@
       }
     },
     {
-      "src": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.jpg",
+      "src": "/images/france/78E0DCA7.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/C89721CA-6CFF-42FA-BE3F-728678E0DCA7-2512-000009EF4D2CF9A3_photo.webp",
+      "webpSrc": "/images/france/78E0DCA7.webp",
       "exif": {
         "date": "2018:07:23 17:08:04",
         "camera": "FUJIFILM X-T2",
@@ -617,11 +617,11 @@
       }
     },
     {
-      "src": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.jpg",
+      "src": "/images/france/04FC8AC7.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/CE66B29E-9476-4B37-83C1-184F04FC8AC7-2512-000009EEDD72C125_photo.webp",
+      "webpSrc": "/images/france/04FC8AC7.webp",
       "exif": {
         "date": "2018:07:25 22:12:31",
         "camera": "FUJIFILM X-T2",
@@ -635,11 +635,11 @@
       }
     },
     {
-      "src": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.jpg",
+      "src": "/images/france/55E956CC.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/CEA29C94-E935-4C1B-98CD-D01555E956CC-2512-000009EF2A6204D2_photo.webp",
+      "webpSrc": "/images/france/55E956CC.webp",
       "exif": {
         "date": "2018:07:23 11:58:20",
         "camera": "FUJIFILM X-T2",
@@ -653,11 +653,11 @@
       }
     },
     {
-      "src": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.jpg",
+      "src": "/images/france/B266BA75.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/D5619A68-7765-4522-8528-10C4B266BA75-2512-000009EE398A7BF1_photo.webp",
+      "webpSrc": "/images/france/B266BA75.webp",
       "exif": {
         "date": "2018:07:25 10:59:39",
         "camera": "FUJIFILM X-T2",
@@ -671,11 +671,11 @@
       }
     },
     {
-      "src": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.jpg",
+      "src": "/images/france/0056610E.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/DC584839-D032-4E4B-8EA6-17620056610E-734-000000E091BE5AD2_photo.webp",
+      "webpSrc": "/images/france/0056610E.webp",
       "exif": {
         "date": "2018:07:21 22:09:49",
         "camera": "FUJIFILM X-T2",
@@ -727,8 +727,8 @@
     {
       "src": "/images/france/DSCF9407.JPG",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "webpSrc": "/images/france/DSCF9407.webp",
       "exif": {
         "date": "2018:07:28 16:31:49",
@@ -763,8 +763,8 @@
     {
       "src": "/images/france/DSCF9420.JPG",
       "alt": "France photo",
-      "width": 6000,
-      "height": 4000,
+      "width": 4000,
+      "height": 6000,
       "webpSrc": "/images/france/DSCF9420.webp",
       "exif": {
         "date": "2018:07:28 21:36:45",
@@ -797,11 +797,11 @@
       }
     },
     {
-      "src": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.jpg",
+      "src": "/images/france/51914EBB.jpg",
       "alt": "France photo",
       "width": 6000,
       "height": 4000,
-      "webpSrc": "/images/france/F89324BD-092C-4180-BA2E-9E6251914EBB-2512-000009EED7A4B182_photo.webp",
+      "webpSrc": "/images/france/51914EBB.webp",
       "exif": {
         "date": "2018:07:25 21:55:45",
         "camera": "FUJIFILM X-T2",

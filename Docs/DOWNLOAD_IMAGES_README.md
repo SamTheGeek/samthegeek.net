@@ -209,3 +209,9 @@ After successfully running the download script:
 1. Check that images are in `public/images/[gallery-name]/`
 2. Start the dev server (`npm run dev`) to see the real images
 3. Commit the new images to git (and update gallery JSON if needed)
+
+## Fixing Sideways Photos
+
+Photos that lost their EXIF orientation during the WebP conversion are fixed
+separately, with `scripts/rotate-gallery-images.mjs` or the **Rotate Images**
+GitHub Actions workflow. See [IMAGE_ROTATION.md](IMAGE_ROTATION.md).
