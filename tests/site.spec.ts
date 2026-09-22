@@ -91,8 +91,9 @@ test.describe('Site behavior', () => {
     test.skip(browserName !== 'chromium', 'Blink-only column check.');
     await page.setViewportSize({ width: 1400, height: 900 });
     await page.goto('/copenhagen');
-    const columnCount = await page.$eval('.gallery-grid', (el) =>
-      Number.parseInt(getComputedStyle(el).columnCount, 10)
+    const columnCount = await page.$eval(
+      '.gallery-grid',
+      (el) => getComputedStyle(el).gridTemplateColumns.split(' ').length
     );
     expect(columnCount).toBeGreaterThan(1);
   });
@@ -549,6 +550,125 @@ test.describe('Performance optimizations', () => {
       // Note: dimensions may not be present if images haven't been processed yet
       // This test verifies the structure is in place
     }
+  });
+});
+
+test.describe('Panoramic photos', () => {
+  const measureGallery = (page: import('@playwright/test').Page) =>
+    page.evaluate(() => {
+      const grid = document.querySelector('.gallery-grid') as HTMLElement;
+      const gridRect = grid.getBoundingClientRect();
+      const gap = Number.parseFloat(getComputedStyle(grid).columnGap);
+      const columns = getComputedStyle(grid).gridTemplateColumns.split(' ').map(Number.parseFloat);
+      const items = [...document.querySelectorAll('.gallery-item')] as HTMLElement[];
+      const panorama = items.find((item) => item.classList.contains('gallery-item-panorama'));
+      if (!panorama) return null;
+      const rect = panorama.getBoundingClientRect();
+      return {
+        columnCount: columns.length,
+        columnWidth: columns[0],
+        gap,
+        panoramaWidth: rect.width,
+        // Distance from the grid's left edge, in whole columns.
+        offsetFromColumnBoundary: Math.abs((rect.left - gridRect.left) % (columns[0] + gap)),
+        // Tiles that share vertical space with the panorama - i.e. sit beside it.
+        neighbours: items.filter((item) => {
+          if (item === panorama) return false;
+          const r = item.getBoundingClientRect();
+          return r.top < rect.bottom - 2 && r.bottom > rect.top + 2;
+        }).length,
+      };
+    });
+
+  test('only ultra-wide photos are marked as panoramas', async ({ page }) => {
+    test.slow();
+    const slugs = await loadGallerySlugs();
+
+    for (const slug of slugs) {
+      const jsonPath = path.join(process.cwd(), 'src', 'content', 'galleries', `${slug}.json`);
+      const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+      const expected = data.images.filter(
+        (image: { width?: number; height?: number }) =>
+          image.width && image.height && image.width / image.height >= 2
+      ).length;
+
+      await page.goto(`/${slug}`);
+      const rendered = await page.locator('.gallery-item-panorama').count();
+      expect(rendered, `panorama count for ${slug}`).toBe(expected);
+    }
+  });
+
+  test('panoramas are exactly two columns wide and sit on the column grid', async ({ page }) => {
+    await page.setViewportSize({ width: 1400, height: 900 });
+    await page.goto('/canada');
+
+    const metrics = await measureGallery(page);
+    expect(metrics).not.toBeNull();
+    expect(metrics!.columnCount).toBe(3);
+    // Two column widths plus the gap they swallow between them.
+    expect(metrics!.panoramaWidth).toBeCloseTo(metrics!.columnWidth * 2 + metrics!.gap, 0);
+    // Flush with a column boundary rather than centred across one.
+    expect(metrics!.offsetFromColumnBoundary).toBeLessThan(1.5);
+  });
+
+  test('photos fill the column beside a panorama', async ({ page }) => {
+    await page.setViewportSize({ width: 1400, height: 900 });
+    await page.goto('/canada');
+
+    // The whole point of the grid: a two-column panorama in a three-column
+    // layout leaves a column free, and ordinary photos flow into it.
+    const metrics = await measureGallery(page);
+    expect(metrics!.neighbours).toBeGreaterThan(0);
+  });
+
+  test('panoramas fill the width when the grid is two columns or fewer', async ({ page }) => {
+    for (const width of [1000, 500]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/canada');
+
+      const metrics = await measureGallery(page);
+      const expected =
+        metrics!.columnWidth * metrics!.columnCount + metrics!.gap * (metrics!.columnCount - 1);
+      expect(metrics!.panoramaWidth, `panorama width at ${width}px`).toBeCloseTo(expected, 0);
+    }
+  });
+
+  test('tiles keep their aspect ratio to within a fraction of a percent', async ({ page }) => {
+    await page.setViewportSize({ width: 1400, height: 900 });
+    await page.goto('/canada');
+    await page.evaluate(() =>
+      document.querySelectorAll('.gallery-item img').forEach((img) => {
+        (img as HTMLImageElement).loading = 'eager';
+      })
+    );
+    await page.waitForFunction(
+      () =>
+        [...document.querySelectorAll('.gallery-item img')].every(
+          (img) => (img as HTMLImageElement).complete
+        ),
+      null,
+      { timeout: 60000 }
+    );
+
+    // Heights are quantised to the row grid, so a tile can be a hair shorter or
+    // taller than its photo's true aspect ratio; object-fit: cover absorbs it.
+    // Guard the size of that discrepancy so a bad row-span never slips through.
+    const worstDrift = await page.evaluate(() => {
+      const grid = document.querySelector('.gallery-grid') as HTMLElement;
+      const gap = Number.parseFloat(getComputedStyle(grid).columnGap);
+      return Math.max(
+        ...[...document.querySelectorAll('.gallery-item')].map((item) => {
+          const img = item.querySelector('img') as HTMLImageElement;
+          const box = item.getBoundingClientRect();
+          const attrRatio =
+            Number(img.getAttribute('height')) / Number(img.getAttribute('width'));
+          const wanted = box.width * attrRatio + gap;
+          return Math.abs(box.height - wanted) / wanted;
+        })
+      );
+    });
+
+    expect(worstDrift).toBeLessThan(0.01);
   });
 });
 
