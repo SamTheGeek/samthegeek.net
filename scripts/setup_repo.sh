@@ -7,10 +7,10 @@ if [ -s "$HOME/.nvm/nvm.sh" ]; then
 fi
 
 if command -v nvm >/dev/null 2>&1; then
-  nvm install --lts
-  nvm use --lts
+  nvm install
+  nvm use
 else
-  echo "nvm not found. Install Node.js LTS before continuing."
+  echo "nvm not found. Install the Node.js version in .nvmrc before continuing."
   exit 1
 fi
 

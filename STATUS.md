@@ -10,6 +10,8 @@ This file is the single source of truth for current status, progress, and next t
 - Astro 7's stricter Rust compiler rejects a nested template literal containing an HTML element inside a function body; `BlogList.astro`'s excerpt builder was refactored to hoist the embed markup into a variable.
 - `vite.build.cssTarget` is pinned so the Vite 8 CSS minifier keeps `@media (max-width: …)` instead of Level 4 range syntax, which would drop the responsive breakpoints on Safari 16.0-16.3.
 - Resolves the three Astro XSS advisories affecting `astro <= 7.0.9`; remaining `npm audit` findings are all in Netlify's local dev toolchain, reachable only via `@astrojs/netlify`.
+- Node is pinned to 24.22.1 (the 2026-10-21 security release) in `.nvmrc`, which NVM, every GitHub Actions workflow and Netlify read; Dependabot does not bump it, so update it by hand on Node security releases.
+- 2026-10-21 dependency sweep (astro 7.4.2, @astrojs/netlify 8.2.10, @netlify/blobs 11.1.6, sharp 0.35.5, Playwright 1.64.1, vite 8.3.5 and patched transitive deps) supersedes Dependabot PRs #164, #169, #171, #174-#176 and #178-#185. `npm audit` is down to the `braces` → `micromatch` → `fast-glob` chain in `@netlify/zip-it-and-ship-it`, which has no patched `braces` release yet.
 - Local/CI gallery validation now accepts existing `.webp` assets when JSON `src` points to legacy JPG/JPEG paths.
 - Dev server: starts successfully when network access is allowed; fails under restricted sandbox.
 - CI Playwright workflow now skips docs/workflow/photo-only PRs and `scripts/**` changes, caches Playwright browser binaries, runs core browser checks broadly, and runs blog route checks only when new blog content files are added.

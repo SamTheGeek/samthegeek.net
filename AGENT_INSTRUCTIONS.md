@@ -17,7 +17,7 @@ The homepage route `/` redirects to the newest gallery based on `publishedDate` 
 
 ```bash
 # Run in background to keep it active during the session
-source "$HOME/.nvm/nvm.sh" && nvm use --lts && npm run dev
+source "$HOME/.nvm/nvm.sh" && nvm use && npm run dev
 ```
 
 The dev server should run at <http://localhost:4321/> and will hot-reload when files are changed. This allows for immediate visual feedback during development.
@@ -50,16 +50,16 @@ Note: The dev server can fail to bind under restricted sandbox permissions; it s
 ## Technology Stack
 
 - **Framework**: Astro (static site generator)
-- **Node Version**: LTS (managed via NVM)
+- **Node Version**: pinned in `.nvmrc` (read by NVM, GitHub Actions and Netlify); bump it by hand for Node security releases, Dependabot does not
 - **Deployment**: Netlify (via GitHub Actions)
 - **SSL**: Let's Encrypt
 
 ## Development Commands
 
 ```bash
-# Install Node LTS via NVM
-nvm install --lts
-nvm use --lts
+# Install the Node version pinned in .nvmrc
+nvm install
+nvm use
 
 # Install dependencies
 npm install
