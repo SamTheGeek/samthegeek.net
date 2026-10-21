@@ -7,7 +7,7 @@ Personal website for Sam Gross, built with Astro and deployed to Netlify.
 ## 🚀 Development
 
 ```bash
-# Install the Node version pinned in .nvmrc
+# Install the Node version in .nvmrc
 nvm install && nvm use
 
 # Install dependencies

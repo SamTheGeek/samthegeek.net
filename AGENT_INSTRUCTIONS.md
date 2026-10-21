@@ -50,14 +50,14 @@ Note: The dev server can fail to bind under restricted sandbox permissions; it s
 ## Technology Stack
 
 - **Framework**: Astro (static site generator)
-- **Node Version**: pinned in `.nvmrc` (read by NVM, GitHub Actions and Netlify); bump it by hand for Node security releases, Dependabot does not
+- **Node Version**: the 24.x line via `.nvmrc` (read by NVM, GitHub Actions and Netlify); CI uses `check-latest` so each run picks up the newest 24.x security patch
 - **Deployment**: Netlify (via GitHub Actions)
 - **SSL**: Let's Encrypt
 
 ## Development Commands
 
 ```bash
-# Install the Node version pinned in .nvmrc
+# Install the Node version in .nvmrc
 nvm install
 nvm use
 
