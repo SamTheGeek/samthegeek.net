@@ -12,6 +12,13 @@ const lightbox = (page: Page) => page.locator('#lightbox');
 const thumbnails = (page: Page) => page.locator('.gallery-item img');
 const photoParam = (page: Page) => new URL(page.url()).searchParams.get('photo');
 
+// Keep the suite hermetic: embedded YouTube/Maps frames would otherwise make
+// results depend on (and axe scan) third-party pages.
+test.beforeEach(async ({ context, baseURL }) => {
+  const { host } = new URL(baseURL!);
+  await context.route((url) => url.host !== host, (route) => route.abort());
+});
+
 const openFirstPhoto = async (page: Page, slug = 'copenhagen') => {
   await page.goto(`/${slug}`);
   await thumbnails(page).first().click();
