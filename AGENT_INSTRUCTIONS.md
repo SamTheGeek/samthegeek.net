@@ -74,6 +74,15 @@ npm run build
 npm run preview
 ```
 
+## Tests
+
+- `npm test`: unit (`tests/unit/`) and content data (`tests/data/`) suites on Node's built-in `node:test`; no build or browser needed.
+- `npm run test:dist`: checks the built HTML, redirects and RSS in `dist/` (`tests/dist/`); run after `npm run build`.
+- `npx playwright test`: browser-only behaviour (`tests/e2e/`) in Chromium and WebKit, served from `dist/` by `tests/e2e/static-server.mjs`.
+- `npm run build` gates on the data suite only, so Netlify deploys fail on broken gallery/blog data.
+- Prefer asserting on `dist/` output or real behaviour over grepping source files; shared loaders live in `tests/helpers.mjs`.
+- CI (`.github/workflows/ci.yml`) runs a browser-free `checks` job for script/content changes and a `build` job (build, dist checks, Playwright) for site changes.
+
 ## Build Output Safety
 
 Builds include a verification step that fails if documentation or scripts appear in `dist/`.

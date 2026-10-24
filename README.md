@@ -38,12 +38,19 @@ bash scripts/setup_repo.sh
 ## ✅ Testing
 
 ```bash
-# Fast regression checks
-npm run test
+# Unit + content data checks (no build, no browser; well under a second)
+npm test
 
-# Full build + Playwright E2E
+# Build, check the built HTML in dist/, then Playwright (Chromium + WebKit)
 npm run test:e2e
 ```
+
+| Suite | Location | Runs on |
+| --- | --- | --- |
+| Unit (script helpers, real-pixel sharp checks) | `tests/unit/` | `npm test`, CI `checks` job |
+| Content data (gallery/blog JSON and frontmatter, image files exist) | `tests/data/` | `npm test`, every `npm run build` (incl. Netlify) |
+| Built site (HTML attributes, internal links, redirects, RSS, CSS) | `tests/dist/` | `npm run test:dist` after a build, CI `build` job |
+| Browser behaviour (lightbox, layout, axe a11y) | `tests/e2e/` | `npx playwright test`, CI `build` job |
 ## 🧱 Tools Used
 
 - Astro for the site framework and content collections
