@@ -1,29 +1,34 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 const isCI = Boolean(process.env.CI);
 
 export default defineConfig({
   fullyParallel: true,
-  workers: isCI ? 2 : undefined,
-  testDir: './tests',
+  forbidOnly: isCI,
+  testDir: './tests/e2e',
   timeout: 30000,
   expect: {
     timeout: 5000,
   },
+  reporter: isCI ? [['github'], ['line']] : 'list',
   use: {
     baseURL: 'http://127.0.0.1:4321',
     trace: isCI ? 'off' : 'retain-on-failure',
   },
   webServer: {
-    command: 'npx --yes serve dist -l 4321 --no-clipboard',
+    command: 'node tests/e2e/static-server.mjs 4321',
     url: 'http://127.0.0.1:4321',
     reuseExistingServer: !isCI,
-    timeout: 120000,
+    timeout: 30000,
   },
   projects: [
     {
       name: 'chromium',
-      use: { browserName: 'chromium' },
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
     },
   ],
 });
