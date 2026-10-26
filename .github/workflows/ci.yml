@@ -12,28 +12,46 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      relevant: ${{ steps.filter.outputs.any_changed }}
+      # Anything that can change the built site: build + Playwright.
+      site: ${{ steps.filter.outputs.site_any_changed }}
+      # Scripts, content and their tests: the browser-free unit/data suite.
+      checks: ${{ steps.filter.outputs.checks_any_changed }}
     steps:
       - name: Check for relevant changes
         id: filter
         uses: tj-actions/changed-files@v47
         with:
-          files_ignore: |
-            .github/workflows/**
-            public/images/**
-            **/*.webp
-            src/content/galleries/**/*.json
-            src/content/galleries/**
-            scripts/**
-            Docs/**
-            README.md
-            STATUS.md
-            AGENTS.md
-            AGENT_INSTRUCTIONS.md
+          files_yaml: |
+            site:
+              - '**'
+              - '!.github/workflows/codeql.yml'
+              - '!.github/workflows/convert-all-images.yml'
+              - '!.github/workflows/dependabot-automerge.yaml'
+              - '!.github/workflows/process-photos.yml'
+              - '!.github/workflows/rotate-images.yml'
+              - '!.github/workflows/update-photo-metadata.yml'
+              - '!public/images/**'
+              - '!**/*.webp'
+              - '!src/content/galleries/**'
+              - '!scripts/**'
+              - '!Docs/**'
+              - '!README.md'
+              - '!STATUS.md'
+              - '!AGENTS.md'
+              - '!AGENT_INSTRUCTIONS.md'
+            checks:
+              - scripts/**
+              - src/content/**
+              - tests/**
+              - package.json
+              - package-lock.json
+              - .env.example
+              - .github/workflows/ci.yml
+              - .github/workflows/rotate-images.yml
 
-  build:
+  checks:
     needs: changes
-    if: needs.changes.outputs.relevant == 'true'
+    if: needs.changes.outputs.checks == 'true' || needs.changes.outputs.site == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -58,6 +76,40 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci
 
+      # Images are not checked out; the data tests look them up via the API.
+      - name: Run unit and data tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm test
+
+  build:
+    needs: changes
+    if: needs.changes.outputs.site == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      # Everything but the ~2GB of gallery images: the built site still needs
+      # the rest of public/ (favicons) for its internal-link check.
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/public/images/
+
+      - name: Use Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: npm
+
+      - name: Install dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci
+
       - name: Cache Playwright browser binaries
         uses: actions/cache@v6
         with:
@@ -66,41 +118,40 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-playwright-
 
-      - name: Install Playwright Chromium browser
-        run: npx playwright install chromium
+      # --with-deps installs the system libraries WebKit needs on the runner;
+      # the browser binaries themselves come from the cache when it hits.
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
 
       - name: Create public directory
         run: mkdir -p public
 
-      - name: Build site and run static checks
+      - name: Build site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build
 
-      - name: Detect newly added blog posts
-        id: blog_changes
-        uses: tj-actions/changed-files@v47
-        with:
-          files: src/content/blog/**
+      - name: Check built site
+        run: npm run test:dist
 
-      - name: Run Playwright tests (core)
-        run: npm run test:e2e:ci -- --grep-invert "@blog"
-
-      - name: Run Playwright tests (blog content additions)
-        if: steps.blog_changes.outputs.any_added == 'true'
-        run: npm run test:e2e:ci -- --grep "@blog"
+      - name: Run Playwright tests
+        run: npm run test:e2e:ci
 
   ci-passed:
     runs-on: ubuntu-latest
     if: always()
-    needs: [build]
+    needs: [changes, checks, build]
     steps:
-      - name: Check build result
+      - name: Check job results
         env:
+          CHANGES_RESULT: ${{ needs.changes.result }}
+          CHECKS_RESULT: ${{ needs.checks.result }}
           BUILD_RESULT: ${{ needs.build.result }}
         run: |
-          if [[ "$BUILD_RESULT" == "failure" || "$BUILD_RESULT" == "cancelled" ]]; then
-            echo "Build failed or was cancelled"
-            exit 1
-          fi
-          echo "CI passed (build: $BUILD_RESULT)"
+          for result in "$CHANGES_RESULT" "$CHECKS_RESULT" "$BUILD_RESULT"; do
+            if [[ "$result" == "failure" || "$result" == "cancelled" ]]; then
+              echo "A required job failed or was cancelled (changes: $CHANGES_RESULT, checks: $CHECKS_RESULT, build: $BUILD_RESULT)"
+              exit 1
+            fi
+          done
+          echo "CI passed (checks: $CHECKS_RESULT, build: $BUILD_RESULT)"

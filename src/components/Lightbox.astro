@@ -1042,6 +1042,9 @@
       if (img.complete && img.naturalWidth && img.naturalHeight) {
         return Promise.resolve(token);
       }
+      // A lazy thumbnail below the fold (e.g. a ?photo= deep link) has not
+      // started loading, so decode() would wait for it forever.
+      img.loading = 'eager';
       if (img.decode) {
         return img.decode().then(() => token).catch(() => token);
       }

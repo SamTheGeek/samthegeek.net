@@ -5,14 +5,16 @@
   "packageManager": "npm@11.6.2",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/generate-latest-redirect.mjs && node scripts/run-tests.mjs && astro build && node scripts/verify-build-artifacts.mjs",
+    "build": "node scripts/generate-latest-redirect.mjs && npm run test:data && astro build && node scripts/verify-build-artifacts.mjs",
     "preview": "astro preview",
-    "test": "node scripts/run-tests.mjs",
-    "test:e2e": "npm run build && npx playwright test",
+    "test": "node --test \"tests/unit/**/*.test.mjs\" \"tests/data/**/*.test.mjs\"",
+    "test:data": "node --test \"tests/data/**/*.test.mjs\"",
+    "test:dist": "node --test \"tests/dist/**/*.test.mjs\"",
+    "test:e2e": "npm run build && npm run test:dist && playwright test",
+    "test:e2e:ci": "playwright test",
     "postinstall": "node scripts/postinstall.mjs",
     "setup": "bash scripts/setup_repo.sh",
-    "astro": "astro",
-    "test:e2e:ci": "npx playwright test --project=chromium --reporter=line"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/netlify": "^8.2.10",
