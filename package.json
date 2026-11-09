@@ -2,7 +2,7 @@
   "name": "samthegeek.net",
   "type": "module",
   "version": "1.0.1",
-  "packageManager": "npm@11.6.2",
+  "packageManager": "npm@11.21.2",
   "scripts": {
     "dev": "astro dev",
     "build": "node scripts/generate-latest-redirect.mjs && npm run test:data && astro build && node scripts/verify-build-artifacts.mjs",
