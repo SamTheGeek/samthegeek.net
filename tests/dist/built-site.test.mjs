@@ -226,3 +226,35 @@ describe('RSS feed', () => {
     assert.doesNotMatch(body, /<!\[CDATA\[|\]\]>/);
   });
 });
+
+describe('robots.txt', () => {
+  // The /* -> /index.html fallback would otherwise answer /robots.txt with the
+  // homepage, leaving every crawler unrestricted.
+  let robots;
+  before(async () => {
+    robots = await readDist('robots.txt');
+  });
+
+  /** Disallow rules that apply to `agent`, per group, as robots.txt parsers read them. */
+  const disallowsFor = (agent) => {
+    const groups = robots.split(/\n\s*\n/).map((block) => block.split('\n').filter((l) => l && !l.startsWith('#')));
+    const match = groups.find((lines) =>
+      lines.some((l) => l.toLowerCase() === `user-agent: ${agent.toLowerCase()}`),
+    );
+    return (match ?? []).filter((l) => l.startsWith('Disallow:')).map((l) => l.slice(9).trim());
+  };
+
+  test('is built', () => {
+    assert.ok(distFiles.has('robots.txt'));
+  });
+
+  for (const agent of ['meta-externalagent', 'meta-webindexer', 'GPTBot', 'ClaudeBot', 'CCBot', 'Google-Extended']) {
+    test(`blocks ${agent} from the whole site`, () => {
+      assert.deepEqual(disallowsFor(agent), ['/']);
+    });
+  }
+
+  test('keeps every other crawler off the Netlify image CDN', () => {
+    assert.deepEqual(disallowsFor('*'), ['/.netlify/images']);
+  });
+});
