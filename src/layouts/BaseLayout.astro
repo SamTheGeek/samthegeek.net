@@ -19,13 +19,13 @@ const {
 const currentPath = activePath ?? Astro.url.pathname;
 const siteOrigin = Astro.site?.toString() ?? Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, siteOrigin);
-// Share previews go through the Netlify image CDN as a 1200px JPEG: the
-// originals are multi-megabyte .webp files (no .jpg is deployed), and JPEG is
-// the format every link-preview fetcher accepts. robots.txt allows fm=jpg.
+// Share previews go through the Netlify image CDN as a 1200px WebP: the
+// originals are multi-megabyte .webp files, and pinning fm=webp keeps the CDN
+// from negotiating a different format per fetcher. robots.txt allows fm=webp.
 const shareImageSource = image ?? '/images/about/profile-720.webp';
 const shareImageWidth = image ? '&w=1200' : '';
 const metaImage = new URL(
-  `/.netlify/images?url=${encodeURIComponent(shareImageSource)}${shareImageWidth}&fm=jpg`,
+  `/.netlify/images?url=${encodeURIComponent(shareImageSource)}${shareImageWidth}&fm=webp`,
   siteOrigin,
 );
 const metaImageAlt = imageAlt ?? 'Portrait of Sam Gross';

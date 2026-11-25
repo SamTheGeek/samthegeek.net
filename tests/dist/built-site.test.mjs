@@ -274,11 +274,11 @@ describe('share images', () => {
     const ogImage = metaContent(page, 'property', 'og:image');
     if (!ogImage) continue; // redirect stubs have no head metadata
 
-    test(`${file} shares a deployed photo as a JPEG through the image CDN`, () => {
+    test(`${file} shares a deployed photo as a WebP through the image CDN`, () => {
       const url = new URL(ogImage);
       assert.equal(url.origin, 'https://samthegeek.net');
       assert.equal(url.pathname, '/.netlify/images');
-      assert.equal(url.searchParams.get('fm'), 'jpg');
+      assert.equal(url.searchParams.get('fm'), 'webp');
       assert.ok(deployedSources.has(url.searchParams.get('url')), `${url.searchParams.get('url')} is not a deployed image`);
       assert.ok(Number(url.searchParams.get('w') ?? 0) <= 1200, 'share image should be at most 1200px wide');
       assert.equal(metaContent(page, 'name', 'twitter:image'), ogImage);
@@ -287,6 +287,6 @@ describe('share images', () => {
 
   test('robots.txt lets link-preview fetchers load the share images', async () => {
     const robots = await readDist('robots.txt');
-    assert.match(robots, /^Allow: \/\.netlify\/images\?\*fm=jpg$/m);
+    assert.match(robots, /^Allow: \/\.netlify\/images\?\*fm=webp$/m);
   });
 });

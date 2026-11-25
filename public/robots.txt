@@ -26,9 +26,9 @@ User-agent: ant-html
 Disallow: /
 
 # Everyone else may crawl pages, but not the resized/full-size photos
-# served by the Netlify image CDN. The one exception is the 1200px JPEG each
+# served by the Netlify image CDN. The one exception is the 1200px WebP each
 # page names as its og:image, which link-preview fetchers (Twitterbot,
 # LinkedInBot, …) only load if robots.txt lets them.
 User-agent: *
-Allow: /.netlify/images?*fm=jpg
+Allow: /.netlify/images?*fm=webp
 Disallow: /.netlify/images
