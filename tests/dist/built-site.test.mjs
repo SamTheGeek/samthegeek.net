@@ -258,3 +258,35 @@ describe('robots.txt', () => {
     assert.deepEqual(disallowsFor('*'), ['/.netlify/images']);
   });
 });
+
+describe('share images', () => {
+  // og:image used to name the original .jpg, which is never deployed (only the
+  // .webp is), so every link preview came back broken.
+  const metaContent = (page, attr, value) =>
+    findTags(page, 'meta').find((tag) => tag[attr] === value)?.content;
+  const deployedSources = new Set([
+    '/images/about/profile-720.webp',
+    ...galleries.flatMap(({ data }) => data.images.map((image) => image.webpSrc ?? image.src)),
+  ]);
+
+  for (const file of htmlFiles) {
+    const page = html.get(file);
+    const ogImage = metaContent(page, 'property', 'og:image');
+    if (!ogImage) continue; // redirect stubs have no head metadata
+
+    test(`${file} shares a deployed photo as a JPEG through the image CDN`, () => {
+      const url = new URL(ogImage);
+      assert.equal(url.origin, 'https://samthegeek.net');
+      assert.equal(url.pathname, '/.netlify/images');
+      assert.equal(url.searchParams.get('fm'), 'jpg');
+      assert.ok(deployedSources.has(url.searchParams.get('url')), `${url.searchParams.get('url')} is not a deployed image`);
+      assert.ok(Number(url.searchParams.get('w') ?? 0) <= 1200, 'share image should be at most 1200px wide');
+      assert.equal(metaContent(page, 'name', 'twitter:image'), ogImage);
+    });
+  }
+
+  test('robots.txt lets link-preview fetchers load the share images', async () => {
+    const robots = await readDist('robots.txt');
+    assert.match(robots, /^Allow: \/\.netlify\/images\?\*fm=jpg$/m);
+  });
+});
