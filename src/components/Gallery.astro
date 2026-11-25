@@ -27,6 +27,7 @@ interface Props {
 }
 
 const { title, images } = Astro.props;
+const MAX_SRC_WIDTH = 1200;
 ---
 
 <div class="gallery-page">
@@ -34,13 +35,22 @@ const { title, images } = Astro.props;
     {images.map((image, index) => {
       // First 6 images are likely above the fold - prioritize them
       const isAboveFold = index < 6;
+      // Cap the intrinsic size at the largest srcset width. Astro uses
+      // width/height for the <img src> fallback, so passing the original
+      // (often 6000px) made every src a full-resolution Image CDN render.
+      // Browsers pick from srcset, but crawlers and link-preview bots fetch
+      // src, which cost ~1 MB per photo and blew the Netlify bandwidth cap.
+      const srcWidth = image.width ?? 1200;
+      const srcHeight = image.height ?? 800;
+      const displayWidth = Math.min(srcWidth, MAX_SRC_WIDTH);
+      const displayHeight = Math.round(srcHeight * (displayWidth / srcWidth));
       return (
         <div class="gallery-item">
           <Image
             src={image.webpSrc ?? image.src}
             alt={image.alt}
-            width={image.width ?? 1200}
-            height={image.height ?? 800}
+            width={displayWidth}
+            height={displayHeight}
             widths={[400, 800, 1200]}
             sizes="(max-width: 768px) calc(100vw - 0.5rem), (max-width: 1280px) calc(50vw - 0.375rem), calc(33vw - 0.25rem)"
             loading={isAboveFold ? "eager" : "lazy"}
