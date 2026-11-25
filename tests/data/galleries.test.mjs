@@ -5,49 +5,12 @@ import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { exists, importScript, loadGalleries, root } from '../helpers.mjs';
+import { exists, importScript, loadGalleries, loadImageIndex, root } from '../helpers.mjs';
 
 const galleries = await loadGalleries();
 const { shortNameFor, stripExtension } = await importScript('scripts/shorten-image-names.mjs');
 
-/**
- * Paths under public/ that exist, from the filesystem, or - in the sparse CI
- * checkout, which leaves the 2GB of images out - from the GitHub tree API.
- */
-const imageIndex = await (async () => {
-  if (await exists(path.join(root, 'public/images'))) {
-    return { has: (relPath) => exists(path.join(root, 'public', relPath)) };
-  }
-  const { GITHUB_TOKEN: token, GITHUB_REPOSITORY: repository, GITHUB_SHA: sha } = process.env;
-  if (!token || !repository || !sha) {
-    throw new Error(
-      'public/images is not checked out and GITHUB_TOKEN/GITHUB_REPOSITORY/GITHUB_SHA are not set, ' +
-        'so image references cannot be checked.',
-    );
-  }
-  const response = await fetch(
-    `https://api.github.com/repos/${repository}/git/trees/${sha}?recursive=1`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-    },
-  );
-  if (!response.ok) {
-    throw new Error(`GitHub tree API returned ${response.status} for ${repository}@${sha}.`);
-  }
-  const tree = await response.json();
-  // A truncated tree would make every image past the cut-off look missing.
-  if (tree.truncated) {
-    throw new Error('GitHub tree API response was truncated; check out public/images instead.');
-  }
-  const paths = new Set(
-    tree.tree.filter((item) => item.path.startsWith('public/images/')).map((item) => item.path),
-  );
-  return { has: async (relPath) => paths.has(`public/${relPath}`) };
-})();
+const imageIndex = await loadImageIndex();
 
 /** The files that can satisfy an image entry: its src, or the WebP we serve for it. */
 const candidatePaths = (image) => {

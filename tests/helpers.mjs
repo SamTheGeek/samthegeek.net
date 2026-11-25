@@ -21,6 +21,45 @@ export const exists = async (fullPath) => {
 export const importScript = (relativePath) =>
   import(pathToFileURL(path.join(root, relativePath)).href);
 
+/**
+ * Paths under public/ that exist, from the filesystem, or - in the sparse CI
+ * checkout, which leaves the 2GB of images out - from the GitHub tree API.
+ */
+export const loadImageIndex = async () => {
+  if (await exists(path.join(root, 'public/images'))) {
+    return { has: (relPath) => exists(path.join(root, 'public', relPath)) };
+  }
+  const { GITHUB_TOKEN: token, GITHUB_REPOSITORY: repository, GITHUB_SHA: sha } = process.env;
+  if (!token || !repository || !sha) {
+    throw new Error(
+      'public/images is not checked out and GITHUB_TOKEN/GITHUB_REPOSITORY/GITHUB_SHA are not set, ' +
+        'so image references cannot be checked.',
+    );
+  }
+  const response = await fetch(
+    `https://api.github.com/repos/${repository}/git/trees/${sha}?recursive=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+    },
+  );
+  if (!response.ok) {
+    throw new Error(`GitHub tree API returned ${response.status} for ${repository}@${sha}.`);
+  }
+  const tree = await response.json();
+  // A truncated tree would make every image past the cut-off look missing.
+  if (tree.truncated) {
+    throw new Error('GitHub tree API response was truncated; check out public/images instead.');
+  }
+  const paths = new Set(
+    tree.tree.filter((item) => item.path.startsWith('public/images/')).map((item) => item.path),
+  );
+  return { has: async (relPath) => paths.has(`public/${relPath}`) };
+};
+
 /** Every gallery JSON as { slug, data }, sorted by slug. Throws on invalid JSON. */
 export const loadGalleries = async () => {
   const dir = path.join(root, 'src/content/galleries');

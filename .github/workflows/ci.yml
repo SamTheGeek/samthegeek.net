@@ -41,6 +41,8 @@ jobs:
               - '!AGENT_INSTRUCTIONS.md'
             checks:
               - scripts/**
+              - netlify/**
+              - public/robots.txt
               - src/content/**
               - tests/**
               - package.json
@@ -56,13 +58,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        # Root files, the code and tests, and robots.txt; not the ~2GB of
+        # gallery images under public/. The edge-function test reads
+        # netlify/ and public/robots.txt.
         with:
           filter: blob:none
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            src
-            scripts
-            tests
-            .github
+            /*
+            !/*/
+            /src/
+            /scripts/
+            /tests/
+            /.github/
+            /netlify/
+            /public/robots.txt
 
       - name: Use Node.js
         uses: actions/setup-node@v7
